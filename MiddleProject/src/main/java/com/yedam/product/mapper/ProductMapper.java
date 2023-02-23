@@ -7,7 +7,7 @@ import com.yedam.product.vo.ProductVO;
 
 public interface ProductMapper {
 	// 목록, 단건조회.
-	public List<ProductVO> getList();
-	public ProductVO getProduct(String productCode);
-	public List<ProductVO> relatedList();
+//	public List<ProductVO> getList();
+//	public ProductVO getProduct(String productCode);
+//	public List<ProductVO> relatedList();
 }
