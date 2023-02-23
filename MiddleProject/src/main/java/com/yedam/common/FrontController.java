@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.yedam.member.command.LoginForm;
+
 
 public class FrontController extends HttpServlet {
 
@@ -25,11 +27,51 @@ public class FrontController extends HttpServlet {
 	public void init(ServletConfig config) throws ServletException {
 
 		charset = config.getInitParameter("charset");
-
+		//효상
 		map.put("/main.do", new MainControl());
-//		map.put("/productList.do", new ProductList());
-//		map.put("/productDetail.do", new ProductDetail());
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		//민규
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		//종민
+		map.put("/loginForm.do", new LoginForm());
+		
+		
+		
+		
+		
+		
+		
 
+		
+		//주안
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 	}
 
 	@Override
