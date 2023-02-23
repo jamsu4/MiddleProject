@@ -2,6 +2,7 @@ package com.yedam.product.mapper;
 
 import java.util.List;
 
+import com.yedam.order.vo.OrderVO;
 import com.yedam.product.vo.ProductVO;
 
 public interface ProductMapper {
