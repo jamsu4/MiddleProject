@@ -14,6 +14,11 @@ import javax.servlet.http.HttpServletResponse;
 import com.yedam.notice.command.NoticeListControl;
 
 
+import com.yedam.order.control.orderControl;
+import com.yedam.product.command.ProductDetail;
+
+
+
 public class FrontController extends HttpServlet {
 
 	private Map<String, Command> map;
@@ -29,6 +34,8 @@ public class FrontController extends HttpServlet {
 		charset = config.getInitParameter("charset");
 		//효상
 		map.put("/main.do", new MainControl());
+		map.put("/orderPage.do", new orderControl());
+
 
 		
 		
@@ -38,8 +45,10 @@ public class FrontController extends HttpServlet {
 		
 		
 		
+
 		//민규
-		
+		map.put("/productDetail.do", new ProductDetail());
+
 		
 		
 		
