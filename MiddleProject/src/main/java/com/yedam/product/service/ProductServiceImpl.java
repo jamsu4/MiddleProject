@@ -12,6 +12,16 @@ public class ProductServiceImpl implements ProductService{
 	SqlSession session = DataSource.getInstance().openSession(true);
 	ProductMapper mapper = session.getMapper(ProductMapper.class);
 	
+	@Override
+	public List<ProductVO> productList() {
+		return mapper.getList();
+	}
+
+	@Override
+	public List<ProductVO> searchProduct(String keyword) {
+		return mapper.searchResult(keyword);
+	}
+	
 //	@Override
 //	public List<ProductVO> productList() {
 //		return mapper.getList();

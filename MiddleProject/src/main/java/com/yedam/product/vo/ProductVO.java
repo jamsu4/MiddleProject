@@ -4,10 +4,10 @@ import lombok.Data;
 
 @Data
 public class ProductVO {
-	private int productID;
-	private String productName;
-	private int productPrice;
-	private String productDesc;
-	private String productCategory;
-	private String image;
+	private int proID;
+	private String proName;
+	private int proPrice;
+	private String proDesc;
+	private String proCategory;
+	private String proImg;
 }
