@@ -17,7 +17,7 @@ public class NoticeListControl implements Command {
 		
 		NoticeService service = new NoticeServiceImpl(); 
 		req.setAttribute("list",service.noticeList());
-		 
+		
 		
 		
 		return "notice/noticeList.tiles";

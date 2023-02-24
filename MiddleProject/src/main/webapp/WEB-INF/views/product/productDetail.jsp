@@ -8,7 +8,7 @@ prefix="c"%>
     <div class="row">
       <div class="col-lg-8">
         <div class="left-images">
-          <img src="images/${proDetail.proimg }" alt="" />
+          <img src="images/${proDetail.proImg }" alt="" />
         </div>
       </div>
       <div class="col-lg-4">
