@@ -6,4 +6,5 @@ import com.yedam.member.vo.MemberVO;
 public interface MemberService { // 서비스 부분
 
 	public MemberVO login(MemberVO member);
+	public int addMember(MemberVO member);
 }
