@@ -28,11 +28,12 @@ public class Login implements Command {
 		member.setMemId(id);
 		member.setMemPw(pass);
 
+
 		// 받아온 정보를 담은 VO 객체를 service 로 넘김
 		MemberVO rvo = service.login(member);
 		
 		
-//		System.out.println(rvo);					// 로그인용 정보 테스트 출력 (서비스에 담고나서 확인)
+		// System.out.println(rvo);					// 로그인용 정보 테스트 출력 (서비스에 담고나서 확인용)
 		
 
 		if (rvo != null) {
@@ -40,7 +41,8 @@ public class Login implements Command {
 
 			session.setAttribute("logId", rvo.getMemId());
 			session.setAttribute("logName", rvo.getMemName());
-
+			session.setAttribute("Auth", rvo.getMemUser());
+			System.out.println(rvo.getMemUser());
 			req.setAttribute("vo", rvo); // 요청정보에 vo를 저장 해당 데이터를 가지고, main 페이지로 일단은 이동
 
 			return "main.do";			// main/main.titles 안 됨.

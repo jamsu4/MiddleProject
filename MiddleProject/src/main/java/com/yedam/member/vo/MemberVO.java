@@ -11,4 +11,5 @@ public class MemberVO {
 	private String memPhone;
 	private String memEmail;
 	private String memUser;
+	
 }

@@ -16,11 +16,22 @@ public class searchProductControl implements Command {
 
 	@Override
 	public String exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String keyword = req.getParameter("search");
-		System.out.println(keyword);
-		ProductService service = new ProductServiceImpl();
-		req.setAttribute("list", service.searchProduct(keyword)); 
-		System.out.println(service.searchProduct(keyword));
+		if(req.getParameter("search") != null ) {
+			String keyword = req.getParameter("search");
+
+			ProductService service = new ProductServiceImpl();
+			req.setAttribute("list", service.searchProduct(keyword));
+			System.out.println(service.searchProduct(keyword));
+		} else if(req.getParameter("menu") != null ) {
+			String menu = req.getParameter("menu");
+
+			ProductService service = new ProductServiceImpl();
+			req.setAttribute("list", service.searchMenu(menu));
+			
+		}
+		 
+		
+
 		
 		return "search/search.tiles";
 	}

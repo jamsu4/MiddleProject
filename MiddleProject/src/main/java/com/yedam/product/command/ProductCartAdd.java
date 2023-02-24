@@ -17,23 +17,28 @@ public class ProductCartAdd implements Command {
 
 	@Override
 	public String exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//		String proId = req.getParameter("proId");
-//		String caQuant = req.getParameter("caQuant");
-//		String caSumprice = req.getParameter("caSumprice");
-//		
-//		CartVO vo = new CartVO();
-//		vo.setProId(Integer.parseInt(proId));
-//		vo.setCaQuant(Integer.parseInt(caQuant));
-//		vo.setCaSumprice(Integer.parseInt(caSumprice));
-//		
-//		ProductService service = new ProductServiceImpl();
-//		service.addProductCart(vo);
-//		
-//		Gson gson = new GsonBuilder().create();
-//		String json = gson.toJson(vo);
-//		
-//		return json + ".json";
-		return null;
+		String memId = req.getParameter("memId");
+		String proId = req.getParameter("proId");
+		String caQuant = req.getParameter("caQuant");
+		String caSumprice = req.getParameter("caSumprice");
+		
+		CartVO vo = new CartVO();
+		vo.setMemId(memId);
+		vo.setProId(Integer.parseInt(proId));
+		vo.setCaQuant(Integer.parseInt(caQuant));
+		vo.setCaSumprice(Integer.parseInt(caSumprice));
+		
+		ProductService service = new ProductServiceImpl();
+		String json = "";
+		
+		if(service.addProductCart(vo) > 0) {
+			json = "{\"retCode\": \"Success\"}";
+		} else {
+			json = "{\"retCode\": \"Fail\"}";
+		}
+		
+		return json + ".json";
+
 	}
 
 }

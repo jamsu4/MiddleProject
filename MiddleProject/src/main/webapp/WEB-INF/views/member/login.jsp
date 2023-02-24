@@ -85,17 +85,14 @@ a[href*="https://www.naver.com/"] {
 
 
 <body>
-
-	<form action="login.do" method="post">
+	<form action="login.do" method="post">	
 		<h3 id="title">Login</h3>
-
-		<!-- null이 아니라면 -->
-		<!-- 메세지 출력하기 -->
-		<c:if test="${result != null}">
+	
+		<!-- 이걸 자바스크립트로 바꿔서 해야하나???      회원 가입시 비번 확인용 구현처럼 (아래 코드 있음) -->
+		<c:if test="${result != null }">
 			<c:out value="${result}"></c:out>
 		</c:if>
-
-
+		
 		<table class="table">
 			<tr>
 				<th>ID</th>
@@ -122,40 +119,62 @@ a[href*="https://www.naver.com/"] {
 			<div class="modal_body">
 				회원가입내용 작성해라 <hr>
 				
-				<label for="member_id"><b>아이디</b></label>
-				<input type="text" placeholder="Enter ID" name="member_id" required>
-
-
-				<label for="member_pw"><b>비밀번호</b></label>
-				<input type="password" placeholder="Enter Password" name="member_pw" required>
-				
-				<label for="member_name"><b>비밀번호 재확인</b></label>
-				<input type="text" placeholder="Enter Name" name="member_name" required>
-				
-				<label for="member_name"><b>이름</b></label>
-				<input type="text" placeholder="Enter Name" name="member_name" required>
-
-				<label for="member_phone"><b>연락처</b></label>
-				<input type="text" placeholder="Enter Phone" name="member_phone" required>
-				
-				<label for="member_phone"><b>이메일</b></label>
-				<input type="text" placeholder="Enter Phone" name="member_phone" required>
-
-
-				<!-- 버튼 클릭시 signUpForm.do 로 이동 -->
-				<button type="button" onclick="location.href='signup.do' ">가입
-					정보 작성 완료</button>
+				<form action="signup.do" method="POST" onsubmit="return formCheck(this);">
+					<label for="member_id"><b>아이디</b></label>
+					<input type="text" placeholder="아이디를 입력해 주세요" name="member_id" required>
+	
+	
+					<label for="member_pw"><b>비밀번호</b></label>
+					<input type="password" placeholder="비밀번호를 입력해 주세요" name="member_pw" required autofocus>
+					
+					<label for="member_confirm_pw"><b>비밀번호 재확인</b></label>
+					<input type="password" placeholder="비밀번호를 다시 한 번 입력해 주세요" name="member_confirm_pw" required>
+					
+					<label for="member_name"><b>이름</b></label>
+					<input type="text" placeholder="이름을 입력해 주세요" name="member_name" required>
+	
+					<label for="member_phone"><b>연락처</b></label>
+					<input type="text" placeholder="연락처를 입력해 주세요" name="member_phone" required>
+					
+					<label for="member_phone"><b>이메일</b></label>
+					<input type="text" placeholder="이메일을 입력해 주세요" name="member_email" required>
+	
+					<!-- 유저 회원가입이니까 DB에서 mem_user 컬럼의 값을 자동으로 user 로 숨겨서 전달하기 -->
+					<input type="hidden" name="member_user" value="user">
+					
+					
+					<!-- 버튼 클릭시 signUpForm.do 로 이동 -->
+					<button type="submit">가입 정보 작성 완료</button>
+				</form>
 			</div>
 		</div>
 
 		<button class="btn-open-popup">회원가입</button>
-
 	</div>
+	
 
 	<script>
+		// 회원가입 할 때, 비밀번호와 재확인용 비밀번호가 일치하는지 확인하는 함수.
+		// 불일치하면, 가입 안 됨
+		function formCheck(frm) {
+		 if(frm.member_pw.value != frm.member_confirm_pw.value) {
+		  alert("비번이 다른데여");
+		  
+		  frm.member_pw.value = '';
+		  frm.member_confirm_pw.value = '';
+		  
+		  return false;
+		 }
+		 
+		 return true;
+		}
+    
+		
+	  // 모달창 관련
       const body = document.querySelector('body');
       const modal = document.querySelector('.modal');
       const btnOpenPopup = document.querySelector('.btn-open-popup');
+
 
       btnOpenPopup.addEventListener('click', () => {
         modal.classList.toggle('show');
@@ -165,6 +184,7 @@ a[href*="https://www.naver.com/"] {
         }
       });
 
+      
       modal.addEventListener('click', (event) => {
         if (event.target === modal) {
           modal.classList.toggle('show');
