@@ -10,4 +10,5 @@ public class ProductVO {
 	private String proDesc;
 	private String proCategory;
 	private String proImg;
+
 }

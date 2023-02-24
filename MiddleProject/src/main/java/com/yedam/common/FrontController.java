@@ -12,11 +12,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
+
+import com.yedam.mypage.command.MyPageControl;
+import com.yedam.member.command.Login;
 import com.yedam.member.command.LoginForm;
+import com.yedam.member.command.Signup;
+
 import com.yedam.notice.command.NoticeListControl;
-
-
 import com.yedam.order.control.orderControl;
+import com.yedam.product.command.ProductCartAdd;
 import com.yedam.product.command.ProductDetail;
 import com.yedam.product.command.searchProductControl;
 
@@ -54,8 +58,8 @@ public class FrontController extends HttpServlet {
 		
 
 		//민규
-		map.put("/productDetail.do", new ProductDetail());
-
+		map.put("/productDetail.do", new ProductDetail()); // 제품 상세 페이지
+		map.put("/productCartAdd.do", new ProductCartAdd()); // 제품을 장바구니에 추가
 
 		
 		
@@ -69,8 +73,8 @@ public class FrontController extends HttpServlet {
 		
 		//종민
 		map.put("/loginForm.do", new LoginForm());
-
-		
+		map.put("/login.do", new Login());
+		map.put("/signup.do", new Signup());
 		
 		
 		
@@ -82,8 +86,8 @@ public class FrontController extends HttpServlet {
 		
 		
 		//주안
-		map.put("/noticeList.do", new NoticeListControl());
-
+		map.put("/noticeList.do", new NoticeListControl()); //공지사항페이지 이동
+		map.put("/myPage.do",new MyPageControl()); //마이페이지 이동
 
 		
 		

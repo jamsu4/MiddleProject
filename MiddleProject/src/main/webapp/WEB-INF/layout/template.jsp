@@ -67,7 +67,8 @@ https://templatemo.com/tm-571-hexashop
     <script src="bootstrap/assets/js/imgfix.min.js"></script> 
     <script src="bootstrap/assets/js/slick.js"></script> 
     <script src="bootstrap/assets/js/lightbox.js"></script> 
-    <script src="bootstrap/assets/js/isotope.js"></script> 
+    <script src="bootstrap/assets/js/isotope.js"></script>
+    <script src="bootstrap/assets/js/quantity.js"></script>
     
     <!-- Global Init -->
     <script src="bootstrap/assets/js/custom.js"></script>

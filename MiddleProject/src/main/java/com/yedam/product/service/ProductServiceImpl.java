@@ -6,11 +6,13 @@ import org.apache.ibatis.session.SqlSession;
 
 import com.yedam.common.DataSource;
 import com.yedam.product.mapper.ProductMapper;
+import com.yedam.product.vo.CartVO;
 import com.yedam.product.vo.ProductVO;
 
 public class ProductServiceImpl implements ProductService{
 	SqlSession session = DataSource.getInstance().openSession(true);
 	ProductMapper mapper = session.getMapper(ProductMapper.class);
+
 	
 	@Override
 	public List<ProductVO> productList() {
@@ -21,21 +23,15 @@ public class ProductServiceImpl implements ProductService{
 	public List<ProductVO> searchProduct(String keyword) {
 		return mapper.searchResult(keyword);
 	}
-	
-//	@Override
-//	public List<ProductVO> productList() {
-//		return mapper.getList();
-//	}
-//
-//	@Override
-//	public ProductVO getProduct(String productCode) {
-//		return mapper.getProduct(productCode);
-//	}
-//
-//	@Override
-//	public List<ProductVO> relateList() {
-//		return mapper.relatedList();
-//	}
+
+	@Override
+	public ProductVO getProduct(int productId) {
+		return mapper.getProduct(productId);
+	}
+	@Override
+	public int addProductCart(CartVO cart) {
+		return mapper.insertProductCart(cart);
+	}
 
 	
 }
