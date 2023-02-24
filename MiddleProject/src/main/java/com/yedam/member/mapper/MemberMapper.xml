@@ -7,4 +7,9 @@
 	<select id="login" resultType="MemberVO">
 		SELECT * FROM member WHERE mem_id = #{memId} AND mem_pw = #{memPw}
 	</select>
+
+	<insert id="addMember" parameterType="MemberVO">		
+		INSERT INTO member(mem_id, mem_pw, mem_name, mem_phone, mem_email, mem_user)
+		VALUES(#{memId}, #{memPw}, #{memName}, #{memPhone}, #{memEmail}, #{memUser})
+	</insert>
 </mapper>
