@@ -11,11 +11,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
+import com.yedam.member.command.Login;
 import com.yedam.member.command.LoginForm;
+import com.yedam.member.command.Signup;
 import com.yedam.notice.command.NoticeListControl;
-
-
 import com.yedam.order.control.orderControl;
 import com.yedam.product.command.ProductDetail;
 
@@ -66,8 +65,8 @@ public class FrontController extends HttpServlet {
 		
 		//종민
 		map.put("/loginForm.do", new LoginForm());
-
-		
+		map.put("/login.do", new Login());
+		map.put("/signup.do", new Signup());
 		
 		
 		
