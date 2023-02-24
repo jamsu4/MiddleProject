@@ -22,6 +22,7 @@ import com.yedam.notice.command.NoticeListControl;
 import com.yedam.order.control.orderControl;
 import com.yedam.product.command.ProductCartAdd;
 import com.yedam.product.command.ProductDetail;
+import com.yedam.product.command.searchProductControl;
 
 
 
@@ -40,8 +41,10 @@ public class FrontController extends HttpServlet {
 
 		charset = config.getInitParameter("charset");
 		//효상
-		map.put("/main.do", new MainControl());
-		map.put("/orderPage.do", new orderControl());
+		map.put("/main.do", new MainControl()); //메인페이지
+		map.put("/orderPage.do", new orderControl()); //주문페이지
+		map.put("/searchProduct.do", new searchProductControl()); //검색 결과
+		
 
 
 

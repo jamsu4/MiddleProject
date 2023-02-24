@@ -9,5 +9,6 @@ public class ProductVO {
 	private int proPrice;
 	private String proDesc;
 	private String proCategory;
-	private String proimg;
+	private String proImg;
+
 }

@@ -12,6 +12,18 @@ import com.yedam.product.vo.ProductVO;
 public class ProductServiceImpl implements ProductService{
 	SqlSession session = DataSource.getInstance().openSession(true);
 	ProductMapper mapper = session.getMapper(ProductMapper.class);
+
+	
+	@Override
+	public List<ProductVO> productList() {
+		return mapper.getList();
+	}
+
+	@Override
+	public List<ProductVO> searchProduct(String keyword) {
+		return mapper.searchResult(keyword);
+	}
+
 	@Override
 	public ProductVO getProduct(int productId) {
 		return mapper.getProduct(productId);
@@ -20,5 +32,6 @@ public class ProductServiceImpl implements ProductService{
 	public int addProductCart(CartVO cart) {
 		return mapper.insertProductCart(cart);
 	}
+
 	
 }
