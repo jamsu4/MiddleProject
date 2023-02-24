@@ -15,6 +15,7 @@
 		<typeAlias alias="OrderVO" type="com.yedam.order.vo.OrderVO"/>
 		<typeAlias alias="ProductVO" type="com.yedam.product.vo.ProductVO"/>
 		<typeAlias alias="CartVO" type="com.yedam.product.vo.CartVO"/>
+		<typeAlias alias="ZzimVO" type="com.yedam.mypage.vo.ZzimVO"/>
 
 
 	</typeAliases>
@@ -34,5 +35,6 @@
     	<mapper class="com.yedam.member.mapper.MemberMapper" />
 		<mapper class="com.yedam.order.mapper.OrderMapper" />
 		<mapper class="com.yedam.product.mapper.ProductMapper" />
+		<mapper class="com.yedam.mypage.mapper.ZzimMapper" />
 	</mappers>
 </configuration>

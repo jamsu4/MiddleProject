@@ -19,7 +19,7 @@
     
     <div class="container">
       <h2 class="mb-5"><button id="">주문내역</button></h2>
-      <h2 class="mb-5"><button id="jjimBtn">찜한상품</button></h2>
+      <h2 class="mb-5"><button type="button" onclick="location.href='zzimList.do'">찜한상품</button></h2>
       <h2 class="mb-5"><button id="">주문내역</button></h2>
       <h2 class="mb-5"><button id="">주문내역</button></h2>
 
@@ -84,9 +84,9 @@
 
   </div>
   <script>
-  $("#jjimBtn").click(function(){  
+  $("#zzimBtn").click(function(){  
       
-	    var url="jjimList.json";  
+	    var url="jjimList.do";  
 	    var params="memId=";
 	   
 	    $.ajax({      

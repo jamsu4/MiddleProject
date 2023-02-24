@@ -14,6 +14,6 @@ public class NoticeServiceImpl implements NoticeService{
 
 	@Override 
 	public List<NoticeVO> noticeList() { 
-	return mapper.noticeList();
+		return mapper.noticeList();
 	}
 }
