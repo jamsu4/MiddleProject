@@ -25,6 +25,8 @@
     <link rel="stylesheet" href="bootstrap/assets/css/owl-carousel.css">
 
     <link rel="stylesheet" href="bootstrap/assets/css/lightbox.css">
+    
+    <link rel="stylesheet" href="bootstrap/assets/css/productDetailQnA.css">
 <!--
 
 TemplateMo 571 Hexashop

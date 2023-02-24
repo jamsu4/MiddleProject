@@ -11,10 +11,10 @@
 	</select>
 
 	<select id="searchResult" resultType="ProductVO">
-		SELECT * 
+		SELECT *
 		FROM product
-		WHERE pro_name like '%' ||  #{keyword } || '%'
-		   OR pro_category like '%' ||  #{keyword } || '%' 
+		WHERE pro_name like '%' || #{keyword } || '%'
+		OR pro_category like '%' || #{keyword } || '%'
 	</select>
 
 
@@ -25,8 +25,10 @@
 	</select>
 
 	<insert id="insertProductCart" parameterType="CartVO">
-		INSERT INTO cart
-		VALUES(1, null, #{pro_id}, #{ca_quant}, #{ca_sumprice})
+		INSERT INTO
+		cart(cart_id, mem_id, pro_id, ca_quant, ca_sumprice)
+		VALUES(1,
+		#{memId}, #{proId}, #{caQuant}, #{caSumprice})
 	</insert>
 
 

@@ -17,6 +17,7 @@ public class ProductDetail implements Command {
 		String pid = req.getParameter("pid");
 		ProductService service = new ProductServiceImpl();
 		req.setAttribute("proDetail", service.getProduct(Integer.parseInt(pid)));
+		System.out.println(service.getProduct(Integer.parseInt(pid)));
 		
 		return "product/productDetail.tiles";
 	}
