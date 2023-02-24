@@ -5,7 +5,12 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js">
 </script> 
 
-<h3>검색 결과 페이지 입니다.</h3> 
+<h3>검색 결과 페이지 입니다.</h3>
+
+<c:if test = "${empty list }">
+ <h3>검색결과 없음</h3>
+</c:if>
+ 
 <section class="py-5">
             <div class="container px-4 px-lg-5 mt-5">
                 <div class="row gx-5 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">

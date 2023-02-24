@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js">
+</script>
+<script type="text/javascript" src=js/main.js></script>
 <!-- ***** Preloader Start ***** -->
     <div id="preloader">
         <div class="jumper">
@@ -18,39 +23,73 @@
                 <div class="col-12">
                     <nav class="main-nav">
                         <!-- ***** Logo Start ***** -->
-                        <a href="index.html" class="logo">
-                            <img src="bootstrap/assets/images/logo.png">
+                        <a href="main.do" class="logo">
+                        <img src="bootstrap/assets/images/logo.png">
                         </a>
                         <!-- ***** Logo End ***** -->
                         <!-- ***** Menu Start ***** -->
                         <ul class="nav">
                             <li class="scroll-to-section"><a href="main.do" class="active">Home</a></li>
-                            <li class="scroll-to-section"><a href="#kids">공지사항</a></li>
-<!--                             <li class="scroll-to-section"><a href="#men">Men's</a></li> -->
-<!--                             <li class="scroll-to-section"><a href="#women">Women's</a></li> -->
+                            <li class="scroll-to-section"><a href="noticeList.do">공지사항</a></li>
                             <li class="submenu">
                                 <a href="javascript:;">고양이 상품</a>
                                 <ul>
-                                    <li><a href="#">식품</a></li>
-                                    <li><a href="#">위생용품</a></li>
-                                    <li><a href="#">목욕용품</a></li>
-                                    <li><a href="#">장난감</a></li>
-                                    <li><a href="#">가구</a></li>
-                                    <li><a href="#">기타</a></li>
+                                    <li><a href="searchProduct.do?menu=식품">식품</a></li>
+                                    <li><a href="searchProduct.do?menu=위생용품">위생용품</a></li>
+                                    <li><a href="searchProduct.do?menu=목욕용품">목욕용품</a></li>
+                                    <li><a href="searchProduct.do?menu=장난감">장난감</a></li>
+                                    <li><a href="searchProduct.do?menu=가구">가구</a></li>
+                                    <li><a href="searchProduct.do?menu=기타">기타</a></li>
                                 </ul>
                             </li>                            
                             <li class="submenu">
-                                <a href="javascript:;">마이페이지</a>
-                                <ul>
-                                    <li><a href="#">주문내역</a></li>
-                                    <li><a href="#">찜한상품</a></li>
-                                    <li><a href="#">내게시글</a></li>
-                                    <li><a href="#">정보수정</a></li>
-<!--                                     <li><a rel="nofollow" href="https://templatemo.com/page/4" target="_blank">Template Page 4</a></li> -->
-                                </ul>
+                            <c:choose>
+                            	<c:when test="${Auth == 'admin' }">
+                                	<a href="#">관리자메뉴</a>
+	                                <ul>
+	                                    <li><a href="#">상품관리</a></li>
+	                                    <li><a href="#">회원관리</a></li>
+	                                    <li><a href="#">주문관리</a></li>
+	                                    <li><a href="#">후기관리</a></li>
+	                                </ul>
+                                </c:when>
+	                            <c:when test="${!empty logId}">
+                                	<a href="#">마이페이지</a>
+	                                <ul>
+	                                    <li><a href="#">주문내역</a></li>
+	                                    <li><a href="#">찜한상품</a></li>
+	                                    <li><a href="#">내게시글</a></li>
+	                                    <li><a href="#">정보수정</a></li>
+	                                </ul>
+                                </c:when>
+                                
+								<c:otherwise>
+									<a href="">마이페이지</a>
+		                                <ul>
+		                                    <li><a href="loginForm.do">주문내역</a></li>
+		                                    <li><a href="loginForm.do">찜한상품</a></li>
+		                                    <li><a href="loginForm.do">내게시글</a></li>
+		                                    <li><a href="loginForm.do">정보수정</a></li>
+		                                </ul>
+                                </c:otherwise>
+	                        </c:choose>
                             </li>
-                            <li class="scroll-to-section"><a href="#">장바구니</a></li>
-                            <li class="scroll-to-section"><a href="#">로그인</a></li>
+                            <c:choose>
+	                            <c:when test="${!empty logId}">
+	                            	<li class="scroll-to-section"><a href="cart.do">장바구니</a></li>
+	                            </c:when>
+								<c:otherwise>
+	                                <li class="scroll-to-section"><a href="loginForm.do">장바구니</a></li>
+	                            </c:otherwise>
+	                            </c:choose>
+                            <c:choose>
+                                	<c:when test="${!empty logId}">
+		                                <li class="scroll-to-section"><a href="logOut.do">로그아웃</a></li>
+                                	</c:when>
+                                	<c:otherwise>
+		                                <li class="scroll-to-section"><a href="loginForm.do">로그인</a></li>
+                                	</c:otherwise>
+                             </c:choose>
                         </ul>        
                         <a class='menu-trigger'>
                             <span>Menu</span>

@@ -14,10 +14,14 @@
 		SELECT * 
 		FROM product
 		WHERE pro_name like '%' ||  #{keyword } || '%'
-		   OR pro_category like '%' ||  #{keyword } || '%' 
+		   OR pro_category like '%' ||  #{keyword } || '%'
 	</select>
 
-
+	<select id="menuResult" resultType="ProductVO">
+		SELECT * 
+		FROM product
+		WHERE pro_category like '%' ||  #{menu } || '%'
+	</select>
 
 	<select id="getProduct" resultType="ProductVO">
 		SELECT * FROM product WHERE

@@ -33,5 +33,10 @@ public class ProductServiceImpl implements ProductService{
 		return mapper.insertProductCart(cart);
 	}
 
+	@Override
+	public List<ProductVO> searchMenu(String menu) {
+		return mapper.menuResult(menu);
+	}
+
 	
 }

@@ -20,9 +20,9 @@ public class MainControl implements Command {
 		ProductService service = new ProductServiceImpl();
 		req.setAttribute("list", service.productList());
 		
-		Map<String, List<ProductVO>> map = new HashMap<>();
 		
-		System.out.println(service.productList());
+		
+		
 		
 		
 		return "main/main.tiles";

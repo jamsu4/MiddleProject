@@ -4,7 +4,7 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js">
 </script>
-<script type="text/javascript" src=js/main.js></script>    
+    
 <style>
 	.img {
 		width : 350px;
@@ -42,7 +42,7 @@
                                     <div class="hover-content">
                                         <ul>
                                             <li><a href="single-product.html"><i class="fa fa-star"></i></a></li>
-                                            <li><a href="single-product.html"><i class="fa fa-shopping-cart"></i></a></li>
+                                            <li><a href="cart.do"><i class="fa fa-shopping-cart cart"></i></a></li>
                                         </ul>
                                     </div>
                                     <a href="productDetail.do?pid=${list.proID }"><img src="images/${list.proImg }" alt="" class="img"></a>
@@ -92,7 +92,7 @@
                                     <div class="hover-content">
                                         <ul>
                                             <li><a href="single-product.html"><i class="fa fa-star"></i></a></li>
-                                            <li><a href="single-product.html"><i class="fa fa-shopping-cart"></i></a></li>
+                                            <li><a href="single-product.html"><i class="fa fa-shopping-cart cart"></i></a></li>
                                         </ul>
                                     </div>
                                     <a href="productDetail.do?pid=${list.proID }"><img src="images/${list.proImg }" alt="" class="img"></a>
@@ -142,7 +142,7 @@
                                     <div class="hover-content">
                                         <ul>
                                             <li><a href="single-product.html"><i class="fa fa-star"></i></a></li>
-                                            <li><a href="single-product.html"><i class="fa fa-shopping-cart"></i></a></li>
+                                            <li><a href="single-product.html"><i class="fa fa-shopping-cart cart"></i></a></li>
                                         </ul>
                                     </div>
                                     <a href="productDetail.do?pid=${list.proID }"><img src="images/${list.proImg }" alt="" class="img"></a>
@@ -192,7 +192,7 @@
                                     <div class="hover-content">
                                         <ul>
                                             <li><a href="single-product.html"><i class="fa fa-star"></i></a></li>
-                                            <li><a href="single-product.html"><i class="fa fa-shopping-cart"></i></a></li>
+                                            <li><a href="single-product.html"><i class="fa fa-shopping-cart cart"></i></a></li>
                                         </ul>
                                     </div>
                                     <a href="productDetail.do?pid=${list.proID }"><img src="images/${list.proImg }" alt="" class="img"></a>
@@ -242,7 +242,7 @@
                                     <div class="hover-content">
                                         <ul>
                                             <li><a href="single-product.html"><i class="fa fa-star"></i></a></li>
-                                            <li><a href="single-product.html"><i class="fa fa-shopping-cart"></i></a></li>
+                                            <li><a href="single-product.html"><i class="fa fa-shopping-cart cart"></i></a></li>
                                         </ul>
                                     </div>
                                     <a href="productDetail.do?pid=${list.proID }"><img src="images/${list.proImg }" alt="" class="img"></a>
@@ -292,10 +292,16 @@
                                     <div class="hover-content">
                                         <ul>
                                             <li><a href="single-product.html"><i class="fa fa-star"></i></a></li>
-                                            <li><a href="single-product.html"><i class="fa fa-shopping-cart"></i></a></li>
+                                            <li>
+                                            	<a href="single-product.html">
+                                            		<i id="${list.proID}" data-price="${list.proPrice }" class="fa fa-shopping-cart cart"></i>
+                                            	</a>
+                                            </li>
                                         </ul>
                                     </div>
-                                    <a href="productDetail.do?pid=${list.proID }"><img src="images/${list.proImg }" alt="" class="img"></a>
+                                    <a href="productDetail.do?pid=${list.proID }">
+                                    	<img src="images/${list.proImg }" alt="" class="img">
+                                    </a>
                                 </div>
                                 <div class="down-content">
                                     <h4>${list.proName }</h4>
@@ -317,3 +323,25 @@
             </div>
         </div>
     </section>
+    
+    <script>
+    $('.cart').on('click', function() {
+		 var proId = $(this).attr('id')
+		 var caSumprice = $(this).attr('data-price')
+		$.ajax({
+			url: 'addMember.do',
+			method: 'post',
+			data: {memid :'${logId }', proId : proId, caQuant:1, caSumprice: caSumprice}
+			success: function(result) {
+				if (result.retCode == "Success") {
+					alert('장바구니 등록 성공')
+				} else {
+					alert('등록 실패');
+				}
+			},
+			error: function(err) {
+				console.log(err);
+			}
+		})
+    
+    </script>
