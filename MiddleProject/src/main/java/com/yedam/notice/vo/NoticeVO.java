@@ -1,10 +1,11 @@
 package com.yedam.notice.vo;
 
+import lombok.Data;
+
+@Data
 public class NoticeVO {
-
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
-	}
-
+	private int notId;
+	private String notTitle;
+	private String notContent;
+	private String notDate;		
 }
