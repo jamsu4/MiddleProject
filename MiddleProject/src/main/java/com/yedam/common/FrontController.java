@@ -16,6 +16,7 @@ import com.yedam.member.command.LoginForm;
 import com.yedam.member.command.Signup;
 import com.yedam.notice.command.NoticeListControl;
 import com.yedam.order.control.orderControl;
+import com.yedam.product.command.ProductCartAdd;
 import com.yedam.product.command.ProductDetail;
 
 
@@ -50,8 +51,8 @@ public class FrontController extends HttpServlet {
 		
 
 		//민규
-		map.put("/productDetail.do", new ProductDetail());
-
+		map.put("/productDetail.do", new ProductDetail()); // 제품 상세 페이지
+		map.put("/productCartAdd.do", new ProductCartAdd()); // 제품을 장바구니에 추가
 
 		
 		
