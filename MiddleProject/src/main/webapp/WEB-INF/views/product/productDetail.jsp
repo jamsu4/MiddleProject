@@ -4,6 +4,7 @@
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <!-- ***** Product Area Starts ***** -->
 <section class="section" id="product">
+
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-8">
@@ -107,6 +108,7 @@
 			</div>
 		</div>
 	</div>
+
 </section>
 <!-- ***** Product Area Ends ***** -->
 

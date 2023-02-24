@@ -10,6 +10,7 @@ public interface ProductService {
 
 	public List<ProductVO> productList(); // 전체 상품 조회
 	public List<ProductVO> searchProduct(String keyword); //상품 검색
+	public List<ProductVO> searchMenu(String menu);
 //	public ProductVO getProduct(String productCode);
 
 	public ProductVO getProduct(int productId); //제품 단건조회
