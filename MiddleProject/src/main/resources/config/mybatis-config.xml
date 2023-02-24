@@ -11,8 +11,12 @@
 	</settings>
 	<typeAliases>
 		<typeAlias alias="NoticeVO" type="com.yedam.notice.vo.NoticeVO"/>
-		<!-- <typeAlias alias="MemberVO" type="com.yedam.member.vo.MemberVO"/> -->
-		<!-- <typeAlias alias="OrderVO" type="com.yedam.order.vo.OrderVO"/> -->
+
+    <typeAlias alias="MemberVO" type="com.yedam.member.vo.MemberVO"/> 
+		<typeAlias alias="OrderVO" type="com.yedam.order.vo.OrderVO"/>
+		<typeAlias alias="ProductVO" type="com.yedam.product.vo.ProductVO"/>
+		<typeAlias alias="CartVO" type="com.yedam.product.vo.CartVO"/>
+
 	</typeAliases>
 	<environments default="development">
 		<environment id="development">
@@ -27,7 +31,10 @@
 	</environments>
 	<mappers>
 		<mapper class="com.yedam.notice.mapper.NoticeMapper" />
-		<!-- <mapper class="com.yedam.member.mapper.MemberMapper" /> -->
-		<!-- <mapper class="com.yedam.order.mapper.OrderMapper" /> -->
+
+    <mapper class="com.yedam.member.mapper.MemberMapper" />
+		<mapper class="com.yedam.order.mapper.OrderMapper" />
+		<mapper class="com.yedam.product.mapper.ProductMapper" />
+
 	</mappers>
 </configuration>
