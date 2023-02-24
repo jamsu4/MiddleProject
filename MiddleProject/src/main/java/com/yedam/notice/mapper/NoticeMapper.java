@@ -1,10 +1,13 @@
 package com.yedam.notice.mapper;
 
-public class NoticeMapper {
+import java.util.List;
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+import com.yedam.notice.vo.NoticeVO;
 
-	}
+public interface NoticeMapper {
+
+	public List<NoticeVO> noticeList();
+
+	
 
 }

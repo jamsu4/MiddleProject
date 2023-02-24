@@ -1,4 +1,4 @@
-package com.yedam.notice.command;
+package com.yedam.mypage.command;
 
 import java.io.IOException;
 
@@ -10,17 +10,15 @@ import com.yedam.common.Command;
 import com.yedam.notice.service.NoticeService;
 import com.yedam.notice.service.NoticeServiceImpl;
 
-public class NoticeListControl implements Command {
+public class MyPageControl implements Command {
 
 	@Override
 	public String exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
-		NoticeService service = new NoticeServiceImpl(); 
-		req.setAttribute("list",service.noticeList());
-		 
+//		NoticeService service = new NoticeServiceImpl(); 
+//		req.setAttribute("list",service.noticeList());
 		
 		
-		return "notice/noticeList.tiles";
+		return "mypage/myPage.tiles";
 	}
 
 }

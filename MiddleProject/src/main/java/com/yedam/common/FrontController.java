@@ -11,11 +11,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
 import com.yedam.member.command.LoginForm;
+import com.yedam.mypage.command.MyPageControl;
 import com.yedam.notice.command.NoticeListControl;
-
-
 import com.yedam.order.control.orderControl;
 import com.yedam.product.command.ProductDetail;
 
@@ -79,8 +77,8 @@ public class FrontController extends HttpServlet {
 		
 		
 		//주안
-		map.put("/noticeList.do", new NoticeListControl());
-
+		map.put("/noticeList.do", new NoticeListControl()); //공지사항페이지 이동
+		map.put("/myPage.do",new MyPageControl()); //마이페이지 이동
 
 		
 		

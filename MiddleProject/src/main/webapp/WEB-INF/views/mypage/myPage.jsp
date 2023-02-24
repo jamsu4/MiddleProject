@@ -1,7 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-  
+
+<head>
+	<style>
+		#buttons {
+			
+			
+		}
+	</style>
+</head>  
   
   	
   
@@ -10,7 +18,10 @@
   <div class="content">
     
     <div class="container">
-      <h2 class="mb-5">공지사항</h2>
+      <h2 class="mb-5"><button id="">주문내역</button></h2>
+      <h2 class="mb-5"><button id="jjimBtn">찜한상품</button></h2>
+      <h2 class="mb-5"><button id="">주문내역</button></h2>
+      <h2 class="mb-5"><button id="">주문내역</button></h2>
 
       <div class="table-responsive custom-table-responsive">
 
@@ -72,7 +83,28 @@
     </div>
 
   </div>
- 
+  <script>
+  $("#jjimBtn").click(function(){  
+      
+	    var url="jjimList.json";  
+	    var params="memId=";
+	   
+	    $.ajax({      
+	        type:"POST",  
+	        url:url,      
+	        data:params,      
+	        success:function(args){   
+	            $("#result").html(args);      
+	        },   
+	        beforeSend:showRequest,  
+	        error:function(e){  
+	            alert(e.responseText);  
+	        }  
+	    });  
+	       
+	}); 
+  </script>
+ 	
  </body>   
     
 

@@ -1,10 +1,11 @@
 package com.yedam.notice.service;
 
-public class NoticeService {
+import java.util.List;
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+import com.yedam.notice.vo.NoticeVO;
 
-	}
+public interface NoticeService {
+	public List<NoticeVO> noticeList(); //공지사항 리스트 조회
 
+	
 }
