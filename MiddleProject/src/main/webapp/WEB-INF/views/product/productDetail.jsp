@@ -48,9 +48,20 @@
 							<a href="">바로 결제</a>
 						</div>
 						<br />
-						<div class="main-border-button">
-							<a href="">찜 하기</a> <a id="cart" style="cursor: pointer;">장바구니</a>
-						</div>
+						<c:if test="${!empty logId }">
+							<div class="main-border-button">
+								<c:choose>
+									<c:when test="${zzimUser.proId eq proDetail.proID}">
+										<a id="zzim" class="selected" style="cursor: pointer;">찜
+											취소</a>
+									</c:when>
+									<c:otherwise>
+										<a id="zzim" class="" style="cursor: pointer;">찜 하기</a>
+									</c:otherwise>
+								</c:choose>
+								<a id="cart" style="cursor: pointer;">장바구니</a>
+							</div>
+						</c:if>
 						<br />
 						<div class="main-border-button"></div>
 					</div>
@@ -58,51 +69,31 @@
 				</div>
 			</div>
 
-			<div>
+			<div class="productDetailQnA">
+				<h1>Q&A</h1>
 				<table class="productDetailQnA">
 					<thead class="productDetailQnA">
 						<tr class="productDetailQnA">
-							<th class="productDetailQnA">First Name</th>
-							<th class="productDetailQnA">Last Name</th>
-							<th class="productDetailQnA">Phone</th>
-							<th class="productDetailQnA">Email</th>
-							<th class="productDetailQnA">Date of Birth</th>
+							<th class="productDetailQnA">QA_ID</th>
+							<th class="productDetailQnA">작성자</th>
+							<th class="productDetailQnA">제품</th>
+							<th class="productDetailQnA">제목</th>
+							<th class="productDetailQnA">작성일자</th>
 
 						</tr>
 					</thead>
 					<tbody class="productDetailQnA">
-						<tr class="productDetailQnA">
-							<td class="productDetailQnA">James</td>
-							<td class="productDetailQnA">Matman</td>
-							<td class="productDetailQnA">(713) 123-8965</td>
-							<td class="productDetailQnA"><a
-								href="mailto:jmatman@stewart.com" class="productDetailQnA">jmatman@stewart.com</a></td>
-							<td class="productDetailQnA">01/13/1979</td>
-						</tr>
-						<tr class="productDetailQnA">
-							<td class="productDetailQnA">Johnny</td>
-							<td class="productDetailQnA">Smith</td>
-							<td class="productDetailQnA">(713) 584-9614</td>
-							<td class="productDetailQnA"><a
-								href="mailto:jsmith@stewart.com" class="productDetailQnA">jsmith@stewart.com</a></td>
-							<td class="productDetailQnA">06/09/1971</td>
-						</tr>
-						<tr class="productDetailQnA">
-							<td class="productDetailQnA">Susan</td>
-							<td class="productDetailQnA">Johnson</td>
-							<td class="productDetailQnA">(713) 847-1124</td>
-							<td class="productDetailQnA"><a
-								href="mailto:sjohnson@stewart.com">sjohnson@stewart.com</a></td>
-							<td class="productDetailQnA">08/25/1965</td>
-						</tr>
-						<tr class="productDetailQnA">
-							<td class="productDetailQnA">Tracy</td>
-							<td class="productDetailQnA">Richardson</td>
-							<td class="productDetailQnA">(713) 245-4821</td>
-							<td class="productDetailQnA"><a
-								href="mailto:trichard@stewart.com">trichard@stewart.com</a></td>
-							<td class="productDetailQnA">03/13/1980</td>
-						</tr>
+						<c:forEach var="qa" items="${qaList }">
+							<tr class="productDetailQnA">
+								<td class="productDetailQnA">${qa.qaId }</td>
+								<td class="productDetailQnA">${qa.memId }</td>
+								<td class="productDetailQnA">${qa.proId }</td>
+								<td class="productDetailQnA">${qa.qaTitle }</td>
+								<td class="productDetailQnA">${qa.qaDate }</td>
+								<!-- 							<td class="productDetailQnA"><a -->
+								<!-- 								href="mailto:jmatman@stewart.com" class="productDetailQnA">jmatman@stewart.com</a></td> -->
+							</tr>
+						</c:forEach>
 					</tbody>
 				</table>
 			</div>
@@ -117,6 +108,7 @@
    let minus = document.querySelectorAll(".minus")[0];
    let productCount = document.querySelector("#productCount");
    let total = document.querySelectorAll(".total")[0].children[0];
+   let proId = ${proDetail.proID };
 
    plus.addEventListener("click", function () {
      let productCountValue = parseInt(productCount.value) + 1;
@@ -163,5 +155,56 @@
 	   });
    })
    
+   
+   $('#zzim').click(function(){
+	   if ($(this).hasClass('selected')) {
+		   $.ajax({
+	 		   url: "productZzimDel.do",
+	 		   method: "post",
+	 		   data: {memId: "${logId}", proId: proId},
+	 		   success: function(result){
+	 			   console.log(result);
+	 			   if (result.retCode == "Success") {
+	 				   $('#zzim').removeClass('selected');
+	 				   $("#zzim").text("찜 하기");
+	 			   	   let popup = confirm("찜이 취소되었습니다.");
+	 				   if(popup){
+	 					   document.write("<h1> 찜취소 </h1>");
+	 				   }
+	 			   } else {
+	 				   alert("오류");
+	 			   }
+	 		   },
+	 		   error: function(reject){
+	 			   console.log(reject);
+	 			   alert("오류");
+	 		   },
+	 	   });
+		   
+	   } else {
+		   $.ajax({
+	 		   url: "productZzimAdd.do",
+	 		   method: "post",
+	 		   data: {memId: "${logId}", proId: proId},
+	 		   success: function(result){
+	 			   console.log(result);
+	 			   if (result.retCode == "Success") {
+	 				   $('#zzim').addClass('selected');
+	 				   $("#zzim").text("찜 취소");
+	 			   	   let popup = confirm("찜이 되었습니다.");
+	 				   if(popup){
+	 					   document.write("<h1> 찜이동 </h1>");
+	 				   }
+	 			   } else {
+	 				   alert("오류");
+	 			   }
+	 		   },
+	 		   error: function(reject){
+	 			   console.log(reject);
+	 			   alert("오류");
+	 		   },
+	 	   });
+	   }
+   })
    
 </script>

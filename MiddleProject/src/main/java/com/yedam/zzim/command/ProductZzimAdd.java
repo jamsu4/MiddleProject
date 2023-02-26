@@ -1,4 +1,4 @@
-package com.yedam.product.command;
+package com.yedam.zzim.command;
 
 import java.io.IOException;
 
@@ -7,36 +7,31 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.yedam.common.Command;
-import com.yedam.product.service.ProductService;
-import com.yedam.product.service.ProductServiceImpl;
-import com.yedam.product.vo.CartVO;
+import com.yedam.zzim.service.ZzimService;
+import com.yedam.zzim.service.ZzimServiceImpl;
+import com.yedam.zzim.vo.ZzimVO;
 
-public class ProductCartAdd implements Command {
+public class ProductZzimAdd implements Command {
 
 	@Override
 	public String exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String memId = req.getParameter("memId");
 		String proId = req.getParameter("proId");
-		String caQuant = req.getParameter("caQuant");
-		String caSumprice = req.getParameter("caSumprice");
 		
-		CartVO vo = new CartVO();
+		ZzimVO vo = new ZzimVO();
 		vo.setMemId(memId);
 		vo.setProId(Integer.parseInt(proId));
-		vo.setCaQuant(Integer.parseInt(caQuant));
-		vo.setCaSumprice(Integer.parseInt(caSumprice));
 		
-		ProductService service = new ProductServiceImpl();
+		ZzimService service = new ZzimServiceImpl();
 		String json = "";
 		
-		if(service.addProductCart(vo) > 0) {
+		if(service.addProductZzim(vo) > 0) {
 			json = "{\"retCode\": \"Success\"}";
 		} else {
 			json = "{\"retCode\": \"Fail\"}";
 		}
 		
 		return json + ".json";
-
 	}
 
 }
