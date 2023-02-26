@@ -29,10 +29,7 @@ public class searchProductControl implements Command {
 			req.setAttribute("list", service.searchMenu(menu));
 			
 		}
-		 
-		
 
-		
 		return "search/search.tiles";
 	}
 

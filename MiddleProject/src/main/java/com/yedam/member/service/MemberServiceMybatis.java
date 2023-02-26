@@ -1,5 +1,7 @@
 package com.yedam.member.service;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 
 import com.yedam.common.DataSource;
@@ -22,5 +24,10 @@ public class MemberServiceMybatis implements MemberService {
 	public int addMember(MemberVO member) {
 		
 		return mapper.addMember(member);
+	}
+
+	@Override
+	public List<MemberVO> selectCoupon(String memId) {
+		return mapper.couponSelect(memId);
 	}
 }

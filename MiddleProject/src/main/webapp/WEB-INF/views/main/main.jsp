@@ -41,11 +41,13 @@
                                 <div class="thumb">
                                     <div class="hover-content">
                                         <ul>
-                                            <li><a href="single-product.html"><i class="fa fa-star"></i></a></li>
-                                            <li><a href="cart.do"><i class="fa fa-shopping-cart cart"></i></a></li>
+                                            <li><a><i data-id="${list.proId}" class="fa fa-star"></i></a></li>
+                                        <li><a>
+                                            <i data-id="${list.proId}" data-price="${list.proPrice }" class="fa fa-shopping-cart"></i>
+                                            </a></li>
                                         </ul>
                                     </div>
-                                    <a href="productDetail.do?pid=${list.proID }"><img src="images/${list.proImg }" alt="" class="img"></a>
+                                    <a href="productDetail.do?pid=${list.proId }"><img src="images/${list.proImg }" alt="" class="img"></a>
                                 </div>
                                 <div class="down-content">
                                     <h4>${list.proName }</h4>
@@ -91,11 +93,13 @@
                                 <div class="thumb">
                                     <div class="hover-content">
                                         <ul>
-                                            <li><a href="single-product.html"><i class="fa fa-star"></i></a></li>
-                                            <li><a href="single-product.html"><i class="fa fa-shopping-cart cart"></i></a></li>
+                                            <li><a><i data-id="${list.proId}" class="fa fa-star"></i></a></li>
+                                            <li><a>
+                                            		<i data-id="${list.proId}" data-price="${list.proPrice }" class="fa fa-shopping-cart cart"></i>
+                                            	</a></li>
                                         </ul>
                                     </div>
-                                    <a href="productDetail.do?pid=${list.proID }"><img src="images/${list.proImg }" alt="" class="img"></a>
+                                    <a href="productDetail.do?pid=${list.proId }"><img src="images/${list.proImg }" alt="" class="img"></a>
                                 </div>
                                 <div class="down-content">
                                     <h4>${list.proName }</h4>
@@ -141,11 +145,13 @@
                                 <div class="thumb">
                                     <div class="hover-content">
                                         <ul>
-                                            <li><a href="single-product.html"><i class="fa fa-star"></i></a></li>
-                                            <li><a href="single-product.html"><i class="fa fa-shopping-cart cart"></i></a></li>
+                                            <li><a><i data-id="${list.proId}" class="fa fa-star"></i></a></li>
+                                            <li><a>
+                                            		<i data-id="${list.proId}" data-price="${list.proPrice }" class="fa fa-shopping-cart cart"></i>
+                                            	</a></li>
                                         </ul>
                                     </div>
-                                    <a href="productDetail.do?pid=${list.proID }"><img src="images/${list.proImg }" alt="" class="img"></a>
+                                    <a href="productDetail.do?pid=${list.proId }"><img src="images/${list.proImg }" alt="" class="img"></a>
                                 </div>
                                 <div class="down-content">
                                     <h4>${list.proName }</h4>
@@ -191,11 +197,13 @@
                                 <div class="thumb">
                                     <div class="hover-content">
                                         <ul>
-                                            <li><a href="single-product.html"><i class="fa fa-star"></i></a></li>
-                                            <li><a href="single-product.html"><i class="fa fa-shopping-cart cart"></i></a></li>
+                                            <li><a><i data-id="${list.proId}" class="fa fa-star"></i></a></li>
+                                            <li><a>
+                                            		<i data-id="${list.proId}" data-price="${list.proPrice }" class="fa fa-shopping-cart cart"></i>
+                                            	</a></li>
                                         </ul>
                                     </div>
-                                    <a href="productDetail.do?pid=${list.proID }"><img src="images/${list.proImg }" alt="" class="img"></a>
+                                    <a href="productDetail.do?pid=${list.proId }"><img src="images/${list.proImg }" alt="" class="img"></a>
                                 </div>
                                 <div class="down-content">
                                     <h4>${list.proName }</h4>
@@ -241,11 +249,13 @@
                                 <div class="thumb">
                                     <div class="hover-content">
                                         <ul>
-                                            <li><a href="single-product.html"><i class="fa fa-star"></i></a></li>
-                                            <li><a href="single-product.html"><i class="fa fa-shopping-cart cart"></i></a></li>
+                                            <li><a><i data-id="${list.proId}" class="fa fa-star"></i></a></li>
+                                            <li><a>
+                                            		<i data-id="${list.proId}" data-price="${list.proPrice }" class="fa fa-shopping-cart cart"></i>
+                                            	</a></li>
                                         </ul>
                                     </div>
-                                    <a href="productDetail.do?pid=${list.proID }"><img src="images/${list.proImg }" alt="" class="img"></a>
+                                    <a href="productDetail.do?pid=${list.proId }"><img src="images/${list.proImg }" alt="" class="img"></a>
                                 </div>
                                 <div class="down-content">
                                     <h4>${list.proName }</h4>
@@ -291,15 +301,15 @@
                                 <div class="thumb">
                                     <div class="hover-content">
                                         <ul>
-                                            <li><a href="single-product.html"><i class="fa fa-star"></i></a></li>
+                                            <li><a><i data-id="${list.proId}" class="fa fa-star"></i></a></li>
                                             <li>
-                                            	<a href="single-product.html">
-                                            		<i id="${list.proID}" data-price="${list.proPrice }" class="fa fa-shopping-cart cart"></i>
+                                            	<a>
+                                            		<i data-id="${list.proId}" data-price="${list.proPrice }" class="fa fa-shopping-cart cart"></i>
                                             	</a>
                                             </li>
                                         </ul>
                                     </div>
-                                    <a href="productDetail.do?pid=${list.proID }">
+                                    <a href="productDetail.do?pid=${list.proId }">
                                     	<img src="images/${list.proImg }" alt="" class="img">
                                     </a>
                                 </div>
@@ -325,23 +335,76 @@
     </section>
     
     <script>
-    $('.cart').on('click', function() {
-		 var proId = $(this).attr('id')
-		 var caSumprice = $(this).attr('data-price')
-		$.ajax({
-			url: 'addMember.do',
-			method: 'post',
-			data: {memid :'${logId }', proId : proId, caQuant:1, caSumprice: caSumprice}
-			success: function(result) {
-				if (result.retCode == "Success") {
-					alert('장바구니 등록 성공')
-				} else {
-					alert('등록 실패');
-				}
-			},
-			error: function(err) {
-				console.log(err);
-			}
-		})
+    //찜 조회
+//     $.ajax({
+//     url: "zzimList.do",
+//     type: "POST",
+//     dataType: {memId :'${logId}', proId : proId},
+//     success: function(result) {
+//         console.log("성공");
+//     },
+//     error: function(error) {
+//     	console.log("성공");
+//     }
+// });
     
+    // 장바구니 담기 기능
+    $('.fa.fa-shopping-cart').on('click', function() {
+    	var proId = $(this).attr('data-id');
+    	var caSumprice = $(this).attr('data-price');
+    	console.log('${logId}');
+    	$.ajax({
+    		url: 'productCartAdd.do',
+    		method: 'post',
+    		data: {memId :'${logId}', proId : proId, caQuant:1, caSumprice: caSumprice},
+    		success: function(result) {
+    			if (result.retCode == "Success") {
+    				alert('장바구니 등록에 성공했습니다.');
+    			} else if (result.retCode == "NoMember") {
+    				var result = confirm('로그인이 필요한 기능입니다.\n확인을 누르면 로그인 페이지로 이동합니다.');
+
+    		        if(result) {
+    		            location.replace('loginForm.do');
+    		        } else {
+    		        }
+    			} else {
+    				alert('장바구니 등록에 실패했습니다.');
+    				
+    			}
+    		},
+    		error: function(err) {
+    			console.log(err);
+    		}
+    	});
+    });
+    // 찜 추가 기능
+        $('.fa.fa-star').on('click', function() {
+        	var proId = $(this).attr('data-id');
+        	console.log(proId);
+        	console.log('${logId}');
+	    	$.ajax({
+	    		url: 'addZzim.do',
+	    		method: 'post',
+	    		data: {memId :'${logId}', proId : proId},
+	    		success: function(result) {
+	    			if (result.retCode == "Success") {
+	    				alert('찜목록에 등록에 성공했습니다.');
+	    			} else if (result.retCode == "NoMember") {
+	    				var result = confirm('로그인이 필요한 기능입니다.\n확인을 누르면 로그인 페이지로 이동합니다.');
+	
+	    		        if(result) {
+	    		            location.replace('loginForm.do');
+	    		        } else {
+	    		        }
+	    			} else {
+	    				alert('찜목록 등록에 실패했습니다.');
+	    				
+	    			}
+	    		},
+	    		error: function(err) {
+	    			console.log(err);
+	    		}
+	    	});
+	    });
+
     </script>

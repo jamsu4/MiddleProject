@@ -18,7 +18,7 @@ public class LogoutControl implements Command {
 		session.invalidate(); //session값을 삭제하는 메소드.
 		
 		
-		return "loginForm.do";
+		return "main.do";
 
 	}
 

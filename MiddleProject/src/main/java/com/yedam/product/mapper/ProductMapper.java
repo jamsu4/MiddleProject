@@ -2,7 +2,7 @@ package com.yedam.product.mapper;
 
 import java.util.List;
 
-import com.yedam.product.vo.CartVO;
+import com.yedam.mypage.vo.ZzimVO;
 import com.yedam.product.vo.ProductVO;
 
 public interface ProductMapper {
@@ -14,7 +14,9 @@ public interface ProductMapper {
 //	public ProductVO getProduct(String productCode);
 
 	public ProductVO getProduct(int productId); // 제품 단건조회
-	public int insertProductCart(CartVO cart); // 제품 카트에 추가
+	public int insertProductCart(ProductVO cart); // 제품 카트에 추가
+	public int addZzimList(ZzimVO vo); // 찜하기
+	public List<ProductVO> selectCartList(String logId); //카트 목록 조회
 
 //	public List<ProductVO> relatedList();
 

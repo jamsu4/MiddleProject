@@ -11,6 +11,7 @@ import com.yedam.common.Command;
 import com.yedam.member.service.MemberService;
 import com.yedam.member.service.MemberServiceMybatis;
 import com.yedam.member.vo.MemberVO;
+import com.yedam.mypage.vo.ZzimVO;
 
 public class Login implements Command {
 
@@ -33,7 +34,7 @@ public class Login implements Command {
 		MemberVO rvo = service.login(member);
 		
 		
-		// System.out.println(rvo);					// 로그인용 정보 테스트 출력 (서비스에 담고나서 확인용)
+		System.out.println(rvo);					// 로그인용 정보 테스트 출력 (서비스에 담고나서 확인용)
 		
 
 		if (rvo != null) {

@@ -2,7 +2,7 @@ package com.yedam.product.service;
 
 import java.util.List;
 
-import com.yedam.product.vo.CartVO;
+import com.yedam.mypage.vo.ZzimVO;
 import com.yedam.product.vo.ProductVO;
 
 public interface ProductService {
@@ -14,8 +14,10 @@ public interface ProductService {
 //	public ProductVO getProduct(String productCode);
 
 	public ProductVO getProduct(int productId); //제품 단건조회
-	public int addProductCart(CartVO cart); // 제품 카트에 추가
+	public int addProductCart(ProductVO cart); // 제품 카트에 추가
 //	public List<ProductVO> productList();
+	public int addZzim(ZzimVO vo); //찜 목록 추가
+	public List<ProductVO> getCartList(String logId); // 카트 목록 가져오기
 
 //	public List<ProductVO> relateList();
 

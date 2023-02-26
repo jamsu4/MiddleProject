@@ -14,7 +14,6 @@
     	<typeAlias alias="MemberVO" type="com.yedam.member.vo.MemberVO"/> 
 		<typeAlias alias="OrderVO" type="com.yedam.order.vo.OrderVO"/>
 		<typeAlias alias="ProductVO" type="com.yedam.product.vo.ProductVO"/>
-		<typeAlias alias="CartVO" type="com.yedam.product.vo.CartVO"/>
 		<typeAlias alias="ZzimVO" type="com.yedam.mypage.vo.ZzimVO"/>
 
 
