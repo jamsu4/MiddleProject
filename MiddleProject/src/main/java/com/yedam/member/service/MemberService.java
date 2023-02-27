@@ -9,6 +9,12 @@ public interface MemberService { // 서비스 부분
 
 	public MemberVO login(MemberVO member);
 	public int addMember(MemberVO member);
+
 	public List<MemberVO> selectCoupon(String memId); //쿠폰조회
 	
+	//
+	public List<MemberVO> memberList();
+	public int removeMember(String mid);
+	public int modifyMember(MemberVO member);
+
 }

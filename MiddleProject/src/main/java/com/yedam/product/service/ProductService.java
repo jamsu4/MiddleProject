@@ -21,5 +21,8 @@ public interface ProductService {
 
 //	public List<ProductVO> relateList();
 
+
+	public int removeProduct(int proId); // 제품 삭제
+	public int modifyProduct(ProductVO product); // 제품 수정
 	
 }

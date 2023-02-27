@@ -11,22 +11,34 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
-
-import com.yedam.mypage.command.MyPageControl;
-import com.yedam.mypage.command.ZzimListControl;
 import com.yedam.member.command.Login;
 import com.yedam.member.command.LoginForm;
 import com.yedam.member.command.LogoutControl;
+import com.yedam.member.command.MemberList;
+import com.yedam.member.command.MemberManager;
+import com.yedam.member.command.MemberModify;
+import com.yedam.member.command.MemberRemove;
 import com.yedam.member.command.Signup;
+
 import com.yedam.member.command.selectCouponControl;
+import com.yedam.mypage.command.MyPageControl;
+import com.yedam.mypage.command.ZzimListControl;
+
 import com.yedam.notice.command.NoticeListControl;
 import com.yedam.order.control.orderControl;
+import com.yedam.product.command.ModifyProductManager;
 import com.yedam.product.command.ProductCartAdd;
 import com.yedam.product.command.ProductDetail;
+
 import com.yedam.product.command.addZzimControl;
+import com.yedam.product.command.ProductManagerList;
+import com.yedam.product.command.ProductManagerPage;
+import com.yedam.product.command.RemoveProductManager;
+
 import com.yedam.product.command.cartControl;
 import com.yedam.product.command.searchProductControl;
+import com.yedam.zzim.command.ProductZzimAdd;
+import com.yedam.zzim.command.ProductZzimDel;
 
 
 
@@ -65,8 +77,12 @@ public class FrontController extends HttpServlet {
 		//민규
 		map.put("/productDetail.do", new ProductDetail()); // 제품 상세 페이지
 		map.put("/productCartAdd.do", new ProductCartAdd()); // 제품을 장바구니에 추가
-
-		
+		map.put("/productZzimAdd.do", new ProductZzimAdd()); // 제품을 찜에 추가
+		map.put("/productZzimDel.do", new ProductZzimDel()); // 제품 찜 취소
+		map.put("/productManagerPage.do", new ProductManagerPage()); // 관리자 전용 상품 페이지
+		map.put("/productManagerList.do", new ProductManagerList()); // 관리자 전용 상품 리스트
+		map.put("/removeProductManager.do", new RemoveProductManager()); // 관리자 전용 상품 삭제
+		map.put("/modifyProductManager.do", new ModifyProductManager()); // 관리자 전용 상품 수정
 		
 		
 		
@@ -80,14 +96,14 @@ public class FrontController extends HttpServlet {
 		map.put("/loginForm.do", new LoginForm());
 		map.put("/login.do", new Login());
 		map.put("/signup.do", new Signup());
-		
-		
-		
-		
+		// 관리자 회원관리
+		map.put("/memberManageForm.do", new MemberManager()); // 관리자 화면 등록 폼
+		map.put("/memberList.do", new MemberList()); //관리자 화면 리스트
+		map.put("/removeMember.do", new MemberRemove()); //관리자 화면에서 삭제
+		map.put("/updateMember.do", new MemberModify()); //관리자 화면에서 수정
 		
 		
 
-		
 		
 		
 		//주안

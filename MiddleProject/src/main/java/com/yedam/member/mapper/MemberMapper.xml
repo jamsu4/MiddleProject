@@ -16,9 +16,33 @@
 		VALUES(#{memId}, #{memPw}, #{memName}, #{memPhone}, #{memEmail}, #{memUser})
 	</insert>
 	
+
 	<select id="couponSelect" resultType="MemberVO">
         SELECT * 
         FROM coupon 
         WHERE mem_id = #{memId} 
 </select>
+
+	<!--  -->
+	<select id="memberList" resultType="MemberVO">
+		SELECT * FROM member ORDER BY mem_id
+	</select>
+	
+    <delete id="deleteMember" parameterType="String">
+    	DELETE FROM member
+    	WHERE mem_id = #{memId}
+    </delete>
+    
+   	<update id="updateMember" parameterType="MemberVO">
+	     UPDATE member
+	    	SET
+	     		mem_id = #{memId},
+	     		mem_pw = #{memPw},
+	     		mem_name = #{memName},
+	     		mem_phone = #{memPhone},
+	     		mem_email = #{memEmail},
+	     		mem_user = #{memUser}
+	     WHERE mem_id=#{memId}
+    </update>
+
 </mapper>
