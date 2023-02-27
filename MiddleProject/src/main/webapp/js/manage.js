@@ -141,7 +141,7 @@ function makeRow(member = {}) {
         $('<button class="btn btn-info">수정</button>')
             .attr('member_id', member.memId) // .attr => setAttribute, 만들다
             .on('click', updateMemberFnc) //이벤트
-        ),
+        )
     );
     return tr;
 }
