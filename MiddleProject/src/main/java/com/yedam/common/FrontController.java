@@ -26,6 +26,7 @@ import com.yedam.mypage.command.ZzimListControl;
 
 import com.yedam.notice.command.NoticeListControl;
 import com.yedam.order.control.orderControl;
+import com.yedam.product.command.InsertProductManager;
 import com.yedam.product.command.ModifyProductManager;
 import com.yedam.product.command.ProductCartAdd;
 import com.yedam.product.command.ProductDetail;
@@ -33,10 +34,12 @@ import com.yedam.product.command.ProductDetail;
 import com.yedam.product.command.addZzimControl;
 import com.yedam.product.command.ProductManagerList;
 import com.yedam.product.command.ProductManagerPage;
+import com.yedam.product.command.ProductMangerAddPage;
 import com.yedam.product.command.RemoveProductManager;
 
 import com.yedam.product.command.cartControl;
 import com.yedam.product.command.searchProductControl;
+import com.yedam.qa.command.ProductQaPage;
 import com.yedam.zzim.command.ProductZzimAdd;
 import com.yedam.zzim.command.ProductZzimDel;
 
@@ -83,7 +86,9 @@ public class FrontController extends HttpServlet {
 		map.put("/productManagerList.do", new ProductManagerList()); // 관리자 전용 상품 리스트
 		map.put("/removeProductManager.do", new RemoveProductManager()); // 관리자 전용 상품 삭제
 		map.put("/modifyProductManager.do", new ModifyProductManager()); // 관리자 전용 상품 수정
-		
+		map.put("/productManagerAddPage.do", new ProductMangerAddPage()); // 관리자 전용 상품 등록페이지
+		map.put("/insertProductManager.do", new InsertProductManager()); // 관리자 전용 상품 등록
+		map.put("/productQaPage.do", new ProductQaPage()); // Q&A 페이지
 		
 		
 		

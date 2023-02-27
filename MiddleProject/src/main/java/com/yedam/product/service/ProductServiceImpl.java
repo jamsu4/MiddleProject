@@ -47,7 +47,7 @@ public class ProductServiceImpl implements ProductService{
 	@Override
 	public List<ProductVO> getCartList(String logId) {
 		return mapper.selectCartList(logId);
-
+	}
 	public int removeProduct(int proId) {
 		return mapper.deleteProduct(proId);
 	}
@@ -56,6 +56,11 @@ public class ProductServiceImpl implements ProductService{
 	public int modifyProduct(ProductVO product) {
 		return mapper.updateProduct(product);
 
+	}
+
+	@Override
+	public int addProduct(ProductVO product) {
+		return mapper.insertProduct(product);
 	}
 
 	

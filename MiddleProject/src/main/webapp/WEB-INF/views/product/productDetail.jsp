@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <!-- ***** Product Area Starts ***** -->
+
 <section class="section" id="product">
 
 	<div class="container">
@@ -51,7 +52,7 @@
 						<c:if test="${!empty logId }">
 							<div class="main-border-button">
 								<c:choose>
-									<c:when test="${zzimUser.proId eq proDetail.proID}">
+									<c:when test="${zzimUser.proId eq proDetail.proId}">
 										<a id="zzim" class="selected" style="cursor: pointer;">찜
 											취소</a>
 									</c:when>
@@ -78,6 +79,7 @@
 							<th class="productDetailQnA">작성자</th>
 							<th class="productDetailQnA">제품</th>
 							<th class="productDetailQnA">제목</th>
+							<th class="productDetailQnA">내용</th>
 							<th class="productDetailQnA">작성일자</th>
 
 						</tr>
@@ -89,6 +91,14 @@
 								<td class="productDetailQnA">${qa.memId }</td>
 								<td class="productDetailQnA">${qa.proId }</td>
 								<td class="productDetailQnA">${qa.qaTitle }</td>
+								<c:choose>
+									<c:when test="${qa.memId eq logId}">
+										<td class="productDetailQnA">${qa.qaContent }</td>
+									</c:when>
+									<c:otherwise>
+										<td class="productDetailQnA">비밀글입니다.</td>
+									</c:otherwise>
+								</c:choose>
 								<td class="productDetailQnA">${qa.qaDate }</td>
 								<!-- 							<td class="productDetailQnA"><a -->
 								<!-- 								href="mailto:jmatman@stewart.com" class="productDetailQnA">jmatman@stewart.com</a></td> -->
@@ -96,6 +106,9 @@
 						</c:forEach>
 					</tbody>
 				</table>
+				<br>
+<!-- 				<button class="btn btn-primary" onclick="location.href='productQaPage.do'">등록</button> -->
+				<button class="btn btn-primary" onclick="window.open('productQaPage.do','window_name','width=430,height=500,location=no,status=no,scrollbars=yes');">등록</button>
 			</div>
 		</div>
 	</div>
@@ -108,7 +121,7 @@
    let minus = document.querySelectorAll(".minus")[0];
    let productCount = document.querySelector("#productCount");
    let total = document.querySelectorAll(".total")[0].children[0];
-   let proId = ${proDetail.proID };
+   let proId = ${proDetail.proId };
 
    plus.addEventListener("click", function () {
      let productCountValue = parseInt(productCount.value) + 1;
@@ -127,11 +140,11 @@
    $('#cart').click(function() {
 	   let productCountValue = parseInt(productCount.value);
 	   let result = productCountValue * ${proDetail.proPrice };
-	   let proId = ${proDetail.proID };
+	   let proId = ${proDetail.proId };
 	   
 	   console.log(result);
 	   console.log(productCountValue);
-	   console.log(${proDetail.proID });
+	   console.log(${proDetail.proId });
 	   console.log("카트임");
 	   $.ajax({
 		   url: "productCartAdd.do",

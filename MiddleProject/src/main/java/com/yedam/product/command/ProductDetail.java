@@ -31,7 +31,6 @@ public class ProductDetail implements Command {
 		String logId = (String) session.getAttribute("logId");
 		ZzimService serviceZzim = new ZzimServiceImpl();
 		req.setAttribute("zzimUser", serviceZzim.ZzimList(logId, Integer.parseInt(pid)));
-		System.out.println(serviceZzim.ZzimList(logId, Integer.parseInt(pid)));
 		
 		return "product/productDetail.tiles";
 	}

@@ -43,7 +43,7 @@ public class ModifyProductManager implements Command {
 		}
 
 		ProductVO vo = new ProductVO();
-		vo.setProID(Integer.parseInt(pid));
+		vo.setProId(Integer.parseInt(pid));
 		vo.setProName(pname);
 		vo.setProPrice(Integer.parseInt(pprice));
 		vo.setProDesc(pdesc);
