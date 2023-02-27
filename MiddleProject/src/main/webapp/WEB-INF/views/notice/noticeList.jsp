@@ -34,24 +34,22 @@
             </thead>
             <tbody>
             <c:forEach var="notice" items="${list }">
-              <tr scope="row" onclick="location.href='noticeDetail.do?notId=${notice.notId}'">
-                <th scope="row">
+              <tr scope="row" onclick="location.href='noticeDetail.do?notId=${notice.notId}'" style="cursor:pointer">
+                <th scope="row" onclick='event.cancelBubble=true'>
                   <label class="control control--checkbox">
                   
-                    <input type="checkbox" name="cbox" onclick='event.cancelBubble=true'/>
+                    <input type="checkbox" name="cbox" />
                     <div class="control__indicator"></div>
                   </label>
                 </th>
-                <td onclick='event.cancelBubble=true'>${notice.notId }</td>
-                <td onclick='event.cancelBubble=true'>관리자</td>
-                <td>
+                <td>${notice.notId }</td>
+                <td>관리자</td>
+                <td >
                   ${notice.notTitle }
-                  <small class="d-block"
-                    ></small
-                  >
+                  
                 </td>
-                <td></td>
-                <td>${notice.notDate }</td>
+                <td ></td>
+                <td onclick='event.cancelBubble=true'>${notice.notDate }</td>
               </tr>
               </c:forEach>
               <tr class="spacer">

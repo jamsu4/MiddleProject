@@ -51,7 +51,7 @@
 						<c:if test="${!empty logId }">
 							<div class="main-border-button">
 								<c:choose>
-									<c:when test="${zzimUser.proId eq proDetail.proID}">
+									<c:when test="${zzimUser.proId eq proDetail.proId}">
 										<a id="zzim" class="selected" style="cursor: pointer;">찜
 											취소</a>
 									</c:when>
@@ -108,7 +108,7 @@
    let minus = document.querySelectorAll(".minus")[0];
    let productCount = document.querySelector("#productCount");
    let total = document.querySelectorAll(".total")[0].children[0];
-   let proId = ${proDetail.proID };
+   let proId = ${proDetail.proId };
 
    plus.addEventListener("click", function () {
      let productCountValue = parseInt(productCount.value) + 1;
@@ -127,11 +127,11 @@
    $('#cart').click(function() {
 	   let productCountValue = parseInt(productCount.value);
 	   let result = productCountValue * ${proDetail.proPrice };
-	   let proId = ${proDetail.proID };
+	   let proId = ${proDetail.proId };
 	   
 	   console.log(result);
 	   console.log(productCountValue);
-	   console.log(${proDetail.proID });
+	   console.log(${proDetail.proId });
 	   console.log("카트임");
 	   $.ajax({
 		   url: "productCartAdd.do",
