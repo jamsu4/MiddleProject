@@ -15,9 +15,8 @@ public interface ProductService {
 
 	public ProductVO getProduct(int productId); //제품 단건조회
 	public int addProductCart(CartVO cart); // 제품 카트에 추가
-//	public List<ProductVO> productList();
 
-//	public List<ProductVO> relateList();
-
+	public int removeProduct(int proId); // 제품 삭제
+	public int modifyProduct(ProductVO product); // 제품 수정
 	
 }
