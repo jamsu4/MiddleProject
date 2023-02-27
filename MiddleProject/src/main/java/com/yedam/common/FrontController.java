@@ -16,13 +16,17 @@ import com.yedam.member.command.LoginForm;
 import com.yedam.member.command.LogoutControl;
 import com.yedam.member.command.MemberList;
 import com.yedam.member.command.MemberManager;
-import com.yedam.member.command.MemberModify;
 import com.yedam.member.command.MemberRemove;
+import com.yedam.member.command.MemberUpdate;
 import com.yedam.member.command.Signup;
-
 import com.yedam.member.command.selectCouponControl;
 import com.yedam.mypage.command.MyPageControl;
 import com.yedam.mypage.command.ZzimListControl;
+
+import com.yedam.notice.command.AddNoticeControl;
+import com.yedam.notice.command.AddNoticeFormControl;
+import com.yedam.notice.command.NoticeDeleteControl;
+import com.yedam.notice.command.NoticeDetailControl;
 
 import com.yedam.notice.command.NoticeListControl;
 import com.yedam.order.control.orderControl;
@@ -30,13 +34,11 @@ import com.yedam.product.command.InsertProductManager;
 import com.yedam.product.command.ModifyProductManager;
 import com.yedam.product.command.ProductCartAdd;
 import com.yedam.product.command.ProductDetail;
-
-import com.yedam.product.command.addZzimControl;
 import com.yedam.product.command.ProductManagerList;
 import com.yedam.product.command.ProductManagerPage;
 import com.yedam.product.command.ProductMangerAddPage;
 import com.yedam.product.command.RemoveProductManager;
-
+import com.yedam.product.command.addZzimControl;
 import com.yedam.product.command.cartControl;
 import com.yedam.product.command.searchProductControl;
 import com.yedam.qa.command.ProductQaPage;
@@ -105,7 +107,7 @@ public class FrontController extends HttpServlet {
 		map.put("/memberManageForm.do", new MemberManager()); // 관리자 화면 등록 폼
 		map.put("/memberList.do", new MemberList()); //관리자 화면 리스트
 		map.put("/removeMember.do", new MemberRemove()); //관리자 화면에서 삭제
-		map.put("/updateMember.do", new MemberModify()); //관리자 화면에서 수정
+		map.put("/updateMember.do", new MemberUpdate()); //관리자 화면에서 수정
 		
 		
 
@@ -114,8 +116,11 @@ public class FrontController extends HttpServlet {
 		//주안
 		map.put("/noticeList.do", new NoticeListControl()); //공지사항페이지 이동
 		map.put("/myPage.do",new MyPageControl()); //마이페이지 이동
-		map.put("/zzimList.do", new ZzimListControl()); // zzim목록 출력)
-		
+		map.put("/zzimList.do", new ZzimListControl()); // zzim목록 출력
+		map.put("/addNoticeForm.do", new AddNoticeFormControl()); //공지사항 작성 폼
+		map.put("/addNotice.do", new AddNoticeControl()); //공지사항 작성기능
+		map.put("/noticeDetail.do", new NoticeDetailControl()); //공지사항 상세보기
+		map.put("/noticeDelete.do", new NoticeDeleteControl()); //공지사항 삭제
 		
 		
 		

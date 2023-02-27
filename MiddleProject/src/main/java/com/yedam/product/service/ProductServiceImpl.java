@@ -48,6 +48,7 @@ public class ProductServiceImpl implements ProductService{
 	public List<ProductVO> getCartList(String logId) {
 		return mapper.selectCartList(logId);
 	}
+  @Override
 	public int removeProduct(int proId) {
 		return mapper.deleteProduct(proId);
 	}

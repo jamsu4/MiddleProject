@@ -10,19 +10,25 @@ import javax.servlet.http.HttpSession;
 import com.yedam.common.Command;
 import com.yedam.notice.service.NoticeService;
 import com.yedam.notice.service.NoticeServiceImpl;
+import com.yedam.notice.vo.NoticeVO;
 
-public class NoticeListControl implements Command {
+public class AddNoticeControl implements Command {
 
 	@Override
 	public String exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		String title = req.getParameter("title"); // form>input:name속성.
+		String content = req.getParameter("content");
+
+		NoticeVO notice = new NoticeVO();
+		notice.setNotTitle(title);
+		notice.setNotContent(content);
+
+		NoticeService service = new NoticeServiceImpl();
+		service.addNotice(notice);
 		
-		NoticeService service = new NoticeServiceImpl(); 
-		req.setAttribute("list",service.noticeList());
+	
 		
-		HttpSession session = req.getSession();
-		req.setAttribute("auth",(String)session.getAttribute("Auth"));
-		System.out.println((String)session.getAttribute("Auth"));
-		return "notice/noticeList.tiles";
+		return "noticeList.do";
 	}
 
 }
