@@ -96,21 +96,23 @@ function deleteMemberFnc(e) {
     });
 } // end of deleteFnc
 
-//목록출력 함수
+//목록출력 함수  (더블 클릭시, 수정 인풋으로 바뀜)
 function makeRow(member = {}) {
 
     let tr = $('<tr />'); //document.createElement('tr')과 같은 기능
     tr.on('dblclick', function (e) {
         //console.log("test");
         let id = $(this).children().eq(0).text(); //children() : 메소드, eq(0) : 첫번째값
-        let name = $(this).children().eq(1).text();
-        let phone = $(this).children().eq(2).text();
-        let email = $(this).children().eq(3).text();
-        let user = $(this).children().eq(4).text();
+        let password = $(this).children().eq(1).text();
+        let name = $(this).children().eq(2).text();
+        let phone = $(this).children().eq(3).text();
+        let email = $(this).children().eq(4).text();
+        let user = $(this).children().eq(5).text();
 
 
         let nTr = $('<tr />').append(
             $('<td />').text(id), //값을 수정하지 못하도록
+            $('<td />').append($('<input/>').val(password)),
             $('<td />').append($('<input/>').val(name)),
             $('<td />').append($('<input/>').val(phone)),
             $('<td />').append($('<input/>').val(email)),
@@ -135,13 +137,7 @@ function makeRow(member = {}) {
             $('<button class="btn btn-danger">삭제</button>')
                 .attr('member_id', member.memId) // .attr => setAttribute, 만들다
                 .on('click', deleteMemberFnc) //이벤트
-        ),
-        // 아래부분은 수정버튼 추가한거임
-        $('<td />').append( //td 추가
-        $('<button class="btn btn-info">수정</button>')
-            .attr('member_id', member.memId) // .attr => setAttribute, 만들다
-            .on('click', updateMemberFnc) //이벤트
-        ),
+        )
     );
     return tr;
 }
@@ -155,16 +151,18 @@ function updateMemberFnc(e) {
     console.log("권한 ", tr.find('td:nth-of-type(5) input').val());//하위요소를 찾고싶다면?
     console.log("id ", tr.children().eq(0).text());
     let id = tr.children().eq(0).text();
-    let name = tr.find('td:nth-of-type(2) input').val();
-    let phone = tr.find('td:nth-of-type(3) input').val();
-    let email = tr.find('td:nth-of-type(4) input').val();
-    let user = tr.find('td:nth-of-type(5) input').val();
+    let password = tr.find('td:nth-of-type(2) input').val();
+    let name = tr.find('td:nth-of-type(3) input').val();
+    let phone = tr.find('td:nth-of-type(4) input').val();
+    let email = tr.find('td:nth-of-type(5) input').val();
+    let user = tr.find('td:nth-of-type(6) input').val();
 
     $.ajax({
         url: 'updateMember.do',
         method: 'post',
         data: {
             id: id,
+            password: password,             // 여기 key 값이랑  MemberUpdate.java 의 getParameter 랑 통일
             name: name,
             phone: phone,
             email: email,

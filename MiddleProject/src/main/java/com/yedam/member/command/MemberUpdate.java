@@ -15,26 +15,26 @@ import com.yedam.member.service.MemberService;
 import com.yedam.member.service.MemberServiceMybatis;
 import com.yedam.member.vo.MemberVO;
 
-public class MemberModify implements Command {
+public class MemberUpdate implements Command {
 
 	@Override
 	public String exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		// 수정하고 싶은 회원을 더블클릭하면 인풋으로 바뀌고 그 값들을 읽어서 수정버튼을 누르면 입력된 값을 서버에 넣으면서 다시 원래 모습으로 돌아가야 됨
-		String id = req.getParameter("member_id");
-		String pass = req.getParameter("member_pw");
-		String confirmPass = req.getParameter("member_confirm_pw");
-		String name = req.getParameter("member_name");
-		String phone = req.getParameter("member_phone");
-		String email = req.getParameter("member_email");
-		String user = req.getParameter("member_user");	// 숨겨진 값(user) 으로 넘어옴.  회원가입이니까 무조건 user
+		// 여기 getParameter 랑 manage.js 의 updateMemberFnc 함수 key 값이랑 통일
+		String id = req.getParameter("id");
+		String pass = req.getParameter("password");
+		String name = req.getParameter("name");
+		String phone = req.getParameter("phone");
+		String email = req.getParameter("email");
+		String user = req.getParameter("user");	// 숨겨진 값(user) 으로 넘어옴.  회원가입이니까 무조건 user
 		
 		MemberService service = new MemberServiceMybatis();
 		MemberVO member = new MemberVO();
 		
 		member.setMemId(id);
 		member.setMemPw(pass);
-		member.setMemPw(confirmPass);	// 이거 적어야 하나??? DB 컬럼에도 추가해야 함?
+		// member.setMemPw(confirmPass);	// 이거 적어야 하나??? DB 컬럼에도 추가해야 함?
 										// 아니지... 가입이 됐다는건 어쩄든 동일하게 했다는거니.. 가입 시 2개가 다르면 애초에 막았어야 함.
 		member.setMemName(name);
 		member.setMemPhone(phone);
@@ -57,5 +57,4 @@ public class MemberModify implements Command {
 		}
 		return gson.toJson(resultMap) + ".json";
 	}
-
 }
