@@ -47,7 +47,7 @@
                             	<c:when test="${Auth == 'admin' }">
                                 	<a href="#">관리자메뉴</a>
 	                                <ul>
-	                                    <li><a href="#">상품관리</a></li>
+	                                    <li><a href="productManagerPage.do">상품관리</a></li>
 	                                    <li><a href="#">회원관리</a></li>
 	                                    <li><a href="#">주문관리</a></li>
 	                                    <li><a href="#">후기관리</a></li>

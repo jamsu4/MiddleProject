@@ -24,5 +24,6 @@ public interface ProductService {
 
 	public int removeProduct(int proId); // 제품 삭제
 	public int modifyProduct(ProductVO product); // 제품 수정
+	public int addProduct(ProductVO product); // 제품 등록
 	
 }

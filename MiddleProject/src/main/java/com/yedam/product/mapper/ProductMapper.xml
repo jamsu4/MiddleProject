@@ -62,8 +62,8 @@
 	<update id="updateProduct" parameterType="ProductVO">
 		update product
 		<set>
-			<if test="proID != null">
-				pro_id = #{proID},
+			<if test="proId != null">
+				pro_id = #{proId},
 			</if>
 			<if test="proName != null">
 				pro_name = #{proName},
@@ -82,7 +82,13 @@
 			</if>
 		</set>
 		where
-		pro_id = #{proID}
+
+		pro_id = #{proId}
 	</update>
+	
+	<insert id="insertProduct" parameterType="ProductVO">
+		INSERT INTO product (pro_id, pro_name, pro_price, pro_desc, pro_img, pro_category)
+		VALUES (#{proId}, #{proName}, #{proPrice}, #{proDesc}, #{proImg}, #{proCategory})
+	</insert>
 
 </mapper>

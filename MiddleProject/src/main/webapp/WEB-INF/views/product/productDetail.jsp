@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <!-- ***** Product Area Starts ***** -->
+
 <section class="section" id="product">
 
 	<div class="container">
@@ -78,6 +79,7 @@
 							<th class="productDetailQnA">작성자</th>
 							<th class="productDetailQnA">제품</th>
 							<th class="productDetailQnA">제목</th>
+							<th class="productDetailQnA">내용</th>
 							<th class="productDetailQnA">작성일자</th>
 
 						</tr>
@@ -89,6 +91,14 @@
 								<td class="productDetailQnA">${qa.memId }</td>
 								<td class="productDetailQnA">${qa.proId }</td>
 								<td class="productDetailQnA">${qa.qaTitle }</td>
+								<c:choose>
+									<c:when test="${qa.memId eq logId}">
+										<td class="productDetailQnA">${qa.qaContent }</td>
+									</c:when>
+									<c:otherwise>
+										<td class="productDetailQnA">비밀글입니다.</td>
+									</c:otherwise>
+								</c:choose>
 								<td class="productDetailQnA">${qa.qaDate }</td>
 								<!-- 							<td class="productDetailQnA"><a -->
 								<!-- 								href="mailto:jmatman@stewart.com" class="productDetailQnA">jmatman@stewart.com</a></td> -->
@@ -96,6 +106,9 @@
 						</c:forEach>
 					</tbody>
 				</table>
+				<br>
+<!-- 				<button class="btn btn-primary" onclick="location.href='productQaPage.do'">등록</button> -->
+				<button class="btn btn-primary" onclick="window.open('productQaPage.do','window_name','width=430,height=500,location=no,status=no,scrollbars=yes');">등록</button>
 			</div>
 		</div>
 	</div>
