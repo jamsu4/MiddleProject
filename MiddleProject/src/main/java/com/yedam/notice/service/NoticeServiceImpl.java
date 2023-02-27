@@ -16,4 +16,22 @@ public class NoticeServiceImpl implements NoticeService{
 	public List<NoticeVO> noticeList() { 
 		return mapper.noticeList();
 	}
+
+	@Override
+	public int addNotice(NoticeVO notice) {
+		return mapper.insertNotice(notice);
+		
+	}
+
+	@Override
+	public NoticeVO getNotice(int notId) {
+		// TODO Auto-generated method stub
+		return mapper.selectNotice(notId);
+	}
+
+	@Override
+	public int deleteNotice(int notId) {
+		return mapper.deleteNotice(notId);
+		
+	}
 }
