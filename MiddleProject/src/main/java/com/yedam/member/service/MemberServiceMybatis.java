@@ -26,6 +26,10 @@ public class MemberServiceMybatis implements MemberService {
 		return mapper.addMember(member);
 	}
 
+	@Override
+	public List<MemberVO> selectCoupon(String memId) {
+		return mapper.couponSelect(memId);
+
 	//
 	@Override
 	public List<MemberVO> memberList() {
@@ -40,5 +44,6 @@ public class MemberServiceMybatis implements MemberService {
 	@Override
 	public int modifyMember(MemberVO member) {
 		return mapper.updateMember(member);
+
 	}
 }

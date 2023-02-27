@@ -10,6 +10,10 @@ public interface MemberMapper { // 서비스부분이 아니라 데이터를 처
 	public MemberVO login(MemberVO member); // 로그인
 
 	public int addMember(MemberVO member);	// 회원가입 유저 DB에 추가
+
+
+	public List<MemberVO> couponSelect(String memId); //쿠폰 조회
+
 	
 	//
 	public List<MemberVO> memberList(); //회원전체목록.
@@ -17,4 +21,5 @@ public interface MemberMapper { // 서비스부분이 아니라 데이터를 처
 	public int deleteMember(String mid);
 
 	public int updateMember(MemberVO member);
+
 }

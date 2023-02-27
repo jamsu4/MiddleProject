@@ -5,8 +5,8 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 
 import com.yedam.common.DataSource;
+import com.yedam.mypage.vo.ZzimVO;
 import com.yedam.product.mapper.ProductMapper;
-import com.yedam.product.vo.CartVO;
 import com.yedam.product.vo.ProductVO;
 
 public class ProductServiceImpl implements ProductService{
@@ -29,7 +29,7 @@ public class ProductServiceImpl implements ProductService{
 		return mapper.getProduct(productId);
 	}
 	@Override
-	public int addProductCart(CartVO cart) {
+	public int addProductCart(ProductVO cart) {
 		return mapper.insertProductCart(cart);
 	}
 
@@ -39,6 +39,15 @@ public class ProductServiceImpl implements ProductService{
 	}
 
 	@Override
+
+	public int addZzim(ZzimVO vo) {
+		return mapper.addZzimList(vo);
+	}
+
+	@Override
+	public List<ProductVO> getCartList(String logId) {
+		return mapper.selectCartList(logId);
+
 	public int removeProduct(int proId) {
 		return mapper.deleteProduct(proId);
 	}
@@ -46,6 +55,7 @@ public class ProductServiceImpl implements ProductService{
 	@Override
 	public int modifyProduct(ProductVO product) {
 		return mapper.updateProduct(product);
+
 	}
 
 	

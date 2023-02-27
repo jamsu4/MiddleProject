@@ -5,7 +5,10 @@
 
 <mapper namespace="com.yedam.member.mapper.MemberMapper">
 	<select id="login" resultType="MemberVO">
-		SELECT * FROM member WHERE mem_id = #{memId} AND mem_pw = #{memPw}
+		SELECT * 
+		FROM member 
+		WHERE mem_id = #{memId} 
+		  AND mem_pw = #{memPw}
 	</select>
 
 	<insert id="addMember" parameterType="MemberVO">		
@@ -13,6 +16,13 @@
 		VALUES(#{memId}, #{memPw}, #{memName}, #{memPhone}, #{memEmail}, #{memUser})
 	</insert>
 	
+
+	<select id="couponSelect" resultType="MemberVO">
+        SELECT * 
+        FROM coupon 
+        WHERE mem_id = #{memId} 
+</select>
+
 	<!--  -->
 	<select id="memberList" resultType="MemberVO">
 		SELECT * FROM member ORDER BY mem_id
@@ -34,4 +44,5 @@
 	     		mem_user = #{memUser}
 	     WHERE mem_id=#{memId}
     </update>
+
 </mapper>

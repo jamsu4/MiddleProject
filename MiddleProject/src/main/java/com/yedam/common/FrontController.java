@@ -19,16 +19,22 @@ import com.yedam.member.command.MemberManager;
 import com.yedam.member.command.MemberModify;
 import com.yedam.member.command.MemberRemove;
 import com.yedam.member.command.Signup;
+
+import com.yedam.member.command.selectCouponControl;
 import com.yedam.mypage.command.MyPageControl;
 import com.yedam.mypage.command.ZzimListControl;
+
 import com.yedam.notice.command.NoticeListControl;
 import com.yedam.order.control.orderControl;
 import com.yedam.product.command.ModifyProductManager;
 import com.yedam.product.command.ProductCartAdd;
 import com.yedam.product.command.ProductDetail;
+
+import com.yedam.product.command.addZzimControl;
 import com.yedam.product.command.ProductManagerList;
 import com.yedam.product.command.ProductManagerPage;
 import com.yedam.product.command.RemoveProductManager;
+
 import com.yedam.product.command.cartControl;
 import com.yedam.product.command.searchProductControl;
 import com.yedam.zzim.command.ProductZzimAdd;
@@ -54,9 +60,10 @@ public class FrontController extends HttpServlet {
 		map.put("/main.do", new MainControl()); //메인페이지
 		map.put("/orderPage.do", new orderControl()); //주문페이지
 		map.put("/searchProduct.do", new searchProductControl()); //검색 결과
-		map.put("/logOut.do", new LogoutControl());
-		map.put("/cart.do", new cartControl());
-
+		map.put("/logOut.do", new LogoutControl()); //로그아웃
+		map.put("/cart.do", new cartControl()); //메인에서 장바구니 담기
+		map.put("/addZzim.do", new addZzimControl()); //찜추가 기능
+		map.put("/selectCoupon.do", new selectCouponControl()); //쿠폰 조회 기능
 
 		
 		

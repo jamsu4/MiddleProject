@@ -9,31 +9,50 @@
 	<select id="getList" resultType="ProductVO">
 		SELECT * FROM product
 	</select>
-
+	<!-- 검색 결과 조회 -->
 	<select id="searchResult" resultType="ProductVO">
 		SELECT *
 		FROM product
 		WHERE pro_name like '%' ||  #{keyword } || '%'
 		   OR pro_category like '%' ||  #{keyword } || '%'
 	</select>
-
+	<!-- 메뉴 조회 -->
 	<select id="menuResult" resultType="ProductVO">
 		SELECT * 
 		FROM product
 		WHERE pro_category like '%' ||  #{menu } || '%'
 	</select>
-
+	<!-- 상품 상세 조회 -->
 	<select id="getProduct" resultType="ProductVO">
 		SELECT * FROM product WHERE
 		pro_id=#{pid}
 	</select>
-
-	<insert id="insertProductCart" parameterType="CartVO">
-		INSERT INTO
-		cart(cart_id, mem_id, pro_id, ca_quant, ca_sumprice)
-		VALUES(1,
-		#{memId}, #{proId}, #{caQuant}, #{caSumprice})
+	<!-- 카트 담기 -->
+	<insert id="insertProductCart" parameterType="ProductVO">
+		<selectKey keyProperty="cartId" resultType="int" order="BEFORE">
+    		SELECT seq_cart_id.NEXTVAL FROM dual
+  		</selectKey>
+		INSERT INTO cart(cart_id, mem_id, pro_id, ca_quant, ca_sumprice)
+		VALUES(#{cartId},#{memId}, #{proId}, #{caQuant}, #{caSumprice})
 	</insert>
+
+	<!-- 찜 하기	 -->
+	<insert id="addZzimList" parameterType="ZzimVO">
+  		<selectKey keyProperty="zzimId" resultType="int" order="BEFORE">
+    		SELECT seq_zzim_id.NEXTVAL FROM dual
+  		</selectKey>
+  		
+	    INSERT INTO zzim (zzim_id, mem_id, pro_id)
+	  	VALUES (#{zzimId}, #{memId}, #{proId})
+	</insert>
+	<!-- 카트 목록 조회 -->
+	<select id="selectCartList" resultType="ProductVO">
+		SELECT c.pro_id, pro_name, pro_price, pro_img, c.mem_id, ca_sumprice, ca_quant
+		FROM product p, cart c
+		WHERE p.pro_id = c.pro_id
+		  AND c.mem_id = #{logId}
+	</select>
+
 	
 	<delete id="deleteProduct" parameterType="int">
 		DELETE FROM product
@@ -64,6 +83,6 @@
 		</set>
 		where
 		pro_id = #{proID}
-	</update>
+
 
 </mapper>
