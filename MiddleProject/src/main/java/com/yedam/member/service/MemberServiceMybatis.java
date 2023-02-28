@@ -31,7 +31,6 @@ public class MemberServiceMybatis implements MemberService {
 		return mapper.couponSelect(memId);
 	}
 
-	}
 	@Override
 	public List<MemberVO> memberList() {
 		return mapper.memberList();
@@ -46,5 +45,15 @@ public class MemberServiceMybatis implements MemberService {
 	public int modifyMember(MemberVO member) {
 		return mapper.updateMember(member);
 
+	}
+
+	@Override
+	public MemberVO findId(String memName, String memEmail) {
+		return mapper.getFindId(memName, memEmail);
+	}
+
+	@Override
+	public MemberVO findPwd(String memName, String memEmail, String memId) {
+		return mapper.getFindPwd(memName, memEmail, memId);
 	}
 }

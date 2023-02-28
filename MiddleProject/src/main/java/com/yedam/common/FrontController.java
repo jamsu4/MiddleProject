@@ -11,6 +11,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.yedam.member.command.FindId;
+import com.yedam.member.command.FindIdForm;
+import com.yedam.member.command.FindPwd;
+import com.yedam.member.command.FindPwdForm;
 import com.yedam.member.command.Login;
 import com.yedam.member.command.LoginForm;
 import com.yedam.member.command.LogoutControl;
@@ -22,12 +26,10 @@ import com.yedam.member.command.Signup;
 import com.yedam.member.command.selectCouponControl;
 import com.yedam.mypage.command.MyPageControl;
 import com.yedam.mypage.command.ZzimListControl;
-
 import com.yedam.notice.command.AddNoticeControl;
 import com.yedam.notice.command.AddNoticeFormControl;
 import com.yedam.notice.command.NoticeDeleteControl;
 import com.yedam.notice.command.NoticeDetailControl;
-
 import com.yedam.notice.command.NoticeListControl;
 import com.yedam.order.control.orderControl;
 import com.yedam.product.command.InsertProductManager;
@@ -103,12 +105,14 @@ public class FrontController extends HttpServlet {
 		map.put("/loginForm.do", new LoginForm());
 		map.put("/login.do", new Login());
 		map.put("/signup.do", new Signup());
-		// 관리자 회원관리
-		map.put("/memberManageForm.do", new MemberManager()); // 관리자 화면 등록 폼
-		map.put("/memberList.do", new MemberList()); //관리자 화면 리스트
-		map.put("/removeMember.do", new MemberRemove()); //관리자 화면에서 삭제
-		map.put("/updateMember.do", new MemberUpdate()); //관리자 화면에서 수정
-		
+		map.put("/memberManageForm.do", new MemberManager());	// 관리자 화면 등록 폼
+		map.put("/memberList.do", new MemberList());			//관리자 화면 리스트
+		map.put("/removeMember.do", new MemberRemove());		//관리자 화면에서 삭제
+		map.put("/updateMember.do", new MemberUpdate());		//관리자 화면에서 수정
+		map.put("/findIdForm.do", new FindIdForm());			// 아이디 찾기 화면
+		map.put("/findPwdForm.do", new FindPwdForm());			// 비번 찾기 화면
+		map.put("/findId.do", new FindId());					// 아이디 찾기 처리
+		map.put("/findPwd.do", new FindPwd());					// 비번 찾기 처리
 		
 
 		

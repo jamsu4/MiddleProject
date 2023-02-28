@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
+<script type="text/javascript" src="js/findInfo.js"></script>
 <head>
 <meta charset="UTF-8" />
 
@@ -21,6 +21,10 @@
 	border: 1px solid rgb(89, 117, 196);
 	border-radius: 10px;
 } */
+
+tr {
+	text-align: center;
+}
 input[type='text'], input[type='password'] {
 	width: 300px;
 	height: 40px;
@@ -40,6 +44,7 @@ input[type='submit'], input[type='reset'] {
 	border-radius: 5px;
 	margin: 20px 0 30px 0;
 }
+
 
 /* 회원가입 버튼 */
 a[href*="https://www.naver.com/"] {
@@ -110,10 +115,13 @@ a[href*="https://www.naver.com/"] {
 	</form>
 
 	<div>
-		<h6>ID / PW 찾기</h6>
+		<div>
+			<a href="findIdForm.do">ID 찾기</a> |
+			<a href="findPwdForm.do">비밀번호 찾기</a>
+		</div>
 
 
-		<h6>신규 회원 가입 시 적립금 5만원 지급</h6>
+		<span>신규 회원 가입 시 적립금 5만원 지급</span>
 
 		<div class="modal">
 			<div class="modal_body">
