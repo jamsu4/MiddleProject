@@ -13,5 +13,7 @@ public interface NoticeService {
 
 	public int deleteNotice(int notId);
 
+	public int updateNotice(NoticeVO nvo);
+
 	
 }

@@ -21,4 +21,10 @@
     DELETE FROM notice WHERE not_id = #{notId}
   </delete>	
   
+  <update id="updateNotice" parameterType="NoticeVO">
+  	UPDATE notice 
+	SET not_title = #{notTitle}, not_content = #{notContent}, not_date = sysdate
+	WHERE not_id = 34
+  </update>
+  
 </mapper>

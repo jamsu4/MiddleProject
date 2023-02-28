@@ -34,4 +34,10 @@ public class NoticeServiceImpl implements NoticeService{
 		return mapper.deleteNotice(notId);
 		
 	}
+
+	@Override
+	public int updateNotice(NoticeVO nvo) {
+		// TODO Auto-generated method stub
+		return mapper.updateNotice(nvo);
+	}
 }

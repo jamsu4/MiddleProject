@@ -12,7 +12,8 @@ public interface NoticeMapper {
 
 	public NoticeVO selectNotice(int notId); //공지사항 단건조회
 
-	public int deleteNotice(int notId);
+	public int deleteNotice(int notId); //공지 삭제
 	
+	public int updateNotice(NoticeVO nvo); //공지 수정
 
 }
