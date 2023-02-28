@@ -29,6 +29,7 @@ import com.yedam.notice.command.NoticeDeleteControl;
 import com.yedam.notice.command.NoticeDetailControl;
 
 import com.yedam.notice.command.NoticeListControl;
+import com.yedam.order.control.addOrderControl;
 import com.yedam.order.control.orderControl;
 import com.yedam.product.command.InsertProductManager;
 import com.yedam.product.command.ModifyProductManager;
@@ -69,6 +70,7 @@ public class FrontController extends HttpServlet {
 		map.put("/cart.do", new cartControl()); //메인에서 장바구니 담기
 		map.put("/addZzim.do", new addZzimControl()); //찜추가 기능
 		map.put("/selectCoupon.do", new selectCouponControl()); //쿠폰 조회 기능
+		map.put("/addOrder.do", new addOrderControl()); //주문정보 저장 기능
 
 		
 		

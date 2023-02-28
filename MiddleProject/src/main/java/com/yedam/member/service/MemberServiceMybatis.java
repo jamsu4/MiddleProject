@@ -31,7 +31,6 @@ public class MemberServiceMybatis implements MemberService {
 		return mapper.couponSelect(memId);
 	}
 
-	}
 	@Override
 	public List<MemberVO> memberList() {
 		return mapper.memberList();

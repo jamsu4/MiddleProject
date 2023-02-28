@@ -28,4 +28,9 @@ public class OrderServiceImpl implements OrderService {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	@Override
+	public int addOrder(OrderVO ovo) {
+		return mapper.insertOrder(ovo);
+	}
 }

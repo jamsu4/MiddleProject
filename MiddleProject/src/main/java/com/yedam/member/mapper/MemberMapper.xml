@@ -19,8 +19,9 @@
 
 	<select id="couponSelect" resultType="MemberVO">
         SELECT * 
-        FROM coupon 
-        WHERE mem_id = #{memId} 
+        FROM coupon c, member m 
+        WHERE m.mem_id = c.mem_id
+          AND c.mem_id = #{memId} 
 </select>
 
 	<!--  -->
