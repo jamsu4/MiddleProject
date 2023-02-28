@@ -5,5 +5,6 @@ import java.util.List;
 import com.yedam.qa.vo.QaVO;
 
 public interface QaService {
-	public List<QaVO> qaList(); // 제품 상세페이지 Q&A 목록 출력
+	public List<QaVO> qaList(int proId); // 제품 상세페이지 Q&A 목록 출력
+	public int addProductQa(QaVO qa); // Q&A 등록 
 }

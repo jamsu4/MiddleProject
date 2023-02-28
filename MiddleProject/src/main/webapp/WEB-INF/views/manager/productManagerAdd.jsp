@@ -4,6 +4,10 @@
 	span {
 		margin: 10px;
 	}
+	div#image_container img{
+		height : 200px;
+		width : 200px;
+	}
 </style>
 
 <div class="jumbotron">
@@ -63,7 +67,9 @@
 		<div class="form-group row">
 			<label class="col-sm-2">상품 이미지</label>
 			<div>
-				<input type="file" name="proImg" class="form-control">
+				<input type="file" name="proImg" class="form-control" onchange="setThumbnail(event);">
+				<br>
+				<div id="image_container"></div>
 			</div>
 		</div>
 
@@ -75,3 +81,17 @@
 
 	</form>
 </div>
+
+<script>
+      function setThumbnail(event) {
+        var reader = new FileReader();
+
+        reader.onload = function(event) {
+          var img = document.createElement("img");
+          img.setAttribute("src", event.target.result);
+          document.querySelector("div#image_container").appendChild(img);
+        };
+
+        reader.readAsDataURL(event.target.files[0]);
+      }
+    </script>

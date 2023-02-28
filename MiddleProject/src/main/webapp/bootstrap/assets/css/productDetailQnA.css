@@ -1,5 +1,5 @@
-div.productDetailQnA{
-/* 	padding-top: 200px; */
+div.productDetailQnA {
+	/* 	padding-top: 200px; */
 	margin-top: 200px;
 }
 
@@ -12,7 +12,7 @@ table.productDetailQnA {
 	border: 1px #a39485 solid;
 	font-size: .9em;
 	box-shadow: 0 2px 5px rgba(0, 0, 0, .25);
-	width: 250%;
+	width: 100%;
 	border-collapse: collapse;
 	border-radius: 5px;
 	overflow: hidden;
@@ -40,6 +40,9 @@ td.productDetailQnA {
 
 a.productDetailQnA {
 	color: #73685d;
+}
+button.btn {
+	float:right;
 }
 
 @media all and (max-width: 768px) {
