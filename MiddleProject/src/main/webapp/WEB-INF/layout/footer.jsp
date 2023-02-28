@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <!-- ***** Footer Start ***** -->
     <footer>
-        <div class="container">
+        <div class="container" >
             <div class="row">
                 <div class="col-lg-3">
                     <div class="first-item">

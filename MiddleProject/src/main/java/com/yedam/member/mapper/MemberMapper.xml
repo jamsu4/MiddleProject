@@ -58,4 +58,9 @@
 		FROM member
 		WHERE mem_id = #{memId} AND mem_email = #{memEmail}
 	</select>
+	
+	<select id="memInfo" resultType="MemberVO">
+		SELECT * FROM member
+		WHERE mem_id = #{memId}
+	</select>
 </mapper>

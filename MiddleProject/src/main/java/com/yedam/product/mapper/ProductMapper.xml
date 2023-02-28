@@ -25,7 +25,7 @@
 	<!-- 상품 상세 조회 -->
 	<select id="getProduct" resultType="ProductVO">
 		SELECT * FROM product WHERE
-		pro_id=#{pid}
+		pro_id=#{porId}
 	</select>
 	<!-- 카트 담기 -->
 	<insert id="insertProductCart" parameterType="ProductVO">

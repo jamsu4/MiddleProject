@@ -28,5 +28,7 @@ public interface MemberMapper { // 서비스부분이 아니라 데이터를 처
 	public MemberVO getFindId(@Param("memName")String memName, @Param("memEmail")String memEmail);
 	
 	public MemberVO getFindPwd(@Param("memName")String memName, @Param("memEmail")String memEmail, @Param("memId")String memId);
+	
+	public MemberVO memInfo(String memId); //juan member단건조회
 
 }

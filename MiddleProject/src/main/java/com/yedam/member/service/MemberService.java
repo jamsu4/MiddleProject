@@ -19,4 +19,5 @@ public interface MemberService { // 서비스 부분
 	//
 	public MemberVO findId(String name, String email);
 	public MemberVO findPwd(String name, String email, String id);
+	public MemberVO memInfo(String memId); //주안 개인정보수정용 멤버정보조회
 }
