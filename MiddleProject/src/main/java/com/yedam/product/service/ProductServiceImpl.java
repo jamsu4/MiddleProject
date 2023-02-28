@@ -64,5 +64,10 @@ public class ProductServiceImpl implements ProductService{
 		return mapper.insertProduct(product);
 	}
 
+	@Override
+	public List<ProductVO> getReviewList(int proId) {
+		return mapper.getReviewList(proId);
+	}
+
 	
 }
