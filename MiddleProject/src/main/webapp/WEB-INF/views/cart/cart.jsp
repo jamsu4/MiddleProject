@@ -11,8 +11,6 @@
 <script
 	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script type="text/javascript" src="js/payment.js"></script>
-<!-- iamport.payment.js -->
-<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-{SDK-최신버전}.js"></script>
 <link rel="stylesheet" href="css/animate.css">
 <!-- Icomoon Icon Fonts-->
 <link rel="stylesheet" href="css/icomoon.css">
@@ -190,32 +188,32 @@
 
 							<div class="col-md-6">
 								<div class="form-group">
-									<label for="fname">주문자</label> <input type="text" id="fname"
-										class="form-control" placeholder="이름">
+									<label for="bname">주문자</label> <input type="text" id="bname"
+										class="form-control">
 								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="form-group">
-									<label for="lname">번호</label> <input type="text" id="lname"
-										class="form-control" placeholder="번호">
+									<label for="bphone">번호</label> <input type="text" id=bphone
+										class="form-control">
 								</div>
 							</div>
 
 							<div class="col-md-12" style="border-bottom: 1px dotted black;">
 								<div class="form-group">
-									<label for="companyname">이메일</label> <input type="text"
-										id="companyname" class="form-control" placeholder="이메일">
+									<label for="bemail">이메일</label> <input type="text"
+										id="bemail" class="form-control">
 								</div>
 							</div>
 							<div class="col-md-6" style="margin-top: 10px;">
 								<div class="form-group">
-									<label for="fname">수신자</label> <input type="text" id="fname"
+									<label for="rname">수신자</label> <input type="text" id="rname"
 										class="form-control" placeholder="이름">
 								</div>
 							</div>
 							<div class="col-md-6" style="margin-top: 10px;">
 								<div class="form-group">
-									<label for="lname">번호</label> <input type="text" id="lname"
+									<label for="rphone">번호</label> <input type="text" id="rphone"
 										class="form-control" placeholder="번호">
 								</div>
 							</div>
@@ -223,7 +221,7 @@
 							<div class="col-md-12">
 								<div class="form-group">
 									<label for="companyname">이메일</label> <input type="text"
-										id="companyname" class="form-control" placeholder="이메일">
+										id="remail" class="form-control" placeholder="이메일">
 								</div>
 							</div>
 							<div>
@@ -238,8 +236,8 @@
 							</div>
 							<div class="col-md-12">
 								<div class="form-group">
-									<label for="fname">Address</label> <input type="button"
-										onclick="sample4_execDaumPostcode()" value="우편번호 찾기">
+									<label for="fname">Address</label> 
+									<input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기">
 								</div>
 							</div>
 							<div class="col-md-6">
@@ -250,43 +248,44 @@
 							</div>
 							<div class="col-md-6">
 								<div class="form-group">
-									<input type="text" id="sample4_extraAddress" placeholder="참고항목"
-										class="form-control">
+									<input type="text" id="sample4_extraAddress" placeholder="참고항목" class="form-control">
 								</div>
 							</div>
 						
 						<div class="col-md-12">
 							<div class="form-group">
-								<input type="text" id="sample4_detailAddress" placeholder="상세주소"
-									class="form-control">
+								<input type="text" id="sample4_detailAddress" placeholder="상세주소" class="form-control">
 							</div>
 						</div>
 						<div class="col-md-6">
 							<div class="form-group">
-								<label for="lname">Zip/Postal Code</label> <input type="text"
-									id="sample4_postcode" placeholder="우편번호" class="form-control">
+								<label for="lname">Zip/Postal Code</label> 
+								<input type="text" id="sample4_postcode" placeholder="우편번호" class="form-control">
 							</div>
 						</div>
 
-						<div class="col-md-6">
-							<div class="form-group">
-								<label for="email">E-mail Address</label> <input type="text"
-									id="email" class="form-control" placeholder="E-mail">
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="form-group">
-								<label for="Phone">Phone Number</label> <input type="text"
-									id="zippostalcode" class="form-control" placeholder="">
-							</div>
-						</div>
+<!-- 						<div class="col-md-6"> -->
+<!-- 							<div class="form-group"> -->
+<!-- 								<label for="email">E-mail Address</label> <input type="text" -->
+<!-- 									id="email" class="form-control" placeholder="E-mail"> -->
+<!-- 							</div> -->
+<!-- 						</div> -->
+<!-- 						<div class="col-md-6"> -->
+<!-- 							<div class="form-group"> -->
+<!-- 								<label for="Phone">Phone Number</label> <input type="text" -->
+<!-- 									id="zippostalcode" class="form-control" placeholder=""> -->
+<!-- 							</div> -->
+<!-- 						</div> -->
 
 						<div class="col-md-12">
 							<div class="form-group">
 								<div class="radio">
-									<label><input type="radio" name="optradio">
-										Create an Account? </label> <label><input type="radio"
-										name="optradio"> Ship to different address</label>
+									<label>
+										<input type="radio" name="optradio">이전 배송정보   
+									</label> 
+									<label>
+										<input type="radio" name="optradio">새로운 배송정보 
+									</label>
 								</div>
 							</div>
 						</div>
@@ -329,7 +328,7 @@
 									<div class="col-md-12">
 										<div class="radio">
 											<label><input type="radio" name="optradio">
-												Direct Bank Tranfer</label>
+												카드 결제</label>
 										</div>
 									</div>
 								</div>
@@ -352,8 +351,8 @@
 								<div class="form-group">
 									<div class="col-md-12">
 										<div class="checkbox">
-											<label><input type="checkbox" value=""> I
-												have read and accept the terms and conditions</label>
+											<label><input id="paymentInfoCheck" type="checkbox" value="">
+											상기 주문 정보를 모두 확인했습니다.</label>
 										</div>
 									</div>
 								</div>
@@ -363,7 +362,7 @@
 					<div class="row">
 						<div class="col-md-12 text-center">
 							<p>
-								<a href="#" class="btn btn-primary">결제</a>
+								<button onclick=requestPay() class="btn btn-primary">결제하기</button>
 							</p>
 						</div>
 					</div>
@@ -374,7 +373,6 @@
 </div>
 
 
-<button onclick="requestPay()">결제하기</button>
 
 
 
@@ -454,10 +452,13 @@
 					option.text(item.coupName)
 					option.val(item.coupId)
 					option.attr('data-price', item.coupPrice)
-
+					
 					$('#couponList').append(option);
 				});
-
+				$('#couponList').attr('data-name', result.cvo[0].memName)
+				$('#couponList').attr('data-phone', result.cvo[0].memPhone)
+				$('#couponList').attr('data-email', result.cvo[0].memEmail)
+				$('#couponList').attr('data-id', result.cvo[0].memId)
 			} else {
 				console.log("쿠폰없음")
 			}
@@ -490,7 +491,7 @@
 		totalPrice();
 	})
 
-	//결제페이지 이동
+	//결제페이지 등장
 	$('#movePayment').click(function() {
 		if ($('.selectBox:checked').length > 0) {
 			$('#cartDiv2').hide();
@@ -498,6 +499,10 @@
 			$('#processCheckOut').attr("class", "process text-center active");
 			$('#processCart').attr("class", "process text-center");
 
+			$('#bname').attr('value',$('#couponList').data('name'));
+			$('#bphone').attr('value',$('#couponList').data('phone'));
+			$('#bemail').attr('value',$('#couponList').data('email'));
+			
 		} else {
 			alert("구매할 상품을 선택해주세요.");
 			return;
