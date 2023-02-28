@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+	니 아이디는 ${fId } 다.
 </body>
 </html>

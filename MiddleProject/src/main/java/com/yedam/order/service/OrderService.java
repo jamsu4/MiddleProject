@@ -10,4 +10,6 @@ public interface OrderService { // 목록, 단건조회.
 
 	public OrderVO getOrder(String orderId);
 
+	public int addOrder(OrderVO ovo);
+
 }

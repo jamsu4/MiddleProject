@@ -11,6 +11,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.yedam.member.command.FindId;
+import com.yedam.member.command.FindIdForm;
+import com.yedam.member.command.FindPwd;
+import com.yedam.member.command.FindPwdForm;
 import com.yedam.member.command.Login;
 import com.yedam.member.command.LoginForm;
 import com.yedam.member.command.LogoutControl;
@@ -23,15 +27,17 @@ import com.yedam.member.command.selectCouponControl;
 import com.yedam.mypage.command.MyPageControl;
 import com.yedam.mypage.command.UpdateInfo;
 import com.yedam.mypage.command.ZzimListControl;
-
 import com.yedam.notice.command.AddNoticeControl;
 import com.yedam.notice.command.AddNoticeFormControl;
 import com.yedam.notice.command.NoticeDeleteControl;
 import com.yedam.notice.command.NoticeDetailControl;
-
 import com.yedam.notice.command.NoticeListControl;
+
 import com.yedam.notice.command.NoticeUpdateControl;
 import com.yedam.notice.command.NoticeUpdateFormControl;
+
+import com.yedam.order.control.addOrderControl;
+
 import com.yedam.order.control.orderControl;
 import com.yedam.product.command.InsertProductManager;
 import com.yedam.product.command.ModifyProductManager;
@@ -44,6 +50,7 @@ import com.yedam.product.command.RemoveProductManager;
 import com.yedam.product.command.addZzimControl;
 import com.yedam.product.command.cartControl;
 import com.yedam.product.command.searchProductControl;
+import com.yedam.qa.command.InsertProductQa;
 import com.yedam.qa.command.ProductQaPage;
 import com.yedam.zzim.command.ProductZzimAdd;
 import com.yedam.zzim.command.ProductZzimDel;
@@ -72,6 +79,7 @@ public class FrontController extends HttpServlet {
 		map.put("/cart.do", new cartControl()); //메인에서 장바구니 담기
 		map.put("/addZzim.do", new addZzimControl()); //찜추가 기능
 		map.put("/selectCoupon.do", new selectCouponControl()); //쿠폰 조회 기능
+		map.put("/addOrder.do", new addOrderControl()); //주문정보 저장 기능
 
 		
 		
@@ -94,7 +102,7 @@ public class FrontController extends HttpServlet {
 		map.put("/productManagerAddPage.do", new ProductMangerAddPage()); // 관리자 전용 상품 등록페이지
 		map.put("/insertProductManager.do", new InsertProductManager()); // 관리자 전용 상품 등록
 		map.put("/productQaPage.do", new ProductQaPage()); // Q&A 페이지
-		
+		map.put("/insertProductQa.do", new InsertProductQa()); // Q&A 등록
 		
 		
 		
@@ -106,12 +114,14 @@ public class FrontController extends HttpServlet {
 		map.put("/loginForm.do", new LoginForm());
 		map.put("/login.do", new Login());
 		map.put("/signup.do", new Signup());
-		// 관리자 회원관리
-		map.put("/memberManageForm.do", new MemberManager()); // 관리자 화면 등록 폼
-		map.put("/memberList.do", new MemberList()); //관리자 화면 리스트
-		map.put("/removeMember.do", new MemberRemove()); //관리자 화면에서 삭제
-		map.put("/updateMember.do", new MemberUpdate()); //관리자 화면에서 수정
-		
+		map.put("/memberManageForm.do", new MemberManager());	// 관리자 화면 등록 폼
+		map.put("/memberList.do", new MemberList());			//관리자 화면 리스트
+		map.put("/removeMember.do", new MemberRemove());		//관리자 화면에서 삭제
+		map.put("/updateMember.do", new MemberUpdate());		//관리자 화면에서 수정
+		map.put("/findIdForm.do", new FindIdForm());			// 아이디 찾기 화면
+		map.put("/findPwdForm.do", new FindPwdForm());			// 비번 찾기 화면
+		map.put("/findId.do", new FindId());					// 아이디 찾기 처리
+		map.put("/findPwd.do", new FindPwd());					// 비번 찾기 처리
 		
 
 		

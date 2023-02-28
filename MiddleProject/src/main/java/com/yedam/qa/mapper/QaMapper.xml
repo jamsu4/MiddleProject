@@ -2,8 +2,18 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
- <mapper namespace="com.yedam.qa.mapper.QaMapper">
- 	<select id="getList" resultType="QaVO">
- 		SELECT * FROM qa
- 	</select>
- </mapper>
+<mapper namespace="com.yedam.qa.mapper.QaMapper">
+	<select id="getList" resultType="QaVO">
+		SELECT * FROM qa
+		WHERE pro_id=#{proId}
+		ORDER BY qa_id
+	</select>
+
+	<insert id="insertProductQa" parameterType="QaVO">
+		INSERT INTO QA
+		(qa_id, mem_id, pro_id, qa_title, qa_content, qa_date)
+		VALUES
+		(qa_seq.NEXTVAL, #{memId}, #{proId}, #{qaTitle}, #{qaContent},
+		sysdate)
+	</insert>
+</mapper>

@@ -59,10 +59,13 @@ tr:last-child td:last-child {
 	margin-right: 30px;
 }
 
-
+td.image_container img {
+	height: 100px;
+	width: 100px;
+}
 </style>
 <input type="file" id="fileUpload" accept="images/*"
-	style="display: none" />
+	style="display: none" onchange="setThumbnail(event);" />
 
 <table>
 	<thead>
@@ -177,12 +180,13 @@ tr:last-child td:last-child {
 
       let nTr = $("<tr />").append(
         $("<td />").append($("<input id='pid' />").val(pid)),
-        $("<td />").append(
+        $("<td class='image_container'/>").append(
           $("<img>", {
             src: pimg,
             width: "100px",
             height: "100px",
             id: "proImg",
+            class: "image_container"
           })
         ),
         $("<td />").append($("<input id='pname' />").val(pname)),
@@ -300,5 +304,16 @@ tr:last-child td:last-child {
     }
   });
 
-  
+  function setThumbnail(event) {
+      var reader = new FileReader();
+
+      reader.onload = function(event) {
+        var img = document.createElement("img");
+        img.setAttribute("src", event.target.result);
+        document.querySelectorAll("img.image_container")[0].remove();
+        document.querySelectorAll("td.image_container")[0].appendChild(img);
+      };
+
+      reader.readAsDataURL(event.target.files[0]);
+    }
 </script>

@@ -13,7 +13,12 @@ public class QaServiceImpl implements QaService{
 	QaMapper mapper = session.getMapper(QaMapper.class);
 	
 	@Override
-	public List<QaVO> qaList() {
-		return mapper.getList();
+	public List<QaVO> qaList(int proId) {
+		return mapper.getList(proId);
+	}
+
+	@Override
+	public int addProductQa(QaVO qa) {
+		return mapper.insertProductQa(qa);
 	}
 }
