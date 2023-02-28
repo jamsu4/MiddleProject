@@ -25,7 +25,7 @@ public class ProductDetail implements Command {
 		req.setAttribute("proDetail", service.getProduct(Integer.parseInt(pid)));
 		
 		QaService serviceQa = new QaServiceImpl(); 
-		req.setAttribute("qaList", serviceQa.qaList());
+		req.setAttribute("qaList", serviceQa.qaList(Integer.parseInt(pid)));
 		
 		HttpSession session = req.getSession();
 		String logId = (String) session.getAttribute("logId");
