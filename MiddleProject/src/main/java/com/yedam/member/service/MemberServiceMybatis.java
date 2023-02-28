@@ -46,4 +46,14 @@ public class MemberServiceMybatis implements MemberService {
 		return mapper.updateMember(member);
 
 	}
+
+	@Override
+	public MemberVO findId(String memName, String memEmail) {
+		return mapper.getFindId(memName, memEmail);
+	}
+
+	@Override
+	public MemberVO findPwd(String memName, String memEmail, String memId) {
+		return mapper.getFindPwd(memName, memEmail, memId);
+	}
 }
