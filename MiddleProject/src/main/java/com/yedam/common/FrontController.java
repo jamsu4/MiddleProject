@@ -25,13 +25,19 @@ import com.yedam.member.command.MemberUpdate;
 import com.yedam.member.command.Signup;
 import com.yedam.member.command.selectCouponControl;
 import com.yedam.mypage.command.MyPageControl;
+import com.yedam.mypage.command.UpdateInfo;
 import com.yedam.mypage.command.ZzimListControl;
 import com.yedam.notice.command.AddNoticeControl;
 import com.yedam.notice.command.AddNoticeFormControl;
 import com.yedam.notice.command.NoticeDeleteControl;
 import com.yedam.notice.command.NoticeDetailControl;
 import com.yedam.notice.command.NoticeListControl;
+
+import com.yedam.notice.command.NoticeUpdateControl;
+import com.yedam.notice.command.NoticeUpdateFormControl;
+
 import com.yedam.order.control.addOrderControl;
+
 import com.yedam.order.control.orderControl;
 import com.yedam.product.command.InsertProductManager;
 import com.yedam.product.command.ModifyProductManager;
@@ -121,16 +127,16 @@ public class FrontController extends HttpServlet {
 		
 		
 		//주안
-		map.put("/noticeList.do", new NoticeListControl()); //공지사항페이지 이동
-		map.put("/myPage.do",new MyPageControl()); //마이페이지 이동
+		map.put("/myPage.do",new MyPageControl()); //마이페이지 디폴트가 주문내역 이동
 		map.put("/zzimList.do", new ZzimListControl()); // zzim목록 출력
+		map.put("/noticeList.do", new NoticeListControl()); //공지사항페이지 이동
 		map.put("/addNoticeForm.do", new AddNoticeFormControl()); //공지사항 작성 폼
 		map.put("/addNotice.do", new AddNoticeControl()); //공지사항 작성기능
 		map.put("/noticeDetail.do", new NoticeDetailControl()); //공지사항 상세보기
 		map.put("/noticeDelete.do", new NoticeDeleteControl()); //공지사항 삭제
-		
-		
-		
+		map.put("/noticeUpdateForm.do", new NoticeUpdateFormControl()); //공지사항 수정페이지이동
+		map.put("/noticeUpdate.do", new NoticeUpdateControl()); //공지사항 수정기능
+		map.put("/updateInfo.do", new UpdateInfo());
 		
 		
 		
