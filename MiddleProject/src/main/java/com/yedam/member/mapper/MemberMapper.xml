@@ -5,57 +5,78 @@
 
 <mapper namespace="com.yedam.member.mapper.MemberMapper">
 	<select id="login" resultType="MemberVO">
-		SELECT * 
-		FROM member 
-		WHERE mem_id = #{memId} 
-		  AND mem_pw = #{memPw}
+		SELECT *
+		FROM member
+		WHERE mem_id = #{memId}
+		AND mem_pw = #{memPw}
 	</select>
 
-	<insert id="addMember" parameterType="MemberVO">		
+	<insert id="addMember" parameterType="MemberVO">
 		INSERT INTO member(mem_id, mem_pw, mem_name, mem_phone, mem_email, mem_user)
-		VALUES(#{memId}, #{memPw}, #{memName}, #{memPhone}, #{memEmail}, #{memUser})
+		VALUES(#{memId}, #{memPw}, #{memName}, #{memPhone}, #{memEmail},
+		#{memUser})
 	</insert>
-	
+
 
 	<select id="couponSelect" resultType="MemberVO">
-        SELECT * 
-        FROM coupon c, member m 
-        WHERE m.mem_id = c.mem_id
-          AND c.mem_id = #{memId} 
-</select>
-
-	<!--  -->
-	<select id="memberList" resultType="MemberVO">
-		SELECT * FROM member ORDER BY mem_id
+		SELECT *
+		FROM coupon c, member m
+		WHERE m.mem_id = c.mem_id
+		AND c.mem_id = #{memId}
 	</select>
-	
-    <delete id="deleteMember" parameterType="String">
-    	DELETE FROM member
-    	WHERE mem_id = #{memId}
-    </delete>
-    
-   	<update id="updateMember" parameterType="MemberVO">
-	     UPDATE member
-	    	SET
-	     		mem_id = #{memId},
-	     		mem_pw = #{memPw},
-	     		mem_name = #{memName},
-	     		mem_phone = #{memPhone},
-	     		mem_email = #{memEmail},
-	     		mem_user = #{memUser}
-	     WHERE mem_id=#{memId}
-    </update>
-    
-    <!--  -->
-	<select id="getFindId" parameterType="String" resultType="MemberVO">
+
+	<!-- -->
+	<select id="memberList" resultType="MemberVO">
+		SELECT * FROM member ORDER BY
+		mem_id
+	</select>
+
+	<delete id="deleteMember" parameterType="String">
+		DELETE FROM member
+		WHERE mem_id = #{memId}
+	</delete>
+
+	<update id="updateMember" parameterType="MemberVO">
+		UPDATE member
+		SET
+		mem_id = #{memId},
+		mem_pw = #{memPw},
+		mem_name = #{memName},
+		mem_phone = #{memPhone},
+		mem_email = #{memEmail},
+		mem_user = #{memUser}
+		WHERE mem_id=#{memId}
+	</update>
+
+	<!-- -->
+	<select id="getFindId" parameterType="String"
+		resultType="MemberVO">
 		SELECT mem_id
 		FROM member
-		WHERE mem_name = #{memName} AND mem_email = #{memEmail}
+		WHERE mem_name = #{memName} AND
+		mem_email = #{memEmail}
 	</select>
-	
-	<select id="getFindPwd" parameterType="String" resultType="MemberVO">
+
+	<select id="getFindPwd" parameterType="String"
+		resultType="MemberVO">
 		SELECT mem_pw
 		FROM member
-		WHERE mem_id = #{memId} AND mem_email = #{memEmail}
+		WHERE mem_id = #{memId} AND
+		mem_email = #{memEmail}
+	</select>
+
+	<!-- -->
+	<update id="setTempPwd" parameterType="MemberVO">
+		UPDATE member
+		SET
+		mem_pw = #{memPw}
+		WHERE mem_id=#{memId}
+	</update>
+
+	<!-- -->
+	<select id="checkId" parameterType="String" resultType="Integer">
+		SELECT COUNT(*)
+		FROM member
+		WHERE mem_id = #{memId}
 	</select>
 </mapper>

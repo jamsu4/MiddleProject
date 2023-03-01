@@ -19,4 +19,8 @@ public interface MemberService { // 서비스 부분
 	//
 	public MemberVO findId(String name, String email);
 	public MemberVO findPwd(String name, String email, String id);
+	//
+	void setTempPwd(MemberVO fPwd);
+	//
+	public int checkId(String id);
 }

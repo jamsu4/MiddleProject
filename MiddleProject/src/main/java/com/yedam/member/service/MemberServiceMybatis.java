@@ -57,4 +57,15 @@ public class MemberServiceMybatis implements MemberService {
 	public MemberVO findPwd(String memName, String memEmail, String memId) {
 		return mapper.getFindPwd(memName, memEmail, memId);
 	}
+
+	@Override
+	public void setTempPwd(MemberVO fPwd) {
+		mapper.setTempPwd(fPwd);
+	}
+
+	//
+	@Override
+	public int checkId(String id) {
+		return mapper.checkId(id);
+	}
 }
