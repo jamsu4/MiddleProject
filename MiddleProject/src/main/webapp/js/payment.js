@@ -5,11 +5,10 @@
 	function requestPay() {
 		
 		//결제내용 확인 체크
-//		if(!docomuent.querySelect('#paymentInfoCheck').checked){
-//			alert("주문정보를 확인 해주세요.");
-//			return;
-//		}
-		
+		if(!document.querySelector('#paymentInfoCheck').checked){
+			alert("주문정보를 확인 해주세요.");
+			return;
+		}
 		
 		//총 결제 금액
 		var totalPrice = document.querySelectorAll('.totalPrice')[1].textContent;
@@ -32,21 +31,34 @@
 
 		//결제자 ID
 		var memId = document.querySelector('#couponList').dataset.id;
-		console.log(memId);
+		
 		//수신자 이름
 		var ordReciever = document.querySelector('#rname').value;
-		console.log(ordReciever);
+		if(!ordReciever){
+			alert("수신자 이름을 확인 해주세요.");
+			return;
+		}
+		//수신자 연락처
+		var ordPhone = document.querySelector('#rphone').value;
+		if(!ordPhone){
+			alert("수신자 연락처를 확인 해주세요.");
+			return;
+		}
 		//수신자 주소
 		var ordAddr = document.querySelector('#sample4_roadAddress').value+"/"
 					  + document.querySelector('#sample4_extraAddress').value + "/" 
 					  + document.querySelector('#sample4_detailAddress').value
-		console.log(ordAddr);
-		//수신자 연락처
-		var ordPhone = document.querySelector('#rphone').value;
-		console.log(ordPhone);
+		if(!document.querySelector('#sample4_detailAddress').value){
+			alert("주소를 확인 해주세요.");
+			return;
+		}
+		
 		//결제자 우편번호
 		var ordPostcode = document.querySelector('#sample4_postcode').value;
-		console.log(ordPostcode);
+		if(!ordPostcode){
+			alert("우편번호를 확인 해주세요.");
+			return;
+		}
 		
 		  IMP.init('iamport'); //iamport 대신 자신의 "가맹점 식별코드"를 사용
 		  IMP.request_pay({

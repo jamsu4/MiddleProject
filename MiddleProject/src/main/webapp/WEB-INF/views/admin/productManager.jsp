@@ -3,90 +3,155 @@
 	<script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 <style>
-body {
-	color: #666;
-	font: 14px/24px "Open Sans", "HelveticaNeue-Light",
-		"Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial,
-		"Lucida Grande", Sans-Serif;
-}
+/* body { */
+/* 	color: #666; */
+/* 	font: 14px/24px "Open Sans", "HelveticaNeue-Light", */
+/* 		"Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, */
+/* 		"Lucida Grande", Sans-Serif; */
+/* } */
 
-table {
-	border-collapse: separate;
-	border-spacing: 0;
-	width: 100%;
-	padding: 30px 30px;
-}
+/* table { */
+/* 	border-collapse: separate; */
+/* 	border-spacing: 0; */
+/* 	width: 100%; */
+/* 	padding: 30px 30px; */
+/* } */
 
-th, td {
-	padding: 6px 15px;
-}
+/* th, td { */
+/* 	padding: 6px 15px; */
+/* } */
 
-th {
-	background: #42444e;
-	color: #fff;
-	text-align: left;
-}
+/* th { */
+/* 	background: #42444e; */
+/* 	color: #fff; */
+/* 	text-align: left; */
+/* } */
 
-tr:first-child th:first-child {
-	border-top-left-radius: 6px;
-}
+/* tr:first-child th:first-child { */
+/* 	border-top-left-radius: 6px; */
+/* } */
 
-tr:first-child th:last-child {
-	border-top-right-radius: 6px;
-}
+/* tr:first-child th:last-child { */
+/* 	border-top-right-radius: 6px; */
+/* } */
 
-td {
-	border-right: 1px solid #c6c9cc;
-	border-bottom: 1px solid #c6c9cc;
-}
+/* td { */
+/* 	border-right: 1px solid #c6c9cc; */
+/* 	border-bottom: 1px solid #c6c9cc; */
+/* } */
 
-td:first-child {
-	border-left: 1px solid #c6c9cc;
-}
+/* td:first-child { */
+/* 	border-left: 1px solid #c6c9cc; */
+/* } */
 
-tr:nth-child(even) td {
-	background: #eaeaed;
-}
+/* tr:nth-child(even) td { */
+/* 	background: #eaeaed; */
+/* } */
 
-tr:last-child td:first-child {
-	border-bottom-left-radius: 6px;
-}
+/* tr:last-child td:first-child { */
+/* 	border-bottom-left-radius: 6px; */
+/* } */
 
-tr:last-child td:last-child {
-	border-bottom-right-radius: 6px;
-}
+/* tr:last-child td:last-child { */
+/* 	border-bottom-right-radius: 6px; */
+/* } */
 
-#addProduct {
-	float: right;
-	margin-right: 30px;
-}
+/* #addProduct { */
+/* 	float: right; */
+/* 	margin-right: 30px; */
+/* } */
 
-td.image_container img {
-	height: 100px;
+/* td.image_container img { */
+/* 	height: 100px; */
+/* 	width: 100px; */
+/* } */
+table:nth-of-type(2) input {
 	width: 100px;
+	display: inline-block;
+}
+
+/* 버튼 스타일링 */
+.search-btn {
+	background-color: #4caf50;
+	border: none;
+	color: white;
+	padding: 10px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	margin-left: 10px;
+	cursor: pointer;
+}
+
+/* 입력창 스타일링 */
+.search-input {
+	padding: 10px;
+	font-size: 16px;
+	border: 2px solid #ccc;
+	border-radius: 5px;
+	vertical-align: middle;
+}
+
+#search-btn-group {
+	margin-top : 10px;
+	margin-right: 20px;
+	margin-bottom: 20px;
+	float : right;
+}
+#pageName{
+	margin-top : 10px;
+	float : left;
+}
+#line {
+	clear: both;
 }
 </style>
-<input type="file" id="fileUpload" accept="images/*"
-	style="display: none" onchange="setThumbnail(event);" />
+				<main>
+                    <div class="container-fluid px-4">
+                    	<div id="pageName">
+	                        <h1>상품관리페이지</h1>
+                    	</div>
+                    	<div>
+	                        <form action="#" method="POST" id="search-btn-group">
+								<label for="search-input"></label> 
+								<input type="text" id="search-input" name="search-input" class="search-input" placeholder="아이디를 입력하세요">
+								<button type="submit" class="search-btn"><i class="fa fa-search"></i></button>
+							</form>
+                    	</div>
+                        <div id="line" class="card mb-4">
+                        </div>
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <i class="fas fa-table me-1"></i>
+                                DataTable Example
+                            </div>
+                            <div class="card-body">
+                            <input type="file" id="fileUpload" accept="images/*"
+								style="display: none" onchange="setThumbnail(event);" />
+                                <table id="datatablesSimple" class="table">
+                                    <thead>
+										<tr>
+											<th>제품_ID</th>
+											<th>제품 이미지</th>
+											<th>제품명</th>
+											<th>제품 가격</th>
+											<th>제품 설명</th>
+											<th>제품 카테고리</th>
+											<th>수정</th>
+											<th>삭제</th>
+										</tr>
+									</thead>
+                                    <tbody id="productList"></tbody>
+                                </table>
+                                <br />
+								<button id="addProduct" class="btn btn-primary"
+									onclick="location.href = 'productManagerAddPage.do'">등록</button>
+                            </div>
+                        </div>
+                    </div>
+                </main>
 
-<table>
-	<thead>
-		<tr>
-			<th>제품_ID</th>
-			<th>제품 이미지</th>
-			<th>제품명</th>
-			<th>제품 가격</th>
-			<th>제품 설명</th>
-			<th>제품 카테고리</th>
-			<th>수정</th>
-			<th>삭제</th>
-		</tr>
-	</thead>
-	<tbody id="productList"></tbody>
-</table>
-<br />
-<button id="addProduct" class="btn btn-primary"
-	onclick="location.href = 'productManagerAddPage.do'">등록</button>
 <script>
   $.ajax({
     url: "productManagerList.do",
