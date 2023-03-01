@@ -1,5 +1,7 @@
 package com.yedam.product.vo;
 
+import java.util.Date;
+
 import lombok.Data;
 
 @Data
@@ -23,4 +25,11 @@ public class ProductVO {
 	private int revRate;
 	private String revImage;
 	private String revReply;
+	
+//	// reply table
+//	private int replyId;
+//	private String replyTitle;
+//	private String replySubject;
+//	private String replyWriter;
+//	private Date replyDate; 
 }

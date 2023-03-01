@@ -97,4 +97,10 @@
 		WHERE pro_id=#{proId}
 		ORDER BY rev_id
 	</select>
+	
+<!-- 	<select id="replyList" resultType="ProductVO"> -->
+<!-- 		SELECT * FROM reply WHERE -->
+<!-- 		rev_id = #{revId} -->
+<!-- 		ORDER BY reply_id -->
+<!-- 	</select> -->
 </mapper>

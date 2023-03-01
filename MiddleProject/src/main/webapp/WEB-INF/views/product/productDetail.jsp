@@ -2,8 +2,21 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-<!-- ***** Product Area Starts ***** -->
+<style>
+	img.reviewImg{
+		width:500px;
+		height:300px;
+	}
+	#commentInput{
+		width: 1100px;
+		height:30px;
+	}
+	#commentBtn{
+		margin-left:10px
+	}
+</style>
 
+<!-- ***** Product Area Starts ***** -->
 <section class="section" id="product">
 
 	<div class="container">
@@ -45,25 +58,23 @@
 					</div>
 					<div class="total">
 						<h4>Total: ${proDetail.proPrice }</h4>
-						<c:if test="${!empty logId }">
-							<div class="main-border-button">
-								<c:choose>
-									<c:when test="${zzimUser.proId eq proDetail.proId}">
-										<!-- 										<a id="zzim" class="selected" style="cursor: pointer;">찜 -->
-										<!-- 											취소</a> -->
-										<a id="zzim" class="selected" style="cursor: pointer;"> <i
-											class="fa fa-heart text-danger"></i>
-										</a>
-									</c:when>
-									<c:otherwise>
-										<!-- 										<a id="zzim" class="" style="cursor: pointer;">찜 하기</a> -->
-										<a id="zzim" class="" style="cursor: pointer;"><i
-											class="fa fa-heart"></i></a>
-									</c:otherwise>
-								</c:choose>
-								<a id="cart" style="cursor: pointer;">장바구니</a>
-							</div>
-						</c:if>
+						<div class="main-border-button">
+							<c:choose>
+								<c:when test="${zzimUser.proId eq proDetail.proId}">
+									<!-- 										<a id="zzim" class="selected" style="cursor: pointer;">찜 -->
+									<!-- 											취소</a> -->
+									<a id="zzim" class="selected" style="cursor: pointer;"> <i
+										class="fa fa-heart text-danger"></i>
+									</a>
+								</c:when>
+								<c:otherwise>
+									<!-- 										<a id="zzim" class="" style="cursor: pointer;">찜 하기</a> -->
+									<a id="zzim" class="" style="cursor: pointer;"><i
+										class="fa fa-heart"></i></a>
+								</c:otherwise>
+							</c:choose>
+							<a id="cart" style="cursor: pointer;">장바구니</a>
+						</div>
 						<br />
 						<div class="main-border-button"></div>
 					</div>
@@ -73,7 +84,7 @@
 		</div>
 		<!--====== Reviews Part Start ======-->
 		<c:forEach var="review" items="${reviewList }">
-			<section class="reviews-wrapper pt-100 pb-100 ">
+			<section class="reviews-wrapper pt-100 pb-50 ">
 				<div class="container">
 					<div class="reviews-style">
 						<div class="tab-pane fade show active" id="profile"
@@ -81,31 +92,69 @@
 							<div class="review-wrapper">
 								<div class="reviews-title">
 									<h4 class="title">Product Reviews</h4>
+									<input class="revId" type="text" value="${review.revId }" style="display:none;">
 								</div>
 								<div class="reviews-rating-wrapper flex-wrap">
 									<div class="reviews-rating-star">
-										<img src="images/${review.revImage }" alt="" />
+										<img class = "reviewImg" src="images/${review.revImage }" alt="" />
 									</div>
 									<div class="reviews-rating-form">
 										<div class="rating-star">
-											<h2>제목</h2>
-											<h3>${review.revTitle }</h3>
-											<br>
-											<h2>작성자</h2>
-											<h3>${review.memId }</h3>
-											<br>
-											<h2>작성일자</h2>
-											<h3>${review.revDate }</h3>
-											<br>
-											<h2>내용</h2>
-											<h3>${review.revContent }</h3>
+											<h4>${review.memId }</h4><p>${review.revDate }</p>
+											<c:choose>
+												<c:when test="${review.revRate eq 1}">
+													<ul id="stars" class="stars">
+			                                            <li class="star selected" data-value='1'><i class="mdi mdi-star"></i></li>
+			                                            <li class="star" data-value='2'><i class="mdi mdi-star"></i></li>
+			                                            <li class="star" data-value='3'><i class="mdi mdi-star"></i></li>
+			                                            <li class="star" data-value='4'><i class="mdi mdi-star"></i></li>
+			                                            <li class="star" data-value='5'><i class="mdi mdi-star"></i></li>
+	                                        		</ul>
+												</c:when>
+												<c:when test="${review.revRate eq 2}">
+													<ul id="stars" class="stars">
+			                                            <li class="star selected" data-value='1'><i class="mdi mdi-star"></i></li>
+			                                            <li class="star selected" data-value='2'><i class="mdi mdi-star"></i></li>
+			                                            <li class="star" data-value='3'><i class="mdi mdi-star"></i></li>
+			                                            <li class="star" data-value='4'><i class="mdi mdi-star"></i></li>
+			                                            <li class="star" data-value='5'><i class="mdi mdi-star"></i></li>
+	                                        		</ul>
+												</c:when>
+												<c:when test="${review.revRate eq 3}">
+													<ul id="stars" class="stars">
+			                                            <li class="star selected" data-value='1'><i class="mdi mdi-star"></i></li>
+			                                            <li class="star selected" data-value='2'><i class="mdi mdi-star"></i></li>
+			                                            <li class="star selected" data-value='3'><i class="mdi mdi-star"></i></li>
+			                                            <li class="star" data-value='4'><i class="mdi mdi-star"></i></li>
+			                                            <li class="star" data-value='5'><i class="mdi mdi-star"></i></li>
+	                                        		</ul>
+												</c:when>
+												<c:when test="${review.revRate eq 4}">
+													<ul id="stars" class="stars">
+			                                            <li class="star selected" data-value='1'><i class="mdi mdi-star"></i></li>
+			                                            <li class="star selected" data-value='2'><i class="mdi mdi-star"></i></li>
+			                                            <li class="star selected" data-value='3'><i class="mdi mdi-star"></i></li>
+			                                            <li class="star selected" data-value='4'><i class="mdi mdi-star"></i></li>
+			                                            <li class="star" data-value='5'><i class="mdi mdi-star"></i></li>
+	                                        		</ul>
+												</c:when>
+												<c:when test="${review.revRate eq 5}">
+													<ul id="stars" class="stars">
+			                                            <li class="star selected" data-value='1'><i class="mdi mdi-star"></i></li>
+			                                            <li class="star selected" data-value='2'><i class="mdi mdi-star"></i></li>
+			                                            <li class="star selected" data-value='3'><i class="mdi mdi-star"></i></li>
+			                                            <li class="star selected" data-value='4'><i class="mdi mdi-star"></i></li>
+			                                            <li class="star selected" data-value='5'><i class="mdi mdi-star"></i></li>
+	                                        		</ul>
+												</c:when>
+											</c:choose>
 										</div>
 										<div class="rating-form">
 											<form action="#">
 												<div class="single-form form-default">
-													<label>내용</label>
+													<label>Comment</label>
 													<div class="form-input">
-														<textarea placeholder="Your review here"></textarea>
+														<textarea placeholder="Your review here">${review.revContent }</textarea>
 														<i class="mdi mdi-message-text-outline"></i>
 													</div>
 												</div>
@@ -116,11 +165,8 @@
 								<div class="reviews-btn flex-wrap">
 									<div class="reviews-btn-left">
 										<div class="dropdown-style">
-											<button class="main-btn primary-btn" type="button"
-												id="dropdownMenu-1" data-toggle="dropdown"
-												aria-haspopup="true" aria-expanded="true">
-												댓글 <i class="mdi mdi-chevron-down"></i>
-											</button>
+											<input id="commentInput" type="text">
+											<button id="commentBtn" class="main-btn primary-btn" type="button">댓글작성</button>
 										</div>
 									</div>
 								</div>
@@ -129,14 +175,10 @@
 										<li>
 											<div class="single-review-comment">
 												<div class="comment-user-info">
-													<div class="comment-author">
-														<img src="assets/images/review/author-1.jpg" alt="">
-													</div>
 													<div class="comment-content">
 														<h6 class="name">User Name</h6>
 														<p>
-															<i class="mdi mdi-star"></i> <span class="rating"><strong>4</strong>
-																of 5</span> <span class="date">20 Nov 2019 22:01</span>
+															<span class="">20 Nov 2019 22:01</span>
 														</p>
 													</div>
 												</div>
@@ -148,11 +190,9 @@
 														happy as an elephant. Product as advertised, looks good
 														Quality, sound is not the best but because of cost-benefit
 														ratio it seems very good to me, recommended the seller .</p>
-													<ul class="comment-meta">
-														<li><i class="mdi mdi-thumb-up"></i> <span>31</span></li>
-														<li><a href="#">Like</a></li>
-														<li><a href="#">Replay</a></li>
-													</ul>
+												</div>
+												<div id="list">
+												
 												</div>
 											</div>
 										</li>
@@ -166,7 +206,7 @@
 		</c:forEach>
 		<!--====== Reviews Part Ends ======-->
 		<div class="productDetailQnA">
-			<h1>Q&A</h1>
+			<h2>Q&A</h2>
 			<table class="productDetailQnA">
 				<thead class="productDetailQnA">
 					<tr class="productDetailQnA">
@@ -174,34 +214,44 @@
 						<th class="productDetailQnA">작성자</th>
 						<th class="productDetailQnA">제품</th>
 						<th class="productDetailQnA">제목</th>
-						<th class="productDetailQnA">내용</th>
 						<th class="productDetailQnA">작성일자</th>
 
 					</tr>
 				</thead>
 				<tbody class="productDetailQnA">
 					<c:forEach var="qa" items="${qaList }">
-						<tr class="productDetailQnA">
-							<td class="productDetailQnA">${qa.qaId }</td>
-							<td class="productDetailQnA">${qa.memId }</td>
-							<td class="productDetailQnA">${qa.proId }</td>
-							<td class="productDetailQnA">${qa.qaTitle }</td>
-							<c:choose>
-								<c:when test="${qa.memId eq logId}">
-									<td class="productDetailQnA">${qa.qaContent }</td>
-								</c:when>
-								<c:otherwise>
-									<td class="productDetailQnA">비밀글입니다.</td>
-								</c:otherwise>
-							</c:choose>
-							<td class="productDetailQnA">${qa.qaDate }</td>
-						</tr>
+							<tr class="productDetailQnA tog">
+								<td class="productDetailQnA">${qa.qaId }</td>
+								<td class="productDetailQnA">${qa.memId }</td>
+								<td class="productDetailQnA">${qa.proId }</td>
+								<c:choose>
+									<c:when test="${qa.memId eq logId}">
+										<td class="productDetailQnA">${qa.qaTitle }</td>
+									</c:when>
+									<c:otherwise>
+										<td class="productDetailQnA">비밀글입니다.</td>
+									</c:otherwise>
+								</c:choose>
+								<td class="productDetailQnA">${qa.qaDate }</td>
+							</tr>
+							<tr class="productDetailQnA" style="display:none;"> 
+								<td class="productDetailQnA">내용 : </td>
+								<c:choose>
+									<c:when test="${qa.memId eq logId}">
+										<td class="productDetailQnA" colspan='4'>${qa.qaContent }</td>
+									</c:when>
+									<c:otherwise>
+										<td class="productDetailQnA">비밀글입니다.</td>
+									</c:otherwise>
+								</c:choose>
+							</tr>
 					</c:forEach>
 				</tbody>
 			</table>
 			<br>
-			<button class="btn btn-primary"
-				onclick="window.open('productQaPage.do?pid=${proDetail.proId }','window_name','width=700,height=600,location=no,status=no,scrollbars=yes');">등록</button>
+			<c:if test="${!empty logId}">
+				<button class="btn btn-primary" onclick="window.open('productQaPage.do?pid=${proDetail.proId }','window_name','width=800,height=600,location=no,status=no,scrollbars=yes');">등록</button>
+			</c:if>
 		</div>
 	</div>
 
@@ -209,6 +259,46 @@
 <!-- ***** Product Area Ends ***** -->
 
 <script>
+// 	let revId = $(".revId");
+// 	revId.each(function(index, item){
+// 			console.log(item.value);
+// 			fetch("replyList.do?revId=" + item.value)
+// 			  .then((resolve) => resolve.json())
+// 			  .then((result) => {
+// 				  console.log(result);
+// 				  result.forEach((reply) => {
+// 				    	makeReply(reply);
+// 				       });
+// 			  })
+// 			  .catch((error) => {
+// 				  console.log(error);
+// 			  })
+			
+// 		});
+
+// 	let revId = $(".revId");
+// 	async function fetchReplyList(revId) {
+// 	  try {
+// 	    const response = await fetch("replyList.do?revId=" + revId);
+// 	    const result = await response.json();
+// 	    console.log(result);
+// 	    result.forEach((reply) => {
+// 	    	makeReply(reply);
+// 	       });
+// 	  } catch (error) {
+// 	    console.log(error);
+// 	  }
+// 	}
+	
+// 	async function fetchAll() {
+// 	  for (let i = 0; i < revId.length; i++) {
+// 	    const item = revId[i];
+// 	    await fetchReplyList(item.value);
+// 	  }
+// 	}
+	
+// 	fetchAll();
+
    let plus = document.querySelectorAll(".plus")[0];
    let minus = document.querySelectorAll(".minus")[0];
    let productCount = document.querySelector("#productCount");
@@ -230,14 +320,18 @@
    });
    
    $('#cart').click(function() {
+	   if("${logId}" == ""){
+		   let logpopup = confirm("로그인 해주세요")
+		   if(logpopup){
+			   location.href = "loginForm.do";
+		   }
+		   return;
+	   }
+	   
 	   let productCountValue = parseInt(productCount.value);
 	   let result = productCountValue * ${proDetail.proPrice };
 	   let proId = ${proDetail.proId };
 	   
-	   console.log(result);
-	   console.log(productCountValue);
-	   console.log(${proDetail.proId });
-	   console.log("카트임");
 	   $.ajax({
 		   url: "productCartAdd.do",
 		   method: "post",
@@ -260,8 +354,16 @@
 	   });
    })
    
-   
    $('#zzim').click(function(){
+	   if("${logId}" == ""){
+		   let logpopup = confirm("로그인 해주세요")
+		   if(logpopup){
+			   location.href = "loginForm.do";
+		   }
+		   return;
+	   }
+	   
+	   
 	   if ($(this).hasClass('selected')) {
 		   $.ajax({
 	 		   url: "productZzimDel.do",
@@ -312,4 +414,25 @@
 	   }
    })
    
+   function makeReply(reply) {
+	   let tr1 = $("<tr />")
+       .attr("data-id", reply.replyId)
+       .append(
+         $("<td />").html("<b>번호:</b> " + reply.replyId),
+         $("<td />").html("<b>제목:</b>  " + reply.replyTitle),
+         $("<td />").html("<b>작성자:</b>  " + reply.replyWriter),
+         $("<td />").html("<b>날짜:</b>  " + reply.replyDate)
+       );
+	   
+	   $("#list").prepend(tr1);
+   }
+   
+   $(".tog").on("click", function(e) {
+	   let $contentRow = $(this).next();
+	   if ($contentRow.css("display") === "none") {
+	     $contentRow.css("display", "");
+	   } else {
+	     $contentRow.css("display", "none");
+	   }
+	});
 </script>
