@@ -33,4 +33,5 @@ public interface ProductService {
 	public List<ProductVO> getManageReviewList(); // 관리자 리뷰 리스트
 	public int removeReview(int revId); // 리뷰 삭제
 	public int updateReview(ProductVO review); // 리뷰 수정
+	public List<ProductVO> searchReviewList(String memId, String proId); // 리뷰 검색
 }

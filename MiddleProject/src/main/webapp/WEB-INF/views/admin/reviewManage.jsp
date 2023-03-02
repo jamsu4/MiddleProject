@@ -62,7 +62,7 @@ table:nth-of-type(2) input {
 						<td colspan=5>
 							<div class="input-group mb-3">
 								<input type="text" class="form-control"
-									aria-label="Text input with dropdown button">
+									aria-label="Text input with dropdown button" id="proIdBtn">
 							</div>
 						</td>
 					</tr>
@@ -71,7 +71,7 @@ table:nth-of-type(2) input {
 						<td colspan=5>
 							<div class="input-group mb-3">
 								<input type="text" class="form-control"
-									aria-label="Text input with dropdown button">
+									aria-label="Text input with dropdown button" id="memIdBtn">
 							</div>
 						</td>
 
@@ -99,7 +99,7 @@ table:nth-of-type(2) input {
 
 					</tr>
 				</table>
-				<button type="button" class="btn btn-primary btn-lg">검색</button>
+				<button type="button" class="btn btn-primary btn-lg" id="searchBtn">검색</button>
 				<button type="button" class="btn btn-secondary btn-lg">초기화</button>
 			</div>
 		</div>
@@ -174,6 +174,29 @@ table:nth-of-type(2) input {
 		},
 	});
 	
+	$('#searchBtn').click( function(e) {
+		let proId = $('#proIdBtn').val();
+		let memId = $('#memIdBtn').val();
+		
+		$.ajax({
+			url : "searchReviewManage.do",
+			data : {proId : proId, memId : memId},
+			success : function(result) {
+				console.log(result)
+				$("#reviewList").find("tr").remove();
+				$(result).each(function(idx, item) {
+					$("#reviewList").append(makeRow(item));
+				});
+				$(result).each(function(idx, item) {
+					$("#reviewList").append(makeRowUpd(item));
+				});
+			},
+			error : function(reject) {
+				console.log(reject);
+			}
+		})		
+	})
+	
 	function makeRow(review = {}) {
 	    let tr = $("<tr />");
 
@@ -237,27 +260,67 @@ table:nth-of-type(2) input {
 	  }
 	
 	function updateProductFnc(e) {
+		let tr = $("#rtr")
+		
 		let rReply = $("#rReply").val();
 		let rid = $("#rid").text();
 		
+		let pid = $("#pid").text();
+		let mid = $("#mid").text();
+		let rtitle = $("#rtitle").text();
+		let rcontent = $("#rcontent").text();
+		let rate = $("#rate").text();
+		let rdate = $("#rdate").text();
+		let rimg = $("#revImg").attr('src').substring(7);
 		
+		let formData = new FormData();
+		formData.append("rReply", rReply);
+		formData.append("rid", rid);
+		formData.append("pid", pid);
+		formData.append("mid", mid);
+		formData.append("rtitle", rtitle);
+		formData.append("rcontent", rcontent);
+		formData.append("rate", rate);
+		formData.append("rdate", rdate);
+		formData.append("rimg", rimg);
+		
+// 		$.ajax({
+// 			url: "modifyReviewManage.do",
+// 			method: "post",
+// 			data : {rid : rid, rReply: rReply},
+// 			success: function(result){
+// 				console.log(result);
+// 				if (result.retCode == "Success") {
+// 					location.reload();
+// 				} else {
+// 					alert("오류");
+// 				}
+// 			},
+// 			error: function(reject){
+// 				console.log(reject);
+// 			},
+// 		});
 		$.ajax({
-			url: "modifyReviewManage.do",
-			method: "post",
-			data : {rid : rid, rReply: rReply},
-			success: function(result){
-				console.log(result);
-				if (result.retCode == "Success") {
-					location.reload();
-				} else {
-					alert("오류");
-				}
-			},
-			error: function(reject){
-				console.log(reject);
-			},
-		});
-	
+		      url: "modifyReviewManage.do",
+		      method: "post",
+		      data: formData,
+		      contentType: false,
+		      processData: false,
+		      success: function (result) {
+		        if (result.retCode == "Success") {
+		          alert("수정완료");
+		          $('#exampleModal').modal('hide')
+		          $('textarea').val('');
+		          tr.replaceWith(makeRow(result.review));
+		          tr.replaceWith(makeRowUpd(result.review));
+		        } else {
+		          alert("입력미완");
+		        }
+		      },
+		      error: function (reject) {
+		        console.log(reject);
+		      },
+		    });
 	}
 	
 	function makeRowUpd(review = {}) {
@@ -276,7 +339,7 @@ table:nth-of-type(2) input {
 			let rReply = $(this).closest("tr").children().eq(8).text();
 		
 		
-			let nTr = $("<tr />").append(
+			let nTr = $("<tr id='rtr'/>").append(
 			        $("<td id='rid'/>").text(rid),
 			        $("<td id='pid'/>").text(pid),
 			        $("<td id='mid'/>").text(mid),
@@ -296,7 +359,7 @@ table:nth-of-type(2) input {
 			        $("<td />").text(rReply),
 			        $("<td />").append(
 			          $(
-			            "<button onclick='updateProductFnc(event)' class='btn btn-success updbtn'>수정 완료</button>"
+			            "<button onclick='updateProductFnc(event)' class='btn btn-success updbtn'>수정 중</button>"
 			          )
 			        )
 			      );

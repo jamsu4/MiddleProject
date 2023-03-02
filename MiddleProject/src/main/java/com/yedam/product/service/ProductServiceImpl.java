@@ -90,5 +90,12 @@ public class ProductServiceImpl implements ProductService {
 		return mapper.updateReview(review);
 	}
 
+	@Override
+	public List<ProductVO> searchReviewList(String memId, String proId) {
+		return mapper.searchReviewList(memId, proId);
+	}
+
+	
+
 	
 }
