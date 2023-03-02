@@ -27,7 +27,7 @@ public class UpdateInfo implements Command {
 		
 		service.modifyMember(mvo);
 		
-		return null;
+		return "updateInfoForm.do";
 	}
 
 }
