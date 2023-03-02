@@ -14,7 +14,7 @@ public interface MemberService { // 서비스 부분
 	
 	//
 	public List<MemberVO> memberList();
-	public int removeMember(String mid);
+	public int removeMember(int mid);
 	public int modifyMember(MemberVO member);
 	//
 	public MemberVO findId(String name, String email);

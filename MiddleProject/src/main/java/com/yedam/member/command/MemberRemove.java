@@ -15,10 +15,10 @@ public class MemberRemove implements Command {
 	@Override
 	public String exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		String mid = req.getParameter("id");
+		String memId = req.getParameter("id");
 		MemberService service = new MemberServiceMybatis();
 		
-		if(service.removeMember(mid) > 0) {
+		if(service.removeMember(Integer.parseInt(memId)) > 0) {
 			return "{ \"retCode\" : \"Success\" }.json";
 		}
 		

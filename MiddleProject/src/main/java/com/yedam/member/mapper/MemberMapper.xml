@@ -31,7 +31,7 @@
 		mem_id
 	</select>
 
-	<delete id="deleteMember" parameterType="String">
+	<delete id="deleteMember" parameterType="int">
 		DELETE FROM member
 		WHERE mem_id = #{memId}
 	</delete>

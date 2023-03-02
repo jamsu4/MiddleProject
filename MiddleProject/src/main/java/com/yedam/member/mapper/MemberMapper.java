@@ -21,7 +21,7 @@ public interface MemberMapper { // 서비스부분이 아니라 데이터를 처
 	//
 	public List<MemberVO> memberList(); //회원전체목록.
 
-	public int deleteMember(String mid);
+	public int deleteMember(int mid);
 
 	public int updateMember(MemberVO member);
 

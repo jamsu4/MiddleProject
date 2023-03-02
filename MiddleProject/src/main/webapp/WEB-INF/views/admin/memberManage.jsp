@@ -1,157 +1,159 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-	<style>
-		/* body { */
-		/* 	color: #666; */
-		/* 	font: 14px/24px "Open Sans", "HelveticaNeue-Light", */
-		/* 		"Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, */
-		/* 		"Lucida Grande", Sans-Serif; */
-		/* } */
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+<style>
+/* body { */
+/* 	color: #666; */
+/* 	font: 14px/24px "Open Sans", "HelveticaNeue-Light", */
+/* 		"Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, */
+/* 		"Lucida Grande", Sans-Serif; */
+/* } */
 
-		/* table { */
-		/* 	border-collapse: separate; */
-		/* 	border-spacing: 0; */
-		/* 	width: 100%; */
-		/* 	padding: 30px 30px; */
-		/* } */
+/* table { */
+/* 	border-collapse: separate; */
+/* 	border-spacing: 0; */
+/* 	width: 100%; */
+/* 	padding: 30px 30px; */
+/* } */
 
-		/* th, td { */
-		/* 	padding: 6px 15px; */
-		/* } */
+/* th, td { */
+/* 	padding: 6px 15px; */
+/* } */
 
-		/* th { */
-		/* 	background: #42444e; */
-		/* 	color: #fff; */
-		/* 	text-align: left; */
-		/* } */
+/* th { */
+/* 	background: #42444e; */
+/* 	color: #fff; */
+/* 	text-align: left; */
+/* } */
 
-		/* tr:first-child th:first-child { */
-		/* 	border-top-left-radius: 6px; */
-		/* } */
+/* tr:first-child th:first-child { */
+/* 	border-top-left-radius: 6px; */
+/* } */
 
-		/* tr:first-child th:last-child { */
-		/* 	border-top-right-radius: 6px; */
-		/* } */
+/* tr:first-child th:last-child { */
+/* 	border-top-right-radius: 6px; */
+/* } */
 
-		/* td { */
-		/* 	border-right: 1px solid #c6c9cc; */
-		/* 	border-bottom: 1px solid #c6c9cc; */
-		/* } */
+/* td { */
+/* 	border-right: 1px solid #c6c9cc; */
+/* 	border-bottom: 1px solid #c6c9cc; */
+/* } */
 
-		/* td:first-child { */
-		/* 	border-left: 1px solid #c6c9cc; */
-		/* } */
+/* td:first-child { */
+/* 	border-left: 1px solid #c6c9cc; */
+/* } */
 
-		/* tr:nth-child(even) td { */
-		/* 	background: #eaeaed; */
-		/* } */
+/* tr:nth-child(even) td { */
+/* 	background: #eaeaed; */
+/* } */
 
-		/* tr:last-child td:first-child { */
-		/* 	border-bottom-left-radius: 6px; */
-		/* } */
+/* tr:last-child td:first-child { */
+/* 	border-bottom-left-radius: 6px; */
+/* } */
 
-		/* tr:last-child td:last-child { */
-		/* 	border-bottom-right-radius: 6px; */
-		/* } */
+/* tr:last-child td:last-child { */
+/* 	border-bottom-right-radius: 6px; */
+/* } */
 
-		/* #addProduct { */
-		/* 	float: right; */
-		/* 	margin-right: 30px; */
-		/* } */
+/* #addProduct { */
+/* 	float: right; */
+/* 	margin-right: 30px; */
+/* } */
 
-		/* td.image_container img { */
-		/* 	height: 100px; */
-		/* 	width: 100px; */
-		/* } */
-		table:nth-of-type(2) input {
-			width: 100px;
-			display: inline-block;
-		}
+/* td.image_container img { */
+/* 	height: 100px; */
+/* 	width: 100px; */
+/* } */
+table:nth-of-type(2) input {
+	width: 100px;
+	display: inline-block;
+}
 
-		/* 버튼 스타일링 */
-		.search-btn {
-			background-color: #4caf50;
-			border: none;
-			color: white;
-			padding: 10px;
-			text-align: center;
-			text-decoration: none;
-			display: inline-block;
-			font-size: 16px;
-			margin-left: 10px;
-			cursor: pointer;
-		}
+/* 버튼 스타일링 */
+.search-btn {
+	background-color: #4caf50;
+	border: none;
+	color: white;
+	padding: 10px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	margin-left: 10px;
+	cursor: pointer;
+}
 
-		/* 입력창 스타일링 */
-		.search-input {
-			padding: 10px;
-			font-size: 16px;
-			border: 2px solid #ccc;
-			border-radius: 5px;
-			vertical-align: middle;
-		}
+/* 입력창 스타일링 */
+.search-input {
+	padding: 10px;
+	font-size: 16px;
+	border: 2px solid #ccc;
+	border-radius: 5px;
+	vertical-align: middle;
+}
 
-		#search-btn-group {
-			margin-top: 10px;
-			margin-right: 20px;
-			margin-bottom: 20px;
-			float: right;
-		}
+#search-btn-group {
+	margin-top: 10px;
+	margin-right: 20px;
+	margin-bottom: 20px;
+	float: right;
+}
 
-		#pageName {
-			margin-top: 10px;
-			float: left;
-		}
+#pageName {
+	margin-top: 10px;
+	float: left;
+}
 
-		#line {
-			clear: both;
-		}
-	</style>
-	<main>
-		<div class="container-fluid px-4">
-			<div id="pageName">
-				<h1>회원관리페이지</h1>
+#line {
+	clear: both;
+}
+</style>
+<main>
+	<div class="container-fluid px-4">
+		<div id="pageName">
+			<h1>회원관리페이지</h1>
+		</div>
+		<div>
+			<form action="#" method="POST" id="search-btn-group">
+				<label for="search-input"></label> <input type="text"
+					id="search-input" name="search-input" class="search-input"
+					placeholder="아이디를 입력하세요">
+				<button type="submit" class="search-btn">
+					<i class="fa fa-search"></i>
+				</button>
+			</form>
+		</div>
+		<div id="line" class="card mb-4"></div>
+		<div class="card mb-4">
+			<div class="card-header">
+				<i class="fas fa-table me-1"></i> DataTable Example
 			</div>
-			<div>
-				<form action="#" method="POST" id="search-btn-group">
-					<label for="search-input"></label>
-					<input type="text" id="search-input" name="search-input" class="search-input"
-						placeholder="아이디를 입력하세요">
-					<button type="submit" class="search-btn"><i class="fa fa-search"></i></button>
-				</form>
-			</div>
-			<div id="line" class="card mb-4">
-			</div>
-			<div class="card mb-4">
-				<div class="card-header">
-					<i class="fas fa-table me-1"></i>
-					DataTable Example
-				</div>
-				<div class="card-body">
-					<table id="datatablesSimple" class="table">
-						<thead>
-							<tr>
-								<th>아이디</th>
-								<th>비밀번호</th>
-								<th>이름</th>
-								<th>연락처</th>
-								<th>이메일</th>
-								<th>권한</th>
-								<th>수정</th>
-								<th>삭제</th>
-								<!-- <th colspan="2" style="text-align: center">삭제</th> -->
-							</tr>
-						</thead>
-						<tbody id="list"></tbody>
-					</table>
-				</div>
+			<div class="card-body">
+				<table id="datatablesSimple" class="table">
+					<thead>
+						<tr>
+							<th>아이디</th>
+							<th>비밀번호</th>
+							<th>이름</th>
+							<th>연락처</th>
+							<th>이메일</th>
+							<th>권한</th>
+							<th>수정</th>
+							<th>삭제</th>
+							<!-- <th colspan="2" style="text-align: center">삭제</th> -->
+						</tr>
+					</thead>
+					<tbody id="list"></tbody>
+				</table>
 			</div>
 		</div>
-	</main>
+	</div>
+</main>
 
 
 
-	<script>
+<script>
 console.log("manage.js start.....!!!");
 
 //document 즉 html??을 다 읽고나서 실행(실행시점)
