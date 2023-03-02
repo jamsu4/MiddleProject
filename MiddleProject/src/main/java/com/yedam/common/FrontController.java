@@ -35,11 +35,9 @@ import com.yedam.notice.command.AddNoticeFormControl;
 import com.yedam.notice.command.NoticeDeleteControl;
 import com.yedam.notice.command.NoticeDetailControl;
 import com.yedam.notice.command.NoticeListControl;
-
 import com.yedam.notice.command.NoticeUpdateControl;
 import com.yedam.notice.command.NoticeUpdateFormControl;
 import com.yedam.order.control.addOrderControl;
-
 import com.yedam.order.control.orderControl;
 import com.yedam.order.control.orderManageControl;
 import com.yedam.product.command.InsertProductManager;
@@ -56,6 +54,7 @@ import com.yedam.product.command.removeCartControl;
 import com.yedam.product.command.searchProductControl;
 import com.yedam.qa.command.InsertProductQa;
 import com.yedam.qa.command.ProductQaPage;
+import com.yedam.qa.command.QaManager;
 import com.yedam.zzim.command.ProductZzimAdd;
 import com.yedam.zzim.command.ProductZzimDel;
 
@@ -128,8 +127,12 @@ public class FrontController extends HttpServlet {
 		map.put("/findPwd.do", new FindPwd());					// 비번 찾기 처리 (임시 비밀번호)
 		map.put("/findPwdResult.do", new FindPwdResult());			// 임시 비밀번호 보낸 후 알림 페이지
 		map.put("/idCheck.do", new IdCheck());					// 아이디 중복 확인
+		//
+		map.put("/qaManageForm.do", new QaManager());
 		
-
+		
+		
+		
 		
 		
 		//주안
