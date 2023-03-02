@@ -41,6 +41,7 @@ import com.yedam.notice.command.NoticeUpdateFormControl;
 import com.yedam.order.control.addOrderControl;
 
 import com.yedam.order.control.orderControl;
+import com.yedam.order.control.orderManageControl;
 import com.yedam.product.command.InsertProductManager;
 import com.yedam.product.command.ModifyProductManager;
 import com.yedam.product.command.ProductCartAdd;
@@ -51,6 +52,7 @@ import com.yedam.product.command.ProductMangerAddPage;
 import com.yedam.product.command.RemoveProductManager;
 import com.yedam.product.command.addZzimControl;
 import com.yedam.product.command.cartControl;
+import com.yedam.product.command.removeCartControl;
 import com.yedam.product.command.searchProductControl;
 import com.yedam.qa.command.InsertProductQa;
 import com.yedam.qa.command.ProductQaPage;
@@ -82,10 +84,10 @@ public class FrontController extends HttpServlet {
 		map.put("/addZzim.do", new addZzimControl()); //찜추가 기능
 		map.put("/selectCoupon.do", new selectCouponControl()); //쿠폰 조회 기능
 		map.put("/addOrder.do", new addOrderControl()); //주문정보 저장 기능
-
+		map.put("/removeCart.do", new removeCartControl()); //장바구니 삭제
 		
-		
-		
+		map.put("/adminMain.do", new adminMainControl()); //관리자페이지 메인
+		map.put("/orderManage.do", new orderManageControl()); //주문관리페이지
 		
 		
 		

@@ -20,6 +20,8 @@ public interface ProductMapper {
 	public int deleteProduct(int proId); // 제품 삭제
 	public int updateProduct(ProductVO product); // 제품 수정
 	public int insertProduct(ProductVO product); // 제품 등록
+	public int deleteCart(int cartId); //장바구니 제거
+	
 	
 	public List<ProductVO> getReviewList(int proId); // 리뷰 리스트
 	

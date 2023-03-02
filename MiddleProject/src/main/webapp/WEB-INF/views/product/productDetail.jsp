@@ -2,13 +2,36 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-<style>
-	img.reviewImg{
-		width:500px;
-		height:300px;
-	}
 
-</style>
+    <!------리뷰 부트스트랩--------->
+    <!--====== Favicon Icon ======-->
+    <link rel="shortcut icon" href="bootstrap1/assets/images/favicon.png" type="image/png">
+
+    <!--====== Slick CSS ======-->
+    <link rel="stylesheet" href="bootstrap1/assets/css/slick.css">
+
+    <!--====== Line Icons CSS ======-->
+    <link rel="stylesheet" href="bootstrap1/assets/css/LineIcons.css">
+
+    <!--====== Material Design Icons CSS ======-->
+    <link rel="stylesheet" href="bootstrap1/assets/css/materialdesignicons.min.css">
+
+    <!--====== Jquery Ui CSS ======-->
+    <link rel="stylesheet" href="bootstrap1/assets/css/jquery-ui.min.css">
+
+    <!--====== nice select CSS ======-->
+    <link rel="stylesheet" href="bootstrap1/assets/css/nice-select.css">
+
+    <!--====== Bootstrap CSS ======-->
+    <link rel="stylesheet" href="bootstrap1/assets/css/bootstrap.min.css">
+
+    <!--====== Default CSS ======-->
+    <link rel="stylesheet" href="bootstrap1/assets/css/default.css">
+
+    <!--====== Style CSS ======-->
+    <link rel="stylesheet" href="bootstrap1/assets/css/style.css">
+
+<!-- ***** Product Area Starts ***** -->
 
 <!-- ***** Product Area Starts ***** -->
 <section class="section" id="product">

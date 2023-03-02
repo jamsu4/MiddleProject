@@ -16,6 +16,25 @@
 			value="/WEB-INF/views/qa/{1}.jsp" />
 	</definition>
 
+	<definition name="admin.app"
+		template="/WEB-INF/layout/admin.jsp">
+		<put-attribute name="title" value="Tiles Page" />
+		<put-attribute name="adminheader"
+			value="/WEB-INF/layout/adminheader.jsp" />
+		<put-attribute name="adminmenu"
+			value="/WEB-INF/layout/adminmenu.jsp" />
+		<put-attribute name="adminbody"
+			value="/WEB-INF/layout/adminbody.jsp" />
+		<put-attribute name="adminfooter"
+			value="/WEB-INF/layout/adminfooter.jsp" />
+	</definition>
+
+	<definition name="WILDCARD:admin/*" extends="admin.app">
+		<put-attribute name="adminbody"
+			value="/WEB-INF/views/admin/{1}.jsp" />
+	</definition>
+
+
 	<definition name="myapp.app"
 		template="/WEB-INF/layout/template.jsp">
 		<put-attribute name="title" value="Tiles Page" />

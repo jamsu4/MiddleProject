@@ -27,6 +27,7 @@
 
 <!-- Owl Carousel -->
 <link rel="stylesheet" href="css/owl.carousel.min.css">
+
 <link rel="stylesheet" href="css/owl.theme.default.min.css">
 
 <!-- Date Picker -->
@@ -36,7 +37,21 @@
 
 <!-- Theme style  -->
 <link rel="stylesheet" href="css/style.css">
+<style>
+.selectpicker + .bootstrap-select > .btn-light {
+  display: none !important;
+}
 
+.bootstrap-select > .dropdown-menu {
+  display: none !important;
+}
+.nice-select {
+	display:none !important;
+}
+#couponList{
+	display: block!important;
+}
+</style>
 
 <h3>cart 입니다.</h3>
 <div class="colorlib-product">
@@ -104,13 +119,13 @@
 						</div>
 						<div class="one-eight text-center">
 							<div class="display-tc">
-								<span class="price">${list.proPrice }원</span>
+								<span class="price">${list.proPrice }</span>
 							</div>
 						</div>
 						<div class="one-eight text-center">
 							<div class="display-tc">
-								<input type="number" id="quantity" name="quantity"
-									class="form-control input-number text-center"
+								<input type="number" name="quantity"
+									class="form-control input-number text-center quantity"
 									value="${list.caQuant }" min="1" max="100">
 							</div>
 						</div>
@@ -121,9 +136,10 @@
 						</div>
 						<div class="one-eight text-center">
 							<div class="display-tc">
-								<a href="#" class="closed"></a>
+								<a data-cid="${list.cartId }" class="closed"></a>
 							</div>
 						</div>
+
 					</div>
 				</c:forEach>
 
@@ -135,16 +151,13 @@
 									<form action="#">
 										<div class="row form-group">
 											<div class="col-sm-9">
-												<select id="couponList">
+												<select id="couponList" data-live-search="false">
 													<option data-price="0">쿠폰을 선택하세요.</option>
 												</select>
 											</div>
-											<div class="col-sm-3">
-												<input id="applyCoupon" type="submit" value="Apply Coupon"
-													class="btn btn-primary">
-											</div>
 										</div>
 									</form>
+									<br>
 									<div>
 										<button id="movePayment">결제하기</button>
 									</div>
@@ -218,12 +231,12 @@
 								</div>
 							</div>
 
-							<div class="col-md-12">
-								<div class="form-group">
-									<label for="companyname">이메일</label> <input type="text"
-										id="remail" class="form-control" placeholder="이메일">
-								</div>
-							</div>
+<!-- 							<div class="col-md-12"> -->
+<!-- 								<div class="form-group"> -->
+<!-- 									<label for="companyname">이메일</label> <input type="text" -->
+<!-- 										id="remail" class="form-control" placeholder="이메일"> -->
+<!-- 								</div> -->
+<!-- 							</div> -->
 							<div>
 								<!-- 						   	<input type="text" id="sample4_postcode" placeholder="우편번호"> -->
 								<!-- 							<input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br> -->
@@ -243,12 +256,12 @@
 							<div class="col-md-6">
 								<div class="form-group">
 									<input type="text" id="sample4_roadAddress" placeholder="도로명주소"
-										class="form-control">
+										class="form-control" readonly>
 								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="form-group">
-									<input type="text" id="sample4_extraAddress" placeholder="참고항목" class="form-control">
+									<input type="text" id="sample4_extraAddress" placeholder="참고항목" class="form-control" readonly>
 								</div>
 							</div>
 						
@@ -260,7 +273,7 @@
 						<div class="col-md-6">
 							<div class="form-group">
 								<label for="lname">Zip/Postal Code</label> 
-								<input type="text" id="sample4_postcode" placeholder="우편번호" class="form-control">
+								<input type="text" id="sample4_postcode" placeholder="우편번호" class="form-control" readonly>
 							</div>
 						</div>
 
@@ -362,7 +375,10 @@
 					<div class="row">
 						<div class="col-md-12 text-center">
 							<p>
+							<c:if test="${!empty cartList[0].memId }">
 								<button onclick=requestPay() class="btn btn-primary">결제하기</button>
+							</c:if>
+
 							</p>
 						</div>
 					</div>
@@ -377,6 +393,48 @@
 
 
 <script>
+//상품 삭제
+$('.closed').click(function () {
+	var $this = $(this);
+	console.log($(this).data('cid'));
+	var cartId = $(this).data('cid');
+	$.ajax({
+		url: 'removeCart.do',
+		method: 'post',
+		data: {cartId : cartId},
+		success: function(result) {
+			if (result.retCode == "Success") {
+				alert('목록에서 삭제를 성공했습니다.');
+				$this.closest('.product-cart').remove();
+			} else {
+				alert('목록 등록에 실패했습니다.');
+				
+			}
+		},
+		error: function(err) {
+			console.log(err);
+		}
+	});
+	
+});
+
+
+//수량 변경시 금액 변경
+// 모든 quantity 클래스를 가진 input 태그에 대해 이벤트 리스너를 등록합니다.
+$('.quantity').on('change', function() {
+  var quantity = $(this).val();
+  console.log(quantity);
+  var price = $(this).closest('.product-cart').find('.one-eight:nth-child(3) .price').text();
+  console.log(price);
+  var sumPrice = quantity * price;
+  console.log(sumPrice);
+  var sumPriceElement = $(this).closest('.product-cart').find('.one-eight:nth-child(5) .price');
+  console.log(sumPriceElement);
+
+  sumPriceElement.text(sumPrice);
+  updatePrices();
+  totalPrice();
+});
 	//우편번호
 	function sample4_execDaumPostcode() {
 		new daum.Postcode(
@@ -469,14 +527,20 @@
 	});
 
 	//쿠폰 선택 이벤트
+	
 	$('#couponList').change(function() {
+		if($('.selectBox:checked').length > 0){
 		// 선택된 값이 변경되었을 때 실행할 코드
 		let selectedValue = $(this).find(':selected').data('price');
 		console.log('선택된 값:', selectedValue);
 		$('.couponPrice').text("");
 		$('.couponPrice').text(selectedValue).attr('style', "");
 		totalPrice();
+		} else {
+			alert("구매할 상품을 먼저 선택해주세요.");
+		}
 	});
+	
 
 	//상품 선택 체크박스 - 전체선택
 	$('#allcheck').click(function() {
@@ -539,7 +603,8 @@
 	function updatePrices() {
 		let sum = 0;
 		$('.selectBox:checked').each(function() {
-			let selectedPrice = parseInt($(this).data('price'));
+			console.log($(this).closest('.product-cart').find('.one-eight:nth-child(5) .price').text());
+			let selectedPrice = parseInt($(this).closest('.product-cart').find('.one-eight:nth-child(5) .price').text());
 			sum += selectedPrice;
 		});
 		console.log(sum);

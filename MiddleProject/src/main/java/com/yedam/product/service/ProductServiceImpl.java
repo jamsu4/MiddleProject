@@ -65,9 +65,15 @@ public class ProductServiceImpl implements ProductService{
 	}
 
 	@Override
+	public int removeCart(int cartId) {
+		return mapper.deleteCart(cartId);
+	}
+  
+  @Override
 	public List<ProductVO> getReviewList(int proId) {
 		return mapper.getReviewList(proId);
 	}
+
 
 
 	

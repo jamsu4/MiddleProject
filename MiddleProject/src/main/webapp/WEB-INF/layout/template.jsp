@@ -12,7 +12,7 @@
     <meta name="author" content="">
     <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
 <!-- 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">	 -->
-    <title>Hexashop Ecommerce HTML CSS Template</title>
+    <title>Hexashop Ecommerce </title>
 
 
     <!-- Additional CSS Files -->
@@ -28,35 +28,16 @@
     
     <link rel="stylesheet" href="bootstrap/assets/css/productDetailQnA.css">
     
-    <!--  리뷰 부트스트랩 -->
-    <!--====== Favicon Icon ======-->
-    <link rel="shortcut icon" href="bootstrap1/assets/images/favicon.png" type="image/png">
 
-    <!--====== Slick CSS ======-->
-    <link rel="stylesheet" href="bootstrap1/assets/css/slick.css">
 
-    <!--====== Line Icons CSS ======-->
-    <link rel="stylesheet" href="bootstrap1/assets/css/LineIcons.css">
+<!--
 
-    <!--====== Material Design Icons CSS ======-->
-    <link rel="stylesheet" href="bootstrap1/assets/css/materialdesignicons.min.css">
+TemplateMo 571 Hexashop
 
-    <!--====== Jquery Ui CSS ======-->
-    <link rel="stylesheet" href="bootstrap1/assets/css/jquery-ui.min.css">
+https://templatemo.com/tm-571-hexashop
 
-    <!--====== nice select CSS ======-->
-    <link rel="stylesheet" href="bootstrap1/assets/css/nice-select.css">
+-->
 
-    <!--====== Bootstrap CSS ======-->
-    <link rel="stylesheet" href="bootstrap1/assets/css/bootstrap.min.css">
-
-    <!--====== Default CSS ======-->
-    <link rel="stylesheet" href="bootstrap1/assets/css/default.css">
-
-    <!--====== Style CSS ======-->
-    <link rel="stylesheet" href="bootstrap1/assets/css/style.css">
-    
-   
     </head>
 <body>
 	<!-- Navigation-->

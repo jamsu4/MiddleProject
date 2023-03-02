@@ -47,7 +47,7 @@
 	</insert>
 	<!-- 카트 목록 조회 -->
 	<select id="selectCartList" resultType="ProductVO">
-		SELECT c.pro_id, pro_name, pro_price, pro_img, c.mem_id, ca_sumprice, ca_quant
+		SELECT c.pro_id, pro_name, pro_price, pro_img, c.mem_id, ca_sumprice, ca_quant, cart_Id
 		FROM product p, cart c
 		WHERE p.pro_id = c.pro_id
 		  AND c.mem_id = #{logId}
@@ -90,6 +90,11 @@
 		INSERT INTO product (pro_id, pro_name, pro_price, pro_desc, pro_img, pro_category)
 		VALUES (seq_pro_id.NEXTVAL, #{proName}, #{proPrice}, #{proDesc}, #{proImg}, #{proCategory})
 	</insert>
+
+	<delete id="deleteCart" parameterType="int">
+		DELETE FROM cart
+		WHERE cart_id = #{cartId}
+	</delete>
 	
 	<select id="getReviewList" resultType="ProductVO">
 		SELECT *
@@ -97,5 +102,5 @@
 		WHERE pro_id=#{proId}
 		ORDER BY rev_id
 	</select>
-	
+
 </mapper>

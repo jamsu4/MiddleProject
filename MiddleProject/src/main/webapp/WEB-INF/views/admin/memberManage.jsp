@@ -34,31 +34,55 @@ table:nth-of-type(2) input {
 }
 
 #search-btn-group {
+	margin-top : 10px;
 	margin-right: 20px;
 	margin-bottom: 20px;
-	float: right;
+	float : right;
+}
+#pageName{
+	margin-top : 10px;
+	float : left;
+}
+#line {
+	clear: both;
 }
 </style>
-<h3>회원관리페이지</h3>
+	<main>
+                    <div class="container-fluid px-4">
+                    	<div id="pageName">
+	                        <h1>회원관리페이지</h1>
+                    	</div>
+                    	<div>
+	                        <form action="#" method="POST" id="search-btn-group">
+								<label for="search-input"></label> 
+								<input type="text" id="search-input" name="search-input" class="search-input" placeholder="아이디를 입력하세요">
+								<button type="submit" class="search-btn"><i class="fa fa-search"></i></button>
+							</form>
+                    	</div>
+                        <div id="line" class="card mb-4">
+                        </div>
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <i class="fas fa-table me-1"></i>
+                                DataTable Example
+                            </div>
+                            <div class="card-body">
+                                <table id="datatablesSimple" class="table">
+                                    <thead>
+										<tr>
+											<th>ID</th>
+											<th>Password</th>
+											<th>Name</th>
+											<th>Phone Number</th>
+											<th>Email</th>
+											<th>Authority</th>
+											<th colspan="2" style="text-align: center">Action</th>
+										</tr>
+									</thead>
+                                    <tbody id="list"></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </main>
 
-<form action="#" method="POST" id="search-btn-group">
-	<label for="search-input"></label> <input type="text" id="search-input" name="search-input" class="search-input" placeholder="아이디를 입력하세요">
-	<button type="submit" class="search-btn"><i class="fa fa-search"></i></button>
-</form>
-
-<table class="table">
-	<thead>
-		<tr>
-			<th>ID</th>
-			<th>Password</th>
-			<th>Name</th>
-			<th>Phone Number</th>
-			<th>Email</th>
-			<th>Authority</th>
-			<th colspan="2" style="text-align: center">Action</th>
-		</tr>
-	</thead>
-	<tbody id="list">
-
-	</tbody>
-</table>
