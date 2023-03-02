@@ -21,7 +21,7 @@ public class NoticeListControl implements Command {
 		
 		HttpSession session = req.getSession();
 		req.setAttribute("auth",(String)session.getAttribute("Auth"));
-		System.out.println((String)session.getAttribute("Auth"));
+		
 		return "notice/noticeList.tiles";
 	}
 

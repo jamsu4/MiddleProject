@@ -68,4 +68,10 @@ public class MemberServiceMybatis implements MemberService {
 	public int checkId(String id) {
 		return mapper.checkId(id);
 	}
+
+	@Override
+	public MemberVO memInfo(String memId) {
+		// TODO Auto-generated method stub
+		return mapper.memInfo(memId);
+	}
 }

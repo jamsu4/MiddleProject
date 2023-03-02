@@ -8,18 +8,19 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.yedam.common.Command;
-import com.yedam.mypage.service.ZzimService;
-import com.yedam.mypage.service.ZzimServiceImpl;
+import com.yedam.member.service.MemberService;
+import com.yedam.member.service.MemberServiceMybatis;
 
-public class ZzimListControl implements Command {
+public class UpdateInfoForm implements Command {
 
 	@Override
 	public String exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		ZzimService service = new ZzimServiceImpl(); 		
-		HttpSession session = req.getSession();
 		
-		req.setAttribute("list",service.zzimList((String)session.getAttribute("logId")));
-		return "mypage/zzimList.tiles";
+		MemberService service = new MemberServiceMybatis(); 		
+		HttpSession session = req.getSession();
+		req.setAttribute("list",service.memInfo((String)session.getAttribute("logId")));
+		
+		return "mypage/updateInfo.tiles";
 	}
 
 }

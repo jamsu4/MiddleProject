@@ -35,4 +35,6 @@ public interface MemberMapper { // 서비스부분이 아니라 데이터를 처
 
 	//
 	public int checkId(String id);
+	
+	public MemberVO memInfo(String memId); //juan member단건조회
 }

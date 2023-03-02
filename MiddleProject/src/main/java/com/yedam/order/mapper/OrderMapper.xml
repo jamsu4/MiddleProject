@@ -12,5 +12,12 @@
 		INSERT INTO orders(ord_id,mem_id,ord_status,ord_receiver,ord_addr,ord_phone,ord_postcode,ord_totalprice)
 		VALUES(#{ordId},#{memId}, #{ordStatus}, #{ordReceiver}, #{ordAddr}, #{ordPhone}, #{ordPostcode},#{ordTotalprice})
 	</insert>
+	
+	<select id="myOrder" resultType="OrderVO">
+		SELECT * 
+	    FROM orders o JOIN orderproduct p
+        ON o.ord_id = p.ord_id
+        WHERE mem_id = #{memId}
+	</select>
 
 </mapper>

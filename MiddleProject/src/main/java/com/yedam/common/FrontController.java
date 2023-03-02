@@ -28,7 +28,10 @@ import com.yedam.member.command.MemberUpdate;
 import com.yedam.member.command.Signup;
 import com.yedam.member.command.selectCouponControl;
 import com.yedam.mypage.command.MyPageControl;
+import com.yedam.mypage.command.OrderListControl;
 import com.yedam.mypage.command.UpdateInfo;
+import com.yedam.mypage.command.UpdateInfoForm;
+import com.yedam.mypage.command.ZzimDeleteControl;
 import com.yedam.mypage.command.ZzimListControl;
 import com.yedam.notice.command.AddNoticeControl;
 import com.yedam.notice.command.AddNoticeFormControl;
@@ -142,8 +145,10 @@ public class FrontController extends HttpServlet {
 		map.put("/noticeDelete.do", new NoticeDeleteControl()); //공지사항 삭제
 		map.put("/noticeUpdateForm.do", new NoticeUpdateFormControl()); //공지사항 수정페이지이동
 		map.put("/noticeUpdate.do", new NoticeUpdateControl()); //공지사항 수정기능
-		map.put("/updateInfo.do", new UpdateInfo());
-		
+		map.put("/updateInfoForm.do", new UpdateInfoForm()); //개인정보 수정페이지
+		map.put("/updateInfo.do", new UpdateInfo()); //개인정보 수정기능
+		map.put("/zzimDelete.do", new ZzimDeleteControl()); //찜 삭제
+		map.put("/orderList.do", new OrderListControl()); //주문내역 
 		
 		
 		

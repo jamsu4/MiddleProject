@@ -33,4 +33,10 @@ public class OrderServiceImpl implements OrderService {
 	public int addOrder(OrderVO ovo) {
 		return mapper.insertOrder(ovo);
 	}
+
+	@Override
+	public OrderVO myOrder(String memId) { //mypage 주문내역
+		System.out.println("serviceImpl:"+memId);
+		return mapper.myOrder(memId);
+	}
 }
