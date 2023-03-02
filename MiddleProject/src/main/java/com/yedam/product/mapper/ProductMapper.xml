@@ -102,5 +102,25 @@
 		WHERE pro_id=#{proId}
 		ORDER BY rev_id
 	</select>
-
+	
+	<select id="getManageReviewList" resultType="ProductVO">
+		SELECT *
+		FROM review
+		ORDER BY rev_id
+	</select>
+	
+	<delete id="deleteReview" parameterType="int">
+		DELETE FROM review
+		WHERE rev_id = #{revId}
+	</delete>
+	
+	<update id="updateReview" parameterType="ProductVO">
+		UPDATE review
+		<set>
+			<if test="revReply != null">
+				rev_reply = #{revReply},
+			</if>
+		</set>
+		WHERE rev_id = #{revId}
+	</update>
 </mapper>

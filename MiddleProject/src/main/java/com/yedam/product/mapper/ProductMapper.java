@@ -24,6 +24,8 @@ public interface ProductMapper {
 	
 	
 	public List<ProductVO> getReviewList(int proId); // 리뷰 리스트
-	
+	public List<ProductVO> getManageReviewList(); // 관리자 리뷰 리스트
+	public int deleteReview(int revId); // 리뷰 삭제
+	public int updateReview(ProductVO review); // 리뷰 수정
 	
 }

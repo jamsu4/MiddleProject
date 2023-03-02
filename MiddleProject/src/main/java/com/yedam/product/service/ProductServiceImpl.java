@@ -9,11 +9,10 @@ import com.yedam.mypage.vo.ZzimVO;
 import com.yedam.product.mapper.ProductMapper;
 import com.yedam.product.vo.ProductVO;
 
-public class ProductServiceImpl implements ProductService{
+public class ProductServiceImpl implements ProductService {
 	SqlSession session = DataSource.getInstance().openSession(true);
 	ProductMapper mapper = session.getMapper(ProductMapper.class);
 
-	
 	@Override
 	public List<ProductVO> productList() {
 		return mapper.getList();
@@ -28,6 +27,7 @@ public class ProductServiceImpl implements ProductService{
 	public ProductVO getProduct(int productId) {
 		return mapper.getProduct(productId);
 	}
+
 	@Override
 	public int addProductCart(ProductVO cart) {
 		return mapper.insertProductCart(cart);
@@ -48,7 +48,8 @@ public class ProductServiceImpl implements ProductService{
 	public List<ProductVO> getCartList(String logId) {
 		return mapper.selectCartList(logId);
 	}
-  @Override
+
+	@Override
 	public int removeProduct(int proId) {
 		return mapper.deleteProduct(proId);
 	}
@@ -68,13 +69,26 @@ public class ProductServiceImpl implements ProductService{
 	public int removeCart(int cartId) {
 		return mapper.deleteCart(cartId);
 	}
-  
-  @Override
+
+	@Override
 	public List<ProductVO> getReviewList(int proId) {
 		return mapper.getReviewList(proId);
 	}
 
+	@Override
+	public List<ProductVO> getManageReviewList() {
+		return mapper.getManageReviewList();
+	}
 
+	@Override
+	public int removeReview(int revId) {
+		return mapper.deleteReview(revId);
+	}
+
+	@Override
+	public int updateReview(ProductVO review) {
+		return mapper.updateReview(review);
+	}
 
 	
 }

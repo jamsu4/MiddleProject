@@ -246,7 +246,7 @@ table:nth-of-type(2) input {
       let pcategory = $(this).closest("tr").children().eq(5).text();
 
       let nTr = $("<tr />").append(
-        $("<td />").append($("<input id='pid' />").val(pid)),
+        $("<td />").append($("<input id='pid' style='width:50px';/>").val(pid)),
         $("<td class='image_container'/>").append(
           $("<img>", {
             src: pimg,
@@ -259,7 +259,7 @@ table:nth-of-type(2) input {
         $("<td />").append($("<input id='pname' />").val(pname)),
         $("<td />").append($("<input id='pprice' />").val(pprice)),
         $("<td />").append($("<input id='pdesc' />").val(pdesc)),
-        $("<td />").append($("<input id='pcategory' />").val(pcategory)),
+        $("<td />").append($("<input id='pcategory' style='width:70px';/>").val(pcategory)),
         $("<td />").append(
           $(
             "<button onclick='updateProductFnc(event)' class='btn btn-success updbtn'>수정 완료</button>"
