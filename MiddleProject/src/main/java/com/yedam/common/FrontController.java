@@ -13,8 +13,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.yedam.member.command.FindId;
 import com.yedam.member.command.FindIdForm;
+import com.yedam.member.command.FindIdResult;
 import com.yedam.member.command.FindPwd;
 import com.yedam.member.command.FindPwdForm;
+import com.yedam.member.command.FindPwdResult;
+import com.yedam.member.command.IdCheck;
 import com.yedam.member.command.Login;
 import com.yedam.member.command.LoginForm;
 import com.yedam.member.command.LogoutControl;
@@ -121,7 +124,10 @@ public class FrontController extends HttpServlet {
 		map.put("/findIdForm.do", new FindIdForm());			// 아이디 찾기 화면
 		map.put("/findPwdForm.do", new FindPwdForm());			// 비번 찾기 화면
 		map.put("/findId.do", new FindId());					// 아이디 찾기 처리
-		map.put("/findPwd.do", new FindPwd());					// 비번 찾기 처리
+		map.put("/findIdResult.do", new FindIdResult());
+		map.put("/findPwd.do", new FindPwd());					// 비번 찾기 처리 (임시 비밀번호)
+		map.put("/findPwdResult.do", new FindPwdResult());			// 임시 비밀번호 보낸 후 알림 페이지
+		map.put("/idCheck.do", new IdCheck());					// 아이디 중복 확인
 		
 
 		

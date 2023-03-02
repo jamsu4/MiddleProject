@@ -29,4 +29,9 @@ public interface MemberMapper { // 서비스부분이 아니라 데이터를 처
 	
 	public MemberVO getFindPwd(@Param("memName")String memName, @Param("memEmail")String memEmail, @Param("memId")String memId);
 
+	//
+	public void setTempPwd(MemberVO fPwd);
+
+	//
+	public int checkId(String id);
 }
