@@ -23,6 +23,5 @@ public interface ProductMapper {
 	
 	public List<ProductVO> getReviewList(int proId); // 리뷰 리스트
 	
-//	public List<ProductVO> replyList(int revId);
 	
 }

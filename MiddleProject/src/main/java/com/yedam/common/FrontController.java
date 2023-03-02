@@ -35,7 +35,6 @@ import com.yedam.notice.command.NoticeListControl;
 
 import com.yedam.notice.command.NoticeUpdateControl;
 import com.yedam.notice.command.NoticeUpdateFormControl;
-import com.yedam.product.command.ReplyList;
 import com.yedam.order.control.addOrderControl;
 
 import com.yedam.order.control.orderControl;
@@ -103,7 +102,6 @@ public class FrontController extends HttpServlet {
 		map.put("/insertProductManager.do", new InsertProductManager()); // 관리자 전용 상품 등록
 		map.put("/productQaPage.do", new ProductQaPage()); // Q&A 페이지
 		map.put("/insertProductQa.do", new InsertProductQa()); // Q&A 등록
-//		map.put("/replyList.do", new ReplyList());//댓글목록
 		
 		
 		

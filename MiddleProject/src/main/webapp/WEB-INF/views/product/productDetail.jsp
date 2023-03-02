@@ -7,13 +7,7 @@
 		width:500px;
 		height:300px;
 	}
-	#commentInput{
-		width: 1100px;
-		height:30px;
-	}
-	#commentBtn{
-		margin-left:10px
-	}
+
 </style>
 
 <!-- ***** Product Area Starts ***** -->
@@ -165,8 +159,7 @@
 								<div class="reviews-btn flex-wrap">
 									<div class="reviews-btn-left">
 										<div class="dropdown-style">
-											<input id="commentInput" type="text">
-											<button id="commentBtn" class="main-btn primary-btn" type="button">댓글작성</button>
+											<button id="commentBtn" class="main-btn primary-btn" type="button">댓글</button>
 										</div>
 									</div>
 								</div>
@@ -176,20 +169,16 @@
 											<div class="single-review-comment">
 												<div class="comment-user-info">
 													<div class="comment-content">
-														<h6 class="name">User Name</h6>
+														
+														<h6 class="name" style="color:red;font-weight: bolder;">
+														<img src="bootstrap1/assets/images/icon-svg/person-square.svg" alt="" style="width:30px; margin-right:10px;">관리자</h6>
 														<p>
-															<span class="">20 Nov 2019 22:01</span>
+															<span class=""></span>
 														</p>
 													</div>
 												</div>
 												<div class="comment-user-text">
-													<p>Good headphones. The sound is clear. AND the bottoms
-														repyat and top ring. Currently are really not taken. For
-														me quiet. With my Beats of course can not be compared. But
-														for the money and definitely recommend. The one who took
-														happy as an elephant. Product as advertised, looks good
-														Quality, sound is not the best but because of cost-benefit
-														ratio it seems very good to me, recommended the seller .</p>
+													<p>${review.revReply }</p>
 												</div>
 												<div id="list">
 												

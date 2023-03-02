@@ -26,10 +26,4 @@ public class ProductVO {
 	private String revImage;
 	private String revReply;
 	
-//	// reply table
-//	private int replyId;
-//	private String replyTitle;
-//	private String replySubject;
-//	private String replyWriter;
-//	private Date replyDate; 
 }
