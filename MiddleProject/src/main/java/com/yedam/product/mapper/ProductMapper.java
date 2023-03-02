@@ -21,4 +21,7 @@ public interface ProductMapper {
 	public int updateProduct(ProductVO product); // 제품 수정
 	public int insertProduct(ProductVO product); // 제품 등록
 	
+	public List<ProductVO> getReviewList(int proId); // 리뷰 리스트
+	
+	
 }

@@ -26,4 +26,6 @@ public interface ProductService {
 	public int modifyProduct(ProductVO product); // 제품 수정
 	public int addProduct(ProductVO product); // 제품 등록
 	
+	public List<ProductVO> getReviewList(int proId); // 리뷰 리스트
+	
 }

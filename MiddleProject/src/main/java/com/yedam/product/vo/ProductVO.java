@@ -1,5 +1,7 @@
 package com.yedam.product.vo;
 
+import java.util.Date;
+
 import lombok.Data;
 
 @Data
@@ -14,4 +16,14 @@ public class ProductVO {
 	private String memId;
 	private int caQuant;
 	private int caSumprice;
+
+	// review table
+	private int revId;
+	private String revTitle;
+	private String revContent;
+	private String revDate;
+	private int revRate;
+	private String revImage;
+	private String revReply;
+	
 }

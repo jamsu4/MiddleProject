@@ -32,6 +32,7 @@ public class ProductDetail implements Command {
 		ZzimService serviceZzim = new ZzimServiceImpl();
 		req.setAttribute("zzimUser", serviceZzim.ZzimList(logId, Integer.parseInt(pid)));
 		
+		req.setAttribute("reviewList", service.getReviewList(Integer.parseInt(pid)));
 		return "product/productDetail.tiles";
 	}
 
