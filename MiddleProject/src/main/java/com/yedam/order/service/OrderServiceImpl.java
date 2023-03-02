@@ -32,4 +32,9 @@ public class OrderServiceImpl implements OrderService {
 	public int addPayment(OrderVO ovo) {
 		return mapper.insertPayment(ovo);
 	}
+
+	@Override
+	public int addOrderProduct(List<OrderVO> opList) {
+		return mapper.insertOrderProduct(opList);
+	}
 }

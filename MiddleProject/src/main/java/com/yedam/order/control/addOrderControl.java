@@ -47,12 +47,18 @@ public class addOrderControl implements Command {
 		String payCode = req.getParameter("payCode");
 		String payTotalprice = req.getParameter("payTotalprice");
 		System.out.println(payTotalprice);
+		if(coupId != null) {
+			ovo = new OrderVO();
+			ovo.setCoupId(Integer.parseInt(coupId));
+			ovo.setPayCouponprice(Integer.parseInt(payCouponprice));
+			ovo.setPayCode(payCode);
+			ovo.setPayTotalprice(Integer.parseInt(payTotalprice));
+		} else {
+			ovo = new OrderVO();
+			ovo.setPayCode(payCode);
+			ovo.setPayTotalprice(Integer.parseInt(payTotalprice));
+		}
 		
-		ovo = new OrderVO();
-		ovo.setCoupId(Integer.parseInt(coupId));
-		ovo.setPayCouponprice(Integer.parseInt(payCouponprice));
-		ovo.setPayCode(payCode);
-		ovo.setPayTotalprice(Integer.parseInt(payTotalprice));
 		
 		service = new OrderServiceImpl();
 		json="";

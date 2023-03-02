@@ -106,7 +106,7 @@
 					<div class="product-cart d-flex">
 						<div class="one-eight text-center">
 							<div class="display-tc">
-								<input class="selectBox" type="checkbox"
+								<input class="selectBox" type="checkbox" data-quantity="${list.caQuant}" data-ordProSumprice="${list.caSumprice}"
 									data-value="${list.proId}" data-price="${list.proPrice }" data-name="${list.proName }">
 							</div>
 						</div>
@@ -376,7 +376,7 @@
 						<div class="col-md-12 text-center">
 							<p>
 							<c:if test="${!empty cartList[0].memId }">
-								<button id="payBtn" onclick=requestPay() class="btn btn-primary">결제하기</button>
+								<button id="payBtn" onclick=requestPay() class="btn btn-primary">결제하기</button>								
 							</c:if>
 
 							</p>
@@ -556,6 +556,8 @@ $('.quantity').on('change', function() {
 	})
 	//선택박스 - 전체선택 - 결제금액 계산
 	$('.selectBox').click(function() {
+		var $this = $(this)
+		console.log($this);
 		checkAll();
 		updatePrices();
 		totalPrice();
@@ -615,7 +617,7 @@ $('.quantity').on('change', function() {
 		});
 		console.log(sum);
 		$('.sumCartPrice').text(sum);
-
+		
 	}
 	function totalPrice() {
 		let total = 0;
@@ -624,7 +626,6 @@ $('.quantity').on('change', function() {
 		let productprice = parseInt($('.sumCartPrice').eq(0).text());
 		total = productprice - couponprice
 		$('.totalPrice').text(total);
-		
 		
 	}
 	

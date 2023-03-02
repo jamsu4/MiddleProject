@@ -68,12 +68,26 @@ function requestPay() {
 	console.log(payTotalprice)
 	//결제코드
 	var merchant_uid = 'chamsu_' + new Date().getTime();
-	//pro_id
-	var proId =
-	//상품당 구입 개수
-	var ordQuant =
-	//상품당 합계금액
-	var ordProSumprice =
+	
+	var selectedProducts = document.querySelectorAll('.selectBox:checked');
+	console.log(selectedProducts);
+	var proIds = [];
+	var ordQuants = [];
+	var ordProSumprices = [];
+	
+	for (var i = 0; i < selectedProducts.length; i++) {
+	  var selectedProduct = selectedProducts[i];
+	  var proId = selectedProduct.dataset.value;
+	  proIds.push(proId);
+	  var ordQuant = selectedProduct.closest('.product-cart').querySelector('.one-eight:nth-child(4) .quantity').value;
+	  ordQuants.push(ordQuant);
+	  var ordProSumprice = selectedProduct.closest('.product-cart').querySelector('.one-eight:nth-child(5) .price').textContent;
+	  ordProSumprices.push(ordProSumprice);
+	}
+	console.log(proIds);
+	console.log(ordQuants);
+	console.log(ordProSumprices);
+	
 	IMP.init('iamport'); //iamport 대신 자신의 "가맹점 식별코드"를 사용
 	IMP.request_pay({
 		pg: "inicis",
@@ -125,10 +139,20 @@ function requestPay() {
 				type: "POST",
 				traditional: true,
 				data: {
-					ordQuant: ordQuant,
-					proId: proId,
-					ordProSumprice: ordProSumprice
+					ordQuant: ordQuants,
+					proId: proIds,
+					ordProSumprice: ordProSumprices
 				},
+				success: function(result) {
+					if (result.retCode == "Success") {
+						console.log("주문상품 정보 등록 성공")
+					} else {
+						console.log("주문상품 정보 등록 실패")
+					}
+				},
+				error: function(error) {
+					console.log("실패");
+				}
 			})
 			
 			alert(msg);

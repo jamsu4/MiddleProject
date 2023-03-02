@@ -33,4 +33,20 @@
 						 WHERE ord_id = (SELECT MAX(ord_id) FROM orders)),
 						 sysdate, #{payTotalprice}, #{payCouponprice}, #{payCode}, #{coupId})
 	</insert>
+		<insert id="insertOrderProduct" parameterType="java.util.List">
+	    INSERT INTO orderproduct 
+	    	(ord_quant, 
+	    	 pro_id, 
+	    	 ord_id , 
+	    	 ord_pro_sumprice)
+	    VALUES
+		<foreach collection="list" item="item" separator=",">
+		    (
+		        ${item.ordQuant},
+		        ${item.proId},
+		        (SELECT MAX(ord_id) FROM orders),
+		        ${item.ordProSumprice}
+		    )
+		</foreach>
+	</insert>
 </mapper>
