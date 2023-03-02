@@ -172,20 +172,20 @@
 				<form action="signup.do" method="POST" onsubmit="return formCheck(this);">
 					<!-- <input type="text" placeholder="아이디를 입력해 주세요" name="member_id" required> -->
 					<div id="id_check"></div> <!-- 여기다가 메세지 띄울거임. (중복 여부 메시지) -->
+					<div id="msg" class="msg"> </div> 
 
-
-					<input type="text" id="member_id" name="member_id" placeholder="아이디를 입력해 주세요" required><br>
-					<input type="password" placeholder="비밀번호를 입력해 주세요" name="member_pw" required autofocus><br>
-					<input type="password" placeholder="비밀번호를 다시 한 번 입력해 주세요" name="member_confirm_pw" required><br>
-					<input type="text" placeholder="이름을 입력해 주세요" name="member_name" required><br>
-					<input type="text" placeholder="연락처를 입력해 주세요" name="member_phone" required><br>
-					<input type="text" placeholder="이메일을 입력해 주세요" name="member_email" required><br>
+					<input type="text" id="member_id" name="member_id" placeholder="아이디를 입력해 주세요"><br>
+					<input type="password" placeholder="비밀번호를 입력해 주세요" name="member_pw" autofocus><br>
+					<input type="password" placeholder="비밀번호를 다시 한 번 입력해 주세요" name="member_confirm_pw"><br>
+					<input type="text" placeholder="이름을 입력해 주세요" name="member_name"><br>
+					<input type="text" placeholder="연락처를 입력해 주세요" name="member_phone"><br>
+					<input type="text" placeholder="이메일을 입력해 주세요" name="member_email"><br>
 					<!-- 유저 회원가입이니까 DB에서 mem_user 컬럼의 값을 자동으로 user 로 숨겨서 전달하기 -->
 					<input type="hidden" name="member_user" value="user">
 
 
 					<!-- 버튼 클릭시 signUpForm.do 로 이동 -->
-					<button type="submit">가입하기</button>
+					<button type="submit" id="reg_submit">가입하기</button>
 				</form>
 			</div>
 		</div>
@@ -221,9 +221,12 @@
 
 
 
-		// 회원가입 할 때, 비밀번호와 재확인용 비밀번호가 일치하는지 확인하는 함수.
-		// 불일치하면, 가입 안 됨
+		// 회원가입 할 때, 검증하는 함수
 		function formCheck(frm) {
+			// 빈 칸이 있을 시 에러 메시지 출력하는 변수
+			let msg ='';
+			
+			// 비밀번호와 재확인용 비밀번호가 일치하는지 확인. (불일치하면, 가입 안 됨)
 			if (frm.member_pw.value != frm.member_confirm_pw.value) {
 				alert("비번이 다른데여");
 
@@ -232,10 +235,51 @@
 
 				return false;
 			}
+			
+			
+			// 빈 칸 혹은 최소 길이보다 작을 때 에러 메시지 발생
+			if(frm.member_id.value == '') {
+                setMessage('아이디를 작성해 주세요', frm.member_id);
+                return false;
+            }
+            
+            if(frm.member_pw.value == '') {
+                setMessage('비밀번호를 작성해 주세요', frm.member_pw);
+                return false;
+            }
+            
+            if(frm.member_name.value == '') {
+                setMessage('이름을 작성해 주세요', frm.member_name);
+                return false;
+            }
+            
+            if(frm.member_phone.value == '') {
+                setMessage('전화번호를 작성해 주세요', frm.member_phone);
+                return false;
+            }
+            
+            if(frm.member_email.value == '') {
+                setMessage('email 를 작성해 주세요', frm.member_email);
+                return false;
+            }
 
 			return true;
 		}
 
+		// 빈 칸일 때 에러 메시지 발생
+		function setMessage(msg, element){
+	    	   //${msg}는 템플릿 리터럴(JS이므로 브라우저에서 돌아감(EL은 서버에서 돌아감))
+	    	   //${'${msg}'}로 변경 해야 함.
+	            document.getElementById("msg").innerHTML = `<i class="fa fa-exclamation-circle"> ${'${msg}'}</i>`;
+	            document.getElementById("msg").style.color = 'red';
+	            
+	            if(element) {
+	            	//select는 값이 틀리면 그 값에 커서가 오도록 함.
+	                element.select();
+	            }
+	       }
+		 
+		 
 
 
 		// 아이디 중복확인
@@ -254,16 +298,13 @@
 						// 1 : 아이디가 중복되는 문구
 						$("#id_check").text("사용중인 아이디입니다 :(");
 						$("#id_check").css("color", "red");
-						$("#reg_submit").attr("disabled", true);
+						$("#reg_submit").attr('disabled', 'disabled');
 					} else if (result.retCode == "Fail") {
 
 						$("#id_check").text("사용 가능한 아이디입니다 =)");
 						$("#id_check").css("color", "lightseagreen");
+						$("#reg_submit").removeAttr("disabled");
 
-					} else if (member_id == "") {
-						$("#id_check").text("아이디를 입력해주세요!");
-						$("#id_check").css("color", "red");
-						$("#reg_submit").attr("disabled", true);
 					}
 				},
 				error: function () {
