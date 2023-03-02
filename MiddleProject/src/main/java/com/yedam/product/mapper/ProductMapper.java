@@ -23,4 +23,7 @@ public interface ProductMapper {
 	public int deleteCart(int cartId); //장바구니 제거
 	
 	
+	public List<ProductVO> getReviewList(int proId); // 리뷰 리스트
+	
+	
 }

@@ -22,7 +22,7 @@
 		<div class="form-group row">
 			<label class="col-sm-2">제목</label>
 			<div class="com-sm-3">
-				<input data-name="제목" type="text" id="qaTitle" name="qaTitle" class="form-control">
+				<input data-name="제목" type="text" id="qaTitle" name="qaTitle" class="form-control data">
 			</div>
 		</div>
 		
@@ -36,7 +36,7 @@
 		<div class="form-group row">
 			<label class="col-sm-2">상세 내용</label>
 			<div class="com-sm-5">
-				<textarea id="qaDesc" name="qaDesc" cols="50" rows="2" class="form-control"></textarea>
+				<textarea data-name="상세 내용" id="qaDesc" name="qaDesc" cols="50" rows="2" class="form-control data"></textarea>
 			</div>
 		</div>
 		<br>
@@ -50,39 +50,39 @@
 </div>
 
 <script>
-	$('#addQa').click( function(){
+	$('#addQa').click(function() {
 		let qaProId = $("#qaProId").val();
 		let qaTitle = $("#qaTitle").val();
 		let qaWriter = $("#qaWriter").val();
 		let qaDesc = $("#qaDesc").val();
-		
-        var isRight = true;
-        $("#frm").find("input[type=text]").each(function(index, item){
-            if ($(this).val().trim() == '') {
-                alert($(this).attr("data-name")+" 항목을 입력하세요.");
-                isRight = false;
-                return false;
-            }
-        });
-
-        if (!isRight) {
-            return;
-        }
-
-        $(this).prop("disabled", true);
-        $(this).prop("disabled", false);
-      
-
-		
+	
+		var isRight = true;
+		$("#frm").find(".data").each(function(index, item) {
+			if ($(this).val().trim() == '') {
+				alert($(this).attr("data-name") + " 항목을 입력하세요.");
+				isRight = false;
+				return false;
+			}
+		});
+	
+		if (!isRight) {
+			return;
+		}
+	
+		$(this).prop("disabled", true);
+		$(this).prop("disabled", false);
+	
+	
+	
 		$.ajax({
 			url: "insertProductQa.do",
 			method: "post",
-			data: {qaProId: qaProId, qaTitle: qaTitle, qaWriter: qaWriter, qaDesc: qaDesc},
+			data: { qaProId: qaProId, qaTitle: qaTitle, qaWriter: qaWriter, qaDesc: qaDesc },
 			success: function(result) {
 				console.log(result)
-				if(result.retCode == "Success"){
+				if (result.retCode == "Success") {
 					let popup = confirm("등록 하시겠습니까?")
-					if(popup){
+					if (popup) {
 						opener.location.reload();
 						window.close();
 					}

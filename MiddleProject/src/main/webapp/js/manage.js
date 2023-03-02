@@ -137,7 +137,6 @@ function makeRow(member = {}) {
             $('<button class="btn btn-danger">삭제</button>')
                 .attr('member_id', member.memId) // .attr => setAttribute, 만들다
                 .on('click', deleteMemberFnc) //이벤트
-
         )
     );
     return tr;

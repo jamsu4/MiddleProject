@@ -46,11 +46,10 @@ public class Login implements Command {
 			System.out.println(rvo.getMemUser());
 			req.setAttribute("vo", rvo); // 요청정보에 vo를 저장 해당 데이터를 가지고, main 페이지로 일단은 이동
 
-			return "main.do";			// main/main.titles 안 됨.
-
+			return "{ \"retCode\" : \"Success\" }.json";
+			
 		} else {
-			req.setAttribute("result", "회원정보를 확인하세요!!"); // 요청 정보 : 응답하고 나면 사라짐
-			return "member/login.tiles";
+			return "{ \"retCode\" : \"Fail\" }.json";
 		}
 	}
 }

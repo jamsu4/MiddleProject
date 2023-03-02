@@ -29,6 +29,7 @@
     <link rel="stylesheet" href="bootstrap/assets/css/productDetailQnA.css">
     
 
+
 <!--
 
 TemplateMo 571 Hexashop
@@ -36,6 +37,7 @@ TemplateMo 571 Hexashop
 https://templatemo.com/tm-571-hexashop
 
 -->
+
     </head>
 <body>
 	<!-- Navigation-->
@@ -96,39 +98,8 @@ https://templatemo.com/tm-571-hexashop
 
     </script>
     
+    <!--  리뷰 부트스트랩 -->
     
-    <!------리뷰 부트스트랩--------->
-    <!--====== Bootstrap 5 js ======-->
-    <script src="bootstrap1/assets/js/popper.min.js"></script>
-    <script src="bootstrap1/assets/js/bootstrap.min.js"></script>
-
-
-    <!--====== Jquery js ======-->
-    <script src="bootstrap1/assets/js/vendor/jquery-3.5.1.min.js"></script>
-    <script src="bootstrap1/assets/js/vendor/modernizr-3.7.1.min.js"></script>
-
-    <!--====== Slick js ======-->
-    <script src="bootstrap1/assets/js/slick.min.js"></script>
-
-    <!--====== Accordion Steps Form js ======-->
-    <script src="bootstrap1/assets/js/jquery-vj-accordion-steps.js"></script>
-
-    <!--====== Jquery Ui js ======-->
-    <script src="bootstrap1/assets/js/jquery-ui.min.js"></script>
-
-    <!--====== Form validator js ======-->
-    <script src="bootstrap1/assets/js/jquery.form-validator.min.js"></script>
-
-    <!--====== nice select js ======-->
-    <script src="bootstrap1/assets/js/jquery.nice-select.min.js"></script>
-
-    <!--====== formatter js ======-->
-    <script src="bootstrap1/assets/js/jquery.formatter.min.js"></script>
-
-    <!--====== Main js ======-->
-    <script src="bootstrap1/assets/js/count-up.min.js"></script>
-
-    <!--====== Main js ======-->
-    <script src="bootstrap1/assets/js/main.js"></script>
+   
 </body>
 </html>

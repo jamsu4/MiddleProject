@@ -25,7 +25,7 @@
 	<!-- 상품 상세 조회 -->
 	<select id="getProduct" resultType="ProductVO">
 		SELECT * FROM product WHERE
-		pro_id=#{pid}
+		pro_id=#{proId}
 	</select>
 	<!-- 카트 담기 -->
 	<insert id="insertProductCart" parameterType="ProductVO">
@@ -88,13 +88,19 @@
 	
 	<insert id="insertProduct" parameterType="ProductVO">
 		INSERT INTO product (pro_id, pro_name, pro_price, pro_desc, pro_img, pro_category)
-		VALUES (#{proId}, #{proName}, #{proPrice}, #{proDesc}, #{proImg}, #{proCategory})
+		VALUES (seq_pro_id.NEXTVAL, #{proName}, #{proPrice}, #{proDesc}, #{proImg}, #{proCategory})
 	</insert>
 
 	<delete id="deleteCart" parameterType="int">
 		DELETE FROM cart
 		WHERE cart_id = #{cartId}
 	</delete>
-
+	
+	<select id="getReviewList" resultType="ProductVO">
+		SELECT *
+		FROM review
+		WHERE pro_id=#{proId}
+		ORDER BY rev_id
+	</select>
 
 </mapper>

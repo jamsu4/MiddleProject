@@ -29,4 +29,6 @@ public interface ProductService {
 	
 	
 	
+	public List<ProductVO> getReviewList(int proId); // 리뷰 리스트
+	
 }
