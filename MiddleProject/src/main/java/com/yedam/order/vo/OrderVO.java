@@ -15,6 +15,16 @@ public class OrderVO {
 	// orderproduct table
 	private int ordProId;
 	private int ordQuant;
-	private int proid;
+	private int proId;
 	private int ordProSumprice;
+	//payment
+	private int payId;
+	private String payDate;
+	private int payTotalprice;
+	private int payCouponprice;
+	private String payCode;
+	private int coupId;
+	
+	private String memName;
+	private String proName;
 }

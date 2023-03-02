@@ -11,51 +11,24 @@ import com.yedam.order.service.OrderService;
 import com.yedam.order.service.OrderServiceImpl;
 import com.yedam.order.vo.OrderVO;
 
-public class addOrderControl implements Command {
+public class addPaymentControl implements Command {
 
 	@Override
 	public String exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String memId = req.getParameter("memId");
-		String ordStatus = req.getParameter("ordStatus");
-		String ordReceiver = req.getParameter("ordReceiver");
-		String ordAddr = req.getParameter("ordAddr");
-		String ordPhone = req.getParameter("ordPhone");
-		String ordPostcode = req.getParameter("ordPostcode");
-		String ordTotalPrice = req.getParameter("ordTotalPrice");
-		
-		OrderVO ovo = new OrderVO();
-		ovo.setMemId(memId);
-		ovo.setOrdStatus(ordStatus);
-		ovo.setOrdReceiver(ordReceiver);
-		ovo.setOrdAddr(ordAddr);
-		ovo.setOrdPhone(ordPhone);
-		ovo.setOrdPostcode(ordPostcode);
-		ovo.setOrdTotalprice(Integer.parseInt(ordTotalPrice));
-		
-		OrderService service = new OrderServiceImpl();
-		String json="";
-		
-		if(service.addOrder(ovo) > 0) {
-			json = "{\"retCode\": \"Success\"}";
-		} else {
-			json = "{\"retCode\": \"Fail\"}";
-			return json + ".json";
-		}
-		
 		String coupId = req.getParameter("coupId");
 		String payCouponprice = req.getParameter("payCouponprice");
 		String payCode = req.getParameter("payCode");
 		String payTotalprice = req.getParameter("payTotalprice");
 		System.out.println(payTotalprice);
 		
-		ovo = new OrderVO();
+		OrderVO ovo = new OrderVO();
 		ovo.setCoupId(Integer.parseInt(coupId));
 		ovo.setPayCouponprice(Integer.parseInt(payCouponprice));
 		ovo.setPayCode(payCode);
 		ovo.setPayTotalprice(Integer.parseInt(payTotalprice));
 		
-		service = new OrderServiceImpl();
-		json="";
+		OrderService service = new OrderServiceImpl();
+		String json="";
 		
 		if(service.addPayment(ovo) > 0) {
 			json = "{\"retCode\": \"Success\"}";
@@ -63,12 +36,7 @@ public class addOrderControl implements Command {
 			json = "{\"retCode\": \"Fail\"}";
 		}
 		
-		
-		
 		return json + ".json";
-		
-		
-		
 	}
 
 }

@@ -376,7 +376,7 @@
 						<div class="col-md-12 text-center">
 							<p>
 							<c:if test="${!empty cartList[0].memId }">
-								<button onclick=requestPay() class="btn btn-primary">결제하기</button>
+								<button id="payBtn" onclick=requestPay() class="btn btn-primary">결제하기</button>
 							</c:if>
 
 							</p>
@@ -510,6 +510,7 @@ $('.quantity').on('change', function() {
 					option.text(item.coupName)
 					option.val(item.coupId)
 					option.attr('data-price', item.coupPrice)
+					option.attr('data-id', item.coupId)
 					
 					$('#couponList').append(option);
 				});
@@ -530,12 +531,17 @@ $('.quantity').on('change', function() {
 	
 	$('#couponList').change(function() {
 		if($('.selectBox:checked').length > 0){
-		// 선택된 값이 변경되었을 때 실행할 코드
-		let selectedValue = $(this).find(':selected').data('price');
-		console.log('선택된 값:', selectedValue);
-		$('.couponPrice').text("");
-		$('.couponPrice').text(selectedValue).attr('style', "");
-		totalPrice();
+			// 선택된 값이 변경되었을 때 실행할 코드
+			let selectedValue = $(this).find(':selected').data('price');
+			let selectedId = $(this).find(':selected').data('id');
+			console.log('선택된 값:'+ selectedValue);
+			console.log('선택된 값:'+ selectedId);
+			totalPrice();
+			
+			$('.couponPrice').text("");
+			$('.couponPrice').text(selectedValue).attr('style', "");
+			$('#payBtn').attr('data-price',selectedValue);
+			$('#payBtn').attr('data-id',selectedId);
 		} else {
 			alert("구매할 상품을 먼저 선택해주세요.");
 		}
@@ -617,8 +623,9 @@ $('.quantity').on('change', function() {
 				'price'));
 		let productprice = parseInt($('.sumCartPrice').eq(0).text());
 		total = productprice - couponprice
-		console.log(total);
 		$('.totalPrice').text(total);
+		
+		
 	}
 	
 	

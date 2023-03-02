@@ -13,24 +13,23 @@ public class OrderServiceImpl implements OrderService {
 	SqlSession session = DataSource.getInstance().openSession(true);
 	OrderMapper mapper = session.getMapper(OrderMapper.class);
 
-//	@Override
-//	public List<OrderVO> orderList() {
-//		return mapper.getOrder();
-//	}
+	@Override
+	public List<OrderVO> orderList() {
+		return mapper.getOrderList();
+	}
 
 	@Override
 	public OrderVO getOrder(String orderId) {
 		return mapper.getOrder(orderId);
 	}
-
-	@Override
-	public List<OrderVO> orderList() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 	
 	@Override
 	public int addOrder(OrderVO ovo) {
 		return mapper.insertOrder(ovo);
+	}
+
+	@Override
+	public int addPayment(OrderVO ovo) {
+		return mapper.insertPayment(ovo);
 	}
 }

@@ -5,11 +5,13 @@ import java.util.List;
 
 import com.yedam.order.vo.OrderVO;
 
-public interface OrderService { // 목록, 단건조회.
-	public List<OrderVO> orderList();
+public interface OrderService { 
+	public List<OrderVO> orderList(); // 목록
 
 	public OrderVO getOrder(String orderId);
 
-	public int addOrder(OrderVO ovo);
+	public int addOrder(OrderVO ovo);	//orders정보 추가
+
+	public int addPayment(OrderVO ovo); //payment정보 추가
 
 }
