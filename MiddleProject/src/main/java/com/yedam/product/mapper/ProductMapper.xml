@@ -158,17 +158,46 @@
 		FROM review
 		<where>
 			<if test="date == '오늘'">
-				to_char(sysdate-1,'yyyy-mm-dd') = to_char(rev_date, 'yyyy-mm-dd')
+				to_char(sysdate-1,'yyyy-mm-dd') = to_char(rev_date,
+				'yyyy-mm-dd')
 			</if>
 			<if test="date == '일주일'">
-				to_char(sysdate-7,'yyyy-mm-dd') <![CDATA[<=]]> to_char(rev_date, 'yyyy-mm-dd')
+				to_char(sysdate-7,'yyyy-mm-dd') <![CDATA[<=]]>
+				to_char(rev_date, 'yyyy-mm-dd')
 			</if>
 			<if test="date == '1개월'">
-				to_char(add_months(sysdate,-1),'yyyy-mm-dd') <![CDATA[<=]]> to_char(rev_date, 'yyyy-mm-dd')
+				to_char(add_months(sysdate,-1),'yyyy-mm-dd') <![CDATA[<=]]>
+				to_char(rev_date, 'yyyy-mm-dd')
 			</if>
 			<if test="date == '6개월'">
-				to_char(add_months(sysdate,-6),'yyyy-mm-dd') <![CDATA[<=]]> to_char(rev_date, 'yyyy-mm-dd')
+				to_char(add_months(sysdate,-6),'yyyy-mm-dd') <![CDATA[<=]]>
+				to_char(rev_date, 'yyyy-mm-dd')
 			</if>
 		</where>
 	</select>
+
+	<select id="searchProductList" resultType="ProductVO">
+		SELECT *
+		FROM product
+		<where>
+			<if test="proName != null and proId != null">
+				pro_name LIKE '%' || #{proName} || '%' AND
+				pro_id=#{proId, jdbcType=INTEGER}
+			</if>
+			<if test="proName != null and proId == null">
+				pro_name LIKE '%' || #{proName} || '%'
+			</if>
+			<if test="proName == null and proId != null">
+				pro_id=#{proId, jdbcType=INTEGER}
+			</if>
+		</where>
+	</select>
+
+	<select id="rateList" resultType="ProductVO">
+		SELECT AVG(rev_rate) AS avg_rate, pro_id
+		FROM review
+		GROUP BY pro_id
+		ORDER BY pro_id
+	</select>
+
 </mapper>

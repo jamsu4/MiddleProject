@@ -2,6 +2,8 @@ package com.yedam.product.service;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.yedam.mypage.vo.ZzimVO;
 import com.yedam.product.vo.ProductVO;
 
@@ -35,4 +37,6 @@ public interface ProductService {
 	public int updateReview(ProductVO review); // 리뷰 수정
 	public List<ProductVO> searchReviewList(String memId, String proId); // 리뷰 검색
 	public List<ProductVO> searchReviewDateList(String date); // 리뷰 날짜 검색
+	public List<ProductVO> searchProductList(String proId, String proName); // 상품 검색
+	public List<ProductVO> rateList();
 }

@@ -61,7 +61,7 @@ table:nth-of-type(2) input {
 						<th style="padding-top: 15px;">상품번호</th>
 						<td colspan=5>
 							<div class="input-group mb-3">
-								<input type="text" class="form-control"
+								<input type="text" class="form-control reviewinput"
 									aria-label="Text input with dropdown button" id="proIdBtn">
 							</div>
 						</td>
@@ -70,7 +70,7 @@ table:nth-of-type(2) input {
 						<th style="padding-top: 15px;">유저ID</th>
 						<td colspan=5>
 							<div class="input-group mb-3">
-								<input type="text" class="form-control"
+								<input type="text" class="form-control reviewinput"
 									aria-label="Text input with dropdown button" id="memIdBtn">
 							</div>
 						</td>
@@ -83,25 +83,28 @@ table:nth-of-type(2) input {
 								aria-label="Basic radio toggle button group">
 								<input type="radio" class="btn-check" name="btnradio"
 									id="btnradio1" autocomplete="off" checked> <label
-									class="btn btn-outline-primary" for="btnradio1" id="btnDate1">오늘</label> <input
-									type="radio" class="btn-check" name="btnradio" id="btnradio2"
-									autocomplete="off"> <label
-									class="btn btn-outline-primary" for="btnradio2" id="btnDate2">일주일</label> <input
-									type="radio" class="btn-check" name="btnradio" id="btnradio3"
-									autocomplete="off"> <label
-									class="btn btn-outline-primary" for="btnradio3" id="btnDate3">1개월</label> <input
-									type="radio" class="btn-check" name="btnradio" id="btnradio4"
-									autocomplete="off"> <label
-									class="btn btn-outline-primary" for="btnradio3" id="btnDate4">6개월</label>
+									class="btn btn-outline-primary" for="btnradio1" id="btnDate1">오늘</label>
+								<input type="radio" class="btn-check" name="btnradio"
+									id="btnradio2" autocomplete="off"> <label
+									class="btn btn-outline-primary" for="btnradio2" id="btnDate2">일주일</label>
+								<input type="radio" class="btn-check" name="btnradio"
+									id="btnradio3" autocomplete="off"> <label
+									class="btn btn-outline-primary" for="btnradio3" id="btnDate3">1개월</label>
+								<input type="radio" class="btn-check" name="btnradio"
+									id="btnradio4" autocomplete="off"> <label
+									class="btn btn-outline-primary" for="btnradio4" id="btnDate4">6개월</label>
+								<input type="radio" class="btn-check" name="btnradio"
+									id="btnradio4">
 							</div>
 
 						</td>
 
 					</tr>
 				</table>
-				<div style="text-align: center; margin-bottom:20px">
+				<div style="text-align: center; margin-bottom: 20px">
 					<button type="button" class="btn btn-primary btn-lg" id="searchBtn">검색</button>
-					<button type="button" class="btn btn-secondary btn-lg" id="resetBtn">초기화</button>
+					<button type="button" class="btn btn-secondary btn-lg"
+						id="resetBtn">초기화</button>
 				</div>
 			</div>
 		</div>
@@ -139,22 +142,27 @@ table:nth-of-type(2) input {
 	</div>
 </main>
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">리뷰 댓글 작성</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <textarea id="rReply" rows="5" cols="60"></textarea>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="closeBtn">닫기</button>
-        <button type="button" class="btn btn-primary" onclick='updateProductFnc(event)'>등록</button>
-      </div>
-    </div>
-  </div>
+<div class="modal fade" id="exampleModal"
+	aria-labelledby="exampleModalLabel" aria-hidden="true"
+	data-bs-backdrop="static">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h1 class="modal-title fs-5" id="exampleModalLabel">리뷰 댓글 작성</h1>
+				<button type="button" class="btn-close" data-bs-dismiss="modal"
+					aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				<textarea id="rReply" rows="5" cols="60"></textarea>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary"
+					data-bs-dismiss="modal" id="closeBtn">닫기</button>
+				<button type="button" class="btn btn-primary"
+					onclick='updateProductFnc(event)'>등록</button>
+			</div>
+		</div>
+	</div>
 </div>
 
 <script>
@@ -180,7 +188,7 @@ table:nth-of-type(2) input {
 		location.reload();
 	})
 	
-	$('#searchBtn').click( function(e) {
+	function searchReview(){
 		let proId = $('#proIdBtn').val();
 		let memId = $('#memIdBtn').val();
 		
@@ -201,9 +209,19 @@ table:nth-of-type(2) input {
 			error : function(reject) {
 				console.log(reject);
 			}
-		})		
-	})
+		})	
+	}
 	
+	$('input.reviewinput').keypress( function(e) {
+		    if (e.which === 13) {
+		    	searchReview();
+		    } 
+	});
+	
+	$('#searchBtn').click( function(e) {
+		    searchReview();
+	}); 
+	 
 	$('#resetBtn').click( function(e) {
 		
 		$.ajax({

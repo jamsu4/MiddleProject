@@ -65,13 +65,64 @@
                                 <div class="down-content">
                                     <h4>${list.proName }</h4>
                                     <span>${list.proPrice }</span>
-                                    <ul class="stars">
-                                        <li><i class="fa fa-star"></i></li>
-                                        <li><i class="fa fa-star"></i></li>
-                                        <li><i class="fa fa-star"></i></li>
-                                        <li><i class="fa fa-star"></i></li>
-                                        <li><i class="fa fa-star"></i></li>
-                                    </ul>
+                                    <c:forEach items="${rateList }" var="rate">
+                                    	<c:if test="${rate.proId eq list.proId }">
+                                    		<c:if test="${rate.avgRate eq 5 }">
+			                                    <ul class="stars">
+			                                        <li><i class="fa fa-star text-danger"></i></li>
+			                                        <li><i class="fa fa-star text-danger"></i></li>
+			                                        <li><i class="fa fa-star text-danger"></i></li>
+			                                        <li><i class="fa fa-star text-danger"></i></li>
+			                                        <li><i class="fa fa-star text-danger"></i></li>
+			                                    </ul>
+		                                    </c:if>
+                                    		<c:if test="${rate.avgRate >= 4 && rate.avgRate < 5}">
+			                                    <ul class="stars">
+			                                        <li><i class="fa fa-star text-danger"></i></li>
+			                                        <li><i class="fa fa-star text-danger"></i></li>
+			                                        <li><i class="fa fa-star text-danger"></i></li>
+			                                        <li><i class="fa fa-star text-danger"></i></li>
+			                                        <li><i class="fa fa-star"></i></li>
+			                                    </ul>
+		                                    </c:if>
+                                    		<c:if test="${rate.avgRate >= 3 && rate.avgRate < 4 }">
+			                                    <ul class="stars">
+			                                        <li><i class="fa fa-star text-danger"></i></li>
+			                                        <li><i class="fa fa-star text-danger"></i></li>
+			                                        <li><i class="fa fa-star text-danger"></i></li>
+			                                        <li><i class="fa fa-star"></i></li>
+			                                        <li><i class="fa fa-star"></i></li>
+			                                    </ul>
+		                                    </c:if>
+                                    		<c:if test="${rate.avgRate >= 2 && rate.avgRate < 3 }">
+			                                    <ul class="stars">
+			                                        <li><i class="fa fa-star text-danger"></i></li>
+			                                        <li><i class="fa fa-star text-danger"></i></li>
+			                                        <li><i class="fa fa-star"></i></li>
+			                                        <li><i class="fa fa-star"></i></li>
+			                                        <li><i class="fa fa-star"></i></li>
+			                                    </ul>
+		                                    </c:if>
+                                    		<c:if test="${rate.avgRate >= 1 && rate.avgRate < 2 }">
+			                                    <ul class="stars">
+			                                        <li><i class="fa fa-star text-danger"></i></li>
+			                                        <li><i class="fa fa-star"></i></li>
+			                                        <li><i class="fa fa-star"></i></li>
+			                                        <li><i class="fa fa-star"></i></li>
+			                                        <li><i class="fa fa-star"></i></li>
+			                                    </ul>
+		                                    </c:if>
+                                    		<c:if test="${empty rate.avgRate}">
+			                                    <ul class="stars">
+			                                        <li><i class="fa fa-star"></i></li>
+			                                        <li><i class="fa fa-star"></i></li>
+			                                        <li><i class="fa fa-star"></i></li>
+			                                        <li><i class="fa fa-star"></i></li>
+			                                        <li><i class="fa fa-star"></i></li>
+			                                    </ul>
+		                                    </c:if>
+	                                    </c:if>
+                                    </c:forEach>
                                 </div>
                             </div>
                             </c:if>
@@ -130,13 +181,64 @@
                                 <div class="down-content">
                                     <h4>${list.proName }</h4>
                                     <span>${list.proPrice }</span>
-                                    <ul class="stars">
-                                        <li><i class="fa fa-star"></i></li>
-                                        <li><i class="fa fa-star"></i></li>
-                                        <li><i class="fa fa-star"></i></li>
-                                        <li><i class="fa fa-star"></i></li>
-                                        <li><i class="fa fa-star"></i></li>
-                                    </ul>
+                                    <c:forEach items="${rateList }" var="rate">
+                                    	<c:if test="${rate.proId eq list.proId }">
+                                    		<c:if test="${rate.avgRate eq 5 }">
+			                                    <ul class="stars">
+			                                        <li><i class="fa fa-star text-danger"></i></li>
+			                                        <li><i class="fa fa-star text-danger"></i></li>
+			                                        <li><i class="fa fa-star text-danger"></i></li>
+			                                        <li><i class="fa fa-star text-danger"></i></li>
+			                                        <li><i class="fa fa-star text-danger"></i></li>
+			                                    </ul>
+		                                    </c:if>
+                                    		<c:if test="${rate.avgRate >= 4 && rate.avgRate < 5}">
+			                                    <ul class="stars">
+			                                        <li><i class="fa fa-star text-danger"></i></li>
+			                                        <li><i class="fa fa-star text-danger"></i></li>
+			                                        <li><i class="fa fa-star text-danger"></i></li>
+			                                        <li><i class="fa fa-star text-danger"></i></li>
+			                                        <li><i class="fa fa-star"></i></li>
+			                                    </ul>
+		                                    </c:if>
+                                    		<c:if test="${rate.avgRate >= 3 && rate.avgRate < 4 }">
+			                                    <ul class="stars">
+			                                        <li><i class="fa fa-star text-danger"></i></li>
+			                                        <li><i class="fa fa-star text-danger"></i></li>
+			                                        <li><i class="fa fa-star text-danger"></i></li>
+			                                        <li><i class="fa fa-star"></i></li>
+			                                        <li><i class="fa fa-star"></i></li>
+			                                    </ul>
+		                                    </c:if>
+                                    		<c:if test="${rate.avgRate >= 2 && rate.avgRate < 3 }">
+			                                    <ul class="stars">
+			                                        <li><i class="fa fa-star text-danger"></i></li>
+			                                        <li><i class="fa fa-star text-danger"></i></li>
+			                                        <li><i class="fa fa-star"></i></li>
+			                                        <li><i class="fa fa-star"></i></li>
+			                                        <li><i class="fa fa-star"></i></li>
+			                                    </ul>
+		                                    </c:if>
+                                    		<c:if test="${rate.avgRate >= 1 && rate.avgRate < 2 }">
+			                                    <ul class="stars">
+			                                        <li><i class="fa fa-star text-danger"></i></li>
+			                                        <li><i class="fa fa-star"></i></li>
+			                                        <li><i class="fa fa-star"></i></li>
+			                                        <li><i class="fa fa-star"></i></li>
+			                                        <li><i class="fa fa-star"></i></li>
+			                                    </ul>
+		                                    </c:if>
+                                    		<c:if test="${empty rate.avgRate}">
+			                                    <ul class="stars">
+			                                        <li><i class="fa fa-star"></i></li>
+			                                        <li><i class="fa fa-star"></i></li>
+			                                        <li><i class="fa fa-star"></i></li>
+			                                        <li><i class="fa fa-star"></i></li>
+			                                        <li><i class="fa fa-star"></i></li>
+			                                    </ul>
+		                                    </c:if>
+	                                    </c:if>
+                                    </c:forEach>
                                 </div>
                             </div>
                             </c:if>
@@ -195,13 +297,66 @@
                                 <div class="down-content">
                                     <h4>${list.proName }</h4>
                                     <span>${list.proPrice }</span>
-                                    <ul class="stars">
-                                        <li><i class="fa fa-star"></i></li>
-                                        <li><i class="fa fa-star"></i></li>
-                                        <li><i class="fa fa-star"></i></li>
-                                        <li><i class="fa fa-star"></i></li>
-                                        <li><i class="fa fa-star"></i></li>
-                                    </ul>
+                                    <c:forEach items="${rateList }" var="rate">
+                                    	<c:if test="${rate.proId eq list.proId }">
+                                    		<c:choose>
+	                                    		<c:when test="${rate.avgRate eq 5 }">
+	                                    			<ul class="stars">
+				                                        <li><i class="fa fa-star text-danger"></i></li>
+				                                        <li><i class="fa fa-star text-danger"></i></li>
+				                                        <li><i class="fa fa-star text-danger"></i></li>
+				                                        <li><i class="fa fa-star text-danger"></i></li>
+				                                        <li><i class="fa fa-star text-danger"></i></li>
+				                                    </ul>
+	                                    		</c:when>
+	                                    		<c:when test="${rate.avgRate >= 4 && rate.avgRate < 5}">
+	                                    			<ul class="stars">
+				                                        <li><i class="fa fa-star text-danger"></i></li>
+				                                        <li><i class="fa fa-star text-danger"></i></li>
+				                                        <li><i class="fa fa-star text-danger"></i></li>
+				                                        <li><i class="fa fa-star text-danger"></i></li>
+				                                        <li><i class="fa fa-star"></i></li>
+				                                    </ul>
+	                                    		</c:when>
+	                                    		<c:when test="${rate.avgRate >= 3 && rate.avgRate < 4 }">
+	                                    			<ul class="stars">
+				                                        <li><i class="fa fa-star text-danger"></i></li>
+				                                        <li><i class="fa fa-star text-danger"></i></li>
+				                                        <li><i class="fa fa-star text-danger"></i></li>
+				                                        <li><i class="fa fa-star"></i></li>
+				                                        <li><i class="fa fa-star"></i></li>
+				                                    </ul>
+	                                    		</c:when>
+	                                    		<c:when test="${rate.avgRate >= 2 && rate.avgRate < 3 }">
+	                                    			<ul class="stars">
+				                                        <li><i class="fa fa-star text-danger"></i></li>
+				                                        <li><i class="fa fa-star text-danger"></i></li>
+				                                        <li><i class="fa fa-star"></i></li>
+				                                        <li><i class="fa fa-star"></i></li>
+				                                        <li><i class="fa fa-star"></i></li>
+				                                    </ul>
+	                                    		</c:when>
+	                                    		<c:when test="${rate.avgRate >= 1 && rate.avgRate < 2 }">
+	                                    			<ul class="stars">
+				                                        <li><i class="fa fa-star text-danger"></i></li>
+				                                        <li><i class="fa fa-star"></i></li>
+				                                        <li><i class="fa fa-star"></i></li>
+				                                        <li><i class="fa fa-star"></i></li>
+				                                        <li><i class="fa fa-star"></i></li>
+				                                    </ul>
+	                                    		</c:when>
+	                                    		<c:otherwise>
+	                                    			<ul class="stars">
+				                                        <li><i class="fa fa-star"></i></li>
+				                                        <li><i class="fa fa-star"></i></li>
+				                                        <li><i class="fa fa-star"></i></li>
+				                                        <li><i class="fa fa-star"></i></li>
+				                                        <li><i class="fa fa-star"></i></li>
+				                                    </ul>
+	                                    		</c:otherwise>
+	                                    	</c:choose>
+	                                    </c:if>
+                                    </c:forEach>
                                 </div>
                             </div>
                             </c:if>
@@ -260,13 +415,64 @@
                                 <div class="down-content">
                                     <h4>${list.proName }</h4>
                                     <span>${list.proPrice }</span>
-                                    <ul class="stars">
-                                        <li><i class="fa fa-star"></i></li>
-                                        <li><i class="fa fa-star"></i></li>
-                                        <li><i class="fa fa-star"></i></li>
-                                        <li><i class="fa fa-star"></i></li>
-                                        <li><i class="fa fa-star"></i></li>
-                                    </ul>
+                                    <c:forEach items="${rateList }" var="rate">
+                                    	<c:if test="${rate.proId eq list.proId }">
+                                    		<c:if test="${rate.avgRate eq 5 }">
+			                                    <ul class="stars">
+			                                        <li><i class="fa fa-star text-danger"></i></li>
+			                                        <li><i class="fa fa-star text-danger"></i></li>
+			                                        <li><i class="fa fa-star text-danger"></i></li>
+			                                        <li><i class="fa fa-star text-danger"></i></li>
+			                                        <li><i class="fa fa-star text-danger"></i></li>
+			                                    </ul>
+		                                    </c:if>
+                                    		<c:if test="${rate.avgRate >= 4 && rate.avgRate < 5}">
+			                                    <ul class="stars">
+			                                        <li><i class="fa fa-star text-danger"></i></li>
+			                                        <li><i class="fa fa-star text-danger"></i></li>
+			                                        <li><i class="fa fa-star text-danger"></i></li>
+			                                        <li><i class="fa fa-star text-danger"></i></li>
+			                                        <li><i class="fa fa-star"></i></li>
+			                                    </ul>
+		                                    </c:if>
+                                    		<c:if test="${rate.avgRate >= 3 && rate.avgRate < 4 }">
+			                                    <ul class="stars">
+			                                        <li><i class="fa fa-star text-danger"></i></li>
+			                                        <li><i class="fa fa-star text-danger"></i></li>
+			                                        <li><i class="fa fa-star text-danger"></i></li>
+			                                        <li><i class="fa fa-star"></i></li>
+			                                        <li><i class="fa fa-star"></i></li>
+			                                    </ul>
+		                                    </c:if>
+                                    		<c:if test="${rate.avgRate >= 2 && rate.avgRate < 3 }">
+			                                    <ul class="stars">
+			                                        <li><i class="fa fa-star text-danger"></i></li>
+			                                        <li><i class="fa fa-star text-danger"></i></li>
+			                                        <li><i class="fa fa-star"></i></li>
+			                                        <li><i class="fa fa-star"></i></li>
+			                                        <li><i class="fa fa-star"></i></li>
+			                                    </ul>
+		                                    </c:if>
+                                    		<c:if test="${rate.avgRate >= 1 && rate.avgRate < 2 }">
+			                                    <ul class="stars">
+			                                        <li><i class="fa fa-star text-danger"></i></li>
+			                                        <li><i class="fa fa-star"></i></li>
+			                                        <li><i class="fa fa-star"></i></li>
+			                                        <li><i class="fa fa-star"></i></li>
+			                                        <li><i class="fa fa-star"></i></li>
+			                                    </ul>
+		                                    </c:if>
+                                    		<c:if test="${empty rate.avgRate}">
+			                                    <ul class="stars">
+			                                        <li><i class="fa fa-star"></i></li>
+			                                        <li><i class="fa fa-star"></i></li>
+			                                        <li><i class="fa fa-star"></i></li>
+			                                        <li><i class="fa fa-star"></i></li>
+			                                        <li><i class="fa fa-star"></i></li>
+			                                    </ul>
+		                                    </c:if>
+	                                    </c:if>
+                                    </c:forEach>
                                 </div>
                             </div>
                             </c:if>
@@ -325,13 +531,64 @@
                                 <div class="down-content">
                                     <h4>${list.proName }</h4>
                                     <span>${list.proPrice }</span>
-                                    <ul class="stars">
-                                        <li><i class="fa fa-star"></i></li>
-                                        <li><i class="fa fa-star"></i></li>
-                                        <li><i class="fa fa-star"></i></li>
-                                        <li><i class="fa fa-star"></i></li>
-                                        <li><i class="fa fa-star"></i></li>
-                                    </ul>
+                                    <c:forEach items="${rateList }" var="rate">
+                                    	<c:if test="${rate.proId eq list.proId }">
+                                    		<c:if test="${rate.avgRate eq 5 }">
+			                                    <ul class="stars">
+			                                        <li><i class="fa fa-star text-danger"></i></li>
+			                                        <li><i class="fa fa-star text-danger"></i></li>
+			                                        <li><i class="fa fa-star text-danger"></i></li>
+			                                        <li><i class="fa fa-star text-danger"></i></li>
+			                                        <li><i class="fa fa-star text-danger"></i></li>
+			                                    </ul>
+		                                    </c:if>
+                                    		<c:if test="${rate.avgRate >= 4 && rate.avgRate < 5}">
+			                                    <ul class="stars">
+			                                        <li><i class="fa fa-star text-danger"></i></li>
+			                                        <li><i class="fa fa-star text-danger"></i></li>
+			                                        <li><i class="fa fa-star text-danger"></i></li>
+			                                        <li><i class="fa fa-star text-danger"></i></li>
+			                                        <li><i class="fa fa-star"></i></li>
+			                                    </ul>
+		                                    </c:if>
+                                    		<c:if test="${rate.avgRate >= 3 && rate.avgRate < 4 }">
+			                                    <ul class="stars">
+			                                        <li><i class="fa fa-star text-danger"></i></li>
+			                                        <li><i class="fa fa-star text-danger"></i></li>
+			                                        <li><i class="fa fa-star text-danger"></i></li>
+			                                        <li><i class="fa fa-star"></i></li>
+			                                        <li><i class="fa fa-star"></i></li>
+			                                    </ul>
+		                                    </c:if>
+                                    		<c:if test="${rate.avgRate >= 2 && rate.avgRate < 3 }">
+			                                    <ul class="stars">
+			                                        <li><i class="fa fa-star text-danger"></i></li>
+			                                        <li><i class="fa fa-star text-danger"></i></li>
+			                                        <li><i class="fa fa-star"></i></li>
+			                                        <li><i class="fa fa-star"></i></li>
+			                                        <li><i class="fa fa-star"></i></li>
+			                                    </ul>
+		                                    </c:if>
+                                    		<c:if test="${rate.avgRate >= 1 && rate.avgRate < 2 }">
+			                                    <ul class="stars">
+			                                        <li><i class="fa fa-star text-danger"></i></li>
+			                                        <li><i class="fa fa-star"></i></li>
+			                                        <li><i class="fa fa-star"></i></li>
+			                                        <li><i class="fa fa-star"></i></li>
+			                                        <li><i class="fa fa-star"></i></li>
+			                                    </ul>
+		                                    </c:if>
+                                    		<c:if test="${empty rate.avgRate}">
+			                                    <ul class="stars">
+			                                        <li><i class="fa fa-star"></i></li>
+			                                        <li><i class="fa fa-star"></i></li>
+			                                        <li><i class="fa fa-star"></i></li>
+			                                        <li><i class="fa fa-star"></i></li>
+			                                        <li><i class="fa fa-star"></i></li>
+			                                    </ul>
+		                                    </c:if>
+	                                    </c:if>
+                                    </c:forEach>
                                 </div>
                             </div>
                             </c:if>
@@ -390,13 +647,64 @@
                                 <div class="down-content">
                                     <h4>${list.proName }</h4>
                                     <span>${list.proPrice }</span>
-                                    <ul class="stars">
-                                        <li><i class="fa fa-star"></i></li>
-                                        <li><i class="fa fa-star"></i></li>
-                                        <li><i class="fa fa-star"></i></li>
-                                        <li><i class="fa fa-star"></i></li>
-                                        <li><i class="fa fa-star"></i></li>
-                                    </ul>
+                                    <c:forEach items="${rateList }" var="rate">
+                                    	<c:if test="${rate.proId eq list.proId }">
+                                    		<c:if test="${rate.avgRate eq 5 }">
+			                                    <ul class="stars">
+			                                        <li><i class="fa fa-star text-danger"></i></li>
+			                                        <li><i class="fa fa-star text-danger"></i></li>
+			                                        <li><i class="fa fa-star text-danger"></i></li>
+			                                        <li><i class="fa fa-star text-danger"></i></li>
+			                                        <li><i class="fa fa-star text-danger"></i></li>
+			                                    </ul>
+		                                    </c:if>
+                                    		<c:if test="${rate.avgRate >= 4 && rate.avgRate < 5}">
+			                                    <ul class="stars">
+			                                        <li><i class="fa fa-star text-danger"></i></li>
+			                                        <li><i class="fa fa-star text-danger"></i></li>
+			                                        <li><i class="fa fa-star text-danger"></i></li>
+			                                        <li><i class="fa fa-star text-danger"></i></li>
+			                                        <li><i class="fa fa-star"></i></li>
+			                                    </ul>
+		                                    </c:if>
+                                    		<c:if test="${rate.avgRate >= 3 && rate.avgRate < 4 }">
+			                                    <ul class="stars">
+			                                        <li><i class="fa fa-star text-danger"></i></li>
+			                                        <li><i class="fa fa-star text-danger"></i></li>
+			                                        <li><i class="fa fa-star text-danger"></i></li>
+			                                        <li><i class="fa fa-star"></i></li>
+			                                        <li><i class="fa fa-star"></i></li>
+			                                    </ul>
+		                                    </c:if>
+                                    		<c:if test="${rate.avgRate >= 2 && rate.avgRate < 3 }">
+			                                    <ul class="stars">
+			                                        <li><i class="fa fa-star text-danger"></i></li>
+			                                        <li><i class="fa fa-star text-danger"></i></li>
+			                                        <li><i class="fa fa-star"></i></li>
+			                                        <li><i class="fa fa-star"></i></li>
+			                                        <li><i class="fa fa-star"></i></li>
+			                                    </ul>
+		                                    </c:if>
+                                    		<c:if test="${rate.avgRate >= 1 && rate.avgRate < 2 }">
+			                                    <ul class="stars">
+			                                        <li><i class="fa fa-star text-danger"></i></li>
+			                                        <li><i class="fa fa-star"></i></li>
+			                                        <li><i class="fa fa-star"></i></li>
+			                                        <li><i class="fa fa-star"></i></li>
+			                                        <li><i class="fa fa-star"></i></li>
+			                                    </ul>
+		                                    </c:if>
+                                    		<c:if test="${empty rate.avgRate}">
+			                                    <ul class="stars">
+			                                        <li><i class="fa fa-star"></i></li>
+			                                        <li><i class="fa fa-star"></i></li>
+			                                        <li><i class="fa fa-star"></i></li>
+			                                        <li><i class="fa fa-star"></i></li>
+			                                        <li><i class="fa fa-star"></i></li>
+			                                    </ul>
+		                                    </c:if>
+	                                    </c:if>
+                                    </c:forEach>
                                 </div>
                             </div>
                             </c:if>

@@ -1,6 +1,7 @@
 package com.yedam.common;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -9,6 +10,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
 
 import com.yedam.mypage.service.ZzimService;
 import com.yedam.mypage.service.ZzimServiceImpl;
@@ -23,7 +25,8 @@ public class MainControl implements Command {
 		ProductService service = new ProductServiceImpl();
 		req.setAttribute("list", service.productList());
 		
-		System.out.println(service.productList());
+		System.out.println(service.rateList());
+		req.setAttribute("rateList", service.rateList());
 		
 		HttpSession session = req.getSession();
 		String memId = (String)session.getAttribute("logId");
@@ -31,7 +34,6 @@ public class MainControl implements Command {
 		if(memId != null) {
 			ZzimService zzimService = new ZzimServiceImpl();
 			req.setAttribute("zzimList", zzimService.zzimList(memId));
-			System.out.println(zzimService.zzimList(memId));
 		}
 		
 		

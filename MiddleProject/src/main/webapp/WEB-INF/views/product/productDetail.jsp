@@ -83,7 +83,7 @@
 						</div>
 					</div>
 					<div class="total">
-						<h4>Total: ${proDetail.proPrice }</h4>
+						<h4>Total: ${proDetail.proPrice }</h4><h4 style="margin-left:5px">원</h4>
 						<div class="main-border-button">
 							<c:choose>
 								<c:when test="${zzimUser.proId eq proDetail.proId}">
@@ -182,7 +182,7 @@
 													<div class="single-form form-default">
 														<label>Comment</label>
 														<div class="form-input">
-															<textarea placeholder="Your review here">${review.revContent }</textarea>
+															<textarea readonly>${review.revContent }</textarea>
 															<i class="mdi mdi-message-text-outline"></i>
 														</div>
 													</div>
