@@ -337,7 +337,11 @@
 						success: function (result) {
 
 							if (result.retCode == "Success") {
-								location.href = 'main.do';
+								if(result.manager == "admin") {
+									location.href = 'adminMain.do';	
+								} else {
+									location.href = 'main.do';
+								}
 							} else if (result.retCode == "Fail") {
 								$("#errorMsg").text("아이디와 비밀번호를 정확히 입력해 주세요");
 								$("#errorMsg").css("color", "red");
