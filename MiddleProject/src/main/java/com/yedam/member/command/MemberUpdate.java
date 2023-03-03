@@ -22,12 +22,15 @@ public class MemberUpdate implements Command {
 		
 		// 수정하고 싶은 회원을 더블클릭하면 인풋으로 바뀌고 그 값들을 읽어서 수정버튼을 누르면 입력된 값을 서버에 넣으면서 다시 원래 모습으로 돌아가야 됨
 		// 여기 getParameter 랑 manage.js 의 updateMemberFnc 함수 key 값이랑 통일
-		String id = req.getParameter("id");
-		String pass = req.getParameter("password");
-		String name = req.getParameter("name");
-		String phone = req.getParameter("phone");
-		String email = req.getParameter("email");
-		String user = req.getParameter("user");	// 숨겨진 값(user) 으로 넘어옴.  회원가입이니까 무조건 user
+		String id = req.getParameter("memId");
+		String pass = req.getParameter("memPw");
+		String name = req.getParameter("memName");
+		String phone = req.getParameter("memPhone");
+		String email = req.getParameter("memEmail");
+		String user = req.getParameter("memUser");	// 숨겨진 값(user) 으로 넘어옴.  회원가입이니까 무조건 user
+		
+		System.out.println("컨트롤러에서 값 찍히는지 확인 => " + id + ", " + pass + ", " + name + ", " + phone + ", " + email + ", " + user);
+		
 		
 		MemberService service = new MemberServiceMybatis();
 		MemberVO member = new MemberVO();
@@ -48,6 +51,8 @@ public class MemberUpdate implements Command {
 		Map<String, Object> resultMap = new HashMap<>();
 		resultMap.put("member", member);
 		Gson gson = new GsonBuilder().create();
+		
+		System.out.println("몇 개? " + service.modifyMember(member));
 
 		//System.out.println(mid);
 		if(service.modifyMember(member) > 0) {
