@@ -152,4 +152,23 @@
 			</if>
 		</where>
 	</select>
+
+	<select id="searchReviewDateList" resultType="ProductVO">
+		SELECT *
+		FROM review
+		<where>
+			<if test="date == '오늘'">
+				to_char(sysdate-1,'yyyy-mm-dd') = to_char(rev_date, 'yyyy-mm-dd')
+			</if>
+			<if test="date == '일주일'">
+				to_char(sysdate-7,'yyyy-mm-dd') <![CDATA[<=]]> to_char(rev_date, 'yyyy-mm-dd')
+			</if>
+			<if test="date == '1개월'">
+				to_char(add_months(sysdate,-1),'yyyy-mm-dd') <![CDATA[<=]]> to_char(rev_date, 'yyyy-mm-dd')
+			</if>
+			<if test="date == '6개월'">
+				to_char(add_months(sysdate,-6),'yyyy-mm-dd') <![CDATA[<=]]> to_char(rev_date, 'yyyy-mm-dd')
+			</if>
+		</where>
+	</select>
 </mapper>

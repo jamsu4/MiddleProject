@@ -54,6 +54,7 @@ import com.yedam.product.command.RemoveProductManager;
 import com.yedam.product.command.RemoveReviewManage;
 import com.yedam.product.command.ReviewManage;
 import com.yedam.product.command.ReviewManageList;
+import com.yedam.product.command.SearchReviewDate;
 import com.yedam.product.command.SearchReviewManage;
 import com.yedam.product.command.addZzimControl;
 import com.yedam.product.command.cartControl;
@@ -117,7 +118,7 @@ public class FrontController extends HttpServlet {
 		map.put("/removeReviewManage.do", new RemoveReviewManage()); // 관리자 전용 리뷰 삭제
 		map.put("/modifyReviewManage.do", new ModifyReviewManage()); // 관리자 전용 리뷰 수정
 		map.put("/searchReviewManage.do", new SearchReviewManage()); // 관리자 리뷰 검색
-		
+		map.put("/searchReviewDate.do", new SearchReviewDate()); // 리뷰 날짜 검색)
 		//종민
 		map.put("/loginForm.do", new LoginForm());
 		map.put("/login.do", new Login());

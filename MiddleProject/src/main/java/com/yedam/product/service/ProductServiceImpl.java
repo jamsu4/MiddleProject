@@ -95,6 +95,11 @@ public class ProductServiceImpl implements ProductService {
 		return mapper.searchReviewList(memId, proId);
 	}
 
+	@Override
+	public List<ProductVO> searchReviewDateList(String date) {
+		return mapper.searchReviewDateList(date);
+	}
+
 	
 
 	

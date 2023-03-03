@@ -83,24 +83,26 @@ table:nth-of-type(2) input {
 								aria-label="Basic radio toggle button group">
 								<input type="radio" class="btn-check" name="btnradio"
 									id="btnradio1" autocomplete="off" checked> <label
-									class="btn btn-outline-primary" for="btnradio1">오늘</label> <input
+									class="btn btn-outline-primary" for="btnradio1" id="btnDate1">오늘</label> <input
 									type="radio" class="btn-check" name="btnradio" id="btnradio2"
 									autocomplete="off"> <label
-									class="btn btn-outline-primary" for="btnradio2">일주일</label> <input
+									class="btn btn-outline-primary" for="btnradio2" id="btnDate2">일주일</label> <input
 									type="radio" class="btn-check" name="btnradio" id="btnradio3"
 									autocomplete="off"> <label
-									class="btn btn-outline-primary" for="btnradio3">1개월</label> <input
+									class="btn btn-outline-primary" for="btnradio3" id="btnDate3">1개월</label> <input
 									type="radio" class="btn-check" name="btnradio" id="btnradio4"
 									autocomplete="off"> <label
-									class="btn btn-outline-primary" for="btnradio3">6개월</label>
+									class="btn btn-outline-primary" for="btnradio3" id="btnDate4">6개월</label>
 							</div>
 
 						</td>
 
 					</tr>
 				</table>
-				<button type="button" class="btn btn-primary btn-lg" id="searchBtn">검색</button>
-				<button type="button" class="btn btn-secondary btn-lg">초기화</button>
+				<div style="text-align: center; margin-bottom:20px">
+					<button type="button" class="btn btn-primary btn-lg" id="searchBtn">검색</button>
+					<button type="button" class="btn btn-secondary btn-lg" id="resetBtn">초기화</button>
+				</div>
 			</div>
 		</div>
 		<div>
@@ -148,7 +150,7 @@ table:nth-of-type(2) input {
         <textarea id="rReply" rows="5" cols="60"></textarea>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="closeBtn">닫기</button>
         <button type="button" class="btn btn-primary" onclick='updateProductFnc(event)'>등록</button>
       </div>
     </div>
@@ -160,7 +162,6 @@ table:nth-of-type(2) input {
 	$.ajax({
 		url : "reviewManageList.do",
 		success : function(result) {
-			console.log(result);
 			$(result).each(function(idx, item) {
 				$("#reviewList").append(makeRow(item));
 			});
@@ -174,6 +175,11 @@ table:nth-of-type(2) input {
 		},
 	});
 	
+	$('#closeBtn').click( function() {
+		console.log('클릭')
+		location.reload();
+	})
+	
 	$('#searchBtn').click( function(e) {
 		let proId = $('#proIdBtn').val();
 		let memId = $('#memIdBtn').val();
@@ -182,7 +188,109 @@ table:nth-of-type(2) input {
 			url : "searchReviewManage.do",
 			data : {proId : proId, memId : memId},
 			success : function(result) {
-				console.log(result)
+				$('#proIdBtn').val("");
+				$('#memIdBtn').val("");
+				$("#reviewList").find("tr").remove();
+				$(result).each(function(idx, item) {
+					$("#reviewList").append(makeRow(item));
+				});
+				$(result).each(function(idx, item) {
+					$("#reviewList").append(makeRowUpd(item));
+				});
+			},
+			error : function(reject) {
+				console.log(reject);
+			}
+		})		
+	})
+	
+	$('#resetBtn').click( function(e) {
+		
+		$.ajax({
+			url : "searchReviewManage.do",
+			data : {proId : "", memId : ""},
+			success : function(result) {
+				$("#reviewList").find("tr").remove();
+				$(result).each(function(idx, item) {
+					$("#reviewList").append(makeRow(item));
+				});
+				$(result).each(function(idx, item) {
+					$("#reviewList").append(makeRowUpd(item));
+				});
+			},
+			error : function(reject) {
+				console.log(reject);
+			}
+		})		
+	})
+	
+	$('#btnDate1').click( function() {
+		let date = '오늘';
+		console.log("오늘")
+		$.ajax({
+			url : "searchReviewDate.do",
+			data : {date : date},
+			success : function(result) {
+				$("#reviewList").find("tr").remove();
+				$(result).each(function(idx, item) {
+					$("#reviewList").append(makeRow(item));
+				});
+				$(result).each(function(idx, item) {
+					$("#reviewList").append(makeRowUpd(item));
+				});
+			},
+			error : function(reject) {
+				console.log(reject);
+			}
+		})		
+	})
+	$('#btnDate2').click( function() {
+		console.log("일주일")
+		let date = '일주일';
+		$.ajax({
+			url : "searchReviewDate.do",
+			data : {date : date},
+			success : function(result) {
+				$("#reviewList").find("tr").remove();
+				$(result).each(function(idx, item) {
+					$("#reviewList").append(makeRow(item));
+				});
+				$(result).each(function(idx, item) {
+					$("#reviewList").append(makeRowUpd(item));
+				});
+			},
+			error : function(reject) {
+				console.log(reject);
+			}
+		})		
+	})
+	$('#btnDate3').click( function() {
+		console.log("1개월")
+		let date = '1개월';
+		$.ajax({
+			url : "searchReviewDate.do",
+			data : {date : date},
+			success : function(result) {
+				$("#reviewList").find("tr").remove();
+				$(result).each(function(idx, item) {
+					$("#reviewList").append(makeRow(item));
+				});
+				$(result).each(function(idx, item) {
+					$("#reviewList").append(makeRowUpd(item));
+				});
+			},
+			error : function(reject) {
+				console.log(reject);
+			}
+		})		
+	})
+	$('#btnDate4').click( function() {
+		console.log("6개월")
+		let date = '6개월';
+		$.ajax({
+			url : "searchReviewDate.do",
+			data : {date : date},
+			success : function(result) {
 				$("#reviewList").find("tr").remove();
 				$(result).each(function(idx, item) {
 					$("#reviewList").append(makeRow(item));
@@ -219,7 +327,7 @@ table:nth-of-type(2) input {
 	      $("<td />").append(
 	        $("<button />")
 	          .addClass("btn btn-success updbtn")
-	          .text("수정")
+	          .text("댓글작성")
 	          .attr("revIdUpd", review.revId)
 	          .attr("data-bs-toggle", "modal")
 	          .attr("data-bs-target", "#exampleModal")
@@ -240,7 +348,6 @@ table:nth-of-type(2) input {
 	    }
 
 	    let revId = $(e.target).attr("revIdDel");
-	    console.log(revId);
 
 	    $.ajax({
 	      url: "removeReviewManage.do",
@@ -327,7 +434,6 @@ table:nth-of-type(2) input {
 		let tr = $("<tr />")
 		
 		$(".updbtn").on("click", function (e) {
-			console.log(e.target);
 			let rid = $(this).closest("tr").children().eq(0).text();
 			let pid = $(this).closest("tr").children().eq(1).text();
 			let mid = $(this).closest("tr").children().eq(2).text();
@@ -359,7 +465,7 @@ table:nth-of-type(2) input {
 			        $("<td />").text(rReply),
 			        $("<td />").append(
 			          $(
-			            "<button onclick='updateProductFnc(event)' class='btn btn-success updbtn'>수정 중</button>"
+			            "<button onclick='updateProductFnc(event)' class='btn btn-success updbtn'>작성 중</button>"
 			          )
 			        )
 			      );

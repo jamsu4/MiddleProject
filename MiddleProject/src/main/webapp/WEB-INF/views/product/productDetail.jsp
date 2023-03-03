@@ -190,37 +190,31 @@
 											</div>
 										</div>
 									</div>
-									<div class="reviews-btn flex-wrap">
-										<div class="reviews-btn-left">
-											<div class="dropdown-style">
-												<button id="commentBtn" class="main-btn primary-btn" type="button">댓글</button>
-											</div>
-										</div>
-									</div>
-									<div class="reviews-comment">
-										<ul class="comment-items">
-											<li>
-												<div class="single-review-comment">
-													<div class="comment-user-info">
-														<div class="comment-content">
-															
-															<h6 class="name" style="color:red;font-weight: bolder;">
-															<img src="bootstrap1/assets/images/icon-svg/person-square.svg" alt="" style="width:30px; margin-right:10px;">관리자</h6>
-															<p>
-																<span class=""></span>
-															</p>
+									<c:if test="${!empty review.revReply }">
+										<div class="reviews-comment">
+											<ul class="comment-items">
+												<li>
+													<div class="single-review-comment">
+														<div class="comment-user-info">
+															<div class="comment-content">
+																<h6 class="name" style="color:red;font-weight: bolder;">
+																<img src="bootstrap1/assets/images/icon-svg/person-square.svg" alt="" style="width:30px; margin-right:10px;">관리자</h6>
+																<p>
+																	<span class=""></span>
+																</p>
+															</div>
+														</div>
+														<div class="comment-user-text">
+															<p>${review.revReply }</p>
+														</div>
+														<div id="list">
+														
 														</div>
 													</div>
-													<div class="comment-user-text">
-														<p>${review.revReply }</p>
-													</div>
-													<div id="list">
-													
-													</div>
-												</div>
-											</li>
-										</ul>
-									</div>
+												</li>
+											</ul>
+										</div>
+									</c:if>
 								</div>
 							</div>
 						</div>

@@ -30,5 +30,5 @@ public interface ProductMapper {
 	public int deleteReview(int revId); // 리뷰 삭제
 	public int updateReview(ProductVO review); // 리뷰 수정
 	public List<ProductVO> searchReviewList(@Param("memId") String memId, @Param("proId") String proId); // 리뷰 검색
-	
+	public List<ProductVO> searchReviewDateList(String date); // 리뷰 날짜 검색
 }
