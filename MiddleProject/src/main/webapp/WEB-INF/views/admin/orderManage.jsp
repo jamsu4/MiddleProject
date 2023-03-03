@@ -7,6 +7,8 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js">
 	
 </script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script> -->
 <style>
 table:nth-of-type(2) input {
 	width: 100px;
@@ -70,21 +72,23 @@ table:nth-of-type(2) input {
 		</div>
 
 		<div id="line" class="card mb-4"></div>
-		<form>
+		<form action="searchOrder.do" method="post">
 			<div class="card mb-4">
 				<table id="datatablesSimple1" class="table table-border">
 					<tr>
-						<th style="padding-top: 15px;">통합검색</th>
+						<th style="padding-top: 15px;">주문번호</th>
 						<td colspan=5>
 							<div class="input-group mb-3">
-								<button class="btn btn-outline-secondary dropdown-toggle"
-									type="button" data-bs-toggle="dropdown" aria-expanded="false">검색조건</button>
-								<ul class="dropdown-menu">
-									<li><a class="dropdown-item" href="#">주문번호</a></li>
-									<li><a class="dropdown-item" href="#">주문상품</a></li>
-									<li><a class="dropdown-item" href="#">주문자</a></li>
-								</ul>
-								<input type="text" class="form-control"
+								<input type="text" class="form-control" name="ordId"
+									aria-label="Text input with dropdown button">
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<th style="padding-top: 15px;">주문자</th>
+						<td colspan=5>
+							<div class="input-group mb-3">
+								<input type="text" class="form-control" name="memId"
 									aria-label="Text input with dropdown button">
 							</div>
 						</td>
@@ -92,77 +96,75 @@ table:nth-of-type(2) input {
 					<tr>
 						<th>주문상태</th>
 						<td colspan=5>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="checkbox"
-									id="inlineCheckbox1" value="option1"> <label
-									class="form-check-label" for="inlineCheckbox1">결제완료</label>
-							</div>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="checkbox"
-									id="inlineCheckbox2" value="option2"> <label
-									class="form-check-label" for="inlineCheckbox2">배송준비중</label>
-							</div>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="checkbox"
-									id="inlineCheckbox3" value="option2"> <label
-									class="form-check-label" for="inlineCheckbox2">배송중</label>
-							</div>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="checkbox"
-									id="inlineCheckbox4" value="option2"> <label
-									class="form-check-label" for="inlineCheckbox2">배송완료</label>
-							</div>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="checkbox"
-									id="inlineCheckbox5" value="option2"> <label
-									class="form-check-label" for="inlineCheckbox2">주문취소</label>
-							</div>
-						</td>
-
-					</tr>
-					<tr>
-						<th>주문일자</th>
-						<td colspan=5>
 							<div class="btn-group" role="group"
 								aria-label="Basic radio toggle button group">
-									<input type="radio" class="btn-check" name="btnradio"
+									<input type="radio" class="btn-check" name="ordStatus" value="결제완료"
 									id="btnradio1" autocomplete="off" checked> <label
-									class="btn btn-outline-primary" for="btnradio1">오늘</label>
+									class="btn btn-outline-primary" for="btnradio1">결제완료</label>
 									<div class="space"></div> 
-									<input
-									type="radio" class="btn-check" name="btnradio" id="btnradio2"
+									<input id="btnradio2"
+									type="radio" class="btn-check" name="ordStatus" value="배송준비중"
 									autocomplete="off"> <label
-									class="btn btn-outline-primary" for="btnradio2">일주일</label> 
+									class="btn btn-outline-primary" for="btnradio2">배송준비중</label> 
 									<div class="space"></div> 
-									<input
-									type="radio" class="btn-check" name="btnradio" id="btnradio3"
+									<input id="btnradio3"
+									type="radio" class="btn-check" name="ordStatus" value="배송중"
 									autocomplete="off"> <label
-									class="btn btn-outline-primary" for="btnradio3">1개월</label> 
+									class="btn btn-outline-primary" for="btnradio3">배송중</label> 
 									<div class="space"></div> 
-									<input
-									type="radio" class="btn-check" name="btnradio" id="btnradio4"
+									<input id="btnradio4"
+									type="radio" class="btn-check" name="ordStatus" value="배송완료"
 									autocomplete="off"> <label
-									class="btn btn-outline-primary" for="btnradio3">6개월</label>
+									class="btn btn-outline-primary" for="btnradio4">배송완료</label>
+									<div class="space"></div> 
+									<input id="btnradio5"
+									type="radio" class="btn-check" name="ordStatus" value="주문취소"
+									autocomplete="off"> <label
+									class="btn btn-outline-primary" for="btnradio5">주문취소</label>
 							</div>
-
 						</td>
-
 					</tr>
+<!-- 					<tr> -->
+<!-- 						<th>주문일자</th> -->
+<!-- 						<td colspan=5> -->
+<!-- 							<div class="btn-group" role="group" -->
+<!-- 								aria-label="Basic radio toggle button group"> -->
+<!-- 									<input type="radio" class="btn-check" name="findPeriod" -->
+<!-- 									id="btnradio1" autocomplete="off"> <label -->
+<!-- 									class="btn btn-outline-primary" for="btnradio1">오늘</label> -->
+<!-- 									<div class="space"></div>  -->
+<!-- 									<input -->
+<!-- 									type="radio" class="btn-check" name="findPeriod" id="btnradio2" -->
+<!-- 									autocomplete="off"> <label -->
+<!-- 									class="btn btn-outline-primary" for="btnradio2">일주일</label>  -->
+<!-- 									<div class="space"></div>  -->
+<!-- 									<input -->
+<!-- 									type="radio" class="btn-check" name="findPeriod" id="btnradio3" -->
+<!-- 									autocomplete="off"> <label -->
+<!-- 									class="btn btn-outline-primary" for="btnradio3">1개월</label>  -->
+<!-- 									<div class="space"></div>  -->
+<!-- 									<input -->
+<!-- 									type="radio" class="btn-check" name="findPeriod" id="btnradio4" -->
+<!-- 									autocomplete="off"> <label -->
+<!-- 									class="btn btn-outline-primary" for="btnradio3">6개월</label> -->
+<!-- 							</div> -->
+<!-- 						</td> -->
+<!-- 					</tr> -->
 				</table>
-				<button type="button" class="btn btn-primary btn-lg">검색</button>
-				<button type="button" class="btn btn-secondary btn-lg">초기화</button>
+				<button type="submit" class="btn btn-primary btn-lg">검색</button>
+				<button type="reset" class="btn btn-secondary btn-lg">초기화</button>
 			</div>
 		</form>
-		<div>
-			<form action="#" method="POST" id="search-btn-group">
-				<label for="search-input"></label> <input type="text"
-					id="search-input" name="search-input" class="search-input"
-					placeholder="아이디를 입력하세요">
-				<button type="submit" class="search-btn">
-					<i class="fa fa-search"></i>
-				</button>
-			</form>
-		</div>
+<!-- 		<div> -->
+<!-- 			<form action="#" method="POST" id="search-btn-group"> -->
+<!-- 				<label for="search-input"></label> <input type="text" -->
+<!-- 					id="search-input" name="search-input" class="search-input" -->
+<!-- 					placeholder="아이디를 입력하세요"> -->
+<!-- 				<button type="submit" class="search-btn"> -->
+<!-- 					<i class="fa fa-search"></i> -->
+<!-- 				</button> -->
+<!-- 			</form> -->
+<!-- 		</div> -->
 		<div id="line" class="card mb-4"></div>
 		<div class="card mb-4">
 			<div class="card-header">
@@ -187,20 +189,16 @@ table:nth-of-type(2) input {
 							<tr>
 								<td>${list.payDate }</td>
 								<td>${list.ordId }</td>
-								<td>${list.proName }</td>
-								<td>${list.memName }</td>
+								<td title="product ID : ${list.proId }">${list.proName }</td>
+								<td title="member ID : ${list.memId }">${list.memName }</td>
 								<td>${list.ordTotalprice }</td>
-								<td><div class="dropdown">
+								<td><select>
+										<option>
+									</select>
 										<button class="btn dropdown-toggle"
 											type="button" data-bs-toggle="dropdown" aria-expanded="false">
 											${list.ordStatus }</button>
-										<ul class="dropdown-menu">
-											<li><a class="dropdown-item" href="#">배송준비중</a></li>
-											<li><a class="dropdown-item" href="#">배송중</a></li>
-											<li><a class="dropdown-item" href="#">배송완료</a></li>
-											<li><hr class="dropdown-divider"></li>
-											<li><a class="dropdown-item" href="#">주문취소</a></li>
-										</ul>
+										
 									</div></td>
 
 							</tr>
@@ -211,3 +209,9 @@ table:nth-of-type(2) input {
 		</div>
 	</div>
 </main>
+
+<script>
+
+
+
+</script>

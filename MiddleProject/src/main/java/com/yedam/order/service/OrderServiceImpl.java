@@ -34,7 +34,12 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	@Override
-	public int addOrderProduct(List<OrderVO> opList) {
+	public int addOrderProduct(OrderVO opList) {
 		return mapper.insertOrderProduct(opList);
+	}
+
+	@Override
+	public List<OrderVO> searchOrder(OrderVO ovo) {
+		return mapper.selectSearchOrder(ovo);
 	}
 }

@@ -20,29 +20,21 @@ public class addOrderProductControl implements Command {
 		String[] ordQuants = req.getParameterValues("ordQuant");
 		String[] proIds = req.getParameterValues("proId");
 		String[] ordProSumprices = req.getParameterValues("ordProSumprice");
-		System.out.println(ordQuants);
-		System.out.println(proIds);
-		System.out.println(ordProSumprices);
-		
-		List<OrderVO> opList = new ArrayList<>();
+		String json="";
 		
 		for(int i = 0 ; i < ordQuants.length ; i++) {
 			OrderVO ovo = new OrderVO();
 			ovo.setOrdQuant(Integer.parseInt(ordQuants[i])); 
 			ovo.setProId(Integer.parseInt(proIds[i])); 
 			ovo.setOrdProSumprice(Integer.parseInt(ordProSumprices[i])); 
-			opList.add(ovo); 
-		}
-		System.out.println(opList);
-		OrderService service = new OrderServiceImpl();
-		System.out.println(service.addOrderProduct(opList));
-		String json="";
 			
-		if(service.addOrderProduct(opList)>0) {
-			json = "{\"retCode\": \"Success\"}";
-		} else {
-			json = "{\"retCode\": \"Fail\"}";
-			
+			OrderService service = new OrderServiceImpl();
+			if(service.addOrderProduct(ovo)>0) {
+				json = "{\"retCode\": \"Success\"}";
+			} else {
+				json = "{\"retCode\": \"Fail\"}";
+				
+			}
 		}
 		
 		return json + ".json";

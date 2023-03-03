@@ -27,4 +27,6 @@ public class OrderVO {
 	
 	private String memName;
 	private String proName;
+	//검색조건
+	
 }

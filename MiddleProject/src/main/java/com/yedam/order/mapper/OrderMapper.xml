@@ -33,20 +33,37 @@
 						 WHERE ord_id = (SELECT MAX(ord_id) FROM orders)),
 						 sysdate, #{payTotalprice}, #{payCouponprice}, #{payCode}, #{coupId})
 	</insert>
-		<insert id="insertOrderProduct" parameterType="java.util.List">
+		<insert id="insertOrderProduct" parameterType="OrderVO">
 	    INSERT INTO orderproduct 
 	    	(ord_quant, 
 	    	 pro_id, 
 	    	 ord_id , 
 	    	 ord_pro_sumprice)
 	    VALUES
-		<foreach collection="list" item="item" separator=",">
 		    (
-		        ${item.ordQuant},
-		        ${item.proId},
+		        #{ordQuant},
+		        #{proId},
 		        (SELECT MAX(ord_id) FROM orders),
-		        ${item.ordProSumprice}
+		        #{ordProSumprice}
 		    )
-		</foreach>
 	</insert>
+	<select id="selectSearchOrder" resultType="OrderVO">
+		SELECT o.* , op.* , pay.* ,pro.pro_name, m.mem_name
+		FROM member m ,orders o, orderproduct op,product pro ,payment pay
+		WHERE m.mem_id = o.mem_id 
+		  AND o.ord_id = op.ord_id
+		  AND op.pro_id = pro.pro_id
+		  AND o.ord_id = pay.ord_id
+		  <if test="ordId != 0">
+		  AND o.ord_id = #{ordId}
+		  </if>
+		  <if test="memId != null">
+		  AND o.mem_id = #{memId}
+		  </if>
+		  <if test="ordStatus != null">
+		  AND o.ord_status = #{ordStatus}
+		  </if>
+		ORDER BY o.ord_id
+	
+	</select>
 </mapper>

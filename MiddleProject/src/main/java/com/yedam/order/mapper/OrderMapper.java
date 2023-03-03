@@ -14,5 +14,7 @@ public interface OrderMapper {
 
 	public int insertPayment(OrderVO ovo); //지불정보 추가
 
-	public int insertOrderProduct(List<OrderVO> opList); //주문 상품 정보
+	public int insertOrderProduct(OrderVO opList); //주문 상품 정보
+
+	public List<OrderVO> selectSearchOrder(OrderVO ovo); //주문정보 검색
 }

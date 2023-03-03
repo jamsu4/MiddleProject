@@ -14,6 +14,8 @@ public interface OrderService {
 
 	public int addPayment(OrderVO ovo); //payment정보 추가
 
-	public int addOrderProduct(List<OrderVO> opList); //구매 상품 정보
+	public int addOrderProduct(OrderVO opList); //구매 상품 정보
+
+	public List<OrderVO> searchOrder(OrderVO ovo);
 
 }
