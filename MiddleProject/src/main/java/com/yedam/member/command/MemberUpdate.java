@@ -29,7 +29,7 @@ public class MemberUpdate implements Command {
 		String email = req.getParameter("memEmail");
 		String user = req.getParameter("memUser");	// 숨겨진 값(user) 으로 넘어옴.  회원가입이니까 무조건 user
 		
-		System.out.println("값 받아왔나요? " + id + ", " + pass + ", " + name + ", " + phone + ", " + email + ", " + user);
+		System.out.println("컨트롤러에서 값 찍히는지 확인 => " + id + ", " + pass + ", " + name + ", " + phone + ", " + email + ", " + user);
 		
 		
 		MemberService service = new MemberServiceMybatis();

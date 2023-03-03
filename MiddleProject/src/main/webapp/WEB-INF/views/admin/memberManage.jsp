@@ -1,113 +1,49 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 <style>
-/* body { */
-/* 	color: #666; */
-/* 	font: 14px/24px "Open Sans", "HelveticaNeue-Light", */
-/* 		"Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, */
-/* 		"Lucida Grande", Sans-Serif; */
-/* } */
+	table:nth-of-type(2) input {
+		width: 100px;
+		display: inline-block;
+	}
 
-/* table { */
-/* 	border-collapse: separate; */
-/* 	border-spacing: 0; */
-/* 	width: 100%; */
-/* 	padding: 30px 30px; */
-/* } */
+	/* 버튼 스타일링 */
+	.search-btn {
+		background-color: #4caf50;
+		border: none;
+		color: white;
+		padding: 10px;
+		text-align: center;
+		text-decoration: none;
+		display: inline-block;
+		font-size: 16px;
+		margin-left: 10px;
+		cursor: pointer;
+	}
 
-/* th, td { */
-/* 	padding: 6px 15px; */
-/* } */
+	/* 입력창 스타일링 */
+	.search-input {
+		padding: 10px;
+		font-size: 16px;
+		border: 2px solid #ccc;
+		border-radius: 5px;
+		vertical-align: middle;
+	}
 
-/* th { */
-/* 	background: #42444e; */
-/* 	color: #fff; */
-/* 	text-align: left; */
-/* } */
+	#search-btn-group {
+		margin-top: 10px;
+		margin-right: 20px;
+		margin-bottom: 20px;
+		float: right;
+	}
 
-/* tr:first-child th:first-child { */
-/* 	border-top-left-radius: 6px; */
-/* } */
+	#pageName {
+		margin-top: 10px;
+		float: left;
+	}
 
-/* tr:first-child th:last-child { */
-/* 	border-top-right-radius: 6px; */
-/* } */
-
-/* td { */
-/* 	border-right: 1px solid #c6c9cc; */
-/* 	border-bottom: 1px solid #c6c9cc; */
-/* } */
-
-/* td:first-child { */
-/* 	border-left: 1px solid #c6c9cc; */
-/* } */
-
-/* tr:nth-child(even) td { */
-/* 	background: #eaeaed; */
-/* } */
-
-/* tr:last-child td:first-child { */
-/* 	border-bottom-left-radius: 6px; */
-/* } */
-
-/* tr:last-child td:last-child { */
-/* 	border-bottom-right-radius: 6px; */
-/* } */
-
-/* #addProduct { */
-/* 	float: right; */
-/* 	margin-right: 30px; */
-/* } */
-
-/* td.image_container img { */
-/* 	height: 100px; */
-/* 	width: 100px; */
-/* } */
-table:nth-of-type(2) input {
-	width: 100px;
-	display: inline-block;
-}
-
-/* 버튼 스타일링 */
-.search-btn {
-	background-color: #4caf50;
-	border: none;
-	color: white;
-	padding: 10px;
-	text-align: center;
-	text-decoration: none;
-	display: inline-block;
-	font-size: 16px;
-	margin-left: 10px;
-	cursor: pointer;
-}
-
-/* 입력창 스타일링 */
-.search-input {
-	padding: 10px;
-	font-size: 16px;
-	border: 2px solid #ccc;
-	border-radius: 5px;
-	vertical-align: middle;
-}
-
-#search-btn-group {
-	margin-top: 10px;
-	margin-right: 20px;
-	margin-bottom: 20px;
-	float: right;
-}
-
-#pageName {
-	margin-top: 10px;
-	float: left;
-}
-
-#line {
-	clear: both;
-}
+	#line {
+		clear: both;
+	}
 </style>
 <main>
 	<div class="container-fluid px-4">
@@ -116,9 +52,8 @@ table:nth-of-type(2) input {
 		</div>
 		<div>
 			<form action="#" method="POST" id="search-btn-group">
-				<label for="search-input"></label> <input type="text"
-					id="search-input" name="search-input" class="search-input"
-					placeholder="아이디를 입력하세요">
+				<label for="search-input"></label> <input type="text" id="search-input" name="search-input"
+					class="search-input" placeholder="아이디를 입력하세요">
 				<button type="submit" class="search-btn">
 					<i class="fa fa-search"></i>
 				</button>
@@ -154,57 +89,6 @@ table:nth-of-type(2) input {
 
 
 <script>
-console.log("manage.js start.....!!!");
-
-//document 즉 html??을 다 읽고나서 실행(실행시점)
-	//수정버튼
-	function updateMemberFnc(e) {
-		let tr = $(e.target).parent().parent(); //tr
-
-		let id = $("#id").val();
-		let password = $("#password").val();
-		let name = $("#name").val();
-		let phone = $("#phone").val();
-		let email = $("#email").val();
-		let user = $("#user").val();
-
-		console.log('수정버튼 값 받음? ' + id + password + name + phone + email + user);
-
-
-		$.ajax({
-			url: 'updateMember.do',
-			method: 'post',
-			data: {
-				memId: id,
-				memPw: password,
-				memName: name,
-				memPhone: phone,
-				memEmail: email,
-				memUser: user
-			},
-			contentType: false,
-			processData: false,
-			success: function (result) {
-				console.log(result);
-				if (result.retCode == 'Success') {
-					console.log(result.member);
-					tr.replaceWith(makeRow(result.member));
-					tr.replaceWith(makeRowUpd(result.member));
-				} else {
-					alert("입력 미완");
-				}
-			},
-			error: function (err) {
-				console.log(err);
-			}
-		})
-	} //end of updateMemberFnc
-
-
-$(document).ready(function () {
-	//목록을 가져오는 Ajax 호출
-	console.log($('#list'));
-
 	$.ajax({
 		url: 'memberList.do',
 		success: function (result) {
@@ -243,7 +127,7 @@ $(document).ready(function () {
 			),
 			$('<td />').append( //td 추가
 				$('<button class="btn btn-danger">삭제</button>')
-					.attr('member_id', member.memId) // .attr => setAttribute, 만들다
+					.attr('memIdDel', member.memId) // .attr => setAttribute, 만들다
 					.on('click', deleteMemberFnc) //이벤트
 			)
 		);
@@ -290,11 +174,11 @@ $(document).ready(function () {
 			return;
 		}
 
-		let memberId = $(e.target).attr('member_id'); // .attr => getAttribute, 가져오다
+		let memId = $(e.target).attr('memIdDel'); // .attr => getAttribute, 가져오다
 
 		$.ajax({
 			url: 'removeMember.do',	//회원 삭제하는 url 및 컨트롤 등록하기
-			data: { id: memberId },		//removeMember.do?id=user
+			data: { memId: memId },		//removeMember.do?id=user
 			success: function (result) {
 				console.log(result);
 				if (result.retCode == 'Success') {
@@ -312,7 +196,6 @@ $(document).ready(function () {
 	} // end of deleteFnc
 
 
-	//수정버튼
 	function updateMemberFnc(e) {
 		let tr = $(e.target).parent().parent(); //tr
 
@@ -323,6 +206,48 @@ $(document).ready(function () {
 		let email = $("#email").val();
 		let user = $("#user").val();
 
+		console.log('jsp 파일에서 값 찍히는지 확인 => ' + id + ', ' + password + ', ' + name + ', ' + phone + ', ' + email + ', ' + user);
+
+
+		$.ajax({
+			url: 'updateMember.do',
+			method: 'post',
+			data: {
+				memId: id,
+				memPw: password,
+				memName: name,
+				memPhone: phone,
+				memEmail: email,
+				memUser: user
+			},
+			success: function (result) {
+				console.log(result);
+				if (result.retCode == 'Success') {
+					console.log(result.manager);
+					tr.replaceWith(makeRow(result.manager));
+					tr.replaceWith(makeRowUpd(result.manager));
+				} else {
+					alert("입력 미완");
+				}
+			},
+			error: function (err) {
+				console.log(err);
+			}
+		})
+	} //end of updateMemberFnc
+	
+	
+	/* //수정버튼
+	function updateMemberFnc(e) {
+		let tr = $(e.target).parent().parent(); //tr
+	
+		let id = $("#id").val();
+		let password = $("#password").val();
+		let name = $("#name").val();
+		let phone = $("#phone").val();
+		let email = $("#email").val();
+		let user = $("#user").val();
+	
 		let formData = new FormData();
 		formData.append("id", id);
 		formData.append("password", password);
@@ -330,8 +255,8 @@ $(document).ready(function () {
 		formData.append("phone", phone);
 		formData.append("email", email);
 		formData.append("user", user);
-
-
+	
+	
 		$.ajax({
 			url: 'updateMember.do',
 			method: 'post',
@@ -351,6 +276,5 @@ $(document).ready(function () {
 				console.log(err);
 			}
 		})
-	} //end of updateMemberFnc
-})
-	</script>
+	} //end of updateMemberFnc */
+</script>

@@ -28,7 +28,7 @@
 	</delete>
 	
 	
-	<update id="updateQa" parameterType="QaVO">
+<!-- 	<update id="updateQa" parameterType="QaVO">
 		UPDATE qa
 		<set>
 			<if test="qaId != null">
@@ -56,6 +56,20 @@
 		where
 
 		qa_id = #{qaId}
+	</update> -->
+	
+	
+	<update id="updateQa" parameterType="QaVO">
+		UPDATE qa
+		SET
+		qa_id = #{qaId},
+		mem_id = #{memId},
+		pro_id = #{proId},
+		qa_title = #{qaTitle},
+		qa_content = #{qaContent},
+		qa_date = #{qaDate},
+		qa_reply = #{qaReply}
+		WHERE qa_id=#{qaId}
 	</update>
 	
 	

@@ -1,114 +1,51 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 <style>
-/* body { */
-/* 	color: #666; */
-/* 	font: 14px/24px "Open Sans", "HelveticaNeue-Light", */
-/* 		"Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, */
-/* 		"Lucida Grande", Sans-Serif; */
-/* } */
+	table:nth-of-type(2) input {
+		width: 100px;
+		display: inline-block;
+	}
 
-/* table { */
-/* 	border-collapse: separate; */
-/* 	border-spacing: 0; */
-/* 	width: 100%; */
-/* 	padding: 30px 30px; */
-/* } */
+	/* 버튼 스타일링 */
+	.search-btn {
+		background-color: #4caf50;
+		border: none;
+		color: white;
+		padding: 10px;
+		text-align: center;
+		text-decoration: none;
+		display: inline-block;
+		font-size: 16px;
+		margin-left: 10px;
+		cursor: pointer;
+	}
 
-/* th, td { */
-/* 	padding: 6px 15px; */
-/* } */
+	/* 입력창 스타일링 */
+	.search-input {
+		padding: 10px;
+		font-size: 16px;
+		border: 2px solid #ccc;
+		border-radius: 5px;
+		vertical-align: middle;
+	}
 
-/* th { */
-/* 	background: #42444e; */
-/* 	color: #fff; */
-/* 	text-align: left; */
-/* } */
+	#search-btn-group {
+		margin-top: 10px;
+		margin-right: 20px;
+		margin-bottom: 20px;
+		float: right;
+	}
 
-/* tr:first-child th:first-child { */
-/* 	border-top-left-radius: 6px; */
-/* } */
+	#pageName {
+		margin-top: 10px;
+		float: left;
+	}
 
-/* tr:first-child th:last-child { */
-/* 	border-top-right-radius: 6px; */
-/* } */
-
-/* td { */
-/* 	border-right: 1px solid #c6c9cc; */
-/* 	border-bottom: 1px solid #c6c9cc; */
-/* } */
-
-/* td:first-child { */
-/* 	border-left: 1px solid #c6c9cc; */
-/* } */
-
-/* tr:nth-child(even) td { */
-/* 	background: #eaeaed; */
-/* } */
-
-/* tr:last-child td:first-child { */
-/* 	border-bottom-left-radius: 6px; */
-/* } */
-
-/* tr:last-child td:last-child { */
-/* 	border-bottom-right-radius: 6px; */
-/* } */
-
-/* #addProduct { */
-/* 	float: right; */
-/* 	margin-right: 30px; */
-/* } */
-
-/* td.image_container img { */
-/* 	height: 100px; */
-/* 	width: 100px; */
-/* } */
-table:nth-of-type(2) input {
-	width: 100px;
-	display: inline-block;
-}
-
-/* 버튼 스타일링 */
-.search-btn {
-	background-color: #4caf50;
-	border: none;
-	color: white;
-	padding: 10px;
-	text-align: center;
-	text-decoration: none;
-	display: inline-block;
-	font-size: 16px;
-	margin-left: 10px;
-	cursor: pointer;
-}
-
-/* 입력창 스타일링 */
-.search-input {
-	padding: 10px;
-	font-size: 16px;
-	border: 2px solid #ccc;
-	border-radius: 5px;
-	vertical-align: middle;
-}
-
-#search-btn-group {
-	margin-top: 10px;
-	margin-right: 20px;
-	margin-bottom: 20px;
-	float: right;
-}
-
-#pageName {
-	margin-top: 10px;
-	float: left;
-}
-
-#line {
-	clear: both;
-}
+	#line {
+		clear: both;
+	}
 </style>
+
 <main>
 	<div class="container-fluid px-4">
 		<div id="pageName">
@@ -116,22 +53,23 @@ table:nth-of-type(2) input {
 		</div>
 		<div>
 			<form action="#" method="POST" id="search-btn-group">
-				<label for="search-input"></label> <input type="text"
-					id="search-input" name="search-input" class="search-input"
-					placeholder="아이디를 입력하세요">
+				<label for="search-input"></label> <input type="text" id="search-input" name="search-input"
+					class="search-input" placeholder="아이디를 입력하세요">
 				<button type="submit" class="search-btn">
 					<i class="fa fa-search"></i>
 				</button>
 			</form>
 		</div>
+
 		<div id="line" class="card mb-4"></div>
+
 		<div class="card mb-4">
 			<div class="card-header">
 				<i class="fas fa-table me-1"></i> DataTable Example
 			</div>
 			<div class="card-body">
-				<input type="file" id="fileUpload" accept="images/*"
-					style="display: none" onchange="setThumbnail(event);" />
+				<!-- <input type="file" id="fileUpload" accept="images/*"
+				style="display: none" onchange="setThumbnail(event);" /> -->
 				<table id="datatablesSimple" class="table">
 					<thead>
 						<tr>
@@ -147,8 +85,9 @@ table:nth-of-type(2) input {
 					<tbody id="qaList"></tbody>
 				</table>
 				<br />
-				<button id="addQa" class="btn btn-primary"
-					onclick="location.href = '#'">등록</button>
+				<!-- 				<button id="addQa" class="btn btn-primary"
+				onclick="location.href = '#'">등록</button> -->
+				<button id="addQa" class="btn btn-primary">등록</button>
 			</div>
 		</div>
 	</div>
@@ -156,33 +95,34 @@ table:nth-of-type(2) input {
 
 
 <script>
-  $.ajax({
-    url: "qaList.do",
-    success: function (result) {
-      $(result).each(function (idx, item) {
-        $("#qaList").append(makeRow(item));
-      });
+	$.ajax({
+		url: "qaList.do",
+		success: function (result) {
+			$(result).each(function (idx, item) {
+				$("#qaList").append(makeRow(item));
+			});
 
-      $(result).each(function (idx, item) {
-        $("#qaList").append(makeRowUpd(item));
-      });
-    },
-    error: function (reject) {
-      console.log(reject);
-    },
-  });
-  
-  function makeRow(manager = {}) {
+			$(result).each(function (idx, item) {
+				$("#qaList").append(makeRowUpd(item));
+			});
+		},
+		error: function (reject) {
+			console.log(reject);
+		},
+	});
+
+	
+	function makeRow(manager = {}) {
 		let tr = $("<tr />");
 
 		tr.append(
-			      $("<td />").text(manager.qaId),
-			      $("<td />").text(manager.memId),
-			      $("<td />").text(manager.proId),
-			      $("<td />").text(manager.qaTitle),
-			      $("<td />").text(manager.qaContent),
-			      $("<td />").text(manager.qaDate),
-			      $("<td />").text(manager.qaReply),
+			$("<td />").text(manager.qaId),
+			$("<td />").text(manager.memId),
+			$("<td />").text(manager.proId),
+			$("<td />").text(manager.qaTitle),
+			$("<td />").text(manager.qaContent),
+			$("<td />").text(manager.qaDate),
+			$("<td />").text(manager.qaReply),
 			$("<td />").append(
 				$("<button />")
 					.addClass("btn btn-success updbtn")
@@ -199,92 +139,100 @@ table:nth-of-type(2) input {
 		return tr;
 	}
 
-  function makeRowUpd(manager = {}) {
-    let tr = $("<tr />");
+	
+	function makeRowUpd(manager = {}) {
+		let tr = $("<tr />");
 
-    $(".updbtn").on("click", function (e) {
-      console.log(e.target);
-      let qid = $(this).closest("tr").children().eq(0).text();
-      let mid = $(this).closest("tr").children().eq(1).text();
-      let pid = $(this).closest("tr").children().eq(2).text();
-      let qtitle = $(this).closest("tr").children().eq(3).text();
-      let qcontent = $(this).closest("tr").children().eq(4).text();
-      let qdate = $(this).closest("tr").children().eq(5).text();
-      let qreply = $(this).closest("tr").children().eq(6).text();
+		$(".updbtn").on("click", function (e) {
+			console.log(e.target);
+			let qid = $(this).closest("tr").children().eq(0).text();
+			let mid = $(this).closest("tr").children().eq(1).text();
+			let pid = $(this).closest("tr").children().eq(2).text();
+			let qtitle = $(this).closest("tr").children().eq(3).text();
+			let qcontent = $(this).closest("tr").children().eq(4).text();
+			let qdate = $(this).closest("tr").children().eq(5).text();
+			let qreply = $(this).closest("tr").children().eq(6).text();
 
-      let nTr = $("<tr />").append(
-        $("<td />").append($("<input id='qid' />").val(qid)),
-        $("<td />").append($("<input id='mid' />").val(mid)),
-        $("<td />").append($("<input id='pid' />").val(pid)),
-        $("<td />").append($("<input id='qtitle' />").val(qtitle)),
-        $("<td />").append($("<input id='qcontent' />").val(qcontent)),
-        $("<td />").append($("<input id='qdate' />").val(qdate)),
-        $("<td />").append($("<input id='qreply' />").val(qreply)),
-        $("<td />").append(
-          $(
-            "<button onclick='updateQaFnc(event)' class='btn btn-success updbtn'>수정 완료</button>"
-          )
-        )
-      );
-      $(this).closest("tr").replaceWith(nTr);
-    });
+			let nTr = $("<tr />").append(
+				$("<td />").append($("<input id='qid' />").val(qid)),
+				$("<td />").append($("<input id='mid' />").val(mid)),
+				$("<td />").append($("<input id='pid' />").val(pid)),
+				$("<td />").append($("<input id='qtitle' />").val(qtitle)),
+				$("<td />").append($("<input id='qcontent' />").val(qcontent)),
+				$("<td />").append($("<input id='qdate' />").val(qdate)),
+				$("<td />").append($("<input id='qreply' />").val(qreply)),
+				$("<td />").append(
+					$(
+						"<button onclick='updateQaFnc(event)' class='btn btn-success updbtn'>수정 완료</button>"
+					)
+				)
+			);
+			$(this).closest("tr").replaceWith(nTr);
+		});
 
-    return tr;
-  }
-  
-  
-  function deleteQaFnc(e) {
-	    if (!window.confirm("삭제하시겠습니까?")) {
-	      return;
-	    }
+		return tr;
+	}
 
-	    let qaId = $(e.target).attr("qaIdDel");
-	    console.log(qaId);
 
-	    //
-	    $.ajax({
-	      url: "removeQa.do",
-	      data: { qaId: qaId },
-	      success: function (result) {
-	        console.log(result);
-	        if (result.retCode == "Success") {
-	          $(e.target).parent().parent().remove();
-	        } else {
-	          alert("오류");
-	        }
-	      },
-	      error: function (reject) {
-	        console.log(reject);
-	      },
-	    });
-	  }
+	function deleteQaFnc(e) {
+		if (!window.confirm("삭제하시겠습니까?")) {
+			return;
+		}
 
-	  function updateQaFnc(e) {
-	    let tr = $(e.target).parent().parent();
+		let qaId = $(e.target).attr("qaIdDel");
+		console.log(qaId);
 
-	    let qid = $("#qid").val();
-	    let mid = $("#mid").val();
-	    let pid = $("#pid").val();
-	    let qtitle = $("#qtitle").val();
-	    let qcontent = $("#qcontent").val();
-	    let qdate = $("#qdate").val();
-	    let qreply = $("#qreply").val();
+		//
+		$.ajax({
+			url: "removeQa.do",
+			data: { qaId: qaId },
+			success: function (result) {
+				console.log(result);
+				if (result.retCode == "Success") {
+					$(e.target).parent().parent().remove();
+				} else {
+					alert("오류");
+				}
+			},
+			error: function (reject) {
+				console.log(reject);
+			},
+		});
+	}
 
-	    let formData = new FormData();
-	    formData.append("qid", qid);
-	    formData.append("mid", mid);
-	    formData.append("pid", pid);
-	    formData.append("qtitle", qtitle);
-	    formData.append("qcontent", qcontent);
-	    formData.append("qdate", qdate);
-	    formData.append("qreply", qreply);
+	
+	function updateQaFnc(e) {
+		let tr = $(e.target).parent().parent();
 
-	    $.ajax({
-	      url: "updateQa.do",
-	      method: "post",
-	      data: formData,
-	      contentType: false,
-	      processData: false,
+		let qid = $("#qid").val();
+		let mid = $("#mid").val();
+		let pid = $("#pid").val();
+		let qtitle = $("#qtitle").val();
+		let qcontent = $("#qcontent").val();
+		let qdate = $("#qdate").val();
+		let qreply = $("#qreply").val();
+
+		/* 	    let formData = new FormData();
+				formData.append("qid", qid);
+				formData.append("mid", mid);
+				formData.append("pid", pid);
+				formData.append("qtitle", qtitle);
+				formData.append("qcontent", qcontent);
+				formData.append("qdate", qdate);
+				formData.append("qreply", qreply);
+		 */
+		$.ajax({
+			url: "updateQa.do",
+			method: "post",
+			data: {
+				qid: qid,
+				mid: mid,
+				pid: pid,
+				qtitle: qtitle,
+				qcontent: qcontent,
+				qdate: qdate,
+				qreply: qreply
+			},
 			success: function (result) {
 				console.log(result);
 				if (result.retCode == 'Success') {
@@ -294,9 +242,9 @@ table:nth-of-type(2) input {
 					alert("입력 미완");
 				}
 			},
-	      error: function (reject) {
-	        console.log(reject);
-	      },
-	    });
-	  }
+			error: function (reject) {
+				console.log(reject);
+			},
+		});
+	}
 </script>

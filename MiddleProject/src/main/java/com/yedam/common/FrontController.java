@@ -131,7 +131,7 @@ public class FrontController extends HttpServlet {
 		map.put("/findPwdResult.do", new FindPwdResult());			// 임시 비밀번호 보낸 후 알림 페이지
 		map.put("/idCheck.do", new IdCheck());					// 아이디 중복 확인
 		//
-		map.put("/qaManageForm.do", new QaManagerForm());
+		map.put("/qaManageForm.do", new QaManagerForm());		// Q&A 게시판 관리
 		map.put("/qaList.do", new QaList());
 		map.put("/removeQa.do", new QaRemove());
 		map.put("/updateQa.do", new QaUpdate());

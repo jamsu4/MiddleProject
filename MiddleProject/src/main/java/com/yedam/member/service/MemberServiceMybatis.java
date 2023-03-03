@@ -38,7 +38,7 @@ public class MemberServiceMybatis implements MemberService {
 	}
 	
 	@Override
-	public int removeMember(int mid) {
+	public int removeMember(String mid) {
 		return mapper.deleteMember(mid);
 	}
 

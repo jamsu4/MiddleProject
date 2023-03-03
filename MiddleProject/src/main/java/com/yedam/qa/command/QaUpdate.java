@@ -28,6 +28,8 @@ public class QaUpdate implements Command {
 		String qreply = req.getParameter("qreply");
 
 
+		System.out.println("넘어옴? " + qid + ", " + pid);
+		
 		QaVO vo = new QaVO();
 		vo.setQaId(Integer.parseInt(qid));
 		vo.setMemId(mid);
