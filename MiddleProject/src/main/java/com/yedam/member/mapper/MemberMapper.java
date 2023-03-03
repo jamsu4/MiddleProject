@@ -37,4 +37,6 @@ public interface MemberMapper { // 서비스부분이 아니라 데이터를 처
 	public int checkId(String id);
 	
 	public MemberVO memInfo(String memId); //juan member단건조회
+
+	public MemberVO searchSpecificMember(String memId);		// 종민	회원검색용
 }

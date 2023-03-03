@@ -123,12 +123,6 @@
 			$("<td />").text(manager.qaContent),
 			$("<td />").text(manager.qaDate),
 			$("<td />").text(manager.qaReply),
-			$("<td />").append(
-				$("<button />")
-					.addClass("btn btn-success updbtn")
-					.text("수정")
-					.attr("qaIdUpd", manager.qaId)
-			),
 			$('<td />').append( //td 추가
 				$('<button class="btn btn-danger">삭제</button>')
 					.attr('qaIdDel', manager.qaId) // .attr => setAttribute, 만들다
@@ -160,12 +154,7 @@
 				$("<td />").append($("<input id='qtitle' />").val(qtitle)),
 				$("<td />").append($("<input id='qcontent' />").val(qcontent)),
 				$("<td />").append($("<input id='qdate' />").val(qdate)),
-				$("<td />").append($("<input id='qreply' />").val(qreply)),
-				$("<td />").append(
-					$(
-						"<button onclick='updateQaFnc(event)' class='btn btn-success updbtn'>수정 완료</button>"
-					)
-				)
+				$("<td />").append($("<input id='qreply' />").val(qreply))
 			);
 			$(this).closest("tr").replaceWith(nTr);
 		});
@@ -192,54 +181,6 @@
 					$(e.target).parent().parent().remove();
 				} else {
 					alert("오류");
-				}
-			},
-			error: function (reject) {
-				console.log(reject);
-			},
-		});
-	}
-
-	
-	function updateQaFnc(e) {
-		let tr = $(e.target).parent().parent();
-
-		let qid = $("#qid").val();
-		let mid = $("#mid").val();
-		let pid = $("#pid").val();
-		let qtitle = $("#qtitle").val();
-		let qcontent = $("#qcontent").val();
-		let qdate = $("#qdate").val();
-		let qreply = $("#qreply").val();
-
-		/* 	    let formData = new FormData();
-				formData.append("qid", qid);
-				formData.append("mid", mid);
-				formData.append("pid", pid);
-				formData.append("qtitle", qtitle);
-				formData.append("qcontent", qcontent);
-				formData.append("qdate", qdate);
-				formData.append("qreply", qreply);
-		 */
-		$.ajax({
-			url: "updateQa.do",
-			method: "post",
-			data: {
-				qid: qid,
-				mid: mid,
-				pid: pid,
-				qtitle: qtitle,
-				qcontent: qcontent,
-				qdate: qdate,
-				qreply: qreply
-			},
-			success: function (result) {
-				console.log(result);
-				if (result.retCode == 'Success') {
-					tr.replaceWith(makeRow(result.manager));
-					tr.replaceWith(makeRowUpd(result.manager));
-				} else {
-					alert("입력 미완");
 				}
 			},
 			error: function (reject) {

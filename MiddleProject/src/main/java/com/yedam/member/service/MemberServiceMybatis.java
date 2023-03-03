@@ -74,4 +74,9 @@ public class MemberServiceMybatis implements MemberService {
 		// TODO Auto-generated method stub
 		return mapper.memInfo(memId);
 	}
+
+	@Override
+	public MemberVO searchMember(String memId) {
+		return mapper.searchSpecificMember(memId);
+	}
 }

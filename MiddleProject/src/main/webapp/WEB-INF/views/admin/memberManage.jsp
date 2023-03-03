@@ -108,6 +108,36 @@
 	});
 
 
+	
+	/////////////////////////////////////////////////////////////////////
+	
+	// .search-btn
+	$('.search-btn').click( function(e) {
+		let memId = $('#search-input').val();
+		console.log('출력 테스트 - jsp 파일 -> ' + memId);
+
+		$.ajax({
+			url : "searchMemberManage.do",
+			data : {memId : memId},
+			success : function(result) {
+				console.log(result);
+
+				$('#search-input').val("");
+				$("#list").find("tr").remove();
+				$(result).each(function(idx, item) {
+					$("#list").append(makeRow(item));
+				});
+				$(result).each(function(idx, item) {
+					$("#list").append(makeRowUpd(item));
+				});
+			},
+			error : function(reject) {
+				console.log(reject);
+			}
+		})		
+	})
+	
+	/////////////////////////////////////////////////////////////////////
 	//목록출력 함수  (더블 클릭시, 수정 인풋으로 바뀜)
 	function makeRow(member = {}) {
 		let tr = $("<tr />");
