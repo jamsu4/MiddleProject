@@ -47,15 +47,18 @@ public class Signup implements Command {
 		member.setMemEmail(email);
 		member.setMemUser(user);
 		
-		
 		MemberService service = new MemberServiceMybatis();
+		service.addMember(member);
 		
-		if( service.addMember(member) > 0) {
-			HttpSession session = req.getSession();
-			
-			// 회원가입 후 첫 화면에서 이름 언급용 (xxx님 환영합니다)
-			session.setAttribute("logName", member.getMemName());
-		}
+		
+		// 회원가입 시 환영 페이지가 아닌, 바로 로그인 페이지로 이동할거기 때문에 아래 코드 필요 X
+//		MemberService service = new MemberServiceMybatis();
+//		if( service.addMember(member) > 0) {
+//			HttpSession session = req.getSession();
+//			
+//			// 회원가입 후 첫 화면에서 이름 언급용 (xxx님 환영합니다)
+//			session.setAttribute("logName", member.getMemName());
+//		}
 		
 		
 		// member/signup 페이지로 이동

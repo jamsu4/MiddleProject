@@ -25,6 +25,7 @@ import com.yedam.member.command.MemberList;
 import com.yedam.member.command.MemberManager;
 import com.yedam.member.command.MemberRemove;
 import com.yedam.member.command.MemberUpdate;
+import com.yedam.member.command.SearchMemberManage;
 import com.yedam.member.command.Signup;
 import com.yedam.member.command.selectCouponControl;
 import com.yedam.mypage.command.MyPageControl;
@@ -133,6 +134,7 @@ public class FrontController extends HttpServlet {
 		map.put("/searchReviewManage.do", new SearchReviewManage()); // 관리자 리뷰 검색
 		map.put("/searchReviewDate.do", new SearchReviewDate()); // 리뷰 날짜 검색
 		map.put("/searchProductManage.do", new SearchProductManage()); // 관리자 상품 검색
+
 		
 		//종민
 		map.put("/loginForm.do", new LoginForm());
@@ -154,6 +156,8 @@ public class FrontController extends HttpServlet {
 		map.put("/qaList.do", new QaList());
 		map.put("/removeQa.do", new QaRemove());
 		map.put("/updateQa.do", new QaUpdate());
+		//
+		map.put("/searchMemberManage.do", new SearchMemberManage());
 		
 		
 		
