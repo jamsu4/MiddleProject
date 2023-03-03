@@ -100,6 +100,16 @@ public class ProductServiceImpl implements ProductService {
 		return mapper.searchReviewDateList(date);
 	}
 
+	@Override
+	public List<ProductVO> searchProductList(String proId, String proName) {
+		return mapper.searchProductList(proId, proName);
+	}
+
+	@Override
+	public List<ProductVO> rateList() {
+		return mapper.rateList();
+	}
+
 	
 
 	

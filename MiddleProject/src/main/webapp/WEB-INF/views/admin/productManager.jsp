@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<script
+<script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 <style>
 /* body { */
@@ -60,11 +60,11 @@
 /* 	float: right; */
 /* 	margin-right: 30px; */
 /* } */
+td.image_container img {
+	height: 100px;
+	width: 100px;
+}
 
-/* td.image_container img { */
-/* 	height: 100px; */
-/* 	width: 100px; */
-/* } */
 table:nth-of-type(2) input {
 	width: 100px;
 	display: inline-block;
@@ -94,63 +94,88 @@ table:nth-of-type(2) input {
 }
 
 #search-btn-group {
-	margin-top : 10px;
+	margin-top: 10px;
 	margin-right: 20px;
 	margin-bottom: 20px;
-	float : right;
+	float: right;
 }
-#pageName{
-	margin-top : 10px;
-	float : left;
+
+#pageName {
+	margin-top: 10px;
+	float: left;
 }
+
 #line {
 	clear: both;
 }
 </style>
-				<main>
-                    <div class="container-fluid px-4">
-                    	<div id="pageName">
-	                        <h1>상품관리페이지</h1>
-                    	</div>
-                    	<div>
-	                        <form action="#" method="POST" id="search-btn-group">
-								<label for="search-input"></label> 
-								<input type="text" id="search-input" name="search-input" class="search-input" placeholder="아이디를 입력하세요">
-								<button type="submit" class="search-btn"><i class="fa fa-search"></i></button>
-							</form>
-                    	</div>
-                        <div id="line" class="card mb-4">
-                        </div>
-                        <div class="card mb-4">
-                            <div class="card-header">
-                                <i class="fas fa-table me-1"></i>
-                                DataTable Example
-                            </div>
-                            <div class="card-body">
-                            <input type="file" id="fileUpload" accept="images/*"
-								style="display: none" onchange="setThumbnail(event);" />
-                                <table id="datatablesSimple" class="table">
-                                    <thead>
-										<tr>
-											<th>제품_ID</th>
-											<th>제품 이미지</th>
-											<th>제품명</th>
-											<th>제품 가격</th>
-											<th>제품 설명</th>
-											<th>제품 카테고리</th>
-											<th>수정</th>
-											<th>삭제</th>
-										</tr>
-									</thead>
-                                    <tbody id="productList"></tbody>
-                                </table>
-                                <br />
-								<button id="addProduct" class="btn btn-primary"
-									onclick="location.href = 'productManagerAddPage.do'">등록</button>
-                            </div>
-                        </div>
-                    </div>
-                </main>
+<main>
+	<div class="container-fluid px-4">
+		<div id="pageName">
+			<h1>상품관리페이지</h1>
+		</div>
+
+		<div id="line" class="card mb-4"></div>
+		<div>
+			<div class="card mb-4">
+				<table id="datatablesSimple1" class="table table-border">
+					<tr>
+						<th style="padding-top: 15px;">상품번호</th>
+						<td colspan=5>
+							<div class="input-group mb-3">
+								<input type="text" class="form-control proinput"
+									aria-label="Text input with dropdown button" id="proIdBtn">
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<th style="padding-top: 15px;">상품이름</th>
+						<td colspan=5>
+							<div class="input-group mb-3">
+								<input type="text" class="form-control proinput"
+									aria-label="Text input with dropdown button" id="proNameBtn">
+							</div>
+						</td>
+
+					</tr>
+				</table>
+				<div style="text-align: center; margin-bottom: 20px">
+					<button type="button" class="btn btn-primary btn-lg" id="searchBtn">검색</button>
+					<button type="button" class="btn btn-secondary btn-lg"
+						id="resetBtn">초기화</button>
+				</div>
+			</div>
+		</div>
+		<div id="line" class="card mb-4"></div>
+		<div class="card mb-4">
+			<div class="card-header">
+				<i class="fas fa-table me-1"></i> DataTable Example
+			</div>
+			<div class="card-body">
+				<input type="file" id="fileUpload" accept="images/*"
+					style="display: none" onchange="setThumbnail(event);" />
+				<table id="datatablesSimple" class="table">
+					<thead>
+						<tr>
+							<th>제품_ID</th>
+							<th>제품 이미지</th>
+							<th>제품명</th>
+							<th>제품 가격</th>
+							<th>제품 설명</th>
+							<th>제품 카테고리</th>
+							<th>수정</th>
+							<th>삭제</th>
+						</tr>
+					</thead>
+					<tbody id="productList"></tbody>
+				</table>
+				<br />
+				<button id="addProduct" class="btn btn-primary"
+					onclick="location.href = 'productManagerAddPage.do'">등록</button>
+			</div>
+		</div>
+	</div>
+</main>
 
 <script>
   $.ajax({
@@ -169,6 +194,60 @@ table:nth-of-type(2) input {
     },
   });
   
+  function searchProduct() {
+    let proId = $('#proIdBtn').val();
+    let proName = $('#proNameBtn').val();
+    
+    $.ajax({
+        url : "searchProductManage.do",
+        data : {proId : proId, proName : proName},
+        success : function(result) {
+            $('#proIdBtn').val("");
+            $('#proNameBtn').val("");
+            $("#productList").find("tr").remove();
+            $(result).each(function(idx, item) {
+                $("#productList").append(makeRow(item));
+            });
+            $(result).each(function(idx, item) {
+                $("#productList").append(makeRowUpd(item));
+            });
+        },
+        error : function(reject) {
+            console.log(reject);
+        }
+    })
+  }
+
+  $('input.proinput').keypress( function(e) {
+    if (e.which === 13) {
+        searchProduct();
+      }
+  });
+  
+  $('#searchBtn').click( function(e) {
+	  	searchProduct();
+  });
+	
+  $('#resetBtn').click( function(e) {
+		
+		$.ajax({
+			url : "searchProductManage.do",
+			data : {proId : "", proName : ""},
+			success : function(result) {
+				$("#productList").find("tr").remove();
+				$(result).each(function(idx, item) {
+					$("#productList").append(makeRow(item));
+				});
+				$(result).each(function(idx, item) {
+					$("#productList").append(makeRowUpd(item));
+				});
+			},
+			error : function(reject) {
+				console.log(reject);
+			}
+		})		
+	})
+	
   function makeRow(manager = {}) {
     let tr = $("<tr />");
 
@@ -237,7 +316,6 @@ table:nth-of-type(2) input {
     let tr = $("<tr />");
 
     $(".updbtn").on("click", function (e) {
-      console.log(e.target);
       let pid = $(this).closest("tr").children().eq(0).text();
       let pimg = $(this).closest("tr").children().eq(1).children().attr("src");
       let pname = $(this).closest("tr").children().eq(2).text();

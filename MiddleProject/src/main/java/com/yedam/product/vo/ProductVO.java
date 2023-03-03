@@ -25,5 +25,6 @@ public class ProductVO {
 	private int revRate;
 	private String revImage;
 	private String revReply;
+	private double avgRate;
 	
 }
