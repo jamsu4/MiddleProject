@@ -79,4 +79,9 @@
 		FROM member
 		WHERE mem_id = #{memId}
 	</select>
+	
+	<select id="memInfo" resultType="MemberVO">
+		SELECT * FROM member
+		WHERE mem_id = #{memId}
+	</select>
 </mapper>

@@ -16,5 +16,11 @@ public class ZzimServiceImpl implements ZzimService{
 	public List<ZzimVO> zzimList(String memId) {
 		return mapper.zzimList(memId);
 	}
+
+	@Override
+	public int deleteZzim(int zzimId) {
+		return mapper.deleteZzim(zzimId);
+		
+	}
 	
 }

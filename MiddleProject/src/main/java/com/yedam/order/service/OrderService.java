@@ -12,4 +12,6 @@ public interface OrderService { // 목록, 단건조회.
 
 	public int addOrder(OrderVO ovo);
 
+	public List<OrderVO> myOrder(String memId); //mypage주문내역출력
+
 }
