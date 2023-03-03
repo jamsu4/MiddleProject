@@ -180,7 +180,7 @@ public class FrontController extends HttpServlet {
 		map.put("/updateInfo.do", new UpdateInfo()); //개인정보 수정기능
 		map.put("/zzimDelete.do", new ZzimDeleteControl()); //찜 삭제
 		map.put("/orderList.do", new OrderListControl()); //주문내역 
-		//map.put("/reviewList.do", new ReviewListControl()); //mypage 후기,qna
+		map.put("/reviewList.do", new ReviewListControl()); //mypage 후기,qna
 		
 		
 	}
