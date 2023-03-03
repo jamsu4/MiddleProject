@@ -186,20 +186,21 @@ table:nth-of-type(2) input {
 					<tbody>
 					<tbody>
 						<c:forEach var="list" items="${orderList }">
-							<tr>
+							<tr data-id="${list.ordId }" data-pid="${list.proId }">
 								<td>${list.payDate }</td>
 								<td>${list.ordId }</td>
 								<td title="product ID : ${list.proId }">${list.proName }</td>
 								<td title="member ID : ${list.memId }">${list.memName }</td>
-								<td>${list.ordTotalprice }</td>
-								<td><select>
-										<option>
+								<td><fmt:formatNumber value="${list.ordTotalprice }" pattern="#,###" />원</td>
+								<td><select class="orderStatus">
+										<option value="결제완료">${list.ordStatus }</option>
+										<option value="배송준비중">배송준비중</option>
+										<option value="배송중">배송중</option>
+										<option value="배송완료">배송완료</option>
+										<option>----------</option>
+										<option value="주문취소">주문취소</option>
 									</select>
-										<button class="btn dropdown-toggle"
-											type="button" data-bs-toggle="dropdown" aria-expanded="false">
-											${list.ordStatus }</button>
-										
-									</div></td>
+									</td>	
 
 							</tr>
 						</c:forEach>
@@ -211,7 +212,33 @@ table:nth-of-type(2) input {
 </main>
 
 <script>
+$('.orderStatus').change(function() {
+	var result = confirm('배송상태를 변경하시겠습니까?');
+	var proId = $(this).closest('tr').data('pid');
+	var ordId = $(this).closest('tr').data('id');
+	var ordStatus = $(this).val();
 
+	if(result){
+		$.ajax({
+			url : "updateOrderStatus.do",
+			type : "POST",
+			data : {
+				proId : proId,
+				ordId : ordId,
+				ordStauts : ordStatus
+			},
+			success : function(result) {
+				console.log("수정 성공");
+			},
+			error : function(error) {
+				console.log("수정 실패");
+			}
+		})
+	} else {
+		
+	}
+	
+})
 
 
 </script>

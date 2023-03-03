@@ -9,10 +9,9 @@
     		SELECT seq_order_id.NEXTVAL FROM dual
   		</selectKey>
 		
-		INSERT INTO orders(ord_id,mem_id,ord_status,ord_receiver,ord_addr,ord_phone,ord_postcode,ord_totalprice)
-		VALUES(#{ordId},#{memId}, #{ordStatus}, #{ordReceiver}, #{ordAddr}, #{ordPhone}, #{ordPostcode},#{ordTotalprice})
+		INSERT INTO orders(ord_id,mem_id ,ord_receiver,ord_addr,ord_phone,ord_postcode,ord_totalprice)
+		VALUES(#{ordId},#{memId} , #{ordReceiver}, #{ordAddr}, #{ordPhone}, #{ordPostcode},#{ordTotalprice})
 	</insert>
-	
 
 	<select id="getOrderList" resultType="OrderVO">
 		SELECT o.* , op.* , pay.* ,pro.pro_name, m.mem_name
@@ -21,7 +20,7 @@
 		  AND o.ord_id = op.ord_id
 		  AND op.pro_id = pro.pro_id
 		  AND o.ord_id = pay.ord_id
-		ORDER BY o.ord_id 
+		ORDER BY o.ord_id desc
 	</select>
 	
 	<insert id="insertPayment" parameterType="OrderVO">
@@ -36,13 +35,15 @@
 	</insert>
 		<insert id="insertOrderProduct" parameterType="OrderVO">
 	    INSERT INTO orderproduct 
-	    	(ord_quant, 
+	    	(ord_quant,
+	    	 ord_status, 
 	    	 pro_id, 
 	    	 ord_id , 
 	    	 ord_pro_sumprice)
 	    VALUES
 		    (
 		        #{ordQuant},
+		        #{ordStatus},
 		        #{proId},
 		        (SELECT MAX(ord_id) FROM orders),
 		        #{ordProSumprice}
@@ -64,7 +65,7 @@
 		  <if test="ordStatus != null">
 		  AND o.ord_status = #{ordStatus}
 		  </if>
-		ORDER BY o.ord_id
+		ORDER BY o.ord_id desc
 	
 	</select>
 
@@ -78,5 +79,19 @@
         ON p.pro_id = r.pro_id
         WHERE mem_id = #{memId}
 	</select>
-
+	
+	<select id="selectBeforeAddr" resultType="OrderVO">
+		SELECT ord_receiver, ord_phone, ord_addr, ord_postcode
+		FROM orders
+		WHERE ord_id = (SELECT MAX(ord_id)
+		  	   			FROM orders
+		  	  			WHERE mem_id=#{memId})
+	</select>
+	
+	<update id="updateOrderStatus" parameterType="OrderVO">
+		UPDATE orderproduct
+		SET ord_status = #{ordStatus}
+		WHERE ord_id = #{ordId}
+		  AND pro_id = #{proId}
+	</update>
 </mapper>

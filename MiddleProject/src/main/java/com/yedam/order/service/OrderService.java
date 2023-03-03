@@ -20,4 +20,10 @@ public interface OrderService {
 
 	public List<OrderVO> myOrder(String memId); //mypage주문내역출력
 
+	public OrderVO getBeforeAddr(String memId); //이전 배송 정보 조회
+
+	public int modifyOrderStatus(OrderVO ovo); //배송정보 수정
+
+	public int addOrdStatus(String ordStatus); //ordproduct 테이블 상태 추가
+
 }

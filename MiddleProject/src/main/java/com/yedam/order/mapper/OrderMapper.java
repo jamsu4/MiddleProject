@@ -24,4 +24,10 @@ public interface OrderMapper {
 
 	public List<OrderVO> myOrder(String memId); //mypage 주문내역
 
+	public OrderVO selectBeforeAddr(String memId); // 이전 배송 주소 조회
+
+	public int updateOrderStatus(OrderVO ovo); // 배송 상태 수정 
+
+	public int insertOrderStatus(String ordStatus); //order status 입력
+
 }
