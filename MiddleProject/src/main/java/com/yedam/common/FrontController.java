@@ -44,10 +44,11 @@ import com.yedam.order.control.addOrderControl;
 
 import com.yedam.order.control.addOrderProductControl;
 import com.yedam.order.control.addPaymentControl;
-
+import com.yedam.order.control.beforAddrControl;
 import com.yedam.order.control.orderControl;
 import com.yedam.order.control.orderManageControl;
 import com.yedam.order.control.searchOrderControl;
+import com.yedam.order.control.updateOrderStatusControl;
 import com.yedam.product.command.InsertProductManager;
 import com.yedam.product.command.ModifyProductManager;
 import com.yedam.product.command.ModifyReviewManage;
@@ -108,8 +109,8 @@ public class FrontController extends HttpServlet {
 		map.put("/addPayment.do", new addPaymentControl()); //지불정보 입력
 		map.put("/addOrderProduct.do", new addOrderProductControl()); //주문상품정보 입력
 		map.put("/searchOrder.do", new searchOrderControl()); //주문상품정보 입력
-		
-		
+		map.put("/beforAddr.do", new beforAddrControl()); //이전 주소 불러오기
+		map.put("/updateOrderStatus.do", new updateOrderStatusControl()); //배송 상태 변경
 		
 
 		//민규

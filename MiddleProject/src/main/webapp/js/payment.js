@@ -30,8 +30,8 @@ function requestPay() {
 	//결제자 주소
 
 	//결제자 ID
-	var memId = document.querySelector('#couponList').dataset.id;
-
+	var memId = document.querySelector('#memberId').dataset.id;
+	console.log(memId);
 	//수신자 이름
 	var ordReciever = document.querySelector('#rname').value;
 	if (!ordReciever) {
@@ -45,9 +45,10 @@ function requestPay() {
 		return;
 	}
 	//수신자 주소
+	var reg = /[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]/gi;
 	var ordAddr = document.querySelector('#sample4_roadAddress').value + "/"
-		+ document.querySelector('#sample4_extraAddress').value + "/"
-		+ document.querySelector('#sample4_detailAddress').value
+		+document.querySelector('#sample4_extraAddress').value.replace(reg, "") + "/"
+		+document.querySelector('#sample4_detailAddress').value
 	if (!document.querySelector('#sample4_detailAddress').value) {
 		alert("주소를 확인 해주세요.");
 		return;
@@ -110,7 +111,6 @@ function requestPay() {
 				url: "addOrder.do",
 				type: "POST",
 				data: {
-					ordStatus: '결제완료',
 					memId: memId,
 					ordReceiver: ordReciever,
 					ordAddr: ordAddr,
@@ -139,6 +139,7 @@ function requestPay() {
 				type: "POST",
 				traditional: true,
 				data: {
+					ordStatus: '결제완료',
 					ordQuant: ordQuants,
 					proId: proIds,
 					ordProSumprice: ordProSumprices
@@ -156,7 +157,7 @@ function requestPay() {
 			})
 			
 			alert(msg);
-//			location.href = "main.do"
+			location.href = "orderList.do"
 		} else {
 			let msg = '결제에 실패하였습니다.';
 			msg += '에러내용 : ' + rsp.error_msg;

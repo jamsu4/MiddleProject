@@ -11,8 +11,10 @@
 		height : 350px;
 		border : 1px solid black;
 	}
+	i {
+		cursor : pointer;
+	}
 </style>
-<h3>Main Page.</h3>
 <form action="searchProduct.do">
 	<input type="text" name="search">
 	<input type="submit" value="검색하기">
@@ -49,10 +51,10 @@
                                         <ul>
                                             <c:choose>
 								              <c:when test="${isZzim}">
-								                <li><a><i data-id="${list.proId}" class="zzim fa fa-heart text-danger"></i></a></li>
+								                <li><a class="zzim"><i data-id="${list.proId}" class="zzim fa fa-heart text-danger"></i></a></li>
 								              </c:when>
 								              <c:otherwise>
-								                <li><a><i data-id="${list.proId}" class="zzim fa fa-heart"></i></a></li>
+								                <li><a class="zzim"><i data-id="${list.proId}" class="zzim fa fa-heart"></i></a></li>
 								              </c:otherwise>
 								            </c:choose>
                                         <li><a>
@@ -114,10 +116,10 @@
                                         <ul>
                                             <c:choose>
 								              <c:when test="${isZzim}">
-								                <li><a><i data-id="${list.proId}" class="zzim fa fa-heart text-danger"></i></a></li>
+								                <li><a class="zzim"><i data-id="${list.proId}" class="zzim fa fa-heart text-danger"></i></a></li>
 								              </c:when>
 								              <c:otherwise>
-								                <li><a><i data-id="${list.proId}" class="zzim fa fa-heart"></i></a></li>
+								                <li><a class="zzim"><i data-id="${list.proId}" class="zzim fa fa-heart"></i></a></li>
 								              </c:otherwise>
 								            </c:choose>
                                             <li><a>
@@ -179,10 +181,10 @@
                                         <ul>
                                             <c:choose>
 								              <c:when test="${isZzim}">
-								                <li><a><i data-id="${list.proId}" class="zzim fa fa-heart text-danger"></i></a></li>
+								                <li><a class="zzim"><i data-id="${list.proId}" class="zzim fa fa-heart text-danger"></i></a></li>
 								              </c:when>
 								              <c:otherwise>
-								                <li><a><i data-id="${list.proId}" class="zzim fa fa-heart"></i></a></li>
+								                <li><a class="zzim"><i data-id="${list.proId}" class="zzim fa fa-heart"></i></a></li>
 								              </c:otherwise>
 								            </c:choose>
                                             <li><a>
@@ -244,10 +246,10 @@
                                         <ul>
                                             <c:choose>
 								              <c:when test="${isZzim}">
-								                <li><a><i data-id="${list.proId}" class="zzim fa fa-heart text-danger"></i></a></li>
+								                <li><a class="zzim"><i data-id="${list.proId}" class="zzim fa fa-heart text-danger"></i></a></li>
 								              </c:when>
 								              <c:otherwise>
-								                <li><a><i data-id="${list.proId}" class="zzim fa fa-heart"></i></a></li>
+								                <li><a class="zzim"><i data-id="${list.proId}" class="zzim fa fa-heart"></i></a></li>
 								              </c:otherwise>
 								            </c:choose>
                                             <li><a>
@@ -309,10 +311,10 @@
                                         <ul>
                                             <c:choose>
 								              <c:when test="${isZzim}">
-								                <li><a><i data-id="${list.proId}" class="zzim fa fa-heart text-danger"></i></a></li>
+								                <li><a class="zzim"><i data-id="${list.proId}" class="zzim fa fa-heart text-danger"></i></a></li>
 								              </c:when>
 								              <c:otherwise>
-								                <li><a><i data-id="${list.proId}" class="zzim fa fa-heart"></i></a></li>
+								                <li><a class="zzim"><i data-id="${list.proId}" class="zzim fa fa-heart"></i></a></li>
 								              </c:otherwise>
 								            </c:choose>
                                             <li><a>
@@ -374,10 +376,10 @@
                                         <ul>
                                             <c:choose>
 								              <c:when test="${isZzim}">
-								                <li><a><i data-id="${list.proId}" class="zzim fa fa-heart text-danger"></i></a></li>
+								                <li><a class="zzim"><i data-id="${list.proId}" class="zzim fa fa-heart text-danger"></i></a></li>
 								              </c:when>
 								              <c:otherwise>
-								                <li><a><i data-id="${list.proId}" class="zzim fa fa-"></i></a></li>
+								                <li><a class="zzim"><i data-id="${list.proId}" class="zzim fa fa-heart"></i></a></li>
 								              </c:otherwise>
 								            </c:choose>
                                             <li><a>

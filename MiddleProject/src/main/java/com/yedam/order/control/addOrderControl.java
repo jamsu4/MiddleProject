@@ -16,16 +16,14 @@ public class addOrderControl implements Command {
 	@Override
 	public String exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String memId = req.getParameter("memId");
-		String ordStatus = req.getParameter("ordStatus");
 		String ordReceiver = req.getParameter("ordReceiver");
 		String ordAddr = req.getParameter("ordAddr");
 		String ordPhone = req.getParameter("ordPhone");
 		String ordPostcode = req.getParameter("ordPostcode");
 		String ordTotalPrice = req.getParameter("ordTotalPrice");
-		
+
 		OrderVO ovo = new OrderVO();
 		ovo.setMemId(memId);
-		ovo.setOrdStatus(ordStatus);
 		ovo.setOrdReceiver(ordReceiver);
 		ovo.setOrdAddr(ordAddr);
 		ovo.setOrdPhone(ordPhone);
@@ -41,6 +39,8 @@ public class addOrderControl implements Command {
 			json = "{\"retCode\": \"Fail\"}";
 			return json + ".json";
 		}
+		
+		
 		
 		String coupId = req.getParameter("coupId");
 		String payCouponprice = req.getParameter("payCouponprice");

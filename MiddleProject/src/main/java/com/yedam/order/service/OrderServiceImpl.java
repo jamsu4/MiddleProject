@@ -47,4 +47,19 @@ public class OrderServiceImpl implements OrderService {
 		return mapper.myOrder(memId);
 
 	}
+
+	@Override
+	public OrderVO getBeforeAddr(String memId) {
+		return mapper.selectBeforeAddr(memId);
+	}
+
+	@Override
+	public int modifyOrderStatus(OrderVO ovo) {
+		return mapper.updateOrderStatus(ovo);
+	}
+
+	@Override
+	public int addOrdStatus(String ordStatus) {
+		return mapper.insertOrderStatus(ordStatus);
+	}
 }

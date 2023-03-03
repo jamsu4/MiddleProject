@@ -103,7 +103,7 @@
 					</div>
 				</div>
 				<c:forEach var="list" items="${cartList }">
-					<div class="product-cart d-flex">
+					<div id="memberId" class="product-cart d-flex" data-id="${list.memId }">
 						<div class="one-eight text-center">
 							<div class="display-tc">
 								<input class="selectBox" type="checkbox" data-quantity="${list.caQuant}" data-ordProSumprice="${list.caSumprice}"
@@ -119,7 +119,7 @@
 						</div>
 						<div class="one-eight text-center">
 							<div class="display-tc">
-								<span class="price">${list.proPrice }</span>
+								<span class="price">${list.proPrice }</span><span>원</span>
 							</div>
 						</div>
 						<div class="one-eight text-center">
@@ -131,7 +131,7 @@
 						</div>
 						<div class="one-eight text-center">
 							<div class="display-tc">
-								<span class="price">${list.caSumprice }</span>
+								<span class="price">${list.caSumprice }</span><span>원</span>
 							</div>
 						</div>
 						<div class="one-eight text-center">
@@ -293,12 +293,12 @@
 						<div class="col-md-12">
 							<div class="form-group">
 								<div class="radio">
-									<label>
-										<input type="radio" name="optradio">이전 배송정보   
-									</label> 
-									<label>
-										<input type="radio" name="optradio">새로운 배송정보 
+									<label >
+										<input id="newAddr"  type="radio" name="optradio" checked>새로운 배송정보 
 									</label>
+									<label >
+										<input id="beforeAddr"  type="radio" name="optradio">이전 배송정보   
+									</label> 
 								</div>
 							</div>
 						</div>
@@ -336,31 +336,7 @@
 
 						<div class="col-md-12">
 							<div class="cart-detail">
-								<h2>Payment Method</h2>
-								<div class="form-group">
-									<div class="col-md-12">
-										<div class="radio">
-											<label><input type="radio" name="optradio">
-												카드 결제</label>
-										</div>
-									</div>
-								</div>
-								<div class="form-group">
-									<div class="col-md-12">
-										<div class="radio">
-											<label><input type="radio" name="optradio">
-												Check Payment</label>
-										</div>
-									</div>
-								</div>
-								<div class="form-group">
-									<div class="col-md-12">
-										<div class="radio">
-											<label><input type="radio" name="optradio">
-												Paypal</label>
-										</div>
-									</div>
-								</div>
+								<h2>결제 정보 확인</h2>
 								<div class="form-group">
 									<div class="col-md-12">
 										<div class="checkbox">
@@ -393,6 +369,9 @@
 
 
 <script>
+
+
+
 //상품 삭제
 $('.closed').click(function () {
 	var $this = $(this);
@@ -628,6 +607,32 @@ $('.quantity').on('change', function() {
 		$('.totalPrice').text(total);
 		
 	}
+	//이전 배송 정보
+	$('#beforeAddr').click(function() {
+		$.ajax({
+			url: 'beforAddr.do',
+			method: 'post',
+			data: { memId : "${logId}"},
+			success: function(result) {
+				console.log(result.beforeAddr);
+				$('#rname').val(result.beforeAddr.ordReceiver)
+// 						   .style("color","black");
+				$('#rphone').val(result.beforeAddr.ordPhone)
+// 				   			.style("color","black");
+				addrList = result.beforeAddr.ordAddr.split("/")
+				console.log(addrList)
+				$('#sample4_roadAddress').val(addrList[0]);
+				$('#sample4_extraAddress').val(addrList[1]);
+				$('#sample4_detailAddress').val(addrList[2]);
+				$('#sample4_postcode').val(result.beforeAddr.ordPostcode)
+// 	   			.style("color","black");
+			},
+			error: function(err) {
+				console.log(err);
+			}
+		});
+	});
+
 	
 	
 </script>
