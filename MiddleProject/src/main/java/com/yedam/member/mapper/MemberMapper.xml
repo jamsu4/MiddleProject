@@ -84,4 +84,10 @@
 		SELECT * FROM member
 		WHERE mem_id = #{memId}
 	</select>
+	
+	<!--  -->
+	<select id="searchSpecificMember" parameterType="String" resultType="MemberVO">
+		SELECT * FROM member
+		WHERE mem_id = #{memId}
+	</select>
 </mapper>
