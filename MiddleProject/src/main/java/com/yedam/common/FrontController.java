@@ -41,8 +41,13 @@ import com.yedam.notice.command.NoticeListControl;
 import com.yedam.notice.command.NoticeUpdateControl;
 import com.yedam.notice.command.NoticeUpdateFormControl;
 import com.yedam.order.control.addOrderControl;
+
+import com.yedam.order.control.addOrderProductControl;
+import com.yedam.order.control.addPaymentControl;
+
 import com.yedam.order.control.orderControl;
 import com.yedam.order.control.orderManageControl;
+import com.yedam.order.control.searchOrderControl;
 import com.yedam.product.command.InsertProductManager;
 import com.yedam.product.command.ModifyProductManager;
 import com.yedam.product.command.ModifyReviewManage;
@@ -100,7 +105,9 @@ public class FrontController extends HttpServlet {
 		map.put("/adminMain.do", new adminMainControl()); //관리자페이지 메인
 		map.put("/orderManage.do", new orderManageControl()); //주문관리페이지
 		
-		
+		map.put("/addPayment.do", new addPaymentControl()); //지불정보 입력
+		map.put("/addOrderProduct.do", new addOrderProductControl()); //주문상품정보 입력
+		map.put("/searchOrder.do", new searchOrderControl()); //주문상품정보 입력
 		
 		
 		

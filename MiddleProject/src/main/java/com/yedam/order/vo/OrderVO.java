@@ -15,12 +15,24 @@ public class OrderVO {
 	// orderproduct table
 	private int ordProId;
 	private int ordQuant;
-	private int proid;
+	private int proId;
 	private int ordProSumprice;
-	//주문내역용 product table,payment table
-	private String proName;
-	private String proImg;
+
+	//payment
+	private int payId;
 	private String payDate;
+	private int payTotalprice;
+	private int payCouponprice;
+	private String payCode;
+	private int coupId;
+	
+	private String memName;
+	private String proName;
+	//검색조건
+
+	//주문내역용 product table,payment table
+	private String proImg;
 	private int proPrice;
+
 	
 }

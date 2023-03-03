@@ -13,6 +13,61 @@
 		VALUES(#{ordId},#{memId}, #{ordStatus}, #{ordReceiver}, #{ordAddr}, #{ordPhone}, #{ordPostcode},#{ordTotalprice})
 	</insert>
 	
+
+	<select id="getOrderList" resultType="OrderVO">
+		SELECT o.* , op.* , pay.* ,pro.pro_name, m.mem_name
+		FROM member m ,orders o, orderproduct op,product pro ,payment pay
+		WHERE m.mem_id = o.mem_id 
+		  AND o.ord_id = op.ord_id
+		  AND op.pro_id = pro.pro_id
+		  AND o.ord_id = pay.ord_id
+		ORDER BY o.ord_id 
+	</select>
+	
+	<insert id="insertPayment" parameterType="OrderVO">
+	  <selectKey keyProperty="payId" resultType="int" order="BEFORE">
+	    SELECT seq_payment_id.NEXTVAL FROM dual
+	  </selectKey>
+	  INSERT INTO payment (pay_id, ord_id, pay_date, pay_totalprice, pay_couponprice, pay_code, coup_id)
+	  VALUES (#{payId}, (SELECT ord_id
+						 FROM orders
+						 WHERE ord_id = (SELECT MAX(ord_id) FROM orders)),
+						 sysdate, #{payTotalprice}, #{payCouponprice}, #{payCode}, #{coupId})
+	</insert>
+		<insert id="insertOrderProduct" parameterType="OrderVO">
+	    INSERT INTO orderproduct 
+	    	(ord_quant, 
+	    	 pro_id, 
+	    	 ord_id , 
+	    	 ord_pro_sumprice)
+	    VALUES
+		    (
+		        #{ordQuant},
+		        #{proId},
+		        (SELECT MAX(ord_id) FROM orders),
+		        #{ordProSumprice}
+		    )
+	</insert>
+	<select id="selectSearchOrder" resultType="OrderVO">
+		SELECT o.* , op.* , pay.* ,pro.pro_name, m.mem_name
+		FROM member m ,orders o, orderproduct op,product pro ,payment pay
+		WHERE m.mem_id = o.mem_id 
+		  AND o.ord_id = op.ord_id
+		  AND op.pro_id = pro.pro_id
+		  AND o.ord_id = pay.ord_id
+		  <if test="ordId != 0">
+		  AND o.ord_id = #{ordId}
+		  </if>
+		  <if test="memId != null">
+		  AND o.mem_id = #{memId}
+		  </if>
+		  <if test="ordStatus != null">
+		  AND o.ord_status = #{ordStatus}
+		  </if>
+		ORDER BY o.ord_id
+	
+	</select>
+
 	<select id="myOrder" resultType="OrderVO">
 		SELECT * 
 	    FROM orders o JOIN orderproduct p

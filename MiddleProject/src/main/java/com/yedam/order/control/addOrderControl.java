@@ -33,13 +33,45 @@ public class addOrderControl implements Command {
 		ovo.setOrdTotalprice(Integer.parseInt(ordTotalPrice));
 		
 		OrderService service = new OrderServiceImpl();
+		String json="";
 		
-		if(service.addOrder(ovo)>0) {
-			return "order/orderComplete.tiles";
+		if(service.addOrder(ovo) > 0) {
+			json = "{\"retCode\": \"Success\"}";
 		} else {
-			return "order/orderFail.tiles";
+			json = "{\"retCode\": \"Fail\"}";
+			return json + ".json";
 		}
 		
+		String coupId = req.getParameter("coupId");
+		String payCouponprice = req.getParameter("payCouponprice");
+		String payCode = req.getParameter("payCode");
+		String payTotalprice = req.getParameter("payTotalprice");
+		System.out.println(payTotalprice);
+		if(coupId != null) {
+			ovo = new OrderVO();
+			ovo.setCoupId(Integer.parseInt(coupId));
+			ovo.setPayCouponprice(Integer.parseInt(payCouponprice));
+			ovo.setPayCode(payCode);
+			ovo.setPayTotalprice(Integer.parseInt(payTotalprice));
+		} else {
+			ovo = new OrderVO();
+			ovo.setPayCode(payCode);
+			ovo.setPayTotalprice(Integer.parseInt(payTotalprice));
+		}
+		
+		
+		service = new OrderServiceImpl();
+		json="";
+		
+		if(service.addPayment(ovo) > 0) {
+			json = "{\"retCode\": \"Success\"}";
+		} else {
+			json = "{\"retCode\": \"Fail\"}";
+		}
+		
+		
+		
+		return json + ".json";
 		
 		
 		
