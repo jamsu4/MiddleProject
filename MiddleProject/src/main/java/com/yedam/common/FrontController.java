@@ -28,36 +28,50 @@ import com.yedam.member.command.MemberUpdate;
 import com.yedam.member.command.Signup;
 import com.yedam.member.command.selectCouponControl;
 import com.yedam.mypage.command.MyPageControl;
+import com.yedam.mypage.command.OrderListControl;
 import com.yedam.mypage.command.UpdateInfo;
+import com.yedam.mypage.command.UpdateInfoForm;
+import com.yedam.mypage.command.ZzimDeleteControl;
 import com.yedam.mypage.command.ZzimListControl;
 import com.yedam.notice.command.AddNoticeControl;
 import com.yedam.notice.command.AddNoticeFormControl;
 import com.yedam.notice.command.NoticeDeleteControl;
 import com.yedam.notice.command.NoticeDetailControl;
 import com.yedam.notice.command.NoticeListControl;
-
 import com.yedam.notice.command.NoticeUpdateControl;
 import com.yedam.notice.command.NoticeUpdateFormControl;
 import com.yedam.order.control.addOrderControl;
+
 import com.yedam.order.control.addOrderProductControl;
 import com.yedam.order.control.addPaymentControl;
+
 import com.yedam.order.control.orderControl;
 import com.yedam.order.control.orderManageControl;
 import com.yedam.order.control.searchOrderControl;
 import com.yedam.product.command.InsertProductManager;
 import com.yedam.product.command.ModifyProductManager;
+import com.yedam.product.command.ModifyReviewManage;
 import com.yedam.product.command.ProductCartAdd;
 import com.yedam.product.command.ProductDetail;
 import com.yedam.product.command.ProductManagerList;
 import com.yedam.product.command.ProductManagerPage;
 import com.yedam.product.command.ProductMangerAddPage;
 import com.yedam.product.command.RemoveProductManager;
+import com.yedam.product.command.RemoveReviewManage;
+import com.yedam.product.command.ReviewManage;
+import com.yedam.product.command.ReviewManageList;
+import com.yedam.product.command.SearchReviewDate;
+import com.yedam.product.command.SearchReviewManage;
 import com.yedam.product.command.addZzimControl;
 import com.yedam.product.command.cartControl;
 import com.yedam.product.command.removeCartControl;
 import com.yedam.product.command.searchProductControl;
 import com.yedam.qa.command.InsertProductQa;
 import com.yedam.qa.command.ProductQaPage;
+import com.yedam.qa.command.QaList;
+import com.yedam.qa.command.QaManagerForm;
+import com.yedam.qa.command.QaRemove;
+import com.yedam.qa.command.QaUpdate;
 import com.yedam.zzim.command.ProductZzimAdd;
 import com.yedam.zzim.command.ProductZzimDel;
 
@@ -111,12 +125,12 @@ public class FrontController extends HttpServlet {
 		map.put("/insertProductManager.do", new InsertProductManager()); // 관리자 전용 상품 등록
 		map.put("/productQaPage.do", new ProductQaPage()); // Q&A 페이지
 		map.put("/insertProductQa.do", new InsertProductQa()); // Q&A 등록
-		
-		
-		
-		
-		
-		
+		map.put("/reviewManage.do", new ReviewManage()); // 관리자 전용 리뷰 페이지
+		map.put("/reviewManageList.do", new ReviewManageList()); // 관리자 전용 리뷰 리스트
+		map.put("/removeReviewManage.do", new RemoveReviewManage()); // 관리자 전용 리뷰 삭제
+		map.put("/modifyReviewManage.do", new ModifyReviewManage()); // 관리자 전용 리뷰 수정
+		map.put("/searchReviewManage.do", new SearchReviewManage()); // 관리자 리뷰 검색
+		map.put("/searchReviewDate.do", new SearchReviewDate()); // 리뷰 날짜 검색)
 		//종민
 		map.put("/loginForm.do", new LoginForm());
 		map.put("/login.do", new Login());
@@ -132,8 +146,15 @@ public class FrontController extends HttpServlet {
 		map.put("/findPwd.do", new FindPwd());					// 비번 찾기 처리 (임시 비밀번호)
 		map.put("/findPwdResult.do", new FindPwdResult());			// 임시 비밀번호 보낸 후 알림 페이지
 		map.put("/idCheck.do", new IdCheck());					// 아이디 중복 확인
+		//
+		map.put("/qaManageForm.do", new QaManagerForm());		// Q&A 게시판 관리
+		map.put("/qaList.do", new QaList());
+		map.put("/removeQa.do", new QaRemove());
+		map.put("/updateQa.do", new QaUpdate());
 		
-
+		
+		
+		
 		
 		
 		//주안
@@ -146,9 +167,11 @@ public class FrontController extends HttpServlet {
 		map.put("/noticeDelete.do", new NoticeDeleteControl()); //공지사항 삭제
 		map.put("/noticeUpdateForm.do", new NoticeUpdateFormControl()); //공지사항 수정페이지이동
 		map.put("/noticeUpdate.do", new NoticeUpdateControl()); //공지사항 수정기능
-		map.put("/updateInfo.do", new UpdateInfo());
-		
-		
+		map.put("/updateInfoForm.do", new UpdateInfoForm()); //개인정보 수정페이지
+		map.put("/updateInfo.do", new UpdateInfo()); //개인정보 수정기능
+		map.put("/zzimDelete.do", new ZzimDeleteControl()); //찜 삭제
+		map.put("/orderList.do", new OrderListControl()); //주문내역 
+		//map.put("/reviewList.do", new ReviewListControl()); //mypage 후기,qna
 		
 		
 	}

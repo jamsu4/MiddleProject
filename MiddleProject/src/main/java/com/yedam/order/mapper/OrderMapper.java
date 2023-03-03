@@ -3,6 +3,10 @@ package com.yedam.order.mapper;
 
 import java.util.List;
 
+
+import com.yedam.order.vo.OrderVO;
+
+
 import com.yedam.order.vo.OrderVO;
 
 public interface OrderMapper { 
@@ -17,4 +21,7 @@ public interface OrderMapper {
 	public int insertOrderProduct(OrderVO opList); //주문 상품 정보
 
 	public List<OrderVO> selectSearchOrder(OrderVO ovo); //주문정보 검색
+
+	public List<OrderVO> myOrder(String memId); //mypage 주문내역
+
 }

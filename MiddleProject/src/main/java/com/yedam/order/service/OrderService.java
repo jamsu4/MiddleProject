@@ -18,4 +18,6 @@ public interface OrderService {
 
 	public List<OrderVO> searchOrder(OrderVO ovo);
 
+	public List<OrderVO> myOrder(String memId); //mypage주문내역출력
+
 }

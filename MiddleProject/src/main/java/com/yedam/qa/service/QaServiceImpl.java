@@ -21,4 +21,20 @@ public class QaServiceImpl implements QaService{
 	public int addProductQa(QaVO qa) {
 		return mapper.insertProductQa(qa);
 	}
+
+	// jm 추가
+	@Override
+	public List<QaVO> qaListAll() {
+		return mapper.getListAll();
+	}
+
+	@Override
+	public int removeQa(int qaId) {
+		return mapper.deleteQa(qaId);
+	}
+
+	@Override
+	public int modifyQa(QaVO qa) {
+		return mapper.updateQa(qa);
+	}
 }

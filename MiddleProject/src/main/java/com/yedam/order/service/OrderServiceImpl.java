@@ -41,5 +41,10 @@ public class OrderServiceImpl implements OrderService {
 	@Override
 	public List<OrderVO> searchOrder(OrderVO ovo) {
 		return mapper.selectSearchOrder(ovo);
+  } 
+  @Override
+	public List<OrderVO> myOrder(String memId) { //mypage 주문내역
+		return mapper.myOrder(memId);
+
 	}
 }

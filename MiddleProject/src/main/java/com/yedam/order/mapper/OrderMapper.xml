@@ -13,6 +13,7 @@
 		VALUES(#{ordId},#{memId}, #{ordStatus}, #{ordReceiver}, #{ordAddr}, #{ordPhone}, #{ordPostcode},#{ordTotalprice})
 	</insert>
 	
+
 	<select id="getOrderList" resultType="OrderVO">
 		SELECT o.* , op.* , pay.* ,pro.pro_name, m.mem_name
 		FROM member m ,orders o, orderproduct op,product pro ,payment pay
@@ -66,4 +67,16 @@
 		ORDER BY o.ord_id
 	
 	</select>
+
+	<select id="myOrder" resultType="OrderVO">
+		SELECT * 
+	    FROM orders o JOIN orderproduct p
+        ON o.ord_id = p.ord_id 
+        JOIN payment a
+        ON p.ord_id = a.ord_id
+        join product r
+        ON p.pro_id = r.pro_id
+        WHERE mem_id = #{memId}
+	</select>
+
 </mapper>

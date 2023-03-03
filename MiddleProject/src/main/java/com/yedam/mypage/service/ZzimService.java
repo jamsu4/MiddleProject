@@ -9,7 +9,9 @@ import com.yedam.mypage.vo.ZzimVO;
 public interface ZzimService {
 	
 	
-	public List<ZzimVO> zzimList(String memId); 
+	public List<ZzimVO> zzimList(String memId);
+
+	public int deleteZzim(int zzimId); 
 	
 	
 }
