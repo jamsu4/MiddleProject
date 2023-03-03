@@ -115,14 +115,14 @@
       data: { arrStr: chkst },
       dataType: "json",
       success: function (result) {
-    	  console.log(result);
-      },
-      error: function (reject) {
     	  for(let j = 0; j < chks.length; j++){
     		  if (chks[j].checked == true) {
     			  $(chks[j].closest("tr")).remove();
     		  }
     	  }
+      },
+      error: function (reject) {
+    	  location.reload();
       },
     });
   }

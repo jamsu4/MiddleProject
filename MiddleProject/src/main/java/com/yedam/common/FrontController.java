@@ -30,6 +30,7 @@ import com.yedam.member.command.Signup;
 import com.yedam.member.command.selectCouponControl;
 import com.yedam.mypage.command.MyPageControl;
 import com.yedam.mypage.command.OrderListControl;
+import com.yedam.mypage.command.ReviewListControl;
 import com.yedam.mypage.command.UpdateInfo;
 import com.yedam.mypage.command.UpdateInfoForm;
 import com.yedam.mypage.command.ZzimDeleteControl;
