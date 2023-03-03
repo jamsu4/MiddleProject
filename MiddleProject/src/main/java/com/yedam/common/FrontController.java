@@ -45,12 +45,18 @@ import com.yedam.order.control.orderControl;
 import com.yedam.order.control.orderManageControl;
 import com.yedam.product.command.InsertProductManager;
 import com.yedam.product.command.ModifyProductManager;
+import com.yedam.product.command.ModifyReviewManage;
 import com.yedam.product.command.ProductCartAdd;
 import com.yedam.product.command.ProductDetail;
 import com.yedam.product.command.ProductManagerList;
 import com.yedam.product.command.ProductManagerPage;
 import com.yedam.product.command.ProductMangerAddPage;
 import com.yedam.product.command.RemoveProductManager;
+import com.yedam.product.command.RemoveReviewManage;
+import com.yedam.product.command.ReviewManage;
+import com.yedam.product.command.ReviewManageList;
+import com.yedam.product.command.SearchReviewDate;
+import com.yedam.product.command.SearchReviewManage;
 import com.yedam.product.command.addZzimControl;
 import com.yedam.product.command.cartControl;
 import com.yedam.product.command.removeCartControl;
@@ -112,12 +118,12 @@ public class FrontController extends HttpServlet {
 		map.put("/insertProductManager.do", new InsertProductManager()); // 관리자 전용 상품 등록
 		map.put("/productQaPage.do", new ProductQaPage()); // Q&A 페이지
 		map.put("/insertProductQa.do", new InsertProductQa()); // Q&A 등록
-		
-		
-		
-		
-		
-		
+		map.put("/reviewManage.do", new ReviewManage()); // 관리자 전용 리뷰 페이지
+		map.put("/reviewManageList.do", new ReviewManageList()); // 관리자 전용 리뷰 리스트
+		map.put("/removeReviewManage.do", new RemoveReviewManage()); // 관리자 전용 리뷰 삭제
+		map.put("/modifyReviewManage.do", new ModifyReviewManage()); // 관리자 전용 리뷰 수정
+		map.put("/searchReviewManage.do", new SearchReviewManage()); // 관리자 리뷰 검색
+		map.put("/searchReviewDate.do", new SearchReviewDate()); // 리뷰 날짜 검색)
 		//종민
 		map.put("/loginForm.do", new LoginForm());
 		map.put("/login.do", new Login());

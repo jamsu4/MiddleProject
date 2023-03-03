@@ -19,7 +19,7 @@
                                 <div class="sb-nav-link-icon"></div>
                                 주 문 관 리
                             </a>
-                            <a class="nav-link" href="index.html">
+                            <a class="nav-link" href="reviewManage.do">
                                 <div class="sb-nav-link-icon"></div>
                                 리 뷰 관 리
                             </a>

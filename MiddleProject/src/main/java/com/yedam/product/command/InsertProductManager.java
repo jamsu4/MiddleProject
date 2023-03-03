@@ -48,7 +48,7 @@ public class InsertProductManager implements Command {
 		ProductService service = new ProductServiceImpl();
 		String link = "";
 		if(service.addProduct(product) > 0) {
-			link = "manager/productManager.tiles";
+			link = "admin/productManager.tiles";
 		} else {
 			System.out.println("오류");
 		}

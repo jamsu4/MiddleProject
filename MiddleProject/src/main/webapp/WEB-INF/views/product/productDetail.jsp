@@ -31,9 +31,18 @@
     <!--====== Style CSS ======-->
     <link rel="stylesheet" href="bootstrap1/assets/css/style.css">
 
-<!-- ***** Product Area Starts ***** -->
-
-<!-- ***** Product Area Starts ***** -->
+<style>
+	img.reviewImg {
+	  	max-width: 100%;
+    	max-height: 100%;
+	}
+	h4.title{
+		margin-left:20px;
+	}
+	h3.QA{
+		margin-bottom:30px;
+	}
+</style>
 <section class="section" id="product">
 
 	<div class="container">
@@ -100,125 +109,121 @@
 			</div>
 		</div>
 		<!--====== Reviews Part Start ======-->
-		<c:forEach var="review" items="${reviewList }">
 			<section class="reviews-wrapper pt-100 pb-50 ">
+				<h4 class="title">Product Reviews</h4>
+				
 				<div class="container">
-					<div class="reviews-style">
-						<div class="tab-pane fade show active" id="profile"
-							role="tabpanel" aria-labelledby="profile-tab">
-							<div class="review-wrapper">
-								<div class="reviews-title">
-									<h4 class="title">Product Reviews</h4>
-									<input class="revId" type="text" value="${review.revId }" style="display:none;">
-								</div>
-								<div class="reviews-rating-wrapper flex-wrap">
-									<div class="reviews-rating-star">
-										<img class = "reviewImg" src="images/${review.revImage }" alt="" />
+					<c:forEach var="review" items="${reviewList }">
+						<div class="reviews-style">
+							<div class="tab-pane fade show active" id="profile"
+								role="tabpanel" aria-labelledby="profile-tab">
+								<div class="review-wrapper">
+									<div class="reviews-title">
+										
+										<input class="revId" type="text" value="${review.revId }" style="display:none;">
 									</div>
-									<div class="reviews-rating-form">
-										<div class="rating-star">
-											<h4>${review.memId }</h4><p>${review.revDate }</p>
-											<c:choose>
-												<c:when test="${review.revRate eq 1}">
-													<ul id="stars" class="stars">
-			                                            <li class="star selected" data-value='1'><i class="mdi mdi-star"></i></li>
-			                                            <li class="star" data-value='2'><i class="mdi mdi-star"></i></li>
-			                                            <li class="star" data-value='3'><i class="mdi mdi-star"></i></li>
-			                                            <li class="star" data-value='4'><i class="mdi mdi-star"></i></li>
-			                                            <li class="star" data-value='5'><i class="mdi mdi-star"></i></li>
-	                                        		</ul>
-												</c:when>
-												<c:when test="${review.revRate eq 2}">
-													<ul id="stars" class="stars">
-			                                            <li class="star selected" data-value='1'><i class="mdi mdi-star"></i></li>
-			                                            <li class="star selected" data-value='2'><i class="mdi mdi-star"></i></li>
-			                                            <li class="star" data-value='3'><i class="mdi mdi-star"></i></li>
-			                                            <li class="star" data-value='4'><i class="mdi mdi-star"></i></li>
-			                                            <li class="star" data-value='5'><i class="mdi mdi-star"></i></li>
-	                                        		</ul>
-												</c:when>
-												<c:when test="${review.revRate eq 3}">
-													<ul id="stars" class="stars">
-			                                            <li class="star selected" data-value='1'><i class="mdi mdi-star"></i></li>
-			                                            <li class="star selected" data-value='2'><i class="mdi mdi-star"></i></li>
-			                                            <li class="star selected" data-value='3'><i class="mdi mdi-star"></i></li>
-			                                            <li class="star" data-value='4'><i class="mdi mdi-star"></i></li>
-			                                            <li class="star" data-value='5'><i class="mdi mdi-star"></i></li>
-	                                        		</ul>
-												</c:when>
-												<c:when test="${review.revRate eq 4}">
-													<ul id="stars" class="stars">
-			                                            <li class="star selected" data-value='1'><i class="mdi mdi-star"></i></li>
-			                                            <li class="star selected" data-value='2'><i class="mdi mdi-star"></i></li>
-			                                            <li class="star selected" data-value='3'><i class="mdi mdi-star"></i></li>
-			                                            <li class="star selected" data-value='4'><i class="mdi mdi-star"></i></li>
-			                                            <li class="star" data-value='5'><i class="mdi mdi-star"></i></li>
-	                                        		</ul>
-												</c:when>
-												<c:when test="${review.revRate eq 5}">
-													<ul id="stars" class="stars">
-			                                            <li class="star selected" data-value='1'><i class="mdi mdi-star"></i></li>
-			                                            <li class="star selected" data-value='2'><i class="mdi mdi-star"></i></li>
-			                                            <li class="star selected" data-value='3'><i class="mdi mdi-star"></i></li>
-			                                            <li class="star selected" data-value='4'><i class="mdi mdi-star"></i></li>
-			                                            <li class="star selected" data-value='5'><i class="mdi mdi-star"></i></li>
-	                                        		</ul>
-												</c:when>
-											</c:choose>
+									<div class="reviews-rating-wrapper flex-wrap">
+										<div class="reviews-rating-star">
+											<img class = "reviewImg" src="images/${review.revImage }" alt="" />
 										</div>
-										<div class="rating-form">
-											<form action="#">
-												<div class="single-form form-default">
-													<label>Comment</label>
-													<div class="form-input">
-														<textarea placeholder="Your review here">${review.revContent }</textarea>
-														<i class="mdi mdi-message-text-outline"></i>
-													</div>
-												</div>
-											</form>
-										</div>
-									</div>
-								</div>
-								<div class="reviews-btn flex-wrap">
-									<div class="reviews-btn-left">
-										<div class="dropdown-style">
-											<button id="commentBtn" class="main-btn primary-btn" type="button">댓글</button>
-										</div>
-									</div>
-								</div>
-								<div class="reviews-comment">
-									<ul class="comment-items">
-										<li>
-											<div class="single-review-comment">
-												<div class="comment-user-info">
-													<div class="comment-content">
-														
-														<h6 class="name" style="color:red;font-weight: bolder;">
-														<img src="bootstrap1/assets/images/icon-svg/person-square.svg" alt="" style="width:30px; margin-right:10px;">관리자</h6>
-														<p>
-															<span class=""></span>
-														</p>
-													</div>
-												</div>
-												<div class="comment-user-text">
-													<p>${review.revReply }</p>
-												</div>
-												<div id="list">
-												
-												</div>
+										<div class="reviews-rating-form">
+											<div class="rating-star">
+												<h4>${review.memId }</h4><p>${review.revDate }</p>
+												<c:choose>
+													<c:when test="${review.revRate eq 1}">
+														<ul id="stars" class="stars">
+				                                            <li class="star selected" data-value='1'><i class="mdi mdi-star"></i></li>
+				                                            <li class="star" data-value='2'><i class="mdi mdi-star"></i></li>
+				                                            <li class="star" data-value='3'><i class="mdi mdi-star"></i></li>
+				                                            <li class="star" data-value='4'><i class="mdi mdi-star"></i></li>
+				                                            <li class="star" data-value='5'><i class="mdi mdi-star"></i></li>
+		                                        		</ul>
+													</c:when>
+													<c:when test="${review.revRate eq 2}">
+														<ul id="stars" class="stars">
+				                                            <li class="star selected" data-value='1'><i class="mdi mdi-star"></i></li>
+				                                            <li class="star selected" data-value='2'><i class="mdi mdi-star"></i></li>
+				                                            <li class="star" data-value='3'><i class="mdi mdi-star"></i></li>
+				                                            <li class="star" data-value='4'><i class="mdi mdi-star"></i></li>
+				                                            <li class="star" data-value='5'><i class="mdi mdi-star"></i></li>
+		                                        		</ul>
+													</c:when>
+													<c:when test="${review.revRate eq 3}">
+														<ul id="stars" class="stars">
+				                                            <li class="star selected" data-value='1'><i class="mdi mdi-star"></i></li>
+				                                            <li class="star selected" data-value='2'><i class="mdi mdi-star"></i></li>
+				                                            <li class="star selected" data-value='3'><i class="mdi mdi-star"></i></li>
+				                                            <li class="star" data-value='4'><i class="mdi mdi-star"></i></li>
+				                                            <li class="star" data-value='5'><i class="mdi mdi-star"></i></li>
+		                                        		</ul>
+													</c:when>
+													<c:when test="${review.revRate eq 4}">
+														<ul id="stars" class="stars">
+				                                            <li class="star selected" data-value='1'><i class="mdi mdi-star"></i></li>
+				                                            <li class="star selected" data-value='2'><i class="mdi mdi-star"></i></li>
+				                                            <li class="star selected" data-value='3'><i class="mdi mdi-star"></i></li>
+				                                            <li class="star selected" data-value='4'><i class="mdi mdi-star"></i></li>
+				                                            <li class="star" data-value='5'><i class="mdi mdi-star"></i></li>
+		                                        		</ul>
+													</c:when>
+													<c:when test="${review.revRate eq 5}">
+														<ul id="stars" class="stars">
+				                                            <li class="star selected" data-value='1'><i class="mdi mdi-star"></i></li>
+				                                            <li class="star selected" data-value='2'><i class="mdi mdi-star"></i></li>
+				                                            <li class="star selected" data-value='3'><i class="mdi mdi-star"></i></li>
+				                                            <li class="star selected" data-value='4'><i class="mdi mdi-star"></i></li>
+				                                            <li class="star selected" data-value='5'><i class="mdi mdi-star"></i></li>
+		                                        		</ul>
+													</c:when>
+												</c:choose>
 											</div>
-										</li>
-									</ul>
+											<div class="rating-form">
+												<form action="#">
+													<div class="single-form form-default">
+														<label>Comment</label>
+														<div class="form-input">
+															<textarea placeholder="Your review here">${review.revContent }</textarea>
+															<i class="mdi mdi-message-text-outline"></i>
+														</div>
+													</div>
+												</form>
+											</div>
+										</div>
+									</div>
+									<c:if test="${!empty review.revReply }">
+										<div class="reviews-comment">
+											<ul class="comment-items">
+												<li>
+													<div class="single-review-comment">
+														<div class="comment-user-info">
+															<div class="comment-content">
+																<h6 class="name" style="color:red;font-weight: bolder;">
+																<img src="bootstrap1/assets/images/icon-svg/person-square.svg" alt="" style="width:30px; margin-right:10px;">관리자</h6>
+																<p>
+																	<span class=""></span>
+																</p>
+															</div>
+														</div>
+														<div class="comment-user-text">
+															<p>${review.revReply }</p>
+														</div>
+														<div id="list">
+														
+														</div>
+													</div>
+												</li>
+											</ul>
+										</div>
+									</c:if>
 								</div>
 							</div>
 						</div>
-					</div>
+					</c:forEach>
 				</div>
 			</section>
-		</c:forEach>
 		<!--====== Reviews Part Ends ======-->
 		<div class="productDetailQnA">
-			<h2>Q&A</h2>
+			<h3 class="QA">Q&A</h3>
 			<table class="productDetailQnA">
 				<thead class="productDetailQnA">
 					<tr class="productDetailQnA">
