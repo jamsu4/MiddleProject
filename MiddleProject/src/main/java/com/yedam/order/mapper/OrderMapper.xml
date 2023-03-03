@@ -16,7 +16,11 @@
 	<select id="myOrder" resultType="OrderVO">
 		SELECT * 
 	    FROM orders o JOIN orderproduct p
-        ON o.ord_id = p.ord_id
+        ON o.ord_id = p.ord_id 
+        JOIN payment a
+        ON p.ord_id = a.ord_id
+        join product r
+        ON p.pro_id = r.pro_id
         WHERE mem_id = #{memId}
 	</select>
 

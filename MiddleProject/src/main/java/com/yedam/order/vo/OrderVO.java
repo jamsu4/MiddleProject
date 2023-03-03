@@ -17,4 +17,10 @@ public class OrderVO {
 	private int ordQuant;
 	private int proid;
 	private int ordProSumprice;
+	//주문내역용 product table,payment table
+	private String proName;
+	private String proImg;
+	private String payDate;
+	private int proPrice;
+	
 }

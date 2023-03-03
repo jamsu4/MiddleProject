@@ -18,8 +18,6 @@ public class OrderListControl implements Command {
 		OrderService service = new OrderServiceImpl(); 		
 		HttpSession session = req.getSession();
 		String memId = (String) session.getAttribute("logId");
-		System.out.println("logId:"+memId); //세션에서 id는 잘 받아옴
-		System.out.println("OrderVO:"+service.myOrder((String) session.getAttribute("logId")));
 		req.setAttribute("list",service.myOrder(memId));
 		return "mypage/orderList.tiles";
 	}

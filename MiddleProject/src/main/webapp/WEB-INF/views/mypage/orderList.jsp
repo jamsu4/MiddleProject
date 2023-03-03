@@ -51,6 +51,20 @@
 #couponList{
 	display: block!important;
 }
+.ordImg{
+	width:120px;
+	height:90px;
+	border-radius: 10px;
+}
+button{
+	color: white;
+	background-color: rgba(0, 0, 0, 0.644);
+	border-radius: 5px;
+	border: none;
+	width:80px;
+	height: 35px;
+	
+}
 </style>
 
 <h3>주문내역 입니다.</h3>
@@ -104,8 +118,11 @@
 					<div class="one-eight text-right px-4">
 						<span>주문상태</span>
 					</div>
+					<div class="one-eight text-right px-4">
+						<span>후기</span>
+					</div>
 				</div>
-				<c:forEach var="list" items="list">
+				<c:forEach var="list" items="${list }">
 					<div class="product-cart d-flex">
 						<div class="one-eight text-center">
 							<div class="display-tc">
@@ -115,35 +132,55 @@
 						</div>
 						<div class="one-eight text-center">
 							<div class="display-tc">
+								<img src="images/${list.proImg }" class="ordImg">
+								<span class="price">${list.proName }</span>
+							</div>
+						</div>
+						<div class="one-eight text-center">
+							<div class="display-tc">
+								<span class="price">${list.payDate }</span>
+							</div>
+						</div>
+						<div class="one-eight text-center">
+							<div class="display-tc">
 								<span class="price">${list.ordAddr }</span>
 							</div>
 						</div>
 						<div class="one-eight text-center">
 							<div class="display-tc">
-								<span class="price">2</span>
+								<span class="price">${list.ordReceiver }</span>
 							</div>
 						</div>
 						<div class="one-eight text-center">
 							<div class="display-tc">
-								<span class="price">3</span>
+								<span class="price">${list.proPrice }</span>
+								<span class="price">(${list.ordQuant })</span>
 							</div>
 						</div>
 						<div class="one-eight text-center">
 							<div class="display-tc">
-								<span class="price">4</span>
+								<span class="price">${list.ordStatus }</span>
 							</div>
 						</div>
-						<div class="one-eight text-center">
-							<div class="display-tc">
-								<span class="price">5</span>
-							</div>
-						</div>
-						<div class="one-eight text-center">
-							<div class="display-tc">
-								<span class="price">6</span>
-							</div>
-						</div>
+						<c:choose> 
+    <c:when test="${list.ordStatus == '결제완료'}">
+        <div class="one-eight text-center">
+			<div class="display-tc">
+			<button>후기작성</button>
+			</div>
+		</div>
+    </c:when>
+    <c:otherwise>
+        <div class="one-eight text-center">
+			<div class="display-tc">
+			<button disabled >후기작성</button>
+			</div>
+		</div>
+    </c:otherwise>
+</c:choose>
 					</div>
+
+
 				</c:forEach>
 
 				<div id="cartDiv2" class="row row-pb-lg">

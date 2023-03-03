@@ -35,8 +35,7 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	@Override
-	public OrderVO myOrder(String memId) { //mypage 주문내역
-		System.out.println("serviceImpl:"+memId);
+	public List<OrderVO> myOrder(String memId) { //mypage 주문내역
 		return mapper.myOrder(memId);
 	}
 }
