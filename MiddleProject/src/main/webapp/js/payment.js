@@ -1,9 +1,9 @@
-var IMP = window.IMP; // 생략가능
-IMP.init('imp42753804'); // <-- 본인 가맹점 식별코드 삽입
+
+
 
 
 function requestPay() {
-
+	 
 	//결제내용 확인 체크
 	if (!document.querySelector('#paymentInfoCheck').checked) {
 		alert("주문정보를 확인 해주세요.");
@@ -45,10 +45,10 @@ function requestPay() {
 		return;
 	}
 	//수신자 주소
-	var reg = /[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]/gi;
+	var reg = /[\{\}\[\]\/?.;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]/gi;
 	var ordAddr = document.querySelector('#sample4_roadAddress').value + "/"
-		+document.querySelector('#sample4_extraAddress').value.replace(reg, "") + "/"
-		+document.querySelector('#sample4_detailAddress').value
+		+ document.querySelector('#sample4_extraAddress').value.replace(reg, "") + "/"
+		+ document.querySelector('#sample4_detailAddress').value
 	if (!document.querySelector('#sample4_detailAddress').value) {
 		alert("주소를 확인 해주세요.");
 		return;
@@ -69,29 +69,29 @@ function requestPay() {
 	console.log(payTotalprice)
 	//결제코드
 	var merchant_uid = 'chamsu_' + new Date().getTime();
-	
+
 	var selectedProducts = document.querySelectorAll('.selectBox:checked');
 	console.log(selectedProducts);
 	var proIds = [];
 	var ordQuants = [];
 	var ordProSumprices = [];
-	
+
 	for (var i = 0; i < selectedProducts.length; i++) {
-	  var selectedProduct = selectedProducts[i];
-	  var proId = selectedProduct.dataset.value;
-	  proIds.push(proId);
-	  var ordQuant = selectedProduct.closest('.product-cart').querySelector('.one-eight:nth-child(4) .quantity').value;
-	  ordQuants.push(ordQuant);
-	  var ordProSumprice = selectedProduct.closest('.product-cart').querySelector('.one-eight:nth-child(5) .price').textContent;
-	  ordProSumprices.push(ordProSumprice);
+		var selectedProduct = selectedProducts[i];
+		var proId = selectedProduct.dataset.value;
+		proIds.push(proId);
+		var ordQuant = selectedProduct.closest('.product-cart').querySelector('.one-eight:nth-child(4) .quantity').value;
+		ordQuants.push(ordQuant);
+		var ordProSumprice = selectedProduct.closest('.product-cart').querySelector('.one-eight:nth-child(5) .price').textContent;
+		ordProSumprices.push(ordProSumprice);
 	}
 	console.log(proIds);
 	console.log(ordQuants);
 	console.log(ordProSumprices);
-	
-	IMP.init('iamport'); //iamport 대신 자신의 "가맹점 식별코드"를 사용
+	var IMP = window.IMP; // 생략가능
+	IMP.init('imp42753804'); //iamport 대신 자신의 "가맹점 식별코드"를 사용
 	IMP.request_pay({
-		pg: "inicis",
+		pg: "html5_inicis.INIpayTest",
 		pay_method: "card",
 		merchant_uid: merchant_uid,
 		name: name,	//수정부분
@@ -104,60 +104,54 @@ function requestPay() {
 	}, function(rsp) { // callback
 		console.log(rsp)
 		if (rsp.success) {
-			console.log(rsp.success)
 			let msg = '결제가 완료되었습니다.';
 			//주문정보 저장 -orders table
-			$.ajax({
-				url: "addOrder.do",
-				type: "POST",
-				data: {
-					memId: memId,
-					ordReceiver: ordReciever,
-					ordAddr: ordAddr,
-					ordPhone: ordPhone,
-					ordPostcode: ordPostcode,
-					ordTotalPrice: totalPrice,
-					coupId: coupId,
-					payCouponprice: payCouponprice,
-					payTotalprice: payTotalprice,
-					payCode: merchant_uid
-				},
-				success: function(result) {
-					if (result.retCode == "Success") {
-						console.log("주문테이블 등록 성공")
-					} else {
-						console.log("주문테이블 등록 실패")
-					}
-				},
-				error: function(error) {
-					console.log("실패");
+			$.post("addOrder.do", {
+				memId: memId,
+				ordReceiver: ordReciever,
+				ordAddr: ordAddr,
+				ordPhone: ordPhone,
+				ordPostcode: ordPostcode,
+				ordTotalPrice: totalPrice,
+				coupId: coupId,
+				payCouponprice: payCouponprice,
+				payTotalprice: payTotalprice,
+				payCode: merchant_uid,
+				payUid: rsp.imp_uid
+			}, function(result) {
+				if (result.retCode == "Success") {
+					console.log("주문테이블 등록 성공");
+
+					// 두 번째 AJAX 요청 실행
+					$.ajax({
+						url: "addOrderProduct.do",
+						type: "POST",
+						traditional: true,
+						data: {
+							ordStatus: '결제완료',
+							ordQuant: ordQuants,
+							proId: proIds,
+							ordProSumprice: ordProSumprices
+						},
+						success: function(result) {
+							if (result.retCode == "Success") {
+								console.log("주문상품 정보 등록 성공");
+							} else {
+								console.log("주문상품 정보 등록 실패");
+							}
+						},
+						error: function(error) {
+							console.log("실패");
+						}
+					});
+				} else {
+					console.log("주문테이블 등록 실패");
 				}
-			})
-//			orderProduct table	
-			$.ajax({
-				url: "addOrderProduct.do",
-				type: "POST",
-				traditional: true,
-				data: {
-					ordStatus: '결제완료',
-					ordQuant: ordQuants,
-					proId: proIds,
-					ordProSumprice: ordProSumprices
-				},
-				success: function(result) {
-					if (result.retCode == "Success") {
-						console.log("주문상품 정보 등록 성공")
-					} else {
-						console.log("주문상품 정보 등록 실패")
-					}
-				},
-				error: function(error) {
-					console.log("실패");
-				}
-			})
-			
+			});
+
+
 			alert(msg);
-			location.href = "orderList.do"
+			//			location.href = "orderList.do"
 		} else {
 			let msg = '결제에 실패하였습니다.';
 			msg += '에러내용 : ' + rsp.error_msg;

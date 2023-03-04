@@ -27,4 +27,7 @@ public class ProductVO {
 	private String revReply;
 	private double avgRate;
 	
+	//페이징
+	private int startNum;
+	private int endNum; 
 }

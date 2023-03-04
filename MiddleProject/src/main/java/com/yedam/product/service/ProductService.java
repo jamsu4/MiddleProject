@@ -4,13 +4,14 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
+import com.yedam.common.Pagination;
 import com.yedam.mypage.vo.ZzimVO;
 import com.yedam.product.vo.ProductVO;
 
 public interface ProductService {
 	// 목록, 단건조회.
-
-	public List<ProductVO> productList(); // 전체 상품 조회
+	public List<ProductVO> productList();
+	public List<ProductVO> productList(Pagination paging); // 전체 상품 조회 + 페이징
 	public List<ProductVO> searchProduct(String keyword); //상품 검색
 	public List<ProductVO> searchMenu(String menu);
 //	public ProductVO getProduct(String productCode);
@@ -37,6 +38,8 @@ public interface ProductService {
 	public int updateReview(ProductVO review); // 리뷰 수정
 	public List<ProductVO> searchReviewList(String memId, String proId); // 리뷰 검색
 	public List<ProductVO> searchReviewDateList(String date); // 리뷰 날짜 검색
-	public List<ProductVO> searchProductList(String proId, String proName); // 상품 검색
+	public List<ProductVO> searchProIdList(ProductVO pvo); // 상품 번호 검색
+	public List<ProductVO> searchProNameList(ProductVO pvo); // 상품 이름 검색
 	public List<ProductVO> rateList();
+	public int getPrductCount();
 }

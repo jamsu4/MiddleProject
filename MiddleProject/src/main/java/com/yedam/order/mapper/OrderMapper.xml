@@ -27,28 +27,33 @@
 	  <selectKey keyProperty="payId" resultType="int" order="BEFORE">
 	    SELECT seq_payment_id.NEXTVAL FROM dual
 	  </selectKey>
-	  INSERT INTO payment (pay_id, ord_id, pay_date, pay_totalprice, pay_couponprice, pay_code, coup_id)
+	  INSERT INTO payment (pay_id, ord_id, pay_date, pay_totalprice, pay_couponprice, pay_code, coup_id,pay_uid)
 	  VALUES (#{payId}, (SELECT ord_id
 						 FROM orders
 						 WHERE ord_id = (SELECT MAX(ord_id) FROM orders)),
-						 sysdate, #{payTotalprice}, #{payCouponprice}, #{payCode}, #{coupId})
+						 sysdate, #{payTotalprice}, #{payCouponprice}, #{payCode}, #{coupId},#{payUid})
 	</insert>
 		<insert id="insertOrderProduct" parameterType="OrderVO">
+		  <selectKey keyProperty="ordProId" resultType="int" order="BEFORE">
+		    SELECT SEQ_ordPro_ID.NEXTVAL FROM dual
+		  </selectKey>
 	    INSERT INTO orderproduct 
-	    	(ord_quant,
+	    	(ord_pro_id,
+	    	 ord_quant,
 	    	 ord_status, 
 	    	 pro_id, 
 	    	 ord_id , 
 	    	 ord_pro_sumprice)
 	    VALUES
 		    (
+		    	#{ordProId},
 		        #{ordQuant},
 		        #{ordStatus},
 		        #{proId},
 		        (SELECT MAX(ord_id) FROM orders),
 		        #{ordProSumprice}
 		    )
-	</insert>
+		</insert>
 	<select id="selectSearchOrder" resultType="OrderVO">
 		SELECT o.* , op.* , pay.* ,pro.pro_name, m.mem_name
 		FROM member m ,orders o, orderproduct op,product pro ,payment pay
@@ -91,7 +96,14 @@
 	<update id="updateOrderStatus" parameterType="OrderVO">
 		UPDATE orderproduct
 		SET ord_status = #{ordStatus}
-		WHERE ord_id = #{ordId}
-		  AND pro_id = #{proId}
+		WHERE ord_pro_id = #{ordProId}
 	</update>
+	
+	<select id="selectRefundInfo" resultType="OrderVO">
+		SELECT op.ord_pro_sumprice , p.pay_code, p.pay_uid
+		FROM orderproduct op, orders o , payment p
+		WHERE op.ord_id = o.ord_id
+		  AND o.ord_id = p.ord_id
+		  AND op.ord_pro_id = #{ordProId}
+	</select>
 </mapper>

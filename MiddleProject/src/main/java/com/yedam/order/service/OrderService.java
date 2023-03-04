@@ -26,4 +26,6 @@ public interface OrderService {
 
 	public int addOrdStatus(String ordStatus); //ordproduct 테이블 상태 추가
 
+	public OrderVO getRefundInfo(OrderVO ovo);
+
 }

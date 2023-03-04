@@ -30,4 +30,6 @@ public interface OrderMapper {
 
 	public int insertOrderStatus(String ordStatus); //order status 입력
 
+	public OrderVO selectRefundInfo(OrderVO ovo); //환불 정보 조회
+
 }

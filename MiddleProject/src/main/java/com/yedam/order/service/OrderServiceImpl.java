@@ -62,4 +62,9 @@ public class OrderServiceImpl implements OrderService {
 	public int addOrdStatus(String ordStatus) {
 		return mapper.insertOrderStatus(ordStatus);
 	}
+	
+	@Override
+	public OrderVO getRefundInfo(OrderVO ovo) {
+		return mapper.selectRefundInfo(ovo);
+	}
 }

@@ -5,8 +5,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js">
-	
 </script>
+<!-- <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script> -->
+<script src="https://cdn.iamport.kr/v1/iamport.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
 <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script> -->
 <style>
@@ -168,7 +169,7 @@ table:nth-of-type(2) input {
 		<div id="line" class="card mb-4"></div>
 		<div class="card mb-4">
 			<div class="card-header">
-				<i class="fas fa-table me-1"></i> DataTable Example
+				<i class="fas fa-table me-1"></i> 주문 검색 결과
 			</div>
 			<div class="card-body">
 				<table id="datatablesSimple" class="table">
@@ -178,6 +179,7 @@ table:nth-of-type(2) input {
 							<th>주문번호</th>
 							<th>주문상품</th>
 							<th>주문자</th>
+							<th>주문수량</th>
 							<th>결제금액</th>
 							<th>주문상태</th>
 
@@ -186,22 +188,62 @@ table:nth-of-type(2) input {
 					<tbody>
 					<tbody>
 						<c:forEach var="list" items="${orderList }">
-							<tr data-id="${list.ordId }" data-pid="${list.proId }">
+							<tr data-id="${list.ordId }" data-pid="${list.proId }" data-ordproid="${list.ordProId }">
 								<td>${list.payDate }</td>
 								<td>${list.ordId }</td>
 								<td title="product ID : ${list.proId }">${list.proName }</td>
 								<td title="member ID : ${list.memId }">${list.memName }</td>
-								<td><fmt:formatNumber value="${list.ordTotalprice }" pattern="#,###" />원</td>
-								<td><select class="orderStatus">
-										<option value="결제완료">${list.ordStatus }</option>
-										<option value="배송준비중">배송준비중</option>
-										<option value="배송중">배송중</option>
-										<option value="배송완료">배송완료</option>
-										<option>----------</option>
-										<option value="주문취소">주문취소</option>
-									</select>
-									</td>	
-
+								<td>${list.ordQuant }개</td>
+								<td><fmt:formatNumber value="${list.ordProSumprice }" pattern="#,###" />원</td>
+								<c:choose>
+									<c:when test="${list.ordStatus eq '결제완료'}">
+										<td><select class="orderStatus">
+												<option value="결제완료" selected>결제완료</option>
+												<option value="배송준비중">배송준비중</option>
+												<option value="배송중">배송중</option>
+												<option value="배송완료">배송완료</option>
+												<option>----------</option>
+												<option value="주문취소">주문취소</option>
+											</select>
+										</td>	
+									</c:when>
+									<c:when test="${list.ordStatus eq '배송준비중'}">
+										<td><select class="orderStatus">
+												<option value="배송준비중" selected>배송준비중</option>
+												<option value="배송중">배송중</option>
+												<option value="배송완료">배송완료</option>
+												<option>----------</option>
+												<option value="주문취소">주문취소</option>
+											</select>
+										</td>	
+									</c:when>
+									<c:when test="${list.ordStatus eq '배송중'}">
+										<td><select class="orderStatus">
+												<option value="배송준비중">배송준비중</option>
+												<option value="배송중" selected>배송중</option>
+												<option value="배송완료">배송완료</option>
+												<option>----------</option>
+												<option value="주문취소">주문취소</option>
+											</select>
+										</td>	
+									</c:when>
+									<c:when test="${list.ordStatus eq '배송완료'}">
+										<td><select class="orderStatus">
+												<option value="배송준비중">배송준비중</option>
+												<option value="배송중" >배송중</option>
+												<option value="배송완료" selected>배송완료</option>
+												<option>----------</option>
+												<option value="주문취소">주문취소</option>
+											</select>
+										</td>	
+									</c:when>
+									<c:otherwise>
+										<td><select class="orderStatus" disabled>
+												<option value="주문취소">주문취소</option>
+											</select>
+										</td>
+									</c:otherwise>
+								</c:choose>
 							</tr>
 						</c:forEach>
 					</tbody>
@@ -213,29 +255,109 @@ table:nth-of-type(2) input {
 
 <script>
 $('.orderStatus').change(function() {
-	var result = confirm('배송상태를 변경하시겠습니까?');
-	var proId = $(this).closest('tr').data('pid');
+	var ordProId = $(this).closest('tr').data('ordproid');
 	var ordId = $(this).closest('tr').data('id');
 	var ordStatus = $(this).val();
+	if(ordStatus != "주문취소"){
+		var result = confirm('배송상태를 변경하시겠습니까?');
+		if(result){
+			$.ajax({
+				url : "updateOrderStatus.do",
+				type : "POST",
+				data : {
+					ordProId : ordProId,
+					ordStatus : ordStatus
+				},
+				success : function(result) {
+					if(result.retCode == "Success"){					
+						console.log("수정 성공");
+					} else {
+						console.log("수정 실패");
+					}
+				},
+				error : function(error) {
+					console.log("수정 통신 실패");
+				}
+			});
+		} 
+	} else if(ordStatus == "주문취소") {
+		var result = confirm('주문을 취소 하시겠습니까?')
+		if(result) {
+			let merchant_uid = "";
+			let cancel_request_amount = "";
+			const imp_key = "1264228020715837";
+			const imp_secret = "NjH51deXXTC2OxTMUgJdzpSmEa94G9nmkaKnsO2nvyJ8edetXf4cLEXROkg0ojWzfQ0JkNdROCQm9kVd";
+			let imp_uid = "";
+// 			const amount = 100;
+			
+			IMP.init('iamport');
+			
+			$.ajax({
+			  url: "refundInfo.do",
+			  type: "POST",
+			  data: {
+			    ordProId: ordProId,
+			    ordId: ordId
+			  },
+			  success: function(result) {
+			    console.log(result.refundInfo);
+			    merchant_uid = result.refundInfo.payCode;
+			    cancel_request_amount = result.refundInfo.ordProSumprice;
+			    imp_uid = result.refundInfo.payUid;
+			    console.log(merchant_uid);
+			    console.log(imp_uid);
 
-	if(result){
-		$.ajax({
-			url : "updateOrderStatus.do",
-			type : "POST",
-			data : {
-				proId : proId,
-				ordId : ordId,
-				ordStauts : ordStatus
-			},
-			success : function(result) {
-				console.log("수정 성공");
-			},
-			error : function(error) {
-				console.log("수정 실패");
-			}
-		})
-	} else {
-		
+			    IMP.init('iamport');
+			    const param = {
+			      imp_uid: imp_uid,
+			      merchant_uid: merchant_uid,
+			      amount: 100
+			    };
+				console.log(param);
+			    IMP.certification(param, function(rsp) {
+			    	console.log(rsp);
+			      if (rsp.success) {
+			        // 결제 취소가 성공한 경우
+			        alert('결제 취소를 성공했습니다.');
+			        $.ajax({
+						url : "updateOrderStatus.do",
+						type : "POST",
+						data : {
+							ordProId : ordProId,
+							ordStatus : ordStatus
+						},
+						success : function(result) {
+							if(result.retCode == "Success"){					
+								console.log("수정 성공");
+							} else {
+								console.log("수정 실패");
+							}
+						},
+						error : function(error) {
+							console.log("수정 통신 실패");
+						}
+					});
+			        location.reload();
+			      } else {
+			        // 결제 취소가 실패한 경우
+			        alert('결제 취소를 실패했습니다');
+			      }
+			    });
+			  },
+			  error: function(error) {
+				console.log(error);
+			    console.log("조회 통신 실패");
+			  }
+			});
+
+			//위의 코드에서 imp_key와 imp_secret에는 발급받은 API 키와 시크릿 키를 입력하고, imp_uid에는 취소할 결제 건의 아임포트 고유 번호를 입력합니다.
+
+
+
+
+
+
+		}
 	}
 	
 })
