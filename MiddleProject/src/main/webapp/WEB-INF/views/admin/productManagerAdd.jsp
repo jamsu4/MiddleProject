@@ -5,8 +5,8 @@
 		margin: 10px;
 	}
 	div#image_container img{
-		height : 200px;
-		width : 200px;
+		height : 300px;
+		width : 300px;
 	}
 </style>
 
@@ -60,7 +60,7 @@
 			<div>
 				<input type="file" name="proImg" class="form-control" onchange="setThumbnail(event);">
 				<br>
-				<div id="image_container"></div>
+				<div id="image_container" style="text-align: center;"></div>
 			</div>
 		</div>
 

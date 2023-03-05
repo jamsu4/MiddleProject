@@ -109,6 +109,12 @@ public class ProductServiceImpl implements ProductService {
 	public List<ProductVO> rateList() {
 		return mapper.rateList();
 	}
+;
+	@Override
+	public int insertReview(ProductVO review) {
+		System.out.println(review);
+		return mapper.insertReview(review);
+	}
 
 	
 
