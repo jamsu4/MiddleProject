@@ -64,13 +64,14 @@ public class Signup implements Command {
 		// 멤버 VO 불러오고, 위와 동일한 방식으로 (coupon.set~~~
 		MemberVO coupvo = new MemberVO();
 		
-		// 아래 값은 고정			(날짜는 매퍼에서 sysdate + 어쩌구),   ID 는 셀렉트에서 시퀀스 이용(OderMapper.xml 참고)
-		coupvo.setCoupInfo("");
-		coupvo.setCoupName("");
-		coupvo.setCoupPrice("");
+		// 아래 값은 고정			(날짜는 매퍼에서 sysdate + 어쩌구),   쿠폰ID 는 셀렉트키에서 시퀀스 이용(OderMapper.xml 참고)
+		coupvo.setMemId(id);
+		coupvo.setCoupName("가입기념쿠폰");
+		coupvo.setCoupPrice(Integer.parseInt("5000"));
+		coupvo.setCoupInfo("이건 가입 기념 쿠폰입니다.");
 
 		// 서비스 이렇게 하나 만들면 됨
-		service.addCoupon();
+		service.addCoupon(coupvo);
 		
 		// member/signup 페이지로 이동
 		return "member/signup.tiles";

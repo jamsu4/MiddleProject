@@ -12,12 +12,10 @@ public class MemberVO {
 	private String memEmail;
 	private String memUser;
 	//coupon table
-	private String coupId;
+	private int coupId;
 	private String coupName;
-	private String coupPrice;
+	private int coupPrice;
 	private String coupInfo;
 	private String coupExpired;
 	private String payId;
-	
-	
 }

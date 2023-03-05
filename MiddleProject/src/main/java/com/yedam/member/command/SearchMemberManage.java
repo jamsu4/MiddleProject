@@ -1,6 +1,7 @@
 package com.yedam.member.command;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -27,11 +28,14 @@ public class SearchMemberManage implements Command {
 		
 		MemberService service = new MemberServiceMybatis();
 		
-		MemberVO serachMember = service.searchMember(memId);
+		MemberVO searchMember = service.searchMember(memId);
+		
+		System.out.println("검색된 멤버는 => " + searchMember);
+		
 		
 		Gson gson = new GsonBuilder().create();
 
-		return gson.toJson(serachMember) + ".json";
+		return gson.toJson(searchMember) + ".json";
 	}
 
 }

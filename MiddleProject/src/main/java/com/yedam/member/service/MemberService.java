@@ -25,4 +25,6 @@ public interface MemberService { // 서비스 부분
 	public int checkId(String id);
 	public MemberVO memInfo(String memId); //주안 개인정보수정용 멤버정보조회
 	public MemberVO searchMember(String memId);	// 종민	회원검색용
+	//
+	public int addCoupon(MemberVO coupvo);
 }

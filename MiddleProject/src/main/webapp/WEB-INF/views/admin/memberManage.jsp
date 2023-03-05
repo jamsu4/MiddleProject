@@ -54,7 +54,7 @@
 			<form action="#" method="POST" id="search-btn-group">
 				<label for="search-input"></label> <input type="text" id="search-input" name="search-input"
 					class="search-input" placeholder="아이디를 입력하세요">
-				<button type="submit" class="search-btn">
+				<button type="button" class="search-btn">
 					<i class="fa fa-search"></i>
 				</button>
 			</form>
@@ -104,39 +104,87 @@
 
 		error: function (reject) {
 			console.log(reject);
-		}
+		},
 	});
 
 
-	
+
 	/////////////////////////////////////////////////////////////////////
-	
-	// .search-btn
-	$('.search-btn').click( function(e) {
+
+	function searchProduct() {
 		let memId = $('#search-input').val();
 		console.log('출력 테스트 - jsp 파일 -> ' + memId);
 
 		$.ajax({
-			url : "searchMemberManage.do",
-			data : {memId : memId},
-			success : function(result) {
-				console.log(result);
-
+			url: "searchMemberManage.do",
+			data: { memId: memId },
+			success: function (result) {
 				$('#search-input').val("");
 				$("#list").find("tr").remove();
-				$(result).each(function(idx, item) {
-					$("#list").append(makeRow(item));
+
+				console.log(result);
+				$(result).each(function (idx, item) {
+					$('#list').append(makeRow(item));
 				});
-				$(result).each(function(idx, item) {
-					$("#list").append(makeRowUpd(item));
+
+				$(result).each(function (idx, item) {
+					$('#list').append(makeRowUpd(item));
 				});
 			},
-			error : function(reject) {
+			error: function (reject) {
 				console.log(reject);
 			}
-		})		
-	})
+		})
+	}
+
+	// 검색 버튼 눌렀을 시, searchProduct() 실행
+	$('.search-btn').click(function (e) {
+		searchProduct();
+	});
+
+
+	// 검색 버튼 안 누르고, 그냥 아이디 검색 후 엔터 눌렀을 때도, searchProduct() 실행
+	$('#search-input').keypress(function (event) {
+		if (event.which == 13) {
+			searchProduct();
+			return false;
+		}
+	});
+
+
+	// $('#search-input').keypress(function (event) {
+	// 	if (event.which == 13) {
+	// 		$('.search-btn').click();
+	// 		return false;
+	// 	}
+	// });
+
+	// .search-btn
+	/* 	$('.search-btn').click( function(e) {
+			let memId = $('#search-input').val();
+			console.log('출력 테스트 - jsp 파일 -> ' + memId);
 	
+			$.ajax({
+				url : "searchMemberManage.do",
+				data : {memId : memId},
+				success : function(result) {
+					console.log(result);
+	
+					$('#search-input').val("");
+					$("#list").find("tr").remove();
+					$(result).each(function(idx, item) {
+						$("#list").append(makeRow(item));
+					});
+					$(result).each(function(idx, item) {
+						$("#list").append(makeRowUpd(item));
+					});
+				},
+				error : function(reject) {
+					console.log(reject);
+				}
+			})		
+		}) */
+
 	/////////////////////////////////////////////////////////////////////
 	//목록출력 함수  (더블 클릭시, 수정 인풋으로 바뀜)
 	function makeRow(member = {}) {
@@ -186,7 +234,7 @@
 				$("<td />").append($("<input id='user' />").val(user)),
 				$("<td />").append(
 					$(
-						"<button type='button' onclick='updateMemberFnc(event)' class='btn btn-success updbtn'>수정 완료</button>"
+						"<button onclick='updateMemberFnc(event)' class='btn btn-success updbtn'>수정 완료</button>"
 					)
 				)
 			);
@@ -254,8 +302,8 @@
 				console.log(result);
 				if (result.retCode == 'Success') {
 					console.log(result.manager);
-					tr.replaceWith(makeRow(result.manager));
-					tr.replaceWith(makeRowUpd(result.manager));
+					tr.replaceWith(makeRow(result.member));
+					tr.replaceWith(makeRowUpd(result.member));
 				} else {
 					alert("입력 미완");
 				}
@@ -265,8 +313,8 @@
 			}
 		})
 	} //end of updateMemberFnc
-	
-	
+
+
 	/* //수정버튼
 	function updateMemberFnc(e) {
 		let tr = $(e.target).parent().parent(); //tr

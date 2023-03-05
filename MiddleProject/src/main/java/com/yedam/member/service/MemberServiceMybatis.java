@@ -79,4 +79,9 @@ public class MemberServiceMybatis implements MemberService {
 	public MemberVO searchMember(String memId) {
 		return mapper.searchSpecificMember(memId);
 	}
+
+	@Override
+	public int addCoupon(MemberVO coupvo) {
+		return mapper.insertCoupon(coupvo);
+	}
 }
