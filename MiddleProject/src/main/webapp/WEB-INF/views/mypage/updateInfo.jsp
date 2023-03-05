@@ -48,7 +48,7 @@ pageEncoding="UTF-8"%>
         </div>
 
         <div class="mb-3">
-            <a type="button" style="color:white" class="w-100 btn btn-lg btn-secondary" onclick="">취소</a>
+            <a type="button" style="color:white" class="w-100 btn btn-lg btn-secondary" onclick="back()">취소</a>
         </div>
         
     </form>
@@ -81,5 +81,8 @@ pageEncoding="UTF-8"%>
     	  document.querySelectorAll("input")[3].setAttribute("name","memPw")
       }else if(document.querySelectorAll("input")[4].innerText==document.querySelectorAll("input")[5].innerText){
     	  document.querySelectorAll("input")[4].setAttribute("name","memPw")
+      }
+      function back(){
+    	  window.history.back();
       }
     </script>
