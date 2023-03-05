@@ -3,6 +3,7 @@ package com.yedam.order.service;
 
 import java.util.List;
 
+import com.yedam.common.Pagination;
 import com.yedam.order.vo.OrderVO;
 
 public interface OrderService { 
@@ -27,5 +28,9 @@ public interface OrderService {
 	public int addOrdStatus(String ordStatus); //ordproduct 테이블 상태 추가
 
 	public OrderVO getRefundInfo(OrderVO ovo);
+
+	public List<OrderVO> orderListPage(OrderVO ovo);
+
+	public List<OrderVO> myOrderPage(OrderVO ovo);
 
 }

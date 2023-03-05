@@ -75,6 +75,7 @@ function requestPay() {
 	var proIds = [];
 	var ordQuants = [];
 	var ordProSumprices = [];
+	var cartIds = [];
 
 	for (var i = 0; i < selectedProducts.length; i++) {
 		var selectedProduct = selectedProducts[i];
@@ -84,10 +85,11 @@ function requestPay() {
 		ordQuants.push(ordQuant);
 		var ordProSumprice = selectedProduct.closest('.product-cart').querySelector('.one-eight:nth-child(5) .price').textContent;
 		ordProSumprices.push(ordProSumprice);
+		var cartid = selectedProduct.dataset.cid;
+		cartIds.push(cartid);
 	}
-	console.log(proIds);
-	console.log(ordQuants);
-	console.log(ordProSumprices);
+	console.log(cartIds);
+
 	var IMP = window.IMP; // 생략가능
 	IMP.init('imp42753804'); //iamport 대신 자신의 "가맹점 식별코드"를 사용
 	IMP.request_pay({
@@ -144,14 +146,34 @@ function requestPay() {
 							console.log("실패");
 						}
 					});
+				
+					$.ajax({
+						url: 'removeCart.do',
+						method: 'post',
+						traditional: true,
+						data: {cartIds : cartIds},
+						success: function(result) {
+							if (result.retCode == "Success") {
+								alert('목록에서 삭제를 성공했습니다.');
+	
+							} else {
+								alert('목록 등록에 실패했습니다.');
+								
+							}
+						},
+						error: function(err) {
+							console.log(err);
+						}
+					});
+				
 				} else {
 					console.log("주문테이블 등록 실패");
 				}
 			});
-
+			
 
 			alert(msg);
-			//			location.href = "orderList.do"
+			location.href = "orderList.do"
 		} else {
 			let msg = '결제에 실패하였습니다.';
 			msg += '에러내용 : ' + rsp.error_msg;

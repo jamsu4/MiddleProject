@@ -34,5 +34,8 @@ public class OrderVO {
 	private String proImg;
 	private int proPrice;
 
+	//페이징
+	private int startNum;
+	private int endNum; 
 	
 }

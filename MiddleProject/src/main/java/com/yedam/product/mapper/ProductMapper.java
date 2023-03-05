@@ -38,5 +38,6 @@ public interface ProductMapper {
 	
 	public List<ProductVO> searchProIdList(ProductVO pvo); // 상품 검색
 	public List<ProductVO> selectProNameList(ProductVO pvo); // 상품 검색
+	public List<ProductVO> selectManageReviewListPage(Pagination paging); //리뷰 페이징
 	
 }

@@ -126,6 +126,11 @@ public class ProductServiceImpl implements ProductService {
 		return mapper.selectProductCount();
 	}
 
+	@Override
+	public List<ProductVO> getManageReviewListPage(Pagination paging) {
+		return mapper.selectManageReviewListPage(paging);
+	}
+
 	
 
 	

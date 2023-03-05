@@ -4,6 +4,7 @@ package com.yedam.order.service;
 import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import com.yedam.common.DataSource;
+import com.yedam.common.Pagination;
 import com.yedam.order.mapper.OrderMapper;
 import com.yedam.order.vo.OrderVO;
 import com.yedam.product.mapper.ProductMapper;
@@ -66,5 +67,15 @@ public class OrderServiceImpl implements OrderService {
 	@Override
 	public OrderVO getRefundInfo(OrderVO ovo) {
 		return mapper.selectRefundInfo(ovo);
+	}
+
+	@Override
+	public List<OrderVO> orderListPage(OrderVO ovo) {
+		return mapper.selectOrderListPage(ovo);
+	}
+
+	@Override
+	public List<OrderVO> myOrderPage(OrderVO ovo) {
+		return mapper.selectMyOrderPage(ovo);
 	}
 }

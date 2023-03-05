@@ -22,6 +22,23 @@
 		SELECT * FROM qa
 	</select>
 	
+	<select id="selectQaListAllPage" resultType="QaVO">
+	  <![CDATA[
+	    SELECT *
+	    FROM (
+	      SELECT ROWNUM rnum, p.*
+	      FROM (
+	        SELECT *
+	        FROM qa
+	        ORDER BY qa_id desc
+	      ) p
+	      WHERE ROWNUM <= #{endNum}
+	    )
+	    WHERE rnum >= #{startNum}
+	  ]]>
+	</select>
+	
+	
 	<delete id="deleteQa" parameterType="int">
 		DELETE FROM qa
 		WHERE qa_id = #{qaId}

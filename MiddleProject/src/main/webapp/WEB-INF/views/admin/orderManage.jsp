@@ -185,8 +185,7 @@ table:nth-of-type(2) input {
 
 						</tr>
 					</thead>
-					<tbody>
-					<tbody>
+					<tbody id="orderList">
 						<c:forEach var="list" items="${orderList }">
 							<tr data-id="${list.ordId }" data-pid="${list.proId }" data-ordproid="${list.ordProId }">
 								<td>${list.payDate }</td>
@@ -202,8 +201,6 @@ table:nth-of-type(2) input {
 												<option value="배송준비중">배송준비중</option>
 												<option value="배송중">배송중</option>
 												<option value="배송완료">배송완료</option>
-												<option>----------</option>
-												<option value="주문취소">주문취소</option>
 											</select>
 										</td>	
 									</c:when>
@@ -212,8 +209,6 @@ table:nth-of-type(2) input {
 												<option value="배송준비중" selected>배송준비중</option>
 												<option value="배송중">배송중</option>
 												<option value="배송완료">배송완료</option>
-												<option>----------</option>
-												<option value="주문취소">주문취소</option>
 											</select>
 										</td>	
 									</c:when>
@@ -222,8 +217,6 @@ table:nth-of-type(2) input {
 												<option value="배송준비중">배송준비중</option>
 												<option value="배송중" selected>배송중</option>
 												<option value="배송완료">배송완료</option>
-												<option>----------</option>
-												<option value="주문취소">주문취소</option>
 											</select>
 										</td>	
 									</c:when>
@@ -232,8 +225,6 @@ table:nth-of-type(2) input {
 												<option value="배송준비중">배송준비중</option>
 												<option value="배송중" >배송중</option>
 												<option value="배송완료" selected>배송완료</option>
-												<option>----------</option>
-												<option value="주문취소">주문취소</option>
 											</select>
 										</td>	
 									</c:when>
@@ -248,12 +239,119 @@ table:nth-of-type(2) input {
 						</c:forEach>
 					</tbody>
 				</table>
+				<div id="paging" style="text-align: center;">
+					<c:if test="${paging.prev}">
+					<c:set var="beginPage" value="${paging.beginPage - 1}" />
+					<c:out value="${beginPage}" />
+					<a onclick=movePage(event) data-page="${beginPage}">prev</a>
+					</c:if>
+					<c:forEach begin="${paging.beginPage}" end="${paging.endPage}" step="1" var="index">
+					    <c:choose>
+					        <c:when test="${paging.page==index}">
+					            ${index}
+					        </c:when>
+					        <c:otherwise>
+					            <a onclick=movePage(event) data-page="${index}">${index}</a>
+					        </c:otherwise>
+					    </c:choose>
+					</c:forEach>
+					<c:set var="beginPage" value="${paging.endPage + 1}" />
+					<c:out value="${endPage}" />
+					<c:if test="${paging.next}">
+					    <a onclick=movePage(event) data-page="${endPage}" >next</a>
+					</c:if>
+				</div>
 			</div>
 		</div>
 	</div>
 </main>
 
 <script>
+//페이지 이동
+  function movePage(event) {
+	  console.log(event.target)
+	  page = $(event.target).data('page');
+	  console.log(page);
+
+	  
+	  $.ajax({
+		    url: "orderManage.do",
+		    data: { page: page },
+		    success: function (result) {
+		      console.log(result);
+			  $('#orderList').empty();
+			  $('#paging').empty();
+			  var paging = result.paging;
+		      var orderList = result.orderList;
+		      var tbody = $('#orderList');
+			
+		      orderList.forEach(function(list) {
+		        var tr = $('<tr>').attr({
+		          'data-id': list.ordId,
+		          'data-pid': list.proId,
+		          'data-ordproid': list.ordProId,
+		        });
+
+		        $('<td>').text(list.payDate).appendTo(tr);
+		        $('<td>').text(list.ordId).appendTo(tr);
+		        $('<td>').text(list.proName).attr('title', 'product ID : ' + list.proId).appendTo(tr);
+		        $('<td>').text(list.memName).attr('title', 'member ID : ' + list.memId).appendTo(tr);
+		        $('<td>').text(list.ordQuant + '개').appendTo(tr);
+		        $('<td>').text(new Intl.NumberFormat('ko-KR').format(list.ordProSumprice)).appendTo(tr);
+
+		        var select = $('<select>').addClass('orderStatus');
+		        if (list.ordStatus === '결제완료') {
+		          $('<option>').attr({
+		            'value': '결제완료',
+		            'selected': true,
+		          }).text('결제완료').appendTo(select);
+		          $('<option>').attr('value', '배송준비중').text('배송준비중').appendTo(select);
+		          $('<option>').attr('value', '배송중').text('배송중').appendTo(select);
+		          $('<option>').attr('value', '배송완료').text('배송완료').appendTo(select);
+		        } else if (list.ordStatus === '배송준비중') {
+		          $('<option>').attr('value', '배송준비중').attr('selected', true).text('배송준비중').appendTo(select);
+		          $('<option>').attr('value', '배송중').text('배송중').appendTo(select);
+		          $('<option>').attr('value', '배송완료').text('배송완료').appendTo(select);
+		        } else if (list.ordStatus === '배송중') {
+		          $('<option>').attr('value', '배송준비중').text('배송준비중').appendTo(select);
+		          $('<option>').attr('value', '배송중').attr('selected', true).text('배송중').appendTo(select);
+		          $('<option>').attr('value', '배송완료').text('배송완료').appendTo(select);
+		        }
+		        else if (list.ordStatus === '배송완료') {
+			          $('<option>').attr('value', '배송준비중').text('배송준비중').appendTo(select);
+			          $('<option>').attr('value', '배송중').text('배송중').appendTo(select);
+			          $('<option>').attr('value', '배송완료').attr('selected', true).text('배송완료').appendTo(select);
+			    } else {
+			    	$('<option>').attr('value', '주문취소').prop('disabled',true).text('주문취소').appendTo(select);
+			    }
+		        select.appendTo($('<td>').appendTo(tr));
+		        $('#orderList').append(tr);
+		        
+		        var pagingspace = "";
+		        if (paging.prev) {
+		          var beginPage = paging.beginPage - 1;
+		          pagingspace += "<a onclick='movePage(event)' data-page='" + beginPage + "'>prev</a>";
+		        }
+		        for (var i = paging.beginPage; i <= paging.endPage; i++) {
+		          if (paging.page == i) {
+		        	  pagingspace += i;
+		          } else {
+		        	  pagingspace += "<a onclick='movePage(event)' data-page='" + i + "'>" + i + "</a>";
+		          }
+		        }
+		        if (paging.next) {
+		          var endPage = paging.endPage + 1;
+		          pagingspace += "<a onclick='movePage(event)' data-page='" + endPage + "'>next</a>";
+		        }
+		        $('#paging').html(pagingspace);
+		        
+		    })
+		    },error: function (reject) {
+		      console.log(reject);
+		    }
+		  });
+	  }
+  
 $('.orderStatus').change(function() {
 	var ordProId = $(this).closest('tr').data('ordproid');
 	var ordId = $(this).closest('tr').data('id');
@@ -349,13 +447,6 @@ $('.orderStatus').change(function() {
 			    console.log("조회 통신 실패");
 			  }
 			});
-
-			//위의 코드에서 imp_key와 imp_secret에는 발급받은 API 키와 시크릿 키를 입력하고, imp_uid에는 취소할 결제 건의 아임포트 고유 번호를 입력합니다.
-
-
-
-
-
 
 		}
 	}

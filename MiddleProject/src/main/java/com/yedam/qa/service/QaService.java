@@ -2,6 +2,7 @@ package com.yedam.qa.service;
 
 import java.util.List;
 
+import com.yedam.common.Pagination;
 import com.yedam.qa.vo.QaVO;
 
 public interface QaService {
@@ -11,4 +12,5 @@ public interface QaService {
 	public List<QaVO> qaListAll();		// jm 추가
 	public int removeQa(int qaId);
 	public int modifyQa(QaVO vo);
+	public List<QaVO> qaListAllPage(Pagination paging);
 }

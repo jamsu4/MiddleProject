@@ -108,7 +108,7 @@
 						<div class="one-eight text-center">
 							<div class="display-tc">
 								<input class="selectBox" type="checkbox" data-quantity="${list.caQuant}" data-ordProSumprice="${list.caSumprice}"
-									data-value="${list.proId}" data-price="${list.proPrice }" data-name="${list.proName }">
+									data-value="${list.proId}" data-price="${list.proPrice }" data-name="${list.proName }" data-cid="${list.cartId }">
 							</div>
 						</div>
 						<div class="one-forth">

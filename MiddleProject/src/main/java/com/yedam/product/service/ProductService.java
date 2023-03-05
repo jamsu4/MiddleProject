@@ -42,4 +42,5 @@ public interface ProductService {
 	public List<ProductVO> searchProNameList(ProductVO pvo); // 상품 이름 검색
 	public List<ProductVO> rateList();
 	public int getPrductCount();
+	public List<ProductVO> getManageReviewListPage(Pagination paging); //페이징
 }

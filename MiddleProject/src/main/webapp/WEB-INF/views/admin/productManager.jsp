@@ -272,6 +272,10 @@ table:nth-of-type(2) input {
   });
   
   $('#searchBtn').click( function(e) {
+	  if($('#proIdBtn').val() == '' && $('#proNameBtn').val() =='') {
+		  alert('검색 조건을 확인하세요.')
+		  return;
+	  }
 	  $('#pageName').data('proid',$('#proIdBtn').val());
       $('#pageName').data('proname',$('#proNameBtn').val());
 	  	searchProduct();

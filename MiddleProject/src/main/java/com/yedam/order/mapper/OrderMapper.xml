@@ -22,6 +22,28 @@
 		  AND o.ord_id = pay.ord_id
 		ORDER BY o.ord_id desc
 	</select>
+	<!-- 페이징 -->
+	<select id="selectOrderListPage" resultType="OrderVO">
+		<![CDATA[
+		SELECT *
+		FROM (
+		    SELECT ROWNUM rnum, p.*
+		    FROM (
+		        SELECT o.ord_id, o.mem_id, op.pro_id, op.ord_pro_id, op.ord_quant,
+		               op.ord_pro_sumprice, op.ord_status, pay.pay_date,o.ord_addr,o.ord_receiver,
+		               pro.pro_name, m.mem_name, pro.pro_img
+		        FROM member m, orders o, orderproduct op, product pro, payment pay 
+		        WHERE m.mem_id = o.mem_id
+		          AND o.ord_id = op.ord_id
+		          AND op.pro_id = pro.pro_id
+		          AND o.ord_id = pay.ord_id
+		        ORDER BY o.ord_id desc
+		    ) p
+		    WHERE ROWNUM <= #{endNum}
+		)
+		WHERE rnum >= #{startNum}
+		]]>
+	</select>
 	
 	<insert id="insertPayment" parameterType="OrderVO">
 	  <selectKey keyProperty="payId" resultType="int" order="BEFORE">
@@ -68,7 +90,7 @@
 		  AND o.mem_id = #{memId}
 		  </if>
 		  <if test="ordStatus != null">
-		  AND o.ord_status = #{ordStatus}
+		  AND op.ord_status = #{ordStatus}
 		  </if>
 		ORDER BY o.ord_id desc
 	
@@ -84,6 +106,26 @@
         ON p.pro_id = r.pro_id
         WHERE mem_id = #{memId}
 	</select>
+	
+<select id="selectMyOrderPage" resultType="OrderVO">
+	<![CDATA[
+    SELECT *
+    FROM (
+        SELECT rownum as rnum, t.*
+        FROM (
+            SELECT *
+            FROM orders o
+            JOIN orderproduct p ON o.ord_id = p.ord_id 
+            JOIN payment a ON p.ord_id = a.ord_id
+            JOIN product r ON p.pro_id = r.pro_id
+            WHERE mem_id = #{memId}
+            ORDER BY o.ord_id DESC 
+        ) t
+        WHERE rownum <= #{endNum}
+    ) 
+    WHERE rnum >= #{startNum}
+	]]>
+</select>
 	
 	<select id="selectBeforeAddr" resultType="OrderVO">
 		SELECT ord_receiver, ord_phone, ord_addr, ord_postcode
