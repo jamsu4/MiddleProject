@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%>
-   	
+      
 <style>
-	#box {
-		width : 30%;
-		margin : 0 auto;
-	} 
+   #box {
+      width : 30%;
+      margin : 0 auto;
+   } 
 </style>
 <form class="form-signin" action="updateInfo.do" method="post" id="box" onsubmit="return currentPw()">
 
@@ -40,8 +40,8 @@ pageEncoding="UTF-8"%>
             <label>변경 비밀번호 확인</label>
             <input type="password" class="form-control">
         </div>
-		<input name="memId" type="hidden" value=${list.memId } >
-		<input name="memUser" type="hidden" value=${list.memUser } >
+      <input name="memId" type="hidden" value=${list.memId } >
+      <input name="memUser" type="hidden" value=${list.memUser } >
 
         <div class="mb-3">
             <button class="w-100 btn btn-lg btn-primary" onclick="" type="submit" >수정</button>
@@ -55,34 +55,34 @@ pageEncoding="UTF-8"%>
     
     <script>
     function currentPw(){
-    	if(document.querySelectorAll("input")[3].value == ''){ //현재비번이 빈경우
-    		alert('현재 비밀번호를 입력해주세요.');
-    		return false;
-    	}else if(document.querySelectorAll("input")[4].value != document.querySelectorAll("input")[5].value){//
-    		alert('변경 비밀번호 확인');
-    		return false;
-    	}else if(${list.memPw} != document.querySelectorAll("input")[3].value){
-    		alert('현재 비밀번호가 다릅니다')
-    		return false;
-    	}else if(document.querySelectorAll("input")[4].value != '' || document.querySelectorAll("input")[5].value != ''||
-    			document.querySelectorAll("input")[4].value == document.querySelectorAll("input")[5].value ){
-    		document.querySelectorAll("input")[3].setAttribute("name","")
-    		document.querySelectorAll("input")[4].setAttribute("name","memPw")
-    		alert('수정완료!')
-    		return true;
-    	}else{
-    		alert('수정완료!')
-    		return true;
-    	}
-    	
+       if(document.querySelectorAll("input")[3].value == ''){ //현재비번이 빈경우
+          alert('현재 비밀번호를 입력해주세요.');
+          return false;
+       }else if(document.querySelectorAll("input")[4].value != document.querySelectorAll("input")[5].value){//
+          alert('변경 비밀번호 확인');
+          return false;
+       }else if(${list.memPw} != document.querySelectorAll("input")[3].value){
+          alert('현재 비밀번호가 다릅니다')
+          return false;
+       }else if(document.querySelectorAll("input")[4].value != '' || document.querySelectorAll("input")[5].value != ''||
+             document.querySelectorAll("input")[4].value == document.querySelectorAll("input")[5].value ){
+          document.querySelectorAll("input")[3].setAttribute("name","")
+          document.querySelectorAll("input")[4].setAttribute("name","memPw")
+          alert('수정완료!')
+          return true;
+       }else{
+          alert('수정완료!')
+          return true;
+       }
+       
     }
      
       if(document.querySelectorAll("input")[4].innerText==''||document.querySelectorAll("input")[5].innerText==''){
-    	  document.querySelectorAll("input")[3].setAttribute("name","memPw")
+         document.querySelectorAll("input")[3].setAttribute("name","memPw")
       }else if(document.querySelectorAll("input")[4].innerText==document.querySelectorAll("input")[5].innerText){
-    	  document.querySelectorAll("input")[4].setAttribute("name","memPw")
+         document.querySelectorAll("input")[4].setAttribute("name","memPw")
       }
       function back(){
-    	  window.history.back();
+         window.history.back();
       }
     </script>
