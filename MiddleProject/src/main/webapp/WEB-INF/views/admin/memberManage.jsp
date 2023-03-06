@@ -1,49 +1,74 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 <style>
-	table:nth-of-type(2) input {
-		width: 100px;
-		display: inline-block;
-	}
+table:nth-of-type(2) input {
+	width: 100px;
+	display: inline-block;
+}
 
-	/* 버튼 스타일링 */
-	.search-btn {
-		background-color: #4caf50;
-		border: none;
-		color: white;
-		padding: 10px;
-		text-align: center;
-		text-decoration: none;
-		display: inline-block;
-		font-size: 16px;
-		margin-left: 10px;
-		cursor: pointer;
-	}
+/* 버튼 스타일링 */
+.search-btn {
+	background-color: #4caf50;
+	border: none;
+	color: white;
+	padding: 10px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	margin-left: 10px;
+	cursor: pointer;
+}
 
-	/* 입력창 스타일링 */
-	.search-input {
-		padding: 10px;
-		font-size: 16px;
-		border: 2px solid #ccc;
-		border-radius: 5px;
-		vertical-align: middle;
-	}
+/* 입력창 스타일링 */
+.search-input {
+	padding: 10px;
+	font-size: 16px;
+	border: 2px solid #ccc;
+	border-radius: 5px;
+	vertical-align: middle;
+}
 
-	#search-btn-group {
-		margin-top: 10px;
-		margin-right: 20px;
-		margin-bottom: 20px;
-		float: right;
-	}
+#search-btn-group {
+	margin-top: 10px;
+	margin-right: 20px;
+	margin-bottom: 20px;
+	float: right;
+}
 
-	#pageName {
-		margin-top: 10px;
-		float: left;
-	}
+#pageName {
+	margin-top: 10px;
+	float: left;
+}
 
-	#line {
-		clear: both;
-	}
+#line {
+	clear: both;
+}
+
+.pagingBtn {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	background: var(- -button-bg-color);
+	color: var(- -button-color);
+	margin: 0;
+	padding: 0.5rem 1rem;
+	font-family: 'Noto Sans KR', sans-serif;
+	font-size: 1rem;
+	font-weight: 400;
+	text-align: center;
+	text-decoration: none;
+	border: none;
+	border-radius: 4px;
+	display: inline-block;
+	width: auto;
+	box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px
+		rgba(0, 0, 0, 0.06);
+	cursor: pointer;
+	transition: 0.5s;
+}
 </style>
 <main>
 	<div class="container-fluid px-4">
@@ -52,8 +77,9 @@
 		</div>
 		<div>
 			<form action="#" method="POST" id="search-btn-group">
-				<label for="search-input"></label> <input type="text" id="search-input" name="search-input"
-					class="search-input" placeholder="아이디를 입력하세요">
+				<label for="search-input"></label> <input type="text"
+					id="search-input" name="search-input" class="search-input"
+					placeholder="아이디를 입력하세요">
 				<button type="button" class="search-btn">
 					<i class="fa fa-search"></i>
 				</button>
@@ -81,7 +107,7 @@
 					</thead>
 					<tbody id="list"></tbody>
 				</table>
-				<div id="paging" style="text-align: center;"></div>
+				<div id="paging" style="text-align: left;"></div>
 			</div>
 		</div>
 	</div>
@@ -115,12 +141,15 @@
 		      console.log(currentPage);
 		      if(result.paging.prev) {
 		        $('#paging').append($('<a>').click(movePage)
+		        	    .attr('class', 'pagingBtn')
+		        	    .attr('style', 'float:left;')
 		                          .data('page',(beginPage-1))
 		                          .text('prev'));
 		      }
 		      for (var i = beginPage; i <= endPage; i++) {
 		        if (i === currentPage) {
-		          $('#paging').append(i);
+		        	var link = createPageLink(i, i);
+			          $('#paging').append(link);
 		        } else {
 		          var link = createPageLink(i, i);
 		          $('#paging').append(link);
@@ -128,6 +157,8 @@
 		      }
 		      if(result.paging.next) {
 		        $('#paging').append($('<a>').click(movePage)
+		        	    .attr('class', 'pagingBtn')
+		        	    .attr('style', 'float:left;')
 		                          .data('page',(endPage+1))
 		                          .text('next'));
 		      }
@@ -148,6 +179,8 @@
 	  //페이지네이션 제작
 	  function createPageLink(page, text) {
 	  return $('<a>').click(movePage)
+	      .attr('class', 'pagingBtn')
+    		.attr('style', 'float:left;')
 	  				 .data('page',page)
 	  			  	 .text(text);
 	  }

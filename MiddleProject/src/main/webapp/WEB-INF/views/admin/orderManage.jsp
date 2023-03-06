@@ -65,6 +65,37 @@ table:nth-of-type(2) input {
 .space {
 	margin-right : 7px !important;
 }
+
+.pagingBtn { 
+  -webkit-appearance: none; 
+  -moz-appearance: none; 
+  appearance: none; 
+  
+  background: var(--button-bg-color); 
+  color: var(--button-color);
+  
+  margin: 0; 
+  padding: 0.5rem 1rem; 
+  
+   font-family: 'Noto Sans KR', sans-serif; 
+   font-size: 1rem; 
+  font-weight: 400;
+   text-align: center; 
+   text-decoration: none; 
+  
+  border: none; 
+  border-radius: 4px; 
+  
+   display: inline-block; 
+   width: auto; 
+  
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); 
+  
+   cursor: pointer; 
+  
+   transition: 0.5s; 
+ }
+ 
 </style>
 <main>
 	<div class="container-fluid px-4">
@@ -125,32 +156,6 @@ table:nth-of-type(2) input {
 							</div>
 						</td>
 					</tr>
-<!-- 					<tr> -->
-<!-- 						<th>주문일자</th> -->
-<!-- 						<td colspan=5> -->
-<!-- 							<div class="btn-group" role="group" -->
-<!-- 								aria-label="Basic radio toggle button group"> -->
-<!-- 									<input type="radio" class="btn-check" name="findPeriod" -->
-<!-- 									id="btnradio1" autocomplete="off"> <label -->
-<!-- 									class="btn btn-outline-primary" for="btnradio1">오늘</label> -->
-<!-- 									<div class="space"></div>  -->
-<!-- 									<input -->
-<!-- 									type="radio" class="btn-check" name="findPeriod" id="btnradio2" -->
-<!-- 									autocomplete="off"> <label -->
-<!-- 									class="btn btn-outline-primary" for="btnradio2">일주일</label>  -->
-<!-- 									<div class="space"></div>  -->
-<!-- 									<input -->
-<!-- 									type="radio" class="btn-check" name="findPeriod" id="btnradio3" -->
-<!-- 									autocomplete="off"> <label -->
-<!-- 									class="btn btn-outline-primary" for="btnradio3">1개월</label>  -->
-<!-- 									<div class="space"></div>  -->
-<!-- 									<input -->
-<!-- 									type="radio" class="btn-check" name="findPeriod" id="btnradio4" -->
-<!-- 									autocomplete="off"> <label -->
-<!-- 									class="btn btn-outline-primary" for="btnradio3">6개월</label> -->
-<!-- 							</div> -->
-<!-- 						</td> -->
-<!-- 					</tr> -->
 				</table>
 				<div style="text-align: center; margin-bottom: 20px">
 					<button type="submit" class="btn btn-primary btn-lg">검색</button>
@@ -158,16 +163,6 @@ table:nth-of-type(2) input {
 				</div>
 			</div>
 		</form>
-<!-- 		<div> -->
-<!-- 			<form action="#" method="POST" id="search-btn-group"> -->
-<!-- 				<label for="search-input"></label> <input type="text" -->
-<!-- 					id="search-input" name="search-input" class="search-input" -->
-<!-- 					placeholder="아이디를 입력하세요"> -->
-<!-- 				<button type="submit" class="search-btn"> -->
-<!-- 					<i class="fa fa-search"></i> -->
-<!-- 				</button> -->
-<!-- 			</form> -->
-<!-- 		</div> -->
 		<div id="line" class="card mb-4"></div>
 		<div class="card mb-4">
 			<div class="card-header">
@@ -231,8 +226,8 @@ table:nth-of-type(2) input {
 										</td>	
 									</c:when>
 									<c:otherwise>
-										<td><select class="orderStatus" disabled>
-												<option value="주문취소">주문취소</option>
+										<td><select class="orderStatus">
+												<option value="주문취소" >주문취소</option>
 											</select>
 										</td>
 									</c:otherwise>
@@ -241,26 +236,26 @@ table:nth-of-type(2) input {
 						</c:forEach>
 					</tbody>
 				</table>
-				<div id="paging" style="text-align: center;">
+				<div id="paging" style="text-align: left;">
 					<c:if test="${paging.prev}">
 					<c:set var="beginPage" value="${paging.beginPage - 1}" />
 					<c:out value="${beginPage}" />
-					<a onclick=movePage(event) data-page="${beginPage}">prev</a>
+					<button class="pagingBtn" style="float:left;" onclick=movePage(event) data-page="${beginPage}">prev</button>
 					</c:if>
 					<c:forEach begin="${paging.beginPage}" end="${paging.endPage}" step="1" var="index">
 					    <c:choose>
 					        <c:when test="${paging.page==index}">
-					            ${index}
+					            <button class="pagingBtn" style="float:left;" diabled>${index}</button>
 					        </c:when>
 					        <c:otherwise>
-					            <a onclick=movePage(event) data-page="${index}">${index}</a>
+					            <button class="pagingBtn" style="float:left;" onclick=movePage(event) data-page="${index}">${index}</button>
 					        </c:otherwise>
 					    </c:choose>
 					</c:forEach>
 					<c:set var="beginPage" value="${paging.endPage + 1}" />
 					<c:out value="${endPage}" />
 					<c:if test="${paging.next}">
-					    <a onclick=movePage(event) data-page="${endPage}" >next</a>
+					    <button class="pagingBtn" style="float:left;" onclick=movePage(event) data-page="${endPage}" >next</button>
 					</c:if>
 				</div>
 			</div>
@@ -324,7 +319,7 @@ table:nth-of-type(2) input {
 			          $('<option>').attr('value', '배송중').text('배송중').appendTo(select);
 			          $('<option>').attr('value', '배송완료').attr('selected', true).text('배송완료').appendTo(select);
 			    } else {
-			    	$('<option>').attr('value', '주문취소').prop('disabled',true).text('주문취소').appendTo(select);
+			    	$('<option>').attr('value', '주문취소').attr('selected', true).prop('disabled',true).text('주문취소').appendTo(select);
 			    }
 		        select.appendTo($('<td>').appendTo(tr));
 		        $('#orderList').append(tr);
@@ -332,18 +327,18 @@ table:nth-of-type(2) input {
 		        var pagingspace = "";
 		        if (paging.prev) {
 		          var beginPage = paging.beginPage - 1;
-		          pagingspace += "<a onclick='movePage(event)' data-page='" + beginPage + "'>prev</a>";
+		          pagingspace += "<button class='pagingBtn' onclick='movePage(event)' data-page='" + beginPage + "'>prev</button>";
 		        }
 		        for (var i = paging.beginPage; i <= paging.endPage; i++) {
 		          if (paging.page == i) {
-		        	  pagingspace += i;
+		        	  pagingspace += "<button class='pagingBtn' disabled>" + i + "</button>";
 		          } else {
-		        	  pagingspace += "<a onclick='movePage(event)' data-page='" + i + "'>" + i + "</a>";
+		        	  pagingspace += "<button class='pagingBtn' onclick='movePage(event)' data-page='" + i + "'>" + i + "</button>";
 		          }
 		        }
 		        if (paging.next) {
 		          var endPage = paging.endPage + 1;
-		          pagingspace += "<a onclick='movePage(event)' data-page='" + endPage + "'>next</a>";
+		          pagingspace += "<button class='pagingBtn' onclick='movePage(event)' data-page='" + endPage + "'>next</button>";
 		        }
 		        $('#paging').html(pagingspace);
 		        
