@@ -338,7 +338,7 @@
 
 							if (result.retCode == "Success") {
 								if(result.manager == "admin") {
-									location.href = 'adminMain.do';	
+									location.href = 'productManagerPage.do';	
 								} else {
 									location.href = 'main.do';
 								}
