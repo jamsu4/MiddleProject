@@ -68,6 +68,42 @@ button {
 	width: 80px;
 	height: 35px;
 }
+
+.star-rating {
+	display: flex;
+	flex-direction: row-reverse;
+	font-size: 2.25rem;
+	line-height: 2.5rem;
+	justify-content: space-around;
+	padding: 0 0.2em;
+	text-align: center;
+	width: 5em;
+}
+
+.star-rating input {
+	display: none;
+}
+
+.star-rating label {
+	-webkit-text-fill-color: transparent;
+	/* Will override color (regardless of order) */
+	-webkit-text-stroke-width: 2.3px;
+	-webkit-text-stroke-color: #2b2a29;
+	cursor: pointer;
+}
+
+.star-rating :checked ~ label {
+	-webkit-text-fill-color: gold;
+}
+
+.star-rating label:hover, .star-rating label:hover ~ label {
+	-webkit-text-fill-color: #fff58c;
+}
+
+div#image_container img {
+	height: 200px;
+	width: 200px;
+}
 </style>
 
 <h3>주문내역 입니다.</h3>
@@ -126,6 +162,74 @@ button {
 					</div>
 					<div class="one-eight text-right px-4">
 						<span>주문취소</span>
+
+				</div>
+				<c:forEach var="list" items="${list }">
+					<div class="product-cart d-flex">
+						<div class="one-eight text-center">
+							<div class="display-tc">
+								<input class="selectBox" type="checkbox" data-value="44"
+									data-price="44" data-name="44">
+							</div>
+						</div>
+						<div class="one-eight text-center">
+							<div class="display-tc">
+								<img src="images/${list.proImg }" class="ordImg"> <span
+									class="price">${list.proName }</span>
+							</div>
+						</div>
+						<div class="one-eight text-center">
+							<div class="display-tc">
+								<span class="price">${list.payDate }</span>
+							</div>
+						</div>
+						<div class="one-eight text-center">
+							<div class="display-tc">
+								<span class="price">${list.ordAddr }</span>
+							</div>
+						</div>
+						<div class="one-eight text-center">
+							<div class="display-tc">
+								<span class="price">${list.ordReceiver }</span>
+							</div>
+						</div>
+						<div class="one-eight text-center">
+							<div class="display-tc">
+								<span class="price">${list.proPrice }</span> <span class="price">(${list.ordQuant })</span>
+							</div>
+						</div>
+						<div class="one-eight text-center">
+							<div class="display-tc">
+								<span class="price">${list.ordStatus }</span>
+							</div>
+						</div>
+						<c:choose>
+							<c:when test="${list.ordStatus == '결제완료'}">
+								<div class="one-eight text-center">
+									<div class="display-tc">
+										<button>후기작성</button>
+									</div>
+								</div>
+							</c:when>
+							<c:otherwise>
+								<div class="one-eight text-center">
+									<div class="display-tc">
+										<button class="reviewBtn" data-bs-toggle="modal"
+											data-bs-target="#exampleModal" proid="${list.proId }">후기작성</button>
+									</div>
+								</div>
+							</c:otherwise>
+						</c:choose>
+					</div>
+
+
+				</c:forEach>
+
+				<div id="cartDiv2" class="row row-pb-lg">
+					<div class="col-md-12">
+						<div class="total-wrap">
+							<div class="row"></div>
+						</div>
 					</div>
 				</div>
 				<div id="orderList">
@@ -137,10 +241,12 @@ button {
 										data-price="44" data-name="44">
 								</div>
 							</div>
+
 							<div class="one-eight text-center">
 								<div class="display-tc">
 									<img src="images/${list.proImg }" class="ordImg"> <span
 										class="price">${list.proName }</span>
+
 								</div>
 							</div>
 							<div class="one-eight text-center">
@@ -153,6 +259,7 @@ button {
 									<span class="price">${list.ordAddr }</span>
 								</div>
 							</div>
+
 							<div class="one-eight text-center">
 								<div class="display-tc">
 									<span class="price">${list.ordReceiver }</span>
@@ -167,6 +274,7 @@ button {
 							<div class="one-eight text-center">
 								<div class="display-tc">
 									<span class="price">${list.ordStatus }</span>
+
 								</div>
 							</div>
 							<c:choose>
@@ -191,18 +299,22 @@ button {
 								<div class="display-tc">
 									<button disabled>취소완료</button>
 								</div>
+
 							</div>
 							</c:when>
 							<c:otherwise>
 							<div class="one-eight text-center">
 								<div class="display-tc">
 									<button onclick=orderCancel(event)>주문취소</button>
+
 								</div>
 							</div>
 							</c:otherwise>
 							</c:choose>
 						</div>
+
 					</c:forEach>
+
 				</div>
 				<div id="paging" style="text-align: center;">
 					<c:if test="${paging.prev}">
@@ -234,12 +346,105 @@ button {
 		</div>
 	</div>
 </div>
-
-
+<!-- Modal -->
+<div class="modal fade" id="exampleModal"
+	aria-labelledby="exampleModalLabel" aria-hidden="true"
+	data-bs-backdrop="static">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h1 class="modal-title fs-5" id="exampleModalLabel">후기 작성</h1>
+			</div>
+			<div class="modal-body">
+				<div class="mb-3">
+					<label for="recipient-name" class="col-form-label">제목</label> <input
+						type="text" class="form-control" id="rTitle">
+				</div>
+				<div class="mb-3">
+					<label for="recipient-name" class="col-form-label">내용</label>
+					<textarea id="rContent" class="form-control" rows="5" cols="60"></textarea>
+				</div>
+				<div class="star-rating space-x-4 mx-auto mb-3">
+					<input type="radio" id="5-stars" name="rating" value="5"
+						v-model="ratings" /> <label for="5-stars" class="star pr-4">★</label>
+					<input type="radio" id="4-stars" name="rating" value="4"
+						v-model="ratings" /> <label for="4-stars" class="star">★</label>
+					<input type="radio" id="3-stars" name="rating" value="3"
+						v-model="ratings" /> <label for="3-stars" class="star">★</label>
+					<input type="radio" id="2-stars" name="rating" value="2"
+						v-model="ratings" /> <label for="2-stars" class="star">★</label>
+					<input type="radio" id="1-star" name="rating" value="1"
+						v-model="ratings" /> <label for="1-star" class="star">★</label>
+				</div>
+				<div class="mb-3">
+					<label for="recipient-image" class="col-form-label">사진</label> <input
+						type="file" class="form-control" id="rimage"
+						onchange="setThumbnail(event);">
+				</div>
+				<div class="mb-3" id="image_container" style="text-align: center;"></div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary"
+					data-bs-dismiss="modal" id="closeBtn">닫기</button>
+				<button type="button" class="btn btn-primary"
+					onclick='insertReview(event)'>등록</button>
+			</div>
+		</div>
+	</div>
+</div>
 
 
 
 <script>
+	//후기 작성
+	let proid = 0;
+	$('.reviewBtn').click(function(e) {
+		proid = $(this).attr('proid')
+	});
+
+	function insertReview(event) {
+		console.log('등록')
+		let rtitle = $('#rTitle').val();
+		let rContent = $('#rContent').val();
+		let rate = $('input[name="rating"]:checked').val()
+		let memid = '${logId}';
+		let fileValue = $("#rimage").val().split("\\");
+		let fileName = fileValue[fileValue.length - 1];
+		let rimage = $("#rimage")[0].files[0];
+		if (typeof rate == 'undefined') {
+			rate = 0;
+		}
+
+		let formData = new FormData();
+		formData.append("rtitle", rtitle);
+		formData.append("rContent", rContent);
+		formData.append("rate", rate);
+		formData.append("memid", memid);
+		formData.append("rimage", rimage);
+		formData.append("proid", proid);
+
+		$.ajax({
+			url : "insertReview.do",
+			method : "post",
+			data : formData,
+			contentType : false,
+			processData : false,
+			success : function(result) {
+				if (result.retCode == "Success") {
+					alert("등록되었습니다")
+					$('#exampleModal').modal('hide')
+					location.reload();
+				} else {
+					alert("오류");
+				}
+			},
+			error : function(reject) {
+				console.log(reject);
+			},
+		});
+
+	}
+
 	//페이지 이동
 	function movePage(event) {
 		console.log(event.target)
@@ -454,9 +659,25 @@ function orderCancel(event) {
 	});
 	}
 	}	
-	
-	
-	
-	
-	
+
+	$('#closeBtn').click(function() {
+		  $(this).closest('.modal-content').find('input, textarea, select').val('');
+		  $(this).closest('.modal-content').find('input[type=radio], input[type=checkbox]').prop('checked', false);
+		  $('#image_container').empty();
+	});
+
+	//사진 미리보기
+	function setThumbnail(event) {
+		var reader = new FileReader();
+
+		reader.onload = function(event) {
+			var img = document.createElement("img");
+			img.setAttribute("src", event.target.result);
+			document.querySelector("div#image_container").appendChild(img);
+		};
+
+		reader.readAsDataURL(event.target.files[0]);
+	}
+
+
 </script>

@@ -38,9 +38,15 @@ public interface ProductService {
 	public int updateReview(ProductVO review); // 리뷰 수정
 	public List<ProductVO> searchReviewList(String memId, String proId); // 리뷰 검색
 	public List<ProductVO> searchReviewDateList(String date); // 리뷰 날짜 검색
+
 	public List<ProductVO> searchProIdList(ProductVO pvo); // 상품 번호 검색
 	public List<ProductVO> searchProNameList(ProductVO pvo); // 상품 이름 검색
-	public List<ProductVO> rateList();
+
 	public int getPrductCount();
 	public List<ProductVO> getManageReviewListPage(Pagination paging); //페이징
+
+	public List<ProductVO> searchProductList(String proId, String proName); // 상품 검색
+	public List<ProductVO> rateList(); // 별점 평균
+	public int insertReview(ProductVO review); // 리뷰 등록
+
 }

@@ -32,6 +32,7 @@ public interface ProductMapper {
 	public int updateReview(ProductVO review); // 리뷰 수정
 	public List<ProductVO> searchReviewList(@Param("memId") String memId, @Param("proId") String proId); // 리뷰 검색
 	public List<ProductVO> searchReviewDateList(String date); // 리뷰 날짜 검색
+
 	
 	public List<ProductVO> rateList();
 	public int selectProductCount(); //상품 총 개수
@@ -40,4 +41,7 @@ public interface ProductMapper {
 	public List<ProductVO> selectProNameList(ProductVO pvo); // 상품 검색
 	public List<ProductVO> selectManageReviewListPage(Pagination paging); //리뷰 페이징
 	
+	public List<ProductVO> rateList(); // 별점 평균
+	public int insertReview(ProductVO review); // 리뷰 등록
+
 }

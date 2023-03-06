@@ -53,6 +53,7 @@ import com.yedam.order.control.refundInfoControl;
 import com.yedam.order.control.searchOrderControl;
 import com.yedam.order.control.updateOrderStatusControl;
 import com.yedam.product.command.InsertProductManager;
+import com.yedam.product.command.InsertReview;
 import com.yedam.product.command.ModifyProductManager;
 import com.yedam.product.command.ModifyReviewManage;
 import com.yedam.product.command.ProductCartAdd;
@@ -137,6 +138,7 @@ public class FrontController extends HttpServlet {
 		map.put("/searchReviewManage.do", new SearchReviewManage()); // 관리자 리뷰 검색
 		map.put("/searchReviewDate.do", new SearchReviewDate()); // 리뷰 날짜 검색
 		map.put("/searchProductManage.do", new SearchProductManage()); // 관리자 상품 검색
+		map.put("/insertReview.do", new InsertReview()); // 리뷰 등록
 
 		
 		//종민

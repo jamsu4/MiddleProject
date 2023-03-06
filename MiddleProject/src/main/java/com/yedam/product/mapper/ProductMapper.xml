@@ -179,16 +179,16 @@
 		</set>
 		WHERE rev_id = #{revId}
 	</update>
-
+	
 	<select id="searchReviewList" resultType="ProductVO">
 		SELECT *
 		FROM review
 		<where>
 			<if test="memId != null and proId != null">
-				mem_id=#{memId} AND pro_id=#{proId, jdbcType=INTEGER}
+				mem_id LIKE '%' || #{memId} || '%' AND pro_id=#{proId, jdbcType=INTEGER}
 			</if>
 			<if test="memId != null and proId == null">
-				mem_id=#{memId}
+				mem_id LIKE '%' || #{memId} || '%'
 			</if>
 			<if test="memId == null and proId != null">
 				pro_id=#{proId, jdbcType=INTEGER}
@@ -201,7 +201,7 @@
 		FROM review
 		<where>
 			<if test="date == '오늘'">
-				to_char(sysdate-1,'yyyy-mm-dd') = to_char(rev_date,
+				to_char(sysdate-1,'yyyy-mm-dd') <![CDATA[<=]]> to_char(rev_date,
 				'yyyy-mm-dd')
 			</if>
 			<if test="date == '일주일'">
@@ -262,5 +262,10 @@
 		GROUP BY pro_id
 		ORDER BY pro_id
 	</select>
+	
+	<insert id="insertReview" parameterType="ProductVO">
+		INSERT INTO review (rev_id, mem_id, pro_id, rev_title, rev_content, rev_date, rev_rate, rev_image)
+		VALUES (seq_rev_id.NEXTVAL, #{memId}, #{proId}, #{revTitle}, #{revContent}, sysdate, #{revRate}, #{revImage})
+	</insert>
 
 </mapper>

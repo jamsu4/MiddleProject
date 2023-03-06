@@ -5,7 +5,8 @@
 <mapper namespace="com.yedam.qa.mapper.QaMapper">
 	<select id="getList" resultType="QaVO">
 		SELECT * FROM qa
-		WHERE pro_id=#{proId}
+		WHERE
+		pro_id=#{proId}
 		ORDER BY qa_id
 	</select>
 
@@ -16,8 +17,8 @@
 		(qa_seq.NEXTVAL, #{memId}, #{proId}, #{qaTitle}, #{qaContent},
 		sysdate)
 	</insert>
-	
-	<!--  -->
+
+	<!-- -->
 	<select id="getListAll" resultType="QaVO">
 		SELECT * FROM qa
 	</select>
@@ -37,58 +38,38 @@
 	    WHERE rnum >= #{startNum}
 	  ]]>
 	</select>
-	
-	
+
 	<delete id="deleteQa" parameterType="int">
 		DELETE FROM qa
-		WHERE qa_id = #{qaId}
+		WHERE qa_id =
+		#{qaId}
 	</delete>
-	
-	
-<!-- 	<update id="updateQa" parameterType="QaVO">
+
+
+	<update id="updateQa" parameterType="QaVO">
 		UPDATE qa
 		<set>
-			<if test="qaId != null">
-				qa_id = #{qaId},
-			</if>
-			<if test="memId != null">
-				mem_id = #{memId},
-			</if>
-			<if test="proId != null">
-				pro_id = #{proId},
-			</if>
-			<if test="qaTitle != null">
-				qa_title = #{qaTitle},
-			</if>
-			<if test="qaContent != null">
-				qa_content = #{qaContent},
-			</if>
-			<if test="qaDate != ''">
-				qa_date = #{qaDate}
-			</if>
 			<if test="qaReply != null">
 				qa_reply = #{qaReply},
 			</if>
 		</set>
-		where
-
-		qa_id = #{qaId}
-	</update> -->
-	
-	
-	<update id="updateQa" parameterType="QaVO">
-		UPDATE qa
-		SET
-		qa_id = #{qaId},
-		mem_id = #{memId},
-		pro_id = #{proId},
-		qa_title = #{qaTitle},
-		qa_content = #{qaContent},
-		qa_date = #{qaDate},
-		qa_reply = #{qaReply}
-		WHERE qa_id=#{qaId}
+		WHERE qa_id = #{qaId}
 	</update>
-	
-	
-	
+
+
+	<!-- <update id="updateQa" parameterType="QaVO"> -->
+	<!-- UPDATE qa -->
+	<!-- SET -->
+	<!-- qa_id = #{qaId}, -->
+	<!-- mem_id = #{memId}, -->
+	<!-- pro_id = #{proId}, -->
+	<!-- qa_title = #{qaTitle}, -->
+	<!-- qa_content = #{qaContent}, -->
+	<!-- qa_date = #{qaDate}, -->
+	<!-- qa_reply = #{qaReply} -->
+	<!-- WHERE qa_id=#{qaId} -->
+	<!-- </update> -->
+
+
+
 </mapper>
