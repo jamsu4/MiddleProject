@@ -30,7 +30,7 @@ public class SearchMemberManage implements Command {
 		
 		MemberVO searchMember = service.searchMember(memId);
 		
-		System.out.println("검색된 멤버는 => " + searchMember);
+		System.out.println("검색된 멤버는 ==> " + searchMember);
 		
 		
 		Gson gson = new GsonBuilder().create();
