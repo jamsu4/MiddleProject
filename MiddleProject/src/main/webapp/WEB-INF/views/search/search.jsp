@@ -4,15 +4,46 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js">
 </script> 
+<style>
+	input:-ms-input-placeholder {
+		color : #a8a8a8;
+	}
+	#searchBtn {
+		width:50px;
+		height:100%;
+		border : 0px;
+		background: #1b5ac2;
+		outline:none;
+		float: right;
+		color:#ffffff
+	}
+	#searchBox {
+	 height:40px;
+	 width:400px;
+	 border : 1px solid #1b5ac2;
+	 background: #ffffff;
+	}
+	#searchInput {
+		font-size: 16px;
+		width: 325px;
+		height:100%;
+		padding : 10px;
+		border:0px;
+		outline:none;
+		float: left;
+	}
+</style>
 
 <c:if test = "${empty list }">
- <h3>검색결과 없음</h3>
+ <h3 style="text-align:center; margin-top:10%;">검색결과 없음</h3>
 </c:if>
  
 <section class="py-5">
-<form action="searchProduct.do">
-	<input type="text" name="search">
-	<input type="submit" value="검색하기">
+<form action="searchProduct.do" style="float:right; margin-right: 17%">
+	<div id="searchBox" style="">
+		<input id="searchInput" type="text" name="search" placeholder="검색어 입력">
+		<button id="searchBtn" type="submit">검색</button>
+	</div>
 </form>
             <div class="container px-4 px-lg-5 mt-5">
                 <div class="row gx-5 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">

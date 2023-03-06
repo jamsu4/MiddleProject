@@ -14,10 +14,43 @@
 	i {
 		cursor : pointer;
 	}
+	input:-ms-input-placeholder {
+		color : #a8a8a8;
+	}
+	#searchBtn {
+		width:50px;
+		height:100%;
+		border : 0px;
+		background: #1b5ac2;
+		outline:none;
+		float: right;
+		color:#ffffff
+	}
+	#searchBox {
+	 height:40px;
+	 width:400px;
+	 border : 1px solid #1b5ac2;
+	 background: #ffffff;
+	}
+	#searchInput {
+		font-size: 16px;
+		width: 325px;
+		height:100%;
+		padding : 10px;
+		border:0px;
+		outline:none;
+		float: left;
+	}
+	h4{
+		text-overflow: ellipsis; 
+		width: 220px;
+	}
 </style>
-<form action="searchProduct.do">
-	<input type="text" name="search">
-	<input type="submit" value="검색하기">
+<form action="searchProduct.do" style="float:right; margin-right: 17%">
+	<div id="searchBox">
+		<input id="searchInput" type="text" name="search" placeholder="검색어 입력">
+		<button id="searchBtn" type="submit">검색</button>
+	</div>
 </form>
 <section class="section" id="men">
         <div class="container">
@@ -25,7 +58,6 @@
                 <div class="col-lg-6">
                     <div class="section-heading">
                         <h2>가구</h2>
-                        <span>Details to details is what makes Hexashop different from the other themes.</span>
                     </div>
                 </div>
             </div>
@@ -141,7 +173,6 @@
                 <div class="col-lg-6">
                     <div class="section-heading">
                         <h2>식품</h2>
-                        <span>Details to details is what makes Hexashop different from the other themes.</span>
                     </div>
                 </div>
             </div>
@@ -257,7 +288,6 @@
                 <div class="col-lg-6">
                     <div class="section-heading">
                         <h2>위생용품</h2>
-                        <span>Details to details is what makes Hexashop different from the other themes.</span>
                     </div>
                 </div>
             </div>
@@ -373,7 +403,6 @@
                 <div class="col-lg-6">
                     <div class="section-heading">
                         <h2>목욕용품</h2>
-                        <span>Details to details is what makes Hexashop different from the other themes.</span>
                     </div>
                 </div>
             </div>
@@ -489,7 +518,6 @@
                 <div class="col-lg-6">
                     <div class="section-heading">
                         <h2>장난감</h2>
-                        <span>Details to details is what makes Hexashop different from the other themes.</span>
                     </div>
                 </div>
             </div>
@@ -605,7 +633,6 @@
                 <div class="col-lg-6">
                     <div class="section-heading">
                         <h2>기타</h2>
-                        <span>Details to details is what makes Hexashop different from the other themes.</span>
                     </div>
                 </div>
             </div>
