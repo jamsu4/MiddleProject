@@ -155,7 +155,7 @@ table:nth-of-type(2) input {
 				</table>
 				<div id="paging" style="text-align: left;"></div>
 				<br />
-				<button id="addProduct" class="btn btn-primary"
+				<button style="float:right" id="addProduct" class="btn btn-primary"
 					onclick="location.href = 'productManagerAddPage.do'">등록</button>
 			</div>
 		</div>
