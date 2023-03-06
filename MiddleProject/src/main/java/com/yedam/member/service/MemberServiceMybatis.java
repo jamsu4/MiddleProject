@@ -82,7 +82,13 @@ public class MemberServiceMybatis implements MemberService {
 	}
 
 	@Override
+
+	public int addCoupon(MemberVO coupvo) {
+		return mapper.insertCoupon(coupvo);
+  }
+  @Override
 	public List<MemberVO> memberListPage(Pagination paging) {
 		return mapper.selectMemberListPage(paging);
+
 	}
 }

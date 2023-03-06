@@ -25,11 +25,17 @@
 		AND c.mem_id = #{memId}
 	</select>
 
-	<!-- -->
+	<!-- 쿠폰 없는 회원정보 ver. -->
 	<select id="memberList" resultType="MemberVO">
 		SELECT * FROM member ORDER BY
 		mem_id
 	</select>
+	
+	<!-- memberList.do 에 쿠폰까지 출력한 ver.     -> 원하면 회원관리 페이지에도 추가로 출력 가능 -->
+<!-- 	<select id="memberList" resultType="MemberVO">
+		SELECT m.mem_id, m.mem_pw, m.mem_name, m.mem_phone, m.mem_email, m.mem_user, c.coup_id, c.coup_price
+		FROM member m LEFT JOIN coupon c ON m.mem_id = c.mem_id
+	</select> -->
 
 	<select id="selectMemberListPage" resultType="MemberVO">
 	  <![CDATA[
@@ -103,8 +109,17 @@
 	</select>
 	
 	<!--  -->
-	<select id="searchSpecificMember" parameterType="String" resultType="MemberVO">
+	<select id="searchSpecificMember" resultType="MemberVO">
 		SELECT * FROM member
 		WHERE mem_id = #{memId}
 	</select>
+	
+	<!--  -->
+	<insert id="insertCoupon" parameterType="MemberVO">
+	  <selectKey keyProperty="coupId" resultType="int" order="BEFORE">
+	    SELECT seq_coup_id.NEXTVAL FROM dual
+	  </selectKey>
+	  INSERT INTO coupon (coup_id, mem_id, coup_name, coup_price, coup_info, coup_expired, pay_id)
+	  VALUES (#{coupId}, #{memId}, #{coupName}, #{coupPrice}, #{coupInfo}, ADD_MONTHS(SYSDATE, 1), #{payId})
+  	</insert>
 </mapper>

@@ -45,8 +45,14 @@ public class Login implements Command {
 			session.setAttribute("Auth", rvo.getMemUser());
 			System.out.println(rvo.getMemUser());
 			req.setAttribute("vo", rvo); // 요청정보에 vo를 저장 해당 데이터를 가지고, main 페이지로 일단은 이동
+			if(rvo.getMemUser().equals("admin")) {
 
-			return "{ \"retCode\" : \"Success\" }.json";
+				return "{ \"retCode\" : \"Success\",\"manager\" : \"admin\" }.json";
+			}else {
+
+				return "{ \"retCode\" : \"Success\"}.json";
+			}
+
 			
 		} else {
 			return "{ \"retCode\" : \"Fail\" }.json";

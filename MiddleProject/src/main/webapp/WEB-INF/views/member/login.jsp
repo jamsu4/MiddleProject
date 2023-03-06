@@ -152,7 +152,7 @@
 	<div>
 		<div class="info-wrapper">
 			<a href="findIdForm.do">ID 찾기</a> | <a href="findPwdForm.do">비밀번호
-				찾기</a><br> <span>신규 회원 가입 시 적립금 5만원 지급</span>
+				찾기</a><br> <span>신규 회원 가입 시 적립금 5천원 지급</span>
 			<!-- Button trigger modal -->
 			<button type="button" class="btn btn-primary" data-bs-toggle="modal"
 				data-bs-target="#staticBackdrop">회원가입</button>
@@ -176,10 +176,10 @@
 								<!-- 여기다가 메세지 띄울거임. (중복 여부 메시지) -->
 								<div id="msg" class="msg"></div>
 
-								<input type="text" id="member_id" name="member_id" placeholder="아이디를 입력해 주세요"><br>
-								<input type="password" id="member_pw" placeholder="비밀번호를 입력해 주세요" name="member_pw"
+								<input type="text" id="member_id" name="member_id" placeholder="아이디를 입력해 주세요 (최소 5글자 이상)"><br>
+								<input type="password" id="member_pw" placeholder="비밀번호를 입력해 주세요 (최소 5글자 이상)" name="member_pw"
 									autofocus><br>
-								<input type="password" id="member_confirm_pw" placeholder="비밀번호를 다시 한 번 입력해 주세요"
+								<input type="password" id="member_confirm_pw" placeholder="비밀번호를 다시 한 번 입력해 주세요 (최소 5글자 이상)"
 									name="member_confirm_pw"><br>
 								<input type="text" id="member_name" placeholder="이름을 입력해 주세요"
 									name="member_name"><br>
@@ -337,7 +337,11 @@
 						success: function (result) {
 
 							if (result.retCode == "Success") {
-								location.href = 'main.do';
+								if(result.manager == "admin") {
+									location.href = 'adminMain.do';	
+								} else {
+									location.href = 'main.do';
+								}
 							} else if (result.retCode == "Fail") {
 								$("#errorMsg").text("아이디와 비밀번호를 정확히 입력해 주세요");
 								$("#errorMsg").css("color", "red");
