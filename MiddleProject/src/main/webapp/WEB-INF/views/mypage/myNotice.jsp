@@ -133,7 +133,7 @@ button {
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;내용 :
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${list.revContent }</div>
-					<hr>
+					
 					<p>
 				</c:forEach>
 			</div>
@@ -218,9 +218,8 @@ button {
 								&nbsp&nbsp&nbsp${list.qaReply }</div>
 						</c:if>
 					</div>
-					<hr>
-					<p>
 				</c:forEach>
+				<p>
 			</div>
 		</div>
 	</div>
