@@ -19,5 +19,8 @@ public class MemberVO {
 	private String coupExpired;
 	private String payId;
 	
+	//페이징
+	private int startNum;
+	private int endNum; 
 	
 }

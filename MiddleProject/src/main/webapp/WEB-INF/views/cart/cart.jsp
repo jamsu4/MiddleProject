@@ -7,7 +7,8 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js">
 	
 </script>
-<script src="https://cdn.iamport.kr/v1/iamport.js"></script>
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+<!-- <script src="https://cdn.iamport.kr/v1/iamport.js"></script> -->
 <script
 	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script type="text/javascript" src="js/payment.js"></script>
@@ -107,7 +108,7 @@
 						<div class="one-eight text-center">
 							<div class="display-tc">
 								<input class="selectBox" type="checkbox" data-quantity="${list.caQuant}" data-ordProSumprice="${list.caSumprice}"
-									data-value="${list.proId}" data-price="${list.proPrice }" data-name="${list.proName }">
+									data-value="${list.proId}" data-price="${list.proPrice }" data-name="${list.proName }" data-cid="${list.cartId }">
 							</div>
 						</div>
 						<div class="one-forth">

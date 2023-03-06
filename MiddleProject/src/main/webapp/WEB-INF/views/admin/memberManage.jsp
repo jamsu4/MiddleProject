@@ -81,6 +81,7 @@
 					</thead>
 					<tbody id="list"></tbody>
 				</table>
+				<div id="paging" style="text-align: center;"></div>
 			</div>
 		</div>
 	</div>
@@ -89,24 +90,69 @@
 
 
 <script>
-	$.ajax({
-		url: 'memberList.do',
-		success: function (result) {
-			//제이쿼리 forEach 
-			$(result).each(function (idx, item) { //인덱스, 인덱스에 들어있는 값
-				$('#list').append(makeRow(item)); //화면출력
-			});
-
-			$(result).each(function (idx, item) { //인덱스, 인덱스에 들어있는 값
-				$('#list').append(makeRowUpd(item)); //화면출력
-			});
-		},
-
-		error: function (reject) {
-			console.log(reject);
+	  $(document).ready(function() {
+		  getMemberListList(1);
+	  });
+	  var page = 1;
+	  
+	  function getMemberListList(page) {
+		  $.ajax({
+			url: 'memberList.do',
+		    data: { page: page },
+		    success: function (result) {
+		      console.log(result.paging);
+		      $(result.memberList).each(function (idx, item) { //인덱스, 인덱스에 들어있는 값
+					$('#list').append(makeRow(item)); //화면출력
+			  });
+		      $(result.memberList).each(function (idx, item) { //인덱스, 인덱스에 들어있는 값
+					$('#list').append(makeRowUpd(item)); //화면출력
+			  });
+		      var beginPage = parseInt(result.paging.beginPage);
+		      var endPage = parseInt(result.paging.endPage);
+		      var currentPage = parseInt(result.paging.page);
+		      console.log(beginPage);
+		      console.log(endPage);
+		      console.log(currentPage);
+		      if(result.paging.prev) {
+		        $('#paging').append($('<a>').click(movePage)
+		                          .data('page',(beginPage-1))
+		                          .text('prev'));
+		      }
+		      for (var i = beginPage; i <= endPage; i++) {
+		        if (i === currentPage) {
+		          $('#paging').append(i);
+		        } else {
+		          var link = createPageLink(i, i);
+		          $('#paging').append(link);
+		        }
+		      }
+		      if(result.paging.next) {
+		        $('#paging').append($('<a>').click(movePage)
+		                          .data('page',(endPage+1))
+		                          .text('next'));
+		      }
+		    },
+		    error: function (reject) {
+		      console.log(reject);
+		    },
+		  });
 		}
-	});
-
+	  //페이지 이동
+	  function movePage() {
+		  console.log(this)
+		  page = $(this).data('page');
+		  $('#list').empty();
+		  $('#paging').empty();
+		  getMemberListList(page);
+	  }
+	  //페이지네이션 제작
+	  function createPageLink(page, text) {
+	  return $('<a>').click(movePage)
+	  				 .data('page',page)
+	  			  	 .text(text);
+	  }
+	
+	
 
 	
 	/////////////////////////////////////////////////////////////////////

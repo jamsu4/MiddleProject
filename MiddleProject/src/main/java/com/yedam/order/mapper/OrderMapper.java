@@ -3,7 +3,7 @@ package com.yedam.order.mapper;
 
 import java.util.List;
 
-
+import com.yedam.common.Pagination;
 import com.yedam.order.vo.OrderVO;
 
 
@@ -29,5 +29,11 @@ public interface OrderMapper {
 	public int updateOrderStatus(OrderVO ovo); // 배송 상태 수정 
 
 	public int insertOrderStatus(String ordStatus); //order status 입력
+
+	public OrderVO selectRefundInfo(OrderVO ovo); //환불 정보 조회
+
+	public List<OrderVO> selectOrderListPage(OrderVO ovo);
+
+	public List<OrderVO> selectMyOrderPage(OrderVO ovo);
 
 }

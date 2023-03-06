@@ -2,6 +2,7 @@ package com.yedam.qa.mapper;
 
 import java.util.List;
 
+import com.yedam.common.Pagination;
 import com.yedam.qa.vo.QaVO;
 
 
@@ -11,4 +12,5 @@ public interface QaMapper {
 	public List<QaVO> getListAll();		// jm 추가
 	public int deleteQa(int qaId);
 	public int updateQa(QaVO qa);
+	public List<QaVO> selectQaListAllPage(Pagination paging);
 }

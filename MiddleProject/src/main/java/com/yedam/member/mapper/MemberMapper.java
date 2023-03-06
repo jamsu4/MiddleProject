@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
+import com.yedam.common.Pagination;
 import com.yedam.member.vo.MemberVO;
 
 // 가장 간단한(기본적인) 부분 선언하는곳 , 예를들어 연산시 => 더하기 , 뺄셈, 나누기, 곱하기
@@ -39,4 +40,6 @@ public interface MemberMapper { // 서비스부분이 아니라 데이터를 처
 	public MemberVO memInfo(String memId); //juan member단건조회
 
 	public MemberVO searchSpecificMember(String memId);		// 종민	회원검색용
+
+	public List<MemberVO> selectMemberListPage(Pagination paging); // 페이징
 }

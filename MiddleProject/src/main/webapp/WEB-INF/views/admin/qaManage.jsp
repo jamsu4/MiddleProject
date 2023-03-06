@@ -86,6 +86,13 @@
 					</thead>
 					<tbody id="qaList"></tbody>
 				</table>
+
+				<div id="paging" style="text-align: center;"></div>
+				<br />
+				<!-- 				<button id="addQa" class="btn btn-primary"
+				onclick="location.href = '#'">등록</button> -->
+				<button id="addQa" class="btn btn-primary">등록</button>
+
 			</div>
 		</div>
 	</div>
@@ -127,21 +134,79 @@
 
 <script>
 	$.ajax({
-		url: "qaList.do",
+		
 		success: function (result) {
-			$(result).each(function (idx, item) {
-				$("#qaList").append(makeRow(item));
-			});
 
-			$(result).each(function (idx, item) {
-				$("#qaList").append(makeRowUpd(item));
-			});
 		},
 		error: function (reject) {
 			console.log(reject);
 		},
 	});
+	
+	$(document).ready(function() {
+		getqaList(1);
+	  });
+	  var page = 1;
+	  
+	  function getqaList(page) {
+		  $.ajax({
+			url: "qaList.do",
+		    data: { page: page },
+		    success: function (result) {
+		      console.log(result.paging);
+				$(result.qaList).each(function (idx, item) {
+					$("#qaList").append(makeRow(item));
+				});
 
+				$(result.qaList).each(function (idx, item) {
+					$("#qaList").append(makeRowUpd(item));
+				});
+		      var beginPage = parseInt(result.paging.beginPage);
+		      var endPage = parseInt(result.paging.endPage);
+		      var currentPage = parseInt(result.paging.page);
+		      console.log(beginPage);
+		      console.log(endPage);
+		      console.log(currentPage);
+		      if(result.paging.prev) {
+		        $('#paging').append($('<a>').click(movePage)
+		                          .data('page',(beginPage-1))
+		                          .text('prev'));
+		      }
+		      for (var i = beginPage; i <= endPage; i++) {
+		        if (i === currentPage) {
+		          $('#paging').append(i);
+		        } else {
+		          var link = createPageLink(i, i);
+		          $('#paging').append(link);
+		        }
+		      }
+		      if(result.paging.next) {
+		        $('#paging').append($('<a>').click(movePage)
+		                          .data('page',(endPage+1))
+		                          .text('next'));
+		      }
+		    },
+		    error: function (reject) {
+		      console.log(reject);
+		    },
+		  });
+		}
+	  //페이지 이동
+	  function movePage() {
+		  console.log(this)
+		  page = $(this).data('page');
+		  $('#qaList').empty();
+		  $('#paging').empty();
+		  getqaList(page);
+	  }
+	  //페이지네이션 제작
+	  function createPageLink(page, text) {
+	  return $('<a>').click(movePage)
+	  				 .data('page',page)
+	  			  	 .text(text);
+	  }
+	
+	////////////////////////////////////////////////////
 	
 	function makeRow(manager = {}) {
 		let tr = $("<tr />");

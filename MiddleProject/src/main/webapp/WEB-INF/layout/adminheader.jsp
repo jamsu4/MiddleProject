@@ -20,7 +20,7 @@
 <!--                         <li><a class="dropdown-item" href="#!">Settings</a></li> -->
                         <li><a class="dropdown-item" href="main.do">유저 페이지</a></li>
                         <li><hr class="dropdown-divider" /></li>
-                        <li><a class="dropdown-item" href="#!">Logout</a></li>
+                        <li><a class="dropdown-item" href="logOut.do">Logout</a></li>
                     </ul>
                 </li>
             </ul>

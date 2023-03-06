@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 
 import com.yedam.common.DataSource;
+import com.yedam.common.Pagination;
 import com.yedam.mypage.vo.ZzimVO;
 import com.yedam.product.mapper.ProductMapper;
 import com.yedam.product.vo.ProductVO;
@@ -14,8 +15,8 @@ public class ProductServiceImpl implements ProductService {
 	ProductMapper mapper = session.getMapper(ProductMapper.class);
 
 	@Override
-	public List<ProductVO> productList() {
-		return mapper.getList();
+	public List<ProductVO> productList(Pagination paging) {
+		return mapper.getList(paging);
 	}
 
 	@Override
@@ -101,8 +102,13 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public List<ProductVO> searchProductList(String proId, String proName) {
-		return mapper.searchProductList(proId, proName);
+	public List<ProductVO> searchProIdList(ProductVO pvo) {
+		return mapper.searchProIdList(pvo);
+	}
+	
+	@Override
+	public List<ProductVO> searchProNameList(ProductVO pvo) {
+		return mapper.selectProNameList(pvo);
 	}
 
 	@Override
@@ -114,6 +120,21 @@ public class ProductServiceImpl implements ProductService {
 	public int insertReview(ProductVO review) {
 		System.out.println(review);
 		return mapper.insertReview(review);
+	}
+
+	@Override
+	public List<ProductVO> productList() {
+		return mapper.getListMain();
+	}
+
+	@Override
+	public int getPrductCount() {
+		return mapper.selectProductCount();
+	}
+
+	@Override
+	public List<ProductVO> getManageReviewListPage(Pagination paging) {
+		return mapper.selectManageReviewListPage(paging);
 	}
 
 	
