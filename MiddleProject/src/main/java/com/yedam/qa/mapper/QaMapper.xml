@@ -21,6 +21,7 @@
 	<!-- -->
 	<select id="getListAll" resultType="QaVO">
 		SELECT * FROM qa
+		ORDER BY qa_date DESC
 	</select>
 	
 	<select id="selectQaListAllPage" resultType="QaVO">
@@ -39,6 +40,13 @@
 	  ]]>
 	</select>
 
+	<!-- 특정 상품 QA 만 검색 -->
+	<select id="searchSpecificQa" resultType="QaVO">
+		SELECT * FROM qa
+		WHERE pro_id = #{proId}
+		ORDER BY qa_date DESC
+	</select>
+	
 	<delete id="deleteQa" parameterType="int">
 		DELETE FROM qa
 		WHERE qa_id =

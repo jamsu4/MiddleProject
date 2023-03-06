@@ -190,7 +190,7 @@ table:nth-of-type(2) input {
 
 	/////////////////////////////////////////////////////////////////////
 
-	function searchProduct() {
+	function searchMember() {
 		let memId = $('#search-input').val();
 		console.log('출력 테스트 - jsp 파일 -> ' + memId);
 
@@ -216,16 +216,16 @@ table:nth-of-type(2) input {
 		})
 	}
 
-	// 검색 버튼 눌렀을 시, searchProduct() 실행
+	// 검색 버튼 눌렀을 시, searchMember() 실행
 	$('.search-btn').click(function (e) {
-		searchProduct();
+		searchMember();
 	});
 
 
-	// 검색 버튼 안 누르고, 그냥 아이디 검색 후 엔터 눌렀을 때도, searchProduct() 실행
+	// 검색 버튼 안 누르고, 그냥 아이디 검색 후 엔터 눌렀을 때도, searchMember() 실행
 	$('#search-input').keypress(function (event) {
 		if (event.which == 13) {
-			searchProduct();
+			searchMember();
 			return false;
 		}
 	});

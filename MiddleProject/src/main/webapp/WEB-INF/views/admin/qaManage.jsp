@@ -76,8 +76,8 @@
 		<div>
 			<form action="#" method="POST" id="search-btn-group">
 				<label for="search-input"></label> <input type="text" id="search-input" name="search-input"
-					class="search-input" placeholder="아이디를 입력하세요">
-				<button type="submit" class="search-btn">
+					class="search-input" placeholder="상품 번호를 입력하세요">
+				<button type="button" class="search-btn">
 					<i class="fa fa-search"></i>
 				</button>
 			</form>
@@ -110,8 +110,6 @@
 				</table>
 
 				<div id="paging" style="text-align: left;"></div>
-
-
 
 			</div>
 		</div>
@@ -232,6 +230,48 @@
 	  				 .data('page',page)
 	  			  	 .text(text);
 	  }
+	
+	////////////////////////////////////////////////////
+	
+	function searchQa() {
+		let proId = $('#search-input').val();
+		console.log('출력 테스트 - jsp 파일 -> ' + proId);
+
+		$.ajax({
+			url: "searchQaManage.do",
+			data: { proId: proId },
+			success: function (result) {
+				$('#search-input').val("");
+				$("#qaList").find("tr").remove();
+
+				console.log('result 출력테스트 - jsp 파일 -> ', result);
+				$(result).each(function (idx, item) {
+					$('#qaList').append(makeRow(item));
+				});
+
+				$(result).each(function (idx, item) {
+					$('#qaList').append(makeRowUpd(item));
+				});
+			},
+			error: function (reject) {
+				console.log(reject);
+			}
+		})
+	}
+
+	// 검색 버튼 눌렀을 시, searchMember() 실행
+	$('.search-btn').click(function (e) {
+		searchQa();
+	});
+
+
+	// 검색 버튼 안 누르고, 그냥 아이디 검색 후 엔터 눌렀을 때도, searchMember() 실행
+	$('#search-input').keypress(function (event) {
+		if (event.which == 13) {
+			searchQa();
+			return false;
+		}
+	});
 	
 	////////////////////////////////////////////////////
 	

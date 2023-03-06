@@ -77,6 +77,7 @@ import com.yedam.qa.command.ProductQaPage;
 import com.yedam.qa.command.QaList;
 import com.yedam.qa.command.QaManagerForm;
 import com.yedam.qa.command.QaRemove;
+import com.yedam.qa.command.SearchQaManage;
 import com.yedam.qa.command.QaUpdate;
 import com.yedam.zzim.command.ProductZzimAdd;
 import com.yedam.zzim.command.ProductZzimDel;
@@ -161,6 +162,7 @@ public class FrontController extends HttpServlet {
 		map.put("/qaList.do", new QaList());
 		map.put("/removeQa.do", new QaRemove());
 		map.put("/updateQa.do", new QaUpdate());
+		map.put("/searchQaManage.do", new SearchQaManage());			// QA 게시판 검색 (상품번호 proId 이용)
 		//
 		map.put("/searchMemberManage.do", new SearchMemberManage());
 		
