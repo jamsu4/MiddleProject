@@ -124,17 +124,19 @@ table:nth-of-type(2) input {
 								<th>제품_ID</th>
 								<th>유저_ID</th>
 								<th>리뷰 이미지</th>
-								<th>리뷰 제목</th>
-								<th>리뷰 내용</th>
+<!-- 								<th>리뷰 제목</th> -->
+<!-- 								<th>리뷰 내용</th> -->
 								<th>별점</th>
 								<th>리뷰 날짜</th>
 								<th>리뷰 댓글</th>
-								<th>수정</th>
+								<th>답변</th>
+
 								<th>삭제</th>
 							</tr>
 						</thead>
 						<tbody id="reviewList"></tbody>
 					</table>
+					<div id="paging" style="text-align: center;"></div>
 					<br />
 				</div>
 			</div>
@@ -148,12 +150,23 @@ table:nth-of-type(2) input {
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h1 class="modal-title fs-5" id="exampleModalLabel">리뷰 댓글 작성</h1>
+				<h1 class="modal-title fs-5" id="exampleModalLabel">댓글 작성</h1>
 				<button type="button" class="btn-close" data-bs-dismiss="modal"
 					aria-label="Close"></button>
 			</div>
 			<div class="modal-body">
-				<textarea id="rReply" rows="5" cols="60"></textarea>
+				<div class="mb-3">
+					<label for="recipient-name" class="col-form-label">제목</label>
+					<input type="text" class="form-control" id="rTitle" readonly>
+				</div>
+				<div class="mb-3">
+					<label for="recipient-name" class="col-form-label">리뷰내용</label>
+					<textarea id="rContent" class="form-control" rows="5" cols="60" readonly></textarea>
+				</div>
+				<div class="mb-3">
+					<label for="recipient-name" class="col-form-label">댓글</label>
+					<textarea id="rReply" rows="5" cols="60"></textarea>
+				</div>
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-secondary"
@@ -182,11 +195,82 @@ table:nth-of-type(2) input {
 			console.log(reject);
 		},
 	});
+	////////////////////////////////////////////////
+  $(document).ready(function() {
+	  reviewManageList(1);
+  });
+  var page = 1;
+  
+  function reviewManageList(page) {
+	  $.ajax({
+	    url: "reviewManageList.do",
+	    data: { page: page },
+	    success: function (result) {
+	      console.log(result.paging);
+	      $(result.reviewList).each(function (idx, item) {
+	        $("#reviewList").append(makeRow(item));
+	      });
+	      $(result.reviewList).each(function (idx, item) {
+	        $("#reviewList").append(makeRowUpd(item));
+	      });
+	      var beginPage = parseInt(result.paging.beginPage);
+	      var endPage = parseInt(result.paging.endPage);
+	      var currentPage = parseInt(result.paging.page);
+	      console.log(beginPage);
+	      console.log(endPage);
+	      console.log(currentPage);
+	      if(result.paging.prev) {
+	        $('#paging').append($('<a>').click(movePage)
+	                          .data('page',(beginPage-1))
+	                          .text('prev'));
+	      }
+	      for (var i = beginPage; i <= endPage; i++) {
+	        if (i === currentPage) {
+	          $('#paging').append(i);
+	        } else {
+	          var link = createPageLink(i, i);
+	          $('#paging').append(link);
+	        }
+	      }
+	      if(result.paging.next) {
+	        $('#paging').append($('<a>').click(movePage)
+	                          .data('page',(endPage+1))
+	                          .text('next'));
+	      }
+	    },
+	    error: function (reject) {
+	      console.log(reject);
+	    },
+	  });
+	}
+  //페이지 이동
+  function movePage() {
+	  console.log(this)
+	  page = $(this).data('page');
+	  $('#reviewList').empty();
+	  $('#paging').empty();
+	  reviewManageList(page);
+  }
+  //페이지네이션 제작
+  function createPageLink(page, text) {
+  return $('<a>').click(movePage)
+  				 .data('page',page)
+  			  	 .text(text);
+  }
+	
+	
+	
+	
+	
+	
+	
 	
 	$('#closeBtn').click( function() {
 		console.log('클릭')
 		location.reload();
 	})
+	
+	
 	
 	function searchReview(){
 		let proId = $('#proIdBtn').val();
@@ -325,7 +409,8 @@ table:nth-of-type(2) input {
 	
 	function makeRow(review = {}) {
 	    let tr = $("<tr />");
-
+		
+	    
 	    tr.append(
 	      $("<td />").text(review.revId),
 	      $("<td />").text(review.proId),
@@ -337,15 +422,15 @@ table:nth-of-type(2) input {
 	          height: "100px",
 	        })
 	      ),
-	      $("<td />").text(review.revTitle),
-	      $("<td />").text(review.revContent),
+// 	      $("<td />").text(review.revTitle),
+// 	      $("<td />").text(review.revContent),
 	      $("<td />").text(review.revRate),
 	      $("<td />").text(review.revDate),
-	      $("<td />").text(review.revReply),
+// 	      $("<td />").text(review.revReply),
 	      $("<td />").append(
 	        $("<button />")
 	          .addClass("btn btn-success updbtn")
-	          .text("댓글작성")
+	          .text("댓글")
 	          .attr("revIdUpd", review.revId)
 	          .attr("data-bs-toggle", "modal")
 	          .attr("data-bs-target", "#exampleModal")
@@ -392,8 +477,8 @@ table:nth-of-type(2) input {
 		
 		let pid = $("#pid").text();
 		let mid = $("#mid").text();
-		let rtitle = $("#rtitle").text();
-		let rcontent = $("#rcontent").text();
+		let rtitle = $("#rTitle").val();
+		let rcontent = $("#rContent").val();
 		let rate = $("#rate").text();
 		let rdate = $("#rdate").text();
 		let rimg = $("#revImg").attr('src').substring(7);
@@ -409,22 +494,6 @@ table:nth-of-type(2) input {
 		formData.append("rdate", rdate);
 		formData.append("rimg", rimg);
 		
-// 		$.ajax({
-// 			url: "modifyReviewManage.do",
-// 			method: "post",
-// 			data : {rid : rid, rReply: rReply},
-// 			success: function(result){
-// 				console.log(result);
-// 				if (result.retCode == "Success") {
-// 					location.reload();
-// 				} else {
-// 					alert("오류");
-// 				}
-// 			},
-// 			error: function(reject){
-// 				console.log(reject);
-// 			},
-// 		});
 		$.ajax({
 		      url: "modifyReviewManage.do",
 		      method: "post",
@@ -433,9 +502,8 @@ table:nth-of-type(2) input {
 		      processData: false,
 		      success: function (result) {
 		        if (result.retCode == "Success") {
-		          alert("수정완료");
+		          alert("작성완료");
 		          $('#exampleModal').modal('hide')
-		          $('textarea').val('');
 		          tr.replaceWith(makeRow(result.review));
 		          tr.replaceWith(makeRowUpd(result.review));
 		        } else {
@@ -456,12 +524,17 @@ table:nth-of-type(2) input {
 			let pid = $(this).closest("tr").children().eq(1).text();
 			let mid = $(this).closest("tr").children().eq(2).text();
 			let rimg = $(this).closest("tr").children().eq(3).children().attr("src");
-			let rtitle = $(this).closest("tr").children().eq(4).text();
-			let rcontent = $(this).closest("tr").children().eq(5).text();
-			let rate = $(this).closest("tr").children().eq(6).text();
-			let rdate = $(this).closest("tr").children().eq(7).text();
-			let rReply = $(this).closest("tr").children().eq(8).text();
-		
+// 			let rtitle = $(this).closest("tr").children().eq(4).text();
+// 			let rcontent = $(this).closest("tr").children().eq(5).text();
+			let rate = $(this).closest("tr").children().eq(4).text();
+			let rdate = $(this).closest("tr").children().eq(5).text();
+// 			let rReply = $(this).closest("tr").children().eq(8).text();
+			console.log(review)
+			if($(this).closest("tr").children().eq(0).text() == review.revId){
+				$('#rContent').val(review.revContent)
+				$('#rTitle').val(review.revTitle)
+				$('#rReply').val(review.revReply)
+			}
 		
 			let nTr = $("<tr id='rtr'/>").append(
 			        $("<td id='rid'/>").text(rid),
@@ -476,11 +549,11 @@ table:nth-of-type(2) input {
 			            class: "image_container"
 			          })
 			        ),
-			        $("<td id='rtitle'/>").text(rtitle),
-			        $("<td id='rcontent'/>").text(rcontent),
+// 			        $("<td id='rtitle'/>").text(rtitle),
+// 			        $("<td id='rcontent'/>").text(rcontent),
 			        $("<td id='rate'/>").text(rate),
 			        $("<td id='rdate'/>").text(rdate),
-			        $("<td />").text(rReply),
+// 			        $("<td />").text(rReply),
 			        $("<td />").append(
 			          $(
 			            "<button onclick='updateProductFnc(event)' class='btn btn-success updbtn'>작성 중</button>"

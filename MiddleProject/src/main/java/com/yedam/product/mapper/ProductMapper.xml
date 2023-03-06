@@ -7,8 +7,51 @@
 
 	<!-- 전체 상품 조회 -->
 	<select id="getList" resultType="ProductVO">
-		SELECT * FROM product
+	  <![CDATA[
+	    SELECT *
+	    FROM (
+	      SELECT ROWNUM rnum, p.*
+	      FROM (
+	        SELECT *
+	        FROM product
+	        ORDER BY pro_id
+	      ) p
+	      WHERE ROWNUM <= #{endNum}
+	    )
+	    WHERE rnum >= #{startNum}
+	  ]]>
 	</select>
+	
+	<select id="selectManageReviewListPage" resultType="ProductVO">
+		<![CDATA[
+	    SELECT *
+	    FROM (
+	      SELECT ROWNUM rnum, p.*
+	      FROM (
+	        SELECT *
+	        FROM review
+	        ORDER BY rev_id desc
+	      ) p
+	      WHERE ROWNUM <= #{endNum}
+	    )
+	    WHERE rnum >= #{startNum}
+	  ]]>
+	</select>
+	
+	
+	
+	
+	<!-- mainpage용 select -->
+	<select id="selectProductCount" resultType="int">
+	  SELECT COUNT(*) FROM product
+	</select>
+	
+	<select id="getListMain" resultType="ProductVO">
+	  SELECT * FROM product
+	</select>
+	
+	
+	
 	<!-- 검색 결과 조회 -->
 	<select id="searchResult" resultType="ProductVO">
 		SELECT *
@@ -136,16 +179,16 @@
 		</set>
 		WHERE rev_id = #{revId}
 	</update>
-
+	
 	<select id="searchReviewList" resultType="ProductVO">
 		SELECT *
 		FROM review
 		<where>
 			<if test="memId != null and proId != null">
-				mem_id=#{memId} AND pro_id=#{proId, jdbcType=INTEGER}
+				mem_id LIKE '%' || #{memId} || '%' AND pro_id=#{proId, jdbcType=INTEGER}
 			</if>
 			<if test="memId != null and proId == null">
-				mem_id=#{memId}
+				mem_id LIKE '%' || #{memId} || '%'
 			</if>
 			<if test="memId == null and proId != null">
 				pro_id=#{proId, jdbcType=INTEGER}
@@ -158,7 +201,7 @@
 		FROM review
 		<where>
 			<if test="date == '오늘'">
-				to_char(sysdate-1,'yyyy-mm-dd') = to_char(rev_date,
+				to_char(sysdate-1,'yyyy-mm-dd') <![CDATA[<=]]> to_char(rev_date,
 				'yyyy-mm-dd')
 			</if>
 			<if test="date == '일주일'">
@@ -175,23 +218,43 @@
 			</if>
 		</where>
 	</select>
-
-	<select id="searchProductList" resultType="ProductVO">
-		SELECT *
-		FROM product
-		<where>
-			<if test="proName != null and proId != null">
-				pro_name LIKE '%' || #{proName} || '%' AND
-				pro_id=#{proId, jdbcType=INTEGER}
-			</if>
-			<if test="proName != null and proId == null">
-				pro_name LIKE '%' || #{proName} || '%'
-			</if>
-			<if test="proName == null and proId != null">
-				pro_id=#{proId, jdbcType=INTEGER}
-			</if>
-		</where>
+<!-- pro_id로 찾기 -->
+	<select id="searchProIdList" resultType="ProductVO">
+	  <![CDATA[
+	    SELECT *
+	    FROM (
+	      SELECT ROWNUM rnum, p.*
+	      FROM (
+	        SELECT *
+	        FROM product
+	        WHERE pro_id = #{proId}  
+	        ORDER BY pro_id
+	      ) p
+	      WHERE ROWNUM <= #{endNum}
+	    )
+	    WHERE rnum >= #{startNum}
+	  ]]>
 	</select>
+
+<!-- pro_Name로 찾기 -->
+	<select id="selectProNameList" resultType="ProductVO">
+	  <![CDATA[
+	    SELECT *
+	    FROM (
+	      SELECT ROWNUM rnum, p.*
+	      FROM (
+	        SELECT *
+	        FROM product
+	        WHERE pro_name LIKE '%' || #{proName} || '%'  
+	        ORDER BY pro_id
+	      ) p
+	      WHERE ROWNUM <= #{endNum}
+	    )
+	    WHERE rnum >= #{startNum}
+	  ]]>
+	</select>
+
+
 
 	<select id="rateList" resultType="ProductVO">
 		SELECT AVG(rev_rate) AS avg_rate, pro_id
@@ -199,5 +262,10 @@
 		GROUP BY pro_id
 		ORDER BY pro_id
 	</select>
+	
+	<insert id="insertReview" parameterType="ProductVO">
+		INSERT INTO review (rev_id, mem_id, pro_id, rev_title, rev_content, rev_date, rev_rate, rev_image)
+		VALUES (seq_rev_id.NEXTVAL, #{memId}, #{proId}, #{revTitle}, #{revContent}, sysdate, #{revRate}, #{revImage})
+	</insert>
 
 </mapper>

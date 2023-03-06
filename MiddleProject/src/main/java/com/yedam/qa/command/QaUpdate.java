@@ -25,10 +25,8 @@ public class QaUpdate implements Command {
 		String qtitle = req.getParameter("qtitle");
 		String qcontent = req.getParameter("qcontent");
 		String qdate = req.getParameter("qdate");
-		String qreply = req.getParameter("qreply");
+		String qReply = req.getParameter("qReply");
 
-
-		System.out.println("넘어옴? " + qid + ", " + pid);
 		
 		QaVO vo = new QaVO();
 		vo.setQaId(Integer.parseInt(qid));
@@ -37,9 +35,7 @@ public class QaUpdate implements Command {
 		vo.setQaTitle(qtitle);
 		vo.setQaContent(qcontent);
 		vo.setQaDate(qdate);
-		vo.setQaReply(qreply);
-
-		System.out.println(vo);
+		vo.setQaReply(qReply);
 
 		// 결과값을 map타입에 저장
 		Map<String, Object> resultMap = new HashMap<>();

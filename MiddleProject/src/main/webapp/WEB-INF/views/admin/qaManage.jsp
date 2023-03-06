@@ -76,53 +76,157 @@
 							<th>QA 글 번호</th>
 							<th>상품 번호</th>
 							<th>멤버 아이디</th>
-							<th>글 제목</th>
-							<th>글 내용</th>
+<!-- 							<th>글 제목</th> -->
+<!-- 							<th>글 내용</th> -->
 							<th>작성 일자</th>
+<!-- 							<th>댓글</th> -->
 							<th>댓글</th>
+							<th>삭제</th>
 						</tr>
 					</thead>
 					<tbody id="qaList"></tbody>
 				</table>
+
+				<div id="paging" style="text-align: center;"></div>
 				<br />
 				<!-- 				<button id="addQa" class="btn btn-primary"
 				onclick="location.href = '#'">등록</button> -->
 				<button id="addQa" class="btn btn-primary">등록</button>
+
 			</div>
 		</div>
 	</div>
 </main>
-
+<!-- Modal -->
+<div class="modal fade" id="exampleModal"
+	aria-labelledby="exampleModalLabel" aria-hidden="true"
+	data-bs-backdrop="static">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h1 class="modal-title fs-5" id="exampleModalLabel">Q&A 댓글 작성</h1>
+				<button type="button" class="btn-close" data-bs-dismiss="modal"
+					aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				<div class="mb-3">
+					<label for="recipient-name" class="col-form-label">제목</label>
+					<input type="text" class="form-control" id="qTitle" readonly>
+				</div>
+				<div class="mb-3">
+					<label for="recipient-name" class="col-form-label">Q&A 내용</label>
+					<textarea id="qContent" class="form-control" rows="5" cols="60" readonly></textarea>
+				</div>
+				<div class="mb-3">
+					<label for="recipient-name" class="col-form-label">댓글</label>
+					<textarea id="qReply" rows="5" cols="60"></textarea>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary"
+					data-bs-dismiss="modal" id="closeBtn">닫기</button>
+				<button type="button" class="btn btn-primary"
+					onclick='updateProductFnc(event)'>등록</button>
+			</div>
+		</div>
+	</div>
+</div>
 
 <script>
 	$.ajax({
-		url: "qaList.do",
+		
 		success: function (result) {
-			$(result).each(function (idx, item) {
-				$("#qaList").append(makeRow(item));
-			});
 
-			$(result).each(function (idx, item) {
-				$("#qaList").append(makeRowUpd(item));
-			});
 		},
 		error: function (reject) {
 			console.log(reject);
 		},
 	});
+	
+	$(document).ready(function() {
+		getqaList(1);
+	  });
+	  var page = 1;
+	  
+	  function getqaList(page) {
+		  $.ajax({
+			url: "qaList.do",
+		    data: { page: page },
+		    success: function (result) {
+		      console.log(result.paging);
+				$(result.qaList).each(function (idx, item) {
+					$("#qaList").append(makeRow(item));
+				});
 
+				$(result.qaList).each(function (idx, item) {
+					$("#qaList").append(makeRowUpd(item));
+				});
+		      var beginPage = parseInt(result.paging.beginPage);
+		      var endPage = parseInt(result.paging.endPage);
+		      var currentPage = parseInt(result.paging.page);
+		      console.log(beginPage);
+		      console.log(endPage);
+		      console.log(currentPage);
+		      if(result.paging.prev) {
+		        $('#paging').append($('<a>').click(movePage)
+		                          .data('page',(beginPage-1))
+		                          .text('prev'));
+		      }
+		      for (var i = beginPage; i <= endPage; i++) {
+		        if (i === currentPage) {
+		          $('#paging').append(i);
+		        } else {
+		          var link = createPageLink(i, i);
+		          $('#paging').append(link);
+		        }
+		      }
+		      if(result.paging.next) {
+		        $('#paging').append($('<a>').click(movePage)
+		                          .data('page',(endPage+1))
+		                          .text('next'));
+		      }
+		    },
+		    error: function (reject) {
+		      console.log(reject);
+		    },
+		  });
+		}
+	  //페이지 이동
+	  function movePage() {
+		  console.log(this)
+		  page = $(this).data('page');
+		  $('#qaList').empty();
+		  $('#paging').empty();
+		  getqaList(page);
+	  }
+	  //페이지네이션 제작
+	  function createPageLink(page, text) {
+	  return $('<a>').click(movePage)
+	  				 .data('page',page)
+	  			  	 .text(text);
+	  }
+	
+	////////////////////////////////////////////////////
 	
 	function makeRow(manager = {}) {
 		let tr = $("<tr />");
 
 		tr.append(
 			$("<td />").text(manager.qaId),
-			$("<td />").text(manager.memId),
 			$("<td />").text(manager.proId),
-			$("<td />").text(manager.qaTitle),
-			$("<td />").text(manager.qaContent),
+			$("<td />").text(manager.memId),
+// 			$("<td />").text(manager.qaTitle),
+// 			$("<td />").text(manager.qaContent),
 			$("<td />").text(manager.qaDate),
-			$("<td />").text(manager.qaReply),
+// 			$("<td />").text(manager.qaReply),
+			$("<td />").append(
+			        $("<button />")
+			          .addClass("btn btn-success updbtn")
+			          .text("댓글")
+			          .attr("qaIdUpd", manager.qaId)
+			          .attr("data-bs-toggle", "modal")
+			          .attr("data-bs-target", "#exampleModal")
+			      ),
 			$('<td />').append( //td 추가
 				$('<button class="btn btn-danger">삭제</button>')
 					.attr('qaIdDel', manager.qaId) // .attr => setAttribute, 만들다
@@ -138,23 +242,34 @@
 		let tr = $("<tr />");
 
 		$(".updbtn").on("click", function (e) {
-			console.log(e.target);
 			let qid = $(this).closest("tr").children().eq(0).text();
-			let mid = $(this).closest("tr").children().eq(1).text();
-			let pid = $(this).closest("tr").children().eq(2).text();
-			let qtitle = $(this).closest("tr").children().eq(3).text();
-			let qcontent = $(this).closest("tr").children().eq(4).text();
-			let qdate = $(this).closest("tr").children().eq(5).text();
-			let qreply = $(this).closest("tr").children().eq(6).text();
-
-			let nTr = $("<tr />").append(
-				$("<td />").append($("<input id='qid' />").val(qid)),
-				$("<td />").append($("<input id='mid' />").val(mid)),
-				$("<td />").append($("<input id='pid' />").val(pid)),
-				$("<td />").append($("<input id='qtitle' />").val(qtitle)),
-				$("<td />").append($("<input id='qcontent' />").val(qcontent)),
-				$("<td />").append($("<input id='qdate' />").val(qdate)),
-				$("<td />").append($("<input id='qreply' />").val(qreply))
+			let pid = $(this).closest("tr").children().eq(1).text();
+			let mid = $(this).closest("tr").children().eq(2).text();
+// 			let qtitle = $(this).closest("tr").children().eq(3).text();
+// 			let qcontent = $(this).closest("tr").children().eq(4).text();
+			let qdate = $(this).closest("tr").children().eq(3).text();
+// 			let qreply = $(this).closest("tr").children().eq(6).text();
+			
+			if($(this).closest("tr").children().eq(0).text() == manager.qaId){
+				$('#qContent').val(manager.qaContent)
+				$('#qTitle').val(manager.qaTitle)
+				$('#qReply').val(manager.qaReply)
+			}
+			
+			
+			let nTr = $("<tr id='qtr'/>").append(
+				$("<td id='qid'/>").text(qid),
+				$("<td id='pid'/>").text(pid),
+				$("<td id='mid'/>").text(mid),
+// 				$("<td id='qtitle'/>").text(qtitle),
+// 				$("<td id='qcontent'/>").text(qcontent),
+				$("<td id='qdate'/>").text(qdate),
+// 				$("<td id='qreply'/>").text(qreply),
+				$("<td />").append(
+			          $(
+			            "<button onclick='updateProductFnc(event)' class='btn btn-success updbtn'>작성 중</button>"
+			          )
+			        )
 			);
 			$(this).closest("tr").replaceWith(nTr);
 		});
@@ -188,4 +303,42 @@
 			},
 		});
 	}
+	
+	function updateProductFnc(e) {
+		let tr = $("#qtr")
+		
+		let qReply = $("#qReply").val();
+		let qtitle = $("#qTitle").val();
+		let qcontent = $("#qContent").val();
+		
+		let qid = $("#qid").text();
+		let mid = $("#mid").text();
+		let pid = $("#pid").text();
+		let qdate = $("#qdate").text();
+		
+		$.ajax({
+		      url: "updateQa.do",
+		      method: "post",
+		      data: {qReply:qReply, qid:qid, mid:mid, pid:pid, qtitle:qtitle, qcontent:qcontent, qdate:qdate},
+		      success: function (result) {
+		        if (result.retCode == "Success") {
+		          alert("작성완료");
+		          $('#exampleModal').modal('hide')
+		          $('textarea').val('');
+		          tr.replaceWith(makeRow(result.manager));
+		          tr.replaceWith(makeRowUpd(result.manager));
+		        } else {
+		          alert("입력미완");
+		        }
+		      },
+		      error: function (reject) {
+		        console.log(reject);
+		      },
+		    });
+	}
+	
+	$('#closeBtn').click( function() {
+		console.log('클릭')
+		location.reload();
+	})
 </script>

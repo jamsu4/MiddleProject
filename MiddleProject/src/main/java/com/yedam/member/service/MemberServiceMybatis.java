@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 
 import com.yedam.common.DataSource;
+import com.yedam.common.Pagination;
 import com.yedam.member.mapper.MemberMapper;
 import com.yedam.member.vo.MemberVO;
 
@@ -81,7 +82,13 @@ public class MemberServiceMybatis implements MemberService {
 	}
 
 	@Override
+
 	public int addCoupon(MemberVO coupvo) {
 		return mapper.insertCoupon(coupvo);
+  }
+  @Override
+	public List<MemberVO> memberListPage(Pagination paging) {
+		return mapper.selectMemberListPage(paging);
+
 	}
 }
