@@ -88,10 +88,8 @@
 				</table>
 
 				<div id="paging" style="text-align: center;"></div>
-				<br />
-				<!-- 				<button id="addQa" class="btn btn-primary"
-				onclick="location.href = '#'">등록</button> -->
-				<button id="addQa" class="btn btn-primary">등록</button>
+
+
 
 			</div>
 		</div>

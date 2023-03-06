@@ -154,10 +154,10 @@ function requestPay() {
 						data: {cartIds : cartIds},
 						success: function(result) {
 							if (result.retCode == "Success") {
-								alert('목록에서 삭제를 성공했습니다.');
+								console.log('목록에서 삭제를 성공했습니다.');
 	
 							} else {
-								alert('목록 등록에 실패했습니다.');
+								console.log('목록 등록에 실패했습니다.');
 								
 							}
 						},
