@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+x<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <script
@@ -52,7 +52,7 @@
 	                                <ul>
 	                                    <li><a href="orderList.do">주문내역</a></li>
 	                                    <li><a href="zzimList.do">찜한상품</a></li>
-	                                    <li><a href="myNoticeList.do">내게시글</a></li>
+	                                    <li><a href="reviewList.do">내게시글</a></li>
 	                                    <li><a href="updateInfoForm.do">정보수정</a></li>
 	                                </ul>
                                 </c:when>
@@ -102,22 +102,22 @@
         <div id="header-carousel" class="carousel slide" data-ride="carousel">
                     <div class="carousel-inner">
                         <div class="carousel-item active" style="height: 410px; width: 100%;">
-                            <img class="img-fluid" src="images/carousel-1.jpg" alt="Image" style="width: 100%;">
+                            <img class="img-fluid" src="images/고양이로고4.jpg" alt="Image" style="width: 100%;">
                             <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                                 <div class="p-3" style="max-width: 700px;">
-                                    <h4 class="text-light text-uppercase font-weight-medium mb-3">10% Off Your First Order</h4>
-                                    <h3 class="display-4 text-white font-weight-semi-bold mb-4">Fashionable Dress</h3>
-                                    <a href="" class="btn btn-light py-2 px-3">Shop Now</a>
+                                    <h3 class="text-light text-uppercase font-weight-medium mb-3">지금 상품 구매시</h3>
+                                    <h3 class="display-4 text-white font-weight-semi-bold mb-4">배송비 무료</h3>
+                                    <a href="#" class="btn btn-light py-2 px-3">Shop Now</a>
                                 </div>
                             </div>
                         </div>
                         <div class="carousel-item" style="height: 410px;  width: 100%;">
-                            <img class="img-fluid" src="images/carousel-2.jpg" alt="Image" style="width: 100%;">
+                            <img class="img-fluid" src="images/고양이로고3.png" alt="Image" style="width: 100%;">
                             <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                                 <div class="p-3" style="max-width: 700px;">
-                                    <h4 class="text-light text-uppercase font-weight-medium mb-3">10% Off Your First Order</h4>
-                                    <h3 class="display-4 text-white font-weight-semi-bold mb-4">Reasonable Price</h3>
-                                    <a href="" class="btn btn-light py-2 px-3">Shop Now</a>
+                                    <h3 class="text-light text-uppercase font-weight-medium mb-3">지금 회원 가입시 전원</h3>
+                                    <h3 class="display-4 text-white font-weight-semi-bold mb-4">5000원 쿠폰 지급</h3>
+                                    <a href="#" class="btn btn-light py-2 px-3">Shop Now</a>
                                 </div>
                             </div>
                         </div>

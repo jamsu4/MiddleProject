@@ -283,7 +283,8 @@ pageEncoding="UTF-8"%>
         document.getElementById("msg").innerHTML = null;
       });
 
-      // 회원가입 할 때, 검증하는 함수
+
+// 회원가입 할 때, 검증하는 함수
       function formCheck(frm) {
         // 빈 칸이 있을 시 에러 메시지 출력하는 변수
         let msg = "";
@@ -397,7 +398,7 @@ pageEncoding="UTF-8"%>
               if (result.manager == "admin") {
                 location.href = "adminMain.do";
               } else {
-                location.href = "main.do";
+                location.href = "productManagerPage.do";
               }
             } else if (result.retCode == "Fail") {
               $("#errorMsg").text("아이디와 비밀번호를 정확히 입력해 주세요");
@@ -423,3 +424,4 @@ pageEncoding="UTF-8"%>
     </script>
   </body>
 </html>
+

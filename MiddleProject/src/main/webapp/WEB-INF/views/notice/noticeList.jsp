@@ -7,7 +7,7 @@
 <body>
 	<div class="content">
 		<div class="container">
-			<h2 class="mb-5">공지사항</h2>
+			<h2 class="mb-5" style="margin-top: 5% !important;">공지사항</h2>
 
 			<div class="table-responsive custom-table-responsive">
 				<table class="table custom-table">
