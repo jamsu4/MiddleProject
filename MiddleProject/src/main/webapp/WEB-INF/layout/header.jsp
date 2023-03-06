@@ -24,7 +24,7 @@ x<%@ page language="java" contentType="text/html; charset=UTF-8"
                     <nav class="main-nav">
                         <!-- ***** Logo Start ***** -->
                         <a href="main.do" class="logo">
-                        <img src="bootstrap/assets/images/logo.png">
+                        <img src="images/고양이로고헤드1.png" style="width:100px; height:80px;">
                         </a>
                         <!-- ***** Logo End ***** -->
                         <!-- ***** Menu Start ***** -->
@@ -52,7 +52,7 @@ x<%@ page language="java" contentType="text/html; charset=UTF-8"
 	                                <ul>
 	                                    <li><a href="orderList.do">주문내역</a></li>
 	                                    <li><a href="zzimList.do">찜한상품</a></li>
-	                                    <li><a href="reviewList.do">내게시글</a></li>
+	                                    <li><a href="myNoticeList.do">내게시글</a></li>
 	                                    <li><a href="updateInfoForm.do">정보수정</a></li>
 	                                </ul>
                                 </c:when>

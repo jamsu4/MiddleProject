@@ -291,7 +291,7 @@ pageEncoding="UTF-8"%>
 
         // 비밀번호와 재확인용 비밀번호가 일치하는지 확인. (불일치하면, 가입 안 됨)
         if (frm.member_pw.value != frm.member_confirm_pw.value) {
-          alert("비번이 다른데여");
+          alert("입력한 비밀번호가 다릅니다.");
 
           frm.member_pw.value = "";
           frm.member_confirm_pw.value = "";

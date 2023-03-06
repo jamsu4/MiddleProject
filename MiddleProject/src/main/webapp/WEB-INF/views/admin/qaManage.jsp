@@ -44,6 +44,28 @@
 	#line {
 		clear: both;
 	}
+	.pagingBtn {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	background: var(- -button-bg-color);
+	color: var(- -button-color);
+	margin: 0;
+	padding: 0.5rem 1rem;
+	font-family: 'Noto Sans KR', sans-serif;
+	font-size: 1rem;
+	font-weight: 400;
+	text-align: center;
+	text-decoration: none;
+	border: none;
+	border-radius: 4px;
+	display: inline-block;
+	width: auto;
+	box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px
+		rgba(0, 0, 0, 0.06);
+	cursor: pointer;
+	transition: 0.5s;
+}
 </style>
 
 <main>
@@ -87,9 +109,7 @@
 					<tbody id="qaList"></tbody>
 				</table>
 
-				<div id="paging" style="text-align: center;"></div>
-				<br />
-				<!-- <button id="addQa" class="btn btn-primary">등록</button> -->
+				<div id="paging" style="text-align: left;"></div>
 
 			</div>
 		</div>
@@ -167,12 +187,15 @@
 		      console.log(currentPage);
 		      if(result.paging.prev) {
 		        $('#paging').append($('<a>').click(movePage)
+			      	      .attr('class', 'pagingBtn')
+				      		.attr('style', 'float:left;')
 		                          .data('page',(beginPage-1))
 		                          .text('prev'));
 		      }
 		      for (var i = beginPage; i <= endPage; i++) {
 		        if (i === currentPage) {
-		          $('#paging').append(i);
+			          var link = createPageLink(i, i);
+			          $('#paging').append(link);
 		        } else {
 		          var link = createPageLink(i, i);
 		          $('#paging').append(link);
@@ -180,6 +203,8 @@
 		      }
 		      if(result.paging.next) {
 		        $('#paging').append($('<a>').click(movePage)
+			      	      .attr('class', 'pagingBtn')
+				      		.attr('style', 'float:left;')
 		                          .data('page',(endPage+1))
 		                          .text('next'));
 		      }
@@ -200,6 +225,8 @@
 	  //페이지네이션 제작
 	  function createPageLink(page, text) {
 	  return $('<a>').click(movePage)
+	  	      	      .attr('class', 'pagingBtn')
+	      		.attr('style', 'float:left;')
 	  				 .data('page',page)
 	  			  	 .text(text);
 	  }

@@ -98,6 +98,35 @@ div#image_container img {
 	height: 200px;
 	width: 200px;
 }
+.pagingBtn { 
+  -webkit-appearance: none; 
+  -moz-appearance: none; 
+  appearance: none; 
+  
+  background: var(--button-bg-color); 
+  color: var(--button-color);
+  
+  margin: 0; 
+  padding: 0.5rem 1rem; 
+  
+   font-family: 'Noto Sans KR', sans-serif; 
+   font-size: 1rem; 
+  font-weight: 400;
+   text-align: center; 
+   text-decoration: none; 
+  
+  border: none; 
+  border-radius: 4px; 
+  
+   display: inline-block; 
+   width: auto; 
+  
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); 
+  
+   cursor: pointer; 
+  
+   transition: 0.5s; 
+ }
 </style>
 
 <div class="colorlib-product">
@@ -234,27 +263,27 @@ div#image_container img {
 						</div>
 					</c:forEach>
 				</div>
-				<div id="paging" style="text-align: center;">
+				<div id="paging" style="text-align: left;">
 					<c:if test="${paging.prev}">
 						<c:set var="beginPage" value="${paging.beginPage - 1}" />
 						<c:out value="${beginPage}" />
-						<a onclick=movePage(event) data-page="${beginPage}">prev</a>
+						<button class="pagingBtn" style="float:left;" onclick=movePage(event) data-page="${beginPage}">prev</button>
 					</c:if>
 					<c:forEach begin="${paging.beginPage}" end="${paging.endPage}"
 						step="1" var="index">
 						<c:choose>
 							<c:when test="${paging.page==index}">
-					            ${index}
+					            <button class="pagingBtn" style="float:left;" onclick=movePage(event) data-page="${index}">${index}</button>
 					        </c:when>
 							<c:otherwise>
-								<a onclick=movePage(event) data-page="${index}">${index}</a>
+								<button class="pagingBtn" style="float:left;" onclick=movePage(event) data-page="${index}">${index}</button>
 							</c:otherwise>
 						</c:choose>
 					</c:forEach>
 					<c:set var="beginPage" value="${paging.endPage + 1}" />
 					<c:out value="${endPage}" />
 					<c:if test="${paging.next}">
-						<a onclick=movePage(event) data-page="${endPage}">next</a>
+						<button class="pagingBtn" style="float:left;" onclick=movePage(event) data-page="${endPage}">next</button>
 					</c:if>
 				</div>
 
@@ -495,21 +524,21 @@ function setThumbnail(event) {
 									var pagingspace = "";
 									if (paging.prev) {
 										var beginPage = paging.beginPage - 1;
-										pagingspace += "<a onclick='movePage(event)' data-page='"
-												+ beginPage + "'>prev</a>";
+										pagingspace += "<button class='pagingBtn' onclick='movePage(event)' data-page='"
+												+ beginPage + "'>prev</button>";
 									}
 									for (var i = paging.beginPage; i <= paging.endPage; i++) {
 										if (paging.page == i) {
 											pagingspace += i;
 										} else {
-											pagingspace += "<a onclick='movePage(event)' data-page='"
-													+ i + "'>" + i + "</a>";
+											pagingspace += "<button class='pagingBtn' onclick='movePage(event)' data-page='"
+													+ i + "'>" + i + "</button>";
 										}
 									}
 									if (paging.next) {
 										var endPage = paging.endPage + 1;
-										pagingspace += "<a onclick='movePage(event)' data-page='"
-												+ endPage + "'>next</a>";
+										pagingspace += "<button class='pagingBtn' onclick='movePage(event)' data-page='"
+												+ endPage + "'>next</button>";
 									}
 									$('#paging').html(pagingspace);
 
