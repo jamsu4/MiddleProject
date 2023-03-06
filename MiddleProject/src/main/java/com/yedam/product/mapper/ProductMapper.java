@@ -41,7 +41,7 @@ public interface ProductMapper {
 	public List<ProductVO> selectProNameList(ProductVO pvo); // 상품 검색
 	public List<ProductVO> selectManageReviewListPage(Pagination paging); //리뷰 페이징
 	
-	public List<ProductVO> rateList(); // 별점 평균
+
 	public int insertReview(ProductVO review); // 리뷰 등록
 
 }

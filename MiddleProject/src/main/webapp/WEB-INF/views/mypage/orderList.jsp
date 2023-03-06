@@ -68,7 +68,6 @@ button {
 	width: 80px;
 	height: 35px;
 }
-
 .star-rating {
 	display: flex;
 	flex-direction: row-reverse;
@@ -79,11 +78,9 @@ button {
 	text-align: center;
 	width: 5em;
 }
-
 .star-rating input {
 	display: none;
 }
-
 .star-rating label {
 	-webkit-text-fill-color: transparent;
 	/* Will override color (regardless of order) */
@@ -91,15 +88,12 @@ button {
 	-webkit-text-stroke-color: #2b2a29;
 	cursor: pointer;
 }
-
 .star-rating :checked ~ label {
 	-webkit-text-fill-color: gold;
 }
-
 .star-rating label:hover, .star-rating label:hover ~ label {
 	-webkit-text-fill-color: #fff58c;
 }
-
 div#image_container img {
 	height: 200px;
 	width: 200px;
@@ -161,74 +155,6 @@ div#image_container img {
 					</div>
 					<div class="one-eight text-right px-4">
 						<span>주문취소</span>
-
-				</div>
-				<c:forEach var="list" items="${list }">
-					<div class="product-cart d-flex">
-						<div class="one-eight text-center">
-							<div class="display-tc">
-								<input class="selectBox" type="checkbox" data-value="44"
-									data-price="44" data-name="44">
-							</div>
-						</div>
-						<div class="one-eight text-center">
-							<div class="display-tc">
-								<img src="images/${list.proImg }" class="ordImg"> <span
-									class="price">${list.proName }</span>
-							</div>
-						</div>
-						<div class="one-eight text-center">
-							<div class="display-tc">
-								<span class="price">${list.payDate }</span>
-							</div>
-						</div>
-						<div class="one-eight text-center">
-							<div class="display-tc">
-								<span class="price">${list.ordAddr }</span>
-							</div>
-						</div>
-						<div class="one-eight text-center">
-							<div class="display-tc">
-								<span class="price">${list.ordReceiver }</span>
-							</div>
-						</div>
-						<div class="one-eight text-center">
-							<div class="display-tc">
-								<span class="price">${list.proPrice }</span> <span class="price">(${list.ordQuant })</span>
-							</div>
-						</div>
-						<div class="one-eight text-center">
-							<div class="display-tc">
-								<span class="price">${list.ordStatus }</span>
-							</div>
-						</div>
-						<c:choose>
-							<c:when test="${list.ordStatus == '결제완료'}">
-								<div class="one-eight text-center">
-									<div class="display-tc">
-										<button>후기작성</button>
-									</div>
-								</div>
-							</c:when>
-							<c:otherwise>
-								<div class="one-eight text-center">
-									<div class="display-tc">
-										<button class="reviewBtn" data-bs-toggle="modal"
-											data-bs-target="#exampleModal" proid="${list.proId }">후기작성</button>
-									</div>
-								</div>
-							</c:otherwise>
-						</c:choose>
-					</div>
-
-
-				</c:forEach>
-
-				<div id="cartDiv2" class="row row-pb-lg">
-					<div class="col-md-12">
-						<div class="total-wrap">
-							<div class="row"></div>
-						</div>
 					</div>
 				</div>
 				<div id="orderList">
@@ -240,12 +166,10 @@ div#image_container img {
 										data-price="44" data-name="44">
 								</div>
 							</div>
-
 							<div class="one-eight text-center">
 								<div class="display-tc">
 									<img src="images/${list.proImg }" class="ordImg"> <span
 										class="price">${list.proName }</span>
-
 								</div>
 							</div>
 							<div class="one-eight text-center">
@@ -258,7 +182,6 @@ div#image_container img {
 									<span class="price">${list.ordAddr }</span>
 								</div>
 							</div>
-
 							<div class="one-eight text-center">
 								<div class="display-tc">
 									<span class="price">${list.ordReceiver }</span>
@@ -273,21 +196,21 @@ div#image_container img {
 							<div class="one-eight text-center">
 								<div class="display-tc">
 									<span class="price">${list.ordStatus }</span>
-
 								</div>
 							</div>
 							<c:choose>
 							<c:when test="${list.ordStatus eq '배송완료'}">
 								<div class="one-eight text-center">
 									<div class="display-tc">
-										<button>후기작성</button>
+										<button class="reviewBtn" data-bs-toggle="modal"
+											data-bs-target="#exampleModal" proid="${list.proId }">후기작성</button>
 									</div>
 								</div>
 							</c:when>
 							<c:otherwise>
 								<div class="one-eight text-center">
 									<div class="display-tc">
-										<button disabled>후기작성</button>
+										<button disabled>작성완료</button>
 									</div>
 								</div>
 							</c:otherwise>
@@ -298,22 +221,18 @@ div#image_container img {
 								<div class="display-tc">
 									<button disabled>취소완료</button>
 								</div>
-
 							</div>
 							</c:when>
 							<c:otherwise>
 							<div class="one-eight text-center">
 								<div class="display-tc">
 									<button onclick=orderCancel(event)>주문취소</button>
-
 								</div>
 							</div>
 							</c:otherwise>
 							</c:choose>
 						</div>
-
 					</c:forEach>
-
 				</div>
 				<div id="paging" style="text-align: center;">
 					<c:if test="${paging.prev}">
@@ -394,55 +313,72 @@ div#image_container img {
 
 
 
+
+
+
+
+
 <script>
-	//후기 작성
-	let proid = 0;
-	$('.reviewBtn').click(function(e) {
-		proid = $(this).attr('proid')
-	});
-
-	function insertReview(event) {
-		console.log('등록')
-		let rtitle = $('#rTitle').val();
-		let rContent = $('#rContent').val();
-		let rate = $('input[name="rating"]:checked').val()
-		let memid = '${logId}';
-		let fileValue = $("#rimage").val().split("\\");
-		let fileName = fileValue[fileValue.length - 1];
-		let rimage = $("#rimage")[0].files[0];
-		if (typeof rate == 'undefined') {
-			rate = 0;
-		}
-
-		let formData = new FormData();
-		formData.append("rtitle", rtitle);
-		formData.append("rContent", rContent);
-		formData.append("rate", rate);
-		formData.append("memid", memid);
-		formData.append("rimage", rimage);
-		formData.append("proid", proid);
-
-		$.ajax({
-			url : "insertReview.do",
-			method : "post",
-			data : formData,
-			contentType : false,
-			processData : false,
-			success : function(result) {
-				if (result.retCode == "Success") {
-					alert("등록되었습니다")
-					$('#exampleModal').modal('hide')
-					location.reload();
-				} else {
-					alert("오류");
-				}
-			},
-			error : function(reject) {
-				console.log(reject);
-			},
-		});
-
+//후기 작성
+let proid = 0;
+$('.reviewBtn').click(function(e) {
+	proid = $(this).attr('proid')
+});
+function insertReview(event) {
+	console.log('등록')
+	let rtitle = $('#rTitle').val();
+	let rContent = $('#rContent').val();
+	let rate = $('input[name="rating"]:checked').val()
+	let memid = '${logId}';
+	let fileValue = $("#rimage").val().split("\\");
+	let fileName = fileValue[fileValue.length - 1];
+	let rimage = $("#rimage")[0].files[0];
+	if (typeof rate == 'undefined') {
+		rate = 0;
 	}
+	let formData = new FormData();
+	formData.append("rtitle", rtitle);
+	formData.append("rContent", rContent);
+	formData.append("rate", rate);
+	formData.append("memid", memid);
+	formData.append("rimage", rimage);
+	formData.append("proid", proid);
+	$.ajax({
+		url : "insertReview.do",
+		method : "post",
+		data : formData,
+		contentType : false,
+		processData : false,
+		success : function(result) {
+			if (result.retCode == "Success") {
+				alert("등록되었습니다")
+				$('#exampleModal').modal('hide')
+				location.reload();
+			} else {
+				alert("오류");
+			}
+		},
+		error : function(reject) {
+			console.log(reject);
+		},
+	});
+}
+$('#closeBtn').click(function() {
+	  $(this).closest('.modal-content').find('input, textarea, select').val('');
+	  $(this).closest('.modal-content').find('input[type=radio], input[type=checkbox]').prop('checked', false);
+	  $('#image_container').empty();
+});
+//사진 미리보기
+function setThumbnail(event) {
+	var reader = new FileReader();
+	reader.onload = function(event) {
+		var img = document.createElement("img");
+		img.setAttribute("src", event.target.result);
+		document.querySelector("div#image_container").appendChild(img);
+	};
+	reader.readAsDataURL(event.target.files[0]);
+}
+
 
 	//페이지 이동
 	function movePage(event) {
@@ -658,25 +594,9 @@ function orderCancel(event) {
 	});
 	}
 	}	
-
-	$('#closeBtn').click(function() {
-		  $(this).closest('.modal-content').find('input, textarea, select').val('');
-		  $(this).closest('.modal-content').find('input[type=radio], input[type=checkbox]').prop('checked', false);
-		  $('#image_container').empty();
-	});
-
-	//사진 미리보기
-	function setThumbnail(event) {
-		var reader = new FileReader();
-
-		reader.onload = function(event) {
-			var img = document.createElement("img");
-			img.setAttribute("src", event.target.result);
-			document.querySelector("div#image_container").appendChild(img);
-		};
-
-		reader.readAsDataURL(event.target.files[0]);
-	}
-
-
+	
+	
+	
+	
+	
 </script>
