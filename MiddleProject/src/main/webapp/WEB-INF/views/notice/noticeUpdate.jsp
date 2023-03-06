@@ -27,7 +27,7 @@
     <div class="form-group">
       <label for="writer">작성자</label>
       <input type="text" class="form-control" id="writer"
-       value="관리자" name="writer">
+       value="관리자" name="writer" readonly>
     </div>
     <button type="submit" class="btn btn-default">수정완료</button>
   </form>

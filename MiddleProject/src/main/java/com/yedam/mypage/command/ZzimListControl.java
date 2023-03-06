@@ -19,7 +19,7 @@ public class ZzimListControl implements Command {
 		HttpSession session = req.getSession();
 		
 		req.setAttribute("list",service.zzimList((String)session.getAttribute("logId")));
-		return "mypage/zzimList.tiles";
+		return "mypage/zzimList2.tiles";
 	}
 
 }

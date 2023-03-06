@@ -106,7 +106,6 @@ div#image_container img {
 }
 </style>
 
-<h3>주문내역 입니다.</h3>
 <div class="colorlib-product">
 	<div class="container">
 		<div class="row row-pb-lg">

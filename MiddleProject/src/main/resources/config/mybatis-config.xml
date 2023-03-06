@@ -17,7 +17,7 @@
 		<typeAlias alias="ZzimVO" type="com.yedam.mypage.vo.ZzimVO"/>
 		<typeAlias alias="QaVO" type="com.yedam.qa.vo.QaVO"/>
 		<typeAlias alias="ZzimVO1" type="com.yedam.zzim.vo.ZzimVO"/>
-
+		<typeAlias alias="MyNoticeVO" type="com.yedam.mypage.vo.MyNoticeVO"/>
 
 	</typeAliases>
 	<environments default="development">
@@ -39,5 +39,6 @@
 		<mapper class="com.yedam.mypage.mapper.ZzimMapper" />
 		<mapper class="com.yedam.qa.mapper.QaMapper" />
 		<mapper class="com.yedam.zzim.mapper.ZzimMapper" />
+	    <mapper class="com.yedam.mypage.mapper.MyNoticeMapper" />
 	</mappers>
 </configuration>
