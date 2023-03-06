@@ -61,13 +61,24 @@
 
 	<update id="updateMember" parameterType="MemberVO">
 		UPDATE member
-		SET
+		<set>
 		mem_id = #{memId},
+		<if test="memPw != null">
 		mem_pw = #{memPw},
+		</if>
+		<if test="memName != null">
 		mem_name = #{memName},
+		</if>
+		<if test="memPhone != null">
 		mem_phone = #{memPhone},
+		</if>
+		<if test="memEmail != null">
 		mem_email = #{memEmail},
+		</if>
+		<if test="memUser != null">
 		mem_user = #{memUser}
+		</if>
+		</set>
 		WHERE mem_id=#{memId}
 	</update>
 

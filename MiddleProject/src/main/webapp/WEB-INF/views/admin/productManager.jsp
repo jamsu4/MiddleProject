@@ -63,6 +63,35 @@ table:nth-of-type(2) input {
 .space {
 	margin-right : 7px !important;
 }
+.pagingBtn { 
+  -webkit-appearance: none; 
+  -moz-appearance: none; 
+  appearance: none; 
+  
+  background: var(--button-bg-color); 
+  color: var(--button-color);
+  
+  margin: 0; 
+  padding: 0.5rem 1rem; 
+  
+   font-family: 'Noto Sans KR', sans-serif; 
+   font-size: 1rem; 
+  font-weight: 400;
+   text-align: center; 
+   text-decoration: none; 
+  
+  border: none; 
+  border-radius: 4px; 
+  
+   display: inline-block; 
+   width: auto; 
+  
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); 
+  
+   cursor: pointer; 
+  
+   transition: 0.5s; 
+ }
 </style>
 <main>
 	<div class="container-fluid px-4">
@@ -124,7 +153,7 @@ table:nth-of-type(2) input {
 					</thead>
 					<tbody id="productList"></tbody>
 				</table>
-				<div id="paging" style="text-align: center;"></div>
+				<div id="paging" style="text-align: left;"></div>
 				<br />
 				<button id="addProduct" class="btn btn-primary"
 					onclick="location.href = 'productManagerAddPage.do'">등록</button>
@@ -159,12 +188,15 @@ table:nth-of-type(2) input {
 	      console.log(currentPage);
 	      if(result.paging.prev) {
 	        $('#paging').append($('<a>').click(movePage)
+	        	    .attr('class', 'pagingBtn')
+	        	    .attr('style', 'float:left;')
 	                          .data('page',(beginPage-1))
 	                          .text('prev'));
 	      }
 	      for (var i = beginPage; i <= endPage; i++) {
 	        if (i === currentPage) {
-	          $('#paging').append(i);
+	        	var link = createPageLink(i, i);
+	          $('#paging').append(link);
 	        } else {
 	          var link = createPageLink(i, i);
 	          $('#paging').append(link);
@@ -172,6 +204,8 @@ table:nth-of-type(2) input {
 	      }
 	      if(result.paging.next) {
 	        $('#paging').append($('<a>').click(movePage)
+	        	    .attr('class', 'pagingBtn')
+	        	    .attr('style', 'float:left;')
 	                          .data('page',(endPage+1))
 	                          .text('next'));
 	      }
@@ -189,12 +223,14 @@ table:nth-of-type(2) input {
 	  $('#paging').empty();
 	  getProductManagerList(page);
   }
-  //페이지네이션 제작
-  function createPageLink(page, text) {
-  return $('<a>').click(movePage)
-  				 .data('page',page)
-  			  	 .text(text);
-  }
+  //페이지네이션 제작 class="pagingBtn" style="float:left;"
+function createPageLink(page, text) {
+  return $('<button>').click(movePage)
+    .attr('class', 'pagingBtn')
+    .attr('style', 'float:left;')
+    .data('page', page)
+    .text(text);
+}
   
 
   function searchProduct(page) {

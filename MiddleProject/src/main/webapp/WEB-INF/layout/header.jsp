@@ -52,7 +52,7 @@ x<%@ page language="java" contentType="text/html; charset=UTF-8"
 	                                <ul>
 	                                    <li><a href="orderList.do">주문내역</a></li>
 	                                    <li><a href="zzimList.do">찜한상품</a></li>
-	                                    <li><a href="reviewList.do">내게시글</a></li>
+	                                    <li><a href="myNoticeList.do">내게시글</a></li>
 	                                    <li><a href="updateInfoForm.do">정보수정</a></li>
 	                                </ul>
                                 </c:when>

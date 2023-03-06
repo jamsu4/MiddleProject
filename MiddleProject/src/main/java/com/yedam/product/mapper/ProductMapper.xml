@@ -30,7 +30,7 @@
 	      FROM (
 	        SELECT *
 	        FROM review
-	        ORDER BY rev_id desc
+	        ORDER BY rev_date desc
 	      ) p
 	      WHERE ROWNUM <= #{endNum}
 	    )
