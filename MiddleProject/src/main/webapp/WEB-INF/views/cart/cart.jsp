@@ -13,10 +13,10 @@
 	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script type="text/javascript" src="js/payment.js"></script>
 <link rel="stylesheet" href="css/animate.css">
-<!-- Icomoon Icon Fonts-->
-<link rel="stylesheet" href="css/icomoon.css">
-<!-- Ion Icon Fonts-->
-<link rel="stylesheet" href="css/ionicons.min.css">
+<!-- <!-- Icomoon Icon Fonts-->
+<!-- <link rel="stylesheet" href="css/icomoon.css"> -->
+<!-- <!-- Ion Icon Fonts-->
+<!-- <link rel="stylesheet" href="css/ionicons.min.css"> -->
 <!-- Bootstrap  -->
 <link rel="stylesheet" href="css/bootstrap.min.css">
 
@@ -33,11 +33,12 @@
 
 <!-- Date Picker -->
 <link rel="stylesheet" href="css/bootstrap-datepicker.css">
-<!-- Flaticons  -->
-<link rel="stylesheet" href="fonts/flaticon/font/flaticon.css">
+<!-- <!-- Flaticons  -->
+<!-- <link rel="stylesheet" href="fonts/flaticon/font/flaticon.css"> -->
 
 <!-- Theme style  -->
 <link rel="stylesheet" href="css/style.css">
+
 <style>
 .selectpicker + .bootstrap-select > .btn-light {
   display: none !important;
@@ -52,9 +53,42 @@
 #couponList{
 	display: block!important;
 }
-</style>
+select {
+width: 200px; 
+padding: .8em .5em; 
+border: 1px solid #999;
+font-family: inherit;  
+background: url('arrow.jpg') no-repeat 95% 50%; 
+border-radius: 0px; 
+-webkit-appearance: none; 
+-moz-appearance: none;
+appearance: none;
+}
+.sumCartPrice { 
+	width:90px !important; 
+} 
+.couponPrice { 
+	width:90px !important; 
+} 
+.won {
+	width:10px !important;
+}
+.total {
+	text-align : left;
+}
+/* select::-ms-expand { */
+/*         display: none; */
+/* } */
+.totalPrice {
+	width:90px !important; 
+}
+button {
+	width: 100%;
+	height: 60px;
+	font-size: 20px !important; 
+}
 
-<h3>cart 입니다.</h3>
+</style>
 <div class="colorlib-product">
 	<div class="container">
 		<div class="row row-pb-lg">
@@ -137,7 +171,7 @@
 						</div>
 						<div class="one-eight text-center">
 							<div class="display-tc">
-								<a data-cid="${list.cartId }" class="closed"></a>
+								<a data-cid="${list.cartId }" class="closed" ></a>
 							</div>
 						</div>
 
@@ -150,8 +184,8 @@
 							<div class="row">
 								<div class="col-sm-8">
 									<form action="#">
-										<div class="row form-group">
-											<div class="col-sm-9">
+										<div class="row form-group" style="margin-top:25px;">
+											<div class="col-sm-9" >
 												<select id="couponList" data-live-search="false">
 													<option data-price="0">쿠폰을 선택하세요.</option>
 												</select>
@@ -160,27 +194,27 @@
 									</form>
 									<br>
 									<div>
-										<button id="movePayment">결제하기</button>
+										<button id="movePayment" class="btn btn-primary" style="float:left; font-size: 20px !important">결제하기</button>
 									</div>
 								</div>
 								<div class="col-sm-4 text-center">
 									<div class="total">
 										<div class="sub">
 											<p>
-												<span>장바구니 총합:</span><span class="sumCartPrice"></span>
+												<span>장바구니 총합:</span><span class="sumCartPrice"></span><span class="won">원</span>
 											</p>
 											<p>
 												<span>Delivery:</span> <span
-													style="text-decoration: line-through; opacity: 0.5;">3000원</span>
+													style="text-decoration: line-through; opacity: 0.5; width: 90px !important;"">3000</span><span class="won">원</span>
 											</p>
 											<p>
 												<span>Discount:</span> <span class="couponPrice"
-													style="opacity: 0.5;">0</span>
+													style="opacity: 0.5;">0</span><span class="won">원</span>
 											</p>
 										</div>
 										<div class="grand-total">
 											<p>
-												<span><strong>Total:</strong></span><span class="totalPrice"></span>
+												<span><strong>Total:</strong></span><span class="totalPrice"></span><span class="won">원</span>
 											</p>
 										</div>
 									</div>
@@ -314,20 +348,20 @@
 							<div class="total cart-detail">
 								<div class="sub">
 									<p>
-										<span>장바구니 총합:</span><span class="sumCartPrice"></span>
+										<span>장바구니 총합:</span><span class="sumCartPrice"></span><span class="won">원</span>
 									</p>
 									<p>
 										<span>Delivery:</span> <span
-											style="text-decoration: line-through; opacity: 0.5;">3000원</span>
+											style="text-decoration: line-through; opacity: 0.5; width: 90px !important;">3000</span><span class="won">원</span>
 									</p>
 									<p>
 										<span>Discount:</span> <span class="couponPrice"
-											style="opacity: 0.5;">0</span>
+											style="opacity: 0.5;">0</span><span class="won">원</span>
 									</p>
 								</div>
 								<div class="grand-total">
 									<p>
-										<span><strong>Total:</strong></span><span class="totalPrice"></span>
+										<span><strong>Total:</strong></span><span class="totalPrice"></span><span class="won">원</span>
 									</p>
 								</div>
 							</div>
@@ -353,7 +387,7 @@
 						<div class="col-md-12 text-center">
 							<p>
 							<c:if test="${!empty cartList[0].memId }">
-								<button id="payBtn" onclick=requestPay() class="btn btn-primary">결제하기</button>								
+								<button id="payBtn" onclick=requestPay() class="btn btn-primary" style="font-size: 20px !important;">결제하기</button>								
 							</c:if>
 
 							</p>
