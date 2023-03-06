@@ -54,6 +54,15 @@ table:nth-of-type(2) input {
 #line {
 	clear: both;
 }
+#datatablesSimple1 tr th {
+	width: 100px;
+}
+.input-group {
+	margin: 0px !important;
+}
+.space {
+	margin-right : 7px !important;
+}
 </style>
 <main>
 	<div class="container-fluid px-4">
@@ -95,7 +104,7 @@ table:nth-of-type(2) input {
 		<div id="line" class="card mb-4"></div>
 		<div class="card mb-4">
 			<div class="card-header">
-				<i class="fas fa-table me-1"></i> DataTable Example
+				<i class="fas fa-table me-1"></i> 상품 검색 결과
 			</div>
 			<div class="card-body">
 				<input type="file" id="fileUpload" accept="images/*"

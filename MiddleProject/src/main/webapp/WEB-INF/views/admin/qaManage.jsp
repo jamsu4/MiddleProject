@@ -49,7 +49,7 @@
 <main>
 	<div class="container-fluid px-4">
 		<div id="pageName">
-			<h1>QA 관리페이지</h1>
+			<h1>Q&A 관리페이지</h1>
 		</div>
 		<div>
 			<form action="#" method="POST" id="search-btn-group">
@@ -65,7 +65,7 @@
 
 		<div class="card mb-4">
 			<div class="card-header">
-				<i class="fas fa-table me-1"></i> DataTable Example
+				<i class="fas fa-table me-1"></i> Q&A 검색 결과
 			</div>
 			<div class="card-body">
 				<!-- <input type="file" id="fileUpload" accept="images/*"

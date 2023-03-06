@@ -152,8 +152,10 @@ table:nth-of-type(2) input {
 <!-- 						</td> -->
 <!-- 					</tr> -->
 				</table>
-				<button type="submit" class="btn btn-primary btn-lg">검색</button>
-				<button type="reset" class="btn btn-secondary btn-lg">초기화</button>
+				<div style="text-align: center; margin-bottom: 20px">
+					<button type="submit" class="btn btn-primary btn-lg">검색</button>
+					<button type="reset" class="btn btn-secondary btn-lg">초기화</button>
+				</div>
 			</div>
 		</form>
 <!-- 		<div> -->

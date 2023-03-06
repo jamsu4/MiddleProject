@@ -62,7 +62,7 @@
 		<div id="line" class="card mb-4"></div>
 		<div class="card mb-4">
 			<div class="card-header">
-				<i class="fas fa-table me-1"></i> DataTable Example
+				<i class="fas fa-table me-1"></i> 회원 검색 결과
 			</div>
 			<div class="card-body">
 				<table id="datatablesSimple" class="table">
