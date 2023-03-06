@@ -66,13 +66,14 @@ button {
 	border-radius: 5px;
 	border: none;
 	height: 35px;
+	margin: 15px 2.5px;
 }
 </style>
-<button onclick="changeReview()">나의 후기</button>
-<button onclick="changeQa()">나의 QnA</button>
 <div class="colorlib-product" id="table1" style="display: block;">
 	<h2 style="text-align: center;">나의 후기</h2>
 	<div class="container">
+		<button onclick="changeReview()">나의 후기</button>
+		<button onclick="changeQa()">나의 QnA</button>
 		<div class="row row-pb-lg">
 			<div class="col-md-12">
 				<div class="product-name d-flex">
@@ -84,6 +85,7 @@ button {
 					<div class="one-eight text-center">
 						<span>별점</span>
 					</div>
+					<div class="one-eight text-center"></div>
 					<div class="one-eight text-center">
 						<span>제목</span>
 					</div>
@@ -91,14 +93,18 @@ button {
 					<div class="one-eight text-center">
 						<span>작성일</span>
 					</div>
+					<div class="one-eight text-center"></div>
+					<div class="one-eight text-center">
+						<span>삭제</span>
+					</div>
 					<div class="one-eight text-left px-4"></div>
 				</div>
 				<c:forEach var="list" items="${list }">
 					<div class="post-title" onclick="togglePostContent(${list.revId})">
 						<div class="product-cart d-flex">
-							<div class="one-eight text-center">
-								<div class="display-tc"></div>
-							</div>
+							<!-- 							<div class="one-eight text-center"> -->
+							<!-- 								<div class="display-tc"></div> -->
+							<!-- 							</div> -->
 							<div class="one-eight text-center">
 								<div class="display-tc">
 									<img src="images/${list.proImg }" class="ordImg">
@@ -109,22 +115,36 @@ button {
 									<span class="price">${list.proName }</span>
 								</div>
 							</div>
+							<div class="one-eight text-center" style="width: 50px">
+								<div class="display-tc"></div>
+							</div>
 							<div class="one-eight text-center">
 								<div class="display-tc">
 									<span class="price">${list.revRate }</span>
 								</div>
+							</div>
+							<div class="one-eight text-center" style="width: 50px">
+								<div class="display-tc"></div>
 							</div>
 							<div class="one-eight text-center">
 								<div class="display-tc">
 									<span class="price">${list.revTitle }</span>
 								</div>
 							</div>
-							<div class="one-eight text-center">
+							<div class="one-eight text-center" style="width: 70px">
 								<div class="display-tc"></div>
 							</div>
 							<div class="one-eight text-center">
 								<div class="display-tc">
 									<span class="price">${list.revDate }</span>
+								</div>
+							</div>
+							<div class="one-eight text-center" style="width: 50px">
+								<div class="display-tc"></div>
+							</div>
+							<div class="one-eight text-center">
+								<div class="display-tc">
+									<button class="btn btn-danger delRevBtn" revId="${list.revId }">삭제</button>
 								</div>
 							</div>
 						</div>
@@ -133,8 +153,6 @@ button {
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;내용 :
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${list.revContent }</div>
-					
-					<p>
 				</c:forEach>
 			</div>
 		</div>
@@ -144,6 +162,8 @@ button {
 <div class="colorlib-product" id="table2" style="display: none;">
 	<h2 style="text-align: center;">나의 QnA</h2>
 	<div class="container">
+		<button onclick="changeReview()">나의 후기</button>
+		<button onclick="changeQa()">나의 QnA</button>
 		<div class="row row-pb-lg">
 			<div class="col-md-12">
 				<div class="product-name d-flex">
@@ -162,15 +182,14 @@ button {
 					<div class="one-eight text-right">
 						<span>답변유무</span>
 					</div>
-					<div class="one-eight text-left px-4"></div>
+					<div class="one-eight text-right">
+						<span>삭제</span>
+					</div>
 				</div>
 				<c:forEach var="list" items="${qalist }">
 					<div class="post-title"
 						onclick="togglePostContent('a${list.qaId}')">
 						<div class="product-cart d-flex">
-							<div class="one-eight text-center">
-								<div class="display-tc"></div>
-							</div>
 							<div class="one-eight text-center">
 								<div class="display-tc">
 									<img src="images/${list.proImg }" class="ordImg">
@@ -180,6 +199,9 @@ button {
 								<div class="display-tc">
 									<span class="price">${list.proName }</span>
 								</div>
+							</div>
+							<div class="one-eight text-center">
+								<div class="display-tc"></div>
 							</div>
 							<div class="one-eight text-center">
 								<div class="display-tc">
@@ -202,6 +224,15 @@ button {
 									<c:if test="${list.qaReply == null}">
 										<span class="price">답변 대기</span>
 									</c:if>
+								</div>
+							</div>
+							<div class="one-eight text-center" style="width:50px">
+								<div class="display-tc">
+								</div>
+							</div>
+							<div class="one-eight text-center" style="width:100px">
+								<div class="display-tc">
+									<button class="btn btn-danger delQaBtn" qaId="${list.qaId }">삭제</button>
 								</div>
 							</div>
 						</div>
@@ -241,7 +272,6 @@ button {
 	}
 
 	function togglePostContent(postContentId) {
-		console.log(postContentId);
 		var postContent = document.getElementById(postContentId);
 		if (postContent.style.display === 'none') {
 			postContent.style.display = 'block';
@@ -250,4 +280,49 @@ button {
 		}
 	}
 	
+	$('button.delRevBtn').click(function() {
+		if (!window.confirm("삭제하시겠습니까?")) {
+		      return;
+		    }
+		let revId = $(this).attr('revId');
+		$.ajax({
+			url: "removeReviewManage.do",
+			data : {revId : revId},
+			success: function(result){
+				
+				if(result.retCode == "Success"){
+					location.reload();
+				} else {
+					alert("오류");
+				}
+			},
+			error: function(reject){
+				console.log(reject);
+			}
+		})
+	})
+	
+	$('button.delQaBtn').click(function(){
+		if (!window.confirm("삭제하시겠습니까?")) {
+		      return;
+		    }
+		
+		let qaId = $(this).attr('qaId');
+		$.ajax({
+			url: "removeQa.do",
+			data : {qaId : qaId},
+			success: function(result){
+				
+				if(result.retCode == "Success"){
+					location.reload();
+				} else {
+					alert("오류");
+				}
+			},
+			error: function(reject){
+				console.log(reject);
+			}
+		})
+	})
+		
 </script>

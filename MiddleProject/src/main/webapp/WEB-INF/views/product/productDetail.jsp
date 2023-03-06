@@ -258,7 +258,7 @@
 										<td class="productDetailQnA" colspan='4'>${qa.qaContent }</td>
 									</c:when>
 									<c:otherwise>
-										<td class="productDetailQnA">비밀글입니다.</td>
+										<td class="productDetailQnA" colspan='4'>비밀글입니다.</td>
 									</c:otherwise>
 								</c:choose>
 							</tr>
