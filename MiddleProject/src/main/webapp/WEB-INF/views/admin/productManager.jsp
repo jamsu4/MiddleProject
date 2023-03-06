@@ -366,12 +366,12 @@ table:nth-of-type(2) input {
           })
         ),
         $("<td />").append($("<input id='pname' />").val(pname)),
-        $("<td />").append($("<input id='pprice' />").val(pprice)),
-        $("<td />").append($("<input id='pdesc' />").val(pdesc)),
+        $("<td />").append($("<input id='pprice' style='width:70px';/>").val(pprice)),
+        $("<td />").append($("<textarea rows='3' cols='100' id='pdesc'></textarea>").val(pdesc)),
         $("<td />").append($("<input id='pcategory' style='width:70px';/>").val(pcategory)),
         $("<td />").append(
           $(
-            "<button onclick='updateProductFnc(event)' class='btn btn-success updbtn'>수정 완료</button>"
+            "<button onclick='updateProductFnc(event)' class='btn btn-success updbtn'>수정완료</button>"
           )
         )
       );
