@@ -388,7 +388,7 @@ function setThumbnail(event) {
 
 		$
 				.ajax({
-					url : "orderManage.do",
+					url : "orderList.do",
 					data : {
 						page : page
 					},
