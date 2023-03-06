@@ -186,7 +186,7 @@ button {
 							</c:otherwise>
 							</c:choose>
 							<c:choose>
-							<c:when test="${list.ordStatus eq '주문취소'}">
+							<c:when test="${list.ordStatus eq '결제취소'}">
 							<div class="one-eight text-center">
 								<div class="display-tc">
 									<button disabled>취소완료</button>
@@ -316,7 +316,7 @@ button {
 								      $('<button>').text('후기작성')
 								    )
 								  );
-								} else {
+							} else {
 								  var divOneEight8 = $('<div>').addClass('one-eight text-center').append(
 								    $('<div>').addClass('display-tc').append(
 								      $('<button>').attr('disabled', 'disabled').text('후기작성')
@@ -324,13 +324,13 @@ button {
 								  );
 								}
 
-								if (list.ordStatus == '주문취소') {
+							if (list.ordStatus == '결제취소') {
 								  var divOneEight9 = $('<div>').addClass('one-eight text-center').append(
 								    $('<div>').addClass('display-tc').append(
 								      $('<button>').attr('disabled', 'disabled').text('취소완료')
 								    )
 								  );
-								} else {
+							} else {
 								  var divOneEight9 = $('<div>').addClass('one-eight text-center').append(
 								    $('<div>').addClass('display-tc').append(
 								      $('<button>').text('주문취소').on('click', orderCancel)
