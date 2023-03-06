@@ -210,7 +210,7 @@ div#image_container img {
 							<c:otherwise>
 								<div class="one-eight text-center">
 									<div class="display-tc">
-										<button disabled>작성완료</button>
+										<input type='button' disabled='disabled' value='후기작성'/>
 									</div>
 								</div>
 							</c:otherwise>
