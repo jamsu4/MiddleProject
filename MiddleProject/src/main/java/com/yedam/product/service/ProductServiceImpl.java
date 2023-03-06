@@ -137,6 +137,12 @@ public class ProductServiceImpl implements ProductService {
 		return mapper.selectManageReviewListPage(paging);
 	}
 
+	@Override
+	public List<ProductVO> searchProductList(String proId, String proName) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	
 
 	
