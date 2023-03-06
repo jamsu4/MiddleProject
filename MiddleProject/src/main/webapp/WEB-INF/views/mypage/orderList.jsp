@@ -38,32 +38,71 @@
 <!-- Theme style  -->
 <link rel="stylesheet" href="css/style.css">
 <style>
-.selectpicker + .bootstrap-select > .btn-light {
-  display: none !important;
+.selectpicker+.bootstrap-select>.btn-light {
+	display: none !important;
 }
 
-.bootstrap-select > .dropdown-menu {
-  display: none !important;
+.bootstrap-select>.dropdown-menu {
+	display: none !important;
 }
+
 .nice-select {
-	display:none !important;
+	display: none !important;
 }
-#couponList{
-	display: block!important;
+
+#couponList {
+	display: block !important;
 }
-.ordImg{
-	width:120px;
-	height:90px;
+
+.ordImg {
+	width: 120px;
+	height: 90px;
 	border-radius: 10px;
 }
-button{
+
+button {
 	color: white;
 	background-color: rgba(0, 0, 0, 0.644);
 	border-radius: 5px;
 	border: none;
-	width:80px;
+	width: 80px;
 	height: 35px;
-	
+}
+
+.star-rating {
+	display: flex;
+	flex-direction: row-reverse;
+	font-size: 2.25rem;
+	line-height: 2.5rem;
+	justify-content: space-around;
+	padding: 0 0.2em;
+	text-align: center;
+	width: 5em;
+}
+
+.star-rating input {
+	display: none;
+}
+
+.star-rating label {
+	-webkit-text-fill-color: transparent;
+	/* Will override color (regardless of order) */
+	-webkit-text-stroke-width: 2.3px;
+	-webkit-text-stroke-color: #2b2a29;
+	cursor: pointer;
+}
+
+.star-rating :checked ~ label {
+	-webkit-text-fill-color: gold;
+}
+
+.star-rating label:hover, .star-rating label:hover ~ label {
+	-webkit-text-fill-color: #fff58c;
+}
+
+div#image_container img {
+	height: 200px;
+	width: 200px;
 }
 </style>
 
@@ -126,14 +165,14 @@ button{
 					<div class="product-cart d-flex">
 						<div class="one-eight text-center">
 							<div class="display-tc">
-								<input class="selectBox" type="checkbox"
-									data-value="44" data-price="44" data-name="44">
+								<input class="selectBox" type="checkbox" data-value="44"
+									data-price="44" data-name="44">
 							</div>
 						</div>
 						<div class="one-eight text-center">
 							<div class="display-tc">
-								<img src="images/${list.proImg }" class="ordImg">
-								<span class="price">${list.proName }</span>
+								<img src="images/${list.proImg }" class="ordImg"> <span
+									class="price">${list.proName }</span>
 							</div>
 						</div>
 						<div class="one-eight text-center">
@@ -153,8 +192,7 @@ button{
 						</div>
 						<div class="one-eight text-center">
 							<div class="display-tc">
-								<span class="price">${list.proPrice }</span>
-								<span class="price">(${list.ordQuant })</span>
+								<span class="price">${list.proPrice }</span> <span class="price">(${list.ordQuant })</span>
 							</div>
 						</div>
 						<div class="one-eight text-center">
@@ -162,22 +200,23 @@ button{
 								<span class="price">${list.ordStatus }</span>
 							</div>
 						</div>
-						<c:choose> 
-    <c:when test="${list.ordStatus == '결제완료'}">
-        <div class="one-eight text-center">
-			<div class="display-tc">
-			<button>후기작성</button>
-			</div>
-		</div>
-    </c:when>
-    <c:otherwise>
-        <div class="one-eight text-center">
-			<div class="display-tc">
-			<button disabled >후기작성</button>
-			</div>
-		</div>
-    </c:otherwise>
-</c:choose>
+						<c:choose>
+							<c:when test="${list.ordStatus == '결제완료'}">
+								<div class="one-eight text-center">
+									<div class="display-tc">
+										<button>후기작성</button>
+									</div>
+								</div>
+							</c:when>
+							<c:otherwise>
+								<div class="one-eight text-center">
+									<div class="display-tc">
+										<button class="reviewBtn" data-bs-toggle="modal"
+											data-bs-target="#exampleModal" proid="${list.proId }">후기작성</button>
+									</div>
+								</div>
+							</c:otherwise>
+						</c:choose>
 					</div>
 
 
@@ -186,9 +225,7 @@ button{
 				<div id="cartDiv2" class="row row-pb-lg">
 					<div class="col-md-12">
 						<div class="total-wrap">
-							<div class="row">
-							
-							</div>
+							<div class="row"></div>
 						</div>
 					</div>
 				</div>
@@ -218,8 +255,8 @@ button{
 
 							<div class="col-md-12" style="border-bottom: 1px dotted black;">
 								<div class="form-group">
-									<label for="bemail">이메일</label> <input type="text"
-										id="bemail" class="form-control">
+									<label for="bemail">이메일</label> <input type="text" id="bemail"
+										class="form-control">
 								</div>
 							</div>
 							<div class="col-md-6" style="margin-top: 10px;">
@@ -235,12 +272,12 @@ button{
 								</div>
 							</div>
 
-<!-- 							<div class="col-md-12"> -->
-<!-- 								<div class="form-group"> -->
-<!-- 									<label for="companyname">이메일</label> <input type="text" -->
-<!-- 										id="remail" class="form-control" placeholder="이메일"> -->
-<!-- 								</div> -->
-<!-- 							</div> -->
+							<!-- 							<div class="col-md-12"> -->
+							<!-- 								<div class="form-group"> -->
+							<!-- 									<label for="companyname">이메일</label> <input type="text" -->
+							<!-- 										id="remail" class="form-control" placeholder="이메일"> -->
+							<!-- 								</div> -->
+							<!-- 							</div> -->
 							<div>
 								<!-- 						   	<input type="text" id="sample4_postcode" placeholder="우편번호"> -->
 								<!-- 							<input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br> -->
@@ -253,8 +290,8 @@ button{
 							</div>
 							<div class="col-md-12">
 								<div class="form-group">
-									<label for="fname">Address</label> 
-									<input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기">
+									<label for="fname">Address</label> <input type="button"
+										onclick="sample4_execDaumPostcode()" value="우편번호 찾기">
 								</div>
 							</div>
 							<div class="col-md-6">
@@ -265,47 +302,49 @@ button{
 							</div>
 							<div class="col-md-6">
 								<div class="form-group">
-									<input type="text" id="sample4_extraAddress" placeholder="참고항목" class="form-control" readonly>
+									<input type="text" id="sample4_extraAddress" placeholder="참고항목"
+										class="form-control" readonly>
 								</div>
 							</div>
-						
-						<div class="col-md-12">
-							<div class="form-group">
-								<input type="text" id="sample4_detailAddress" placeholder="상세주소" class="form-control">
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="form-group">
-								<label for="lname">Zip/Postal Code</label> 
-								<input type="text" id="sample4_postcode" placeholder="우편번호" class="form-control" readonly>
-							</div>
-						</div>
 
-<!-- 						<div class="col-md-6"> -->
-<!-- 							<div class="form-group"> -->
-<!-- 								<label for="email">E-mail Address</label> <input type="text" -->
-<!-- 									id="email" class="form-control" placeholder="E-mail"> -->
-<!-- 							</div> -->
-<!-- 						</div> -->
-<!-- 						<div class="col-md-6"> -->
-<!-- 							<div class="form-group"> -->
-<!-- 								<label for="Phone">Phone Number</label> <input type="text" -->
-<!-- 									id="zippostalcode" class="form-control" placeholder=""> -->
-<!-- 							</div> -->
-<!-- 						</div> -->
-
-						<div class="col-md-12">
-							<div class="form-group">
-								<div class="radio">
-									<label>
-										<input type="radio" name="optradio">이전 배송정보   
-									</label> 
-									<label>
-										<input type="radio" name="optradio">새로운 배송정보 
-									</label>
+							<div class="col-md-12">
+								<div class="form-group">
+									<input type="text" id="sample4_detailAddress"
+										placeholder="상세주소" class="form-control">
 								</div>
 							</div>
-						</div>
+							<div class="col-md-6">
+								<div class="form-group">
+									<label for="lname">Zip/Postal Code</label> <input type="text"
+										id="sample4_postcode" placeholder="우편번호" class="form-control"
+										readonly>
+								</div>
+							</div>
+
+							<!-- 						<div class="col-md-6"> -->
+							<!-- 							<div class="form-group"> -->
+							<!-- 								<label for="email">E-mail Address</label> <input type="text" -->
+							<!-- 									id="email" class="form-control" placeholder="E-mail"> -->
+							<!-- 							</div> -->
+							<!-- 						</div> -->
+							<!-- 						<div class="col-md-6"> -->
+							<!-- 							<div class="form-group"> -->
+							<!-- 								<label for="Phone">Phone Number</label> <input type="text" -->
+							<!-- 									id="zippostalcode" class="form-control" placeholder=""> -->
+							<!-- 							</div> -->
+							<!-- 						</div> -->
+
+							<div class="col-md-12">
+								<div class="form-group">
+									<div class="radio">
+										<label> <input type="radio" name="optradio">이전
+											배송정보
+										</label> <label> <input type="radio" name="optradio">새로운
+											배송정보
+										</label>
+									</div>
+								</div>
+							</div>
 						</div>
 					</form>
 				</div>
@@ -368,8 +407,8 @@ button{
 								<div class="form-group">
 									<div class="col-md-12">
 										<div class="checkbox">
-											<label><input id="paymentInfoCheck" type="checkbox" value="">
-											상기 주문 정보를 모두 확인했습니다.</label>
+											<label><input id="paymentInfoCheck" type="checkbox"
+												value=""> 상기 주문 정보를 모두 확인했습니다.</label>
 										</div>
 									</div>
 								</div>
@@ -379,9 +418,9 @@ button{
 					<div class="row">
 						<div class="col-md-12 text-center">
 							<p>
-							<c:if test="44">
-								<button onclick=requestPay() class="btn btn-primary">결제하기</button>
-							</c:if>
+								<c:if test="44">
+									<button onclick=requestPay() class="btn btn-primary">결제하기</button>
+								</c:if>
 
 							</p>
 						</div>
@@ -391,54 +430,171 @@ button{
 		</div>
 	</div>
 </div>
-
-
+<!-- Modal -->
+<div class="modal fade" id="exampleModal"
+	aria-labelledby="exampleModalLabel" aria-hidden="true"
+	data-bs-backdrop="static">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h1 class="modal-title fs-5" id="exampleModalLabel">후기 작성</h1>
+			</div>
+			<div class="modal-body">
+				<div class="mb-3">
+					<label for="recipient-name" class="col-form-label">제목</label> <input
+						type="text" class="form-control" id="rTitle">
+				</div>
+				<div class="mb-3">
+					<label for="recipient-name" class="col-form-label">내용</label>
+					<textarea id="rContent" class="form-control" rows="5" cols="60"></textarea>
+				</div>
+				<div class="star-rating space-x-4 mx-auto mb-3">
+					<input type="radio" id="5-stars" name="rating" value="5"
+						v-model="ratings" /> <label for="5-stars" class="star pr-4">★</label>
+					<input type="radio" id="4-stars" name="rating" value="4"
+						v-model="ratings" /> <label for="4-stars" class="star">★</label>
+					<input type="radio" id="3-stars" name="rating" value="3"
+						v-model="ratings" /> <label for="3-stars" class="star">★</label>
+					<input type="radio" id="2-stars" name="rating" value="2"
+						v-model="ratings" /> <label for="2-stars" class="star">★</label>
+					<input type="radio" id="1-star" name="rating" value="1"
+						v-model="ratings" /> <label for="1-star" class="star">★</label>
+				</div>
+				<div class="mb-3">
+					<label for="recipient-image" class="col-form-label">사진</label> <input
+						type="file" class="form-control" id="rimage"
+						onchange="setThumbnail(event);">
+				</div>
+				<div class="mb-3" id="image_container" style="text-align: center;"></div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary"
+					data-bs-dismiss="modal" id="closeBtn">닫기</button>
+				<button type="button" class="btn btn-primary"
+					onclick='insertReview(event)'>등록</button>
+			</div>
+		</div>
+	</div>
+</div>
 
 
 
 <script>
-//상품 삭제
-$('.closed').click(function () {
-	var $this = $(this);
-	console.log($(this).data('cid'));
-	var cartId = $(this).data('cid');
-	$.ajax({
-		url: 'removeCart.do',
-		method: 'post',
-		data: {cartId : cartId},
-		success: function(result) {
-			if (result.retCode == "Success") {
-				alert('목록에서 삭제를 성공했습니다.');
-				$this.closest('.product-cart').remove();
-			} else {
-				alert('목록 등록에 실패했습니다.');
-				
-			}
-		},
-		error: function(err) {
-			console.log(err);
-		}
+	//후기 작성
+	let proid = 0;
+	$('.reviewBtn').click(function(e) {
+		proid = $(this).attr('proid')
 	});
-	
-});
 
+	function insertReview(event) {
+		console.log('등록')
+		let rtitle = $('#rTitle').val();
+		let rContent = $('#rContent').val();
+		let rate = $('input[name="rating"]:checked').val()
+		let memid = '${logId}';
+		let fileValue = $("#rimage").val().split("\\");
+		let fileName = fileValue[fileValue.length - 1];
+		let rimage = $("#rimage")[0].files[0];
+		if (typeof rate == 'undefined') {
+			rate = 0;
+		}
 
-//수량 변경시 금액 변경
-// 모든 quantity 클래스를 가진 input 태그에 대해 이벤트 리스너를 등록합니다.
-$('.quantity').on('change', function() {
-  var quantity = $(this).val();
-  console.log(quantity);
-  var price = $(this).closest('.product-cart').find('.one-eight:nth-child(3) .price').text();
-  console.log(price);
-  var sumPrice = quantity * price;
-  console.log(sumPrice);
-  var sumPriceElement = $(this).closest('.product-cart').find('.one-eight:nth-child(5) .price');
-  console.log(sumPriceElement);
+		let formData = new FormData();
+		formData.append("rtitle", rtitle);
+		formData.append("rContent", rContent);
+		formData.append("rate", rate);
+		formData.append("memid", memid);
+		formData.append("rimage", rimage);
+		formData.append("proid", proid);
 
-  sumPriceElement.text(sumPrice);
-  updatePrices();
-  totalPrice();
-});
+		$.ajax({
+			url : "insertReview.do",
+			method : "post",
+			data : formData,
+			contentType : false,
+			processData : false,
+			success : function(result) {
+				if (result.retCode == "Success") {
+					alert("등록되었습니다")
+					$('#exampleModal').modal('hide')
+					location.reload();
+				} else {
+					alert("오류");
+				}
+			},
+			error : function(reject) {
+				console.log(reject);
+			},
+		});
+
+	}
+
+	$('#closeBtn').click(function() {
+		  $(this).closest('.modal-content').find('input, textarea, select').val('');
+		  $(this).closest('.modal-content').find('input[type=radio], input[type=checkbox]').prop('checked', false);
+		  $('#image_container').empty();
+	});
+
+	//사진 미리보기
+	function setThumbnail(event) {
+		var reader = new FileReader();
+
+		reader.onload = function(event) {
+			var img = document.createElement("img");
+			img.setAttribute("src", event.target.result);
+			document.querySelector("div#image_container").appendChild(img);
+		};
+
+		reader.readAsDataURL(event.target.files[0]);
+	}
+
+	//상품 삭제
+	$('.closed').click(function() {
+		var $this = $(this);
+		console.log($(this).data('cid'));
+		var cartId = $(this).data('cid');
+		$.ajax({
+			url : 'removeCart.do',
+			method : 'post',
+			data : {
+				cartId : cartId
+			},
+			success : function(result) {
+				if (result.retCode == "Success") {
+					alert('목록에서 삭제를 성공했습니다.');
+					$this.closest('.product-cart').remove();
+				} else {
+					alert('목록 등록에 실패했습니다.');
+
+				}
+			},
+			error : function(err) {
+				console.log(err);
+			}
+		});
+
+	});
+
+	//수량 변경시 금액 변경
+	// 모든 quantity 클래스를 가진 input 태그에 대해 이벤트 리스너를 등록합니다.
+	$('.quantity').on(
+			'change',
+			function() {
+				var quantity = $(this).val();
+				console.log(quantity);
+				var price = $(this).closest('.product-cart').find(
+						'.one-eight:nth-child(3) .price').text();
+				console.log(price);
+				var sumPrice = quantity * price;
+				console.log(sumPrice);
+				var sumPriceElement = $(this).closest('.product-cart').find(
+						'.one-eight:nth-child(5) .price');
+				console.log(sumPriceElement);
+
+				sumPriceElement.text(sumPrice);
+				updatePrices();
+				totalPrice();
+			});
 	//우편번호
 	function sample4_execDaumPostcode() {
 		new daum.Postcode(
@@ -514,7 +670,7 @@ $('.quantity').on('change', function() {
 					option.text(item.coupName)
 					option.val(item.coupId)
 					option.attr('data-price', item.coupPrice)
-					
+
 					$('#couponList').append(option);
 				});
 				$('#couponList').attr('data-name', result.cvo[0].memName)
@@ -531,20 +687,19 @@ $('.quantity').on('change', function() {
 	});
 
 	//쿠폰 선택 이벤트
-	
+
 	$('#couponList').change(function() {
-		if($('.selectBox:checked').length > 0){
-		// 선택된 값이 변경되었을 때 실행할 코드
-		let selectedValue = $(this).find(':selected').data('price');
-		console.log('선택된 값:', selectedValue);
-		$('.couponPrice').text("");
-		$('.couponPrice').text(selectedValue).attr('style', "");
-		totalPrice();
+		if ($('.selectBox:checked').length > 0) {
+			// 선택된 값이 변경되었을 때 실행할 코드
+			let selectedValue = $(this).find(':selected').data('price');
+			console.log('선택된 값:', selectedValue);
+			$('.couponPrice').text("");
+			$('.couponPrice').text(selectedValue).attr('style', "");
+			totalPrice();
 		} else {
 			alert("구매할 상품을 먼저 선택해주세요.");
 		}
 	});
-	
 
 	//상품 선택 체크박스 - 전체선택
 	$('#allcheck').click(function() {
@@ -567,10 +722,10 @@ $('.quantity').on('change', function() {
 			$('#processCheckOut').attr("class", "process text-center active");
 			$('#processCart').attr("class", "process text-center");
 
-			$('#bname').attr('value',$('#couponList').data('name'));
-			$('#bphone').attr('value',$('#couponList').data('phone'));
-			$('#bemail').attr('value',$('#couponList').data('email'));
-			
+			$('#bname').attr('value', $('#couponList').data('name'));
+			$('#bphone').attr('value', $('#couponList').data('phone'));
+			$('#bemail').attr('value', $('#couponList').data('email'));
+
 		} else {
 			alert("구매할 상품을 선택해주세요.");
 			return;
@@ -606,11 +761,15 @@ $('.quantity').on('change', function() {
 
 	function updatePrices() {
 		let sum = 0;
-		$('.selectBox:checked').each(function() {
-			console.log($(this).closest('.product-cart').find('.one-eight:nth-child(5) .price').text());
-			let selectedPrice = parseInt($(this).closest('.product-cart').find('.one-eight:nth-child(5) .price').text());
-			sum += selectedPrice;
-		});
+		$('.selectBox:checked').each(
+				function() {
+					console.log($(this).closest('.product-cart').find(
+							'.one-eight:nth-child(5) .price').text());
+					let selectedPrice = parseInt($(this).closest(
+							'.product-cart').find(
+							'.one-eight:nth-child(5) .price').text());
+					sum += selectedPrice;
+				});
 		console.log(sum);
 		$('.sumCartPrice').text(sum);
 
@@ -624,6 +783,4 @@ $('.quantity').on('change', function() {
 		console.log(total);
 		$('.totalPrice').text(total);
 	}
-	
-	
 </script>
