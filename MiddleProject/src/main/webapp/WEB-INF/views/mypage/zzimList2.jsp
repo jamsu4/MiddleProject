@@ -82,7 +82,7 @@
 					</div>
 					<div class="one-eight text-center"></div>
 					<div class="one-eight text-left">
-						<button onclick="AllConfirm()">선택삭제</button>
+						<button class="btn btn-danger" onclick="AllConfirm()">선택삭제</button>
 					</div>
 				</div>
 				<c:forEach var="list" items="${list }">
@@ -121,7 +121,7 @@
 						</div>
 						<div class="one-eight text-left">
 							<div class="display-tc">
-								<span class="price"><button
+								<span class="price"><button class="btn btn-danger"
 										onclick="delConfirm('a${list.zzimId }')">삭제</button></span>
 							</div>
 						</div>
