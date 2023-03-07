@@ -56,6 +56,7 @@ pageEncoding="UTF-8"%>
     <script>
     function currentPw(){
     	 let inputs = document.querySelectorAll("input")
+    	 console.log(inputs);
          if(inputs[3].value == ''){
             alert("현재 비밀번호를 입력해주세요")
             return false;
@@ -74,7 +75,7 @@ pageEncoding="UTF-8"%>
             alert("수정완료!")
             return true;
 
-       
+         }
     }
      
 
