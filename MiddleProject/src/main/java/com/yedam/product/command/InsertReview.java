@@ -30,7 +30,8 @@ public class InsertReview implements Command {
 		String memid = multi.getParameter("memid");
 		String proid = multi.getParameter("proid");
 		String fileName = "";
-		
+		System.out.println(rate);
+		System.out.println(proid);
 		Enumeration<?> files = multi.getFileNames();
 		while (files.hasMoreElements()) {
 			String file = (String) files.nextElement();

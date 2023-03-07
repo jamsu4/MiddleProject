@@ -55,33 +55,29 @@ pageEncoding="UTF-8"%>
     
     <script>
     function currentPw(){
-       if(document.querySelectorAll("input")[3].value == ''){ //현재비번이 빈경우
-          alert('현재 비밀번호를 입력해주세요.');
-          return false;
-       }else if(document.querySelectorAll("input")[4].value != document.querySelectorAll("input")[5].value){//
-          alert('변경 비밀번호 확인');
-          return false;
-       }else if(${list.memPw} != document.querySelectorAll("input")[3].value){
-          alert('현재 비밀번호가 다릅니다')
-          return false;
-       }else if(document.querySelectorAll("input")[4].value != '' || document.querySelectorAll("input")[5].value != ''||
-             document.querySelectorAll("input")[4].value == document.querySelectorAll("input")[5].value ){
-          document.querySelectorAll("input")[3].setAttribute("name","")
-          document.querySelectorAll("input")[4].setAttribute("name","memPw")
-          alert('수정완료!')
-          return true;
-       }else{
-          alert('수정완료!')
-          return true;
-       }
+    	 let inputs = document.querySelectorAll("input")
+         if(inputs[3].value == ''){
+            alert("현재 비밀번호를 입력해주세요")
+            return false;
+         }else if(inputs[3].value != ${list.memPw}){
+            alert("현재 비밀번호가 다릅니다.")
+            return false;
+         }else if(inputs[4].value != inputs[5].value){
+            alert("변경 비밀번호가 다릅니다.")
+            return false;
+         }else if(inputs[4].value != '' && inputs[5].value != ''){
+            inputs[3].setAttribute("name","")
+            inputs[4].setAttribute("name","memPw")
+            alert("수정완료!")
+            return true;
+         }else if(inputs[4].value == '' && inputs[5].value == ''){
+            alert("수정완료!")
+            return true;
+
        
     }
      
-      if(document.querySelectorAll("input")[4].innerText==''||document.querySelectorAll("input")[5].innerText==''){
-         document.querySelectorAll("input")[3].setAttribute("name","memPw")
-      }else if(document.querySelectorAll("input")[4].innerText==document.querySelectorAll("input")[5].innerText){
-         document.querySelectorAll("input")[4].setAttribute("name","memPw")
-      }
+
       function back(){
          window.history.back();
       }

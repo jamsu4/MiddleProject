@@ -152,7 +152,7 @@ button {
 					<div id=${list.revId } class="post-content" style="display: none;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;내용 :
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${list.revContent }</div>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${list.revContent }<hr></div>
 				</c:forEach>
 			</div>
 		</div>
@@ -248,7 +248,7 @@ button {
 								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;답변 :
 								&nbsp&nbsp&nbsp${list.qaReply }</div>
 						</c:if>
-					</div>
+					<hr></div>
 				</c:forEach>
 				<p>
 			</div>
