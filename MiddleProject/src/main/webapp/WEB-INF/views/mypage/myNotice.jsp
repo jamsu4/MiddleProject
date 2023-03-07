@@ -107,7 +107,7 @@ button {
 							<!-- 							</div> -->
 							<div class="one-eight text-center">
 								<div class="display-tc">
-									<img src="images/${list.proImg }" class="ordImg">
+									<img src="images/${list.revImage }" class="ordImg">
 								</div>
 							</div>
 							<div class="one-eight text-center">
