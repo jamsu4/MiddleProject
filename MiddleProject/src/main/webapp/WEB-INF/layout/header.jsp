@@ -1,4 +1,4 @@
-x<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <script
@@ -48,7 +48,7 @@ x<%@ page language="java" contentType="text/html; charset=UTF-8"
                                 	<a href="adminMain.do">관리자메뉴</a>
                                 </c:when>
 	                            <c:when test="${!empty logId}">
-                                	<a href="#">마이페이지</a>
+                                	<a>마이페이지</a>
 	                                <ul>
 	                                    <li><a href="orderList.do">주문내역</a></li>
 	                                    <li><a href="zzimList.do">찜한상품</a></li>
@@ -58,7 +58,7 @@ x<%@ page language="java" contentType="text/html; charset=UTF-8"
                                 </c:when>
                                 
 								<c:otherwise>
-									<a href="">마이페이지</a>
+									<a>마이페이지</a>
 		                                <ul>
 		                                    <li><a href="loginForm.do">주문내역</a></li>
 		                                    <li><a href="loginForm.do">찜한상품</a></li>
@@ -107,7 +107,7 @@ x<%@ page language="java" contentType="text/html; charset=UTF-8"
                                 <div class="p-3" style="max-width: 700px;">
                                     <h3 class="text-light text-uppercase font-weight-medium mb-3">지금 상품 구매시</h3>
                                     <h3 class="display-4 text-white font-weight-semi-bold mb-4">배송비 무료</h3>
-                                    <a href="#" class="btn btn-light py-2 px-3">Shop Now</a>
+                                    <a href="main.do" class="btn btn-light py-2 px-3">Shop Now</a>
                                 </div>
                             </div>
                         </div>
@@ -117,7 +117,7 @@ x<%@ page language="java" contentType="text/html; charset=UTF-8"
                                 <div class="p-3" style="max-width: 700px;">
                                     <h3 class="text-light text-uppercase font-weight-medium mb-3">지금 회원 가입시 전원</h3>
                                     <h3 class="display-4 text-white font-weight-semi-bold mb-4">5000원 쿠폰 지급</h3>
-                                    <a href="#" class="btn btn-light py-2 px-3">Shop Now</a>
+                                    <a href="main.do" class="btn btn-light py-2 px-3">Shop Now</a>
                                 </div>
                             </div>
                         </div>
@@ -137,12 +137,10 @@ x<%@ page language="java" contentType="text/html; charset=UTF-8"
 <!--                 <div class="col-lg-6"> -->
 <!--                     <div class="left-content"> -->
 <!--                         <div class="thumb"> -->
-
 <!--                             <img src="bootstrap/assets/images/cat.jpg" alt=""> -->
 <!--                         </div> -->
 <!--                     </div> -->
 <!--                 </div> -->
-
 <!--             </div> -->
         </div>
     </div>
