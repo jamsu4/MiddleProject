@@ -284,7 +284,7 @@ table:nth-of-type(2) input {
 			),
 			$('<td />').append( //td 추가
 				$('<button class="btn btn-danger">삭제</button>')
-					.attr('memIdDel', member.memId)				// $(e.target) 즉 클릭된 대상에서,   memidDel 속성의 값을 가져오겠다.
+					.attr('memIdDel', member.memId)		// <button class="btn btn-danger" memIdDel="이 사이에 member.memid 값 넣겠다~">삭제2</button>
 					.on('click', deleteMemberFnc) //이벤트
 			)
 		);
