@@ -284,7 +284,7 @@ table:nth-of-type(2) input {
 			),
 			$('<td />').append( //td 추가
 				$('<button class="btn btn-danger">삭제</button>')
-					.attr('memIdDel', member.memId) // .attr => setAttribute, 만들다
+					.attr('memIdDel', member.memId)				// $(e.target) 즉 클릭된 대상에서,   memidDel 속성의 값을 가져오겠다.
 					.on('click', deleteMemberFnc) //이벤트
 			)
 		);
@@ -331,7 +331,7 @@ table:nth-of-type(2) input {
 			return;
 		}
 
-		let memId = $(e.target).attr('memIdDel'); // .attr => getAttribute, 가져오다
+		let memId = $(e.target).attr('memIdDel');				// $(e.target) 즉 클릭된 대상에서,   memidDel 속성의 값을 가져오겠다.
 
 		$.ajax({
 			url: 'removeMember.do',	//회원 삭제하는 url 및 컨트롤 등록하기
